@@ -127,7 +127,7 @@ public static class CustomSettings
         _GT(typeof(Space)),
 
 
-        _GT(typeof(MeshRenderer)),
+        //_GT(typeof(MeshRenderer)),
 #if !UNITY_5_4_OR_NEWER
         _GT(typeof(ParticleEmitter)),
         _GT(typeof(ParticleRenderer)),

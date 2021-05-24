@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using LuaInterface;
+using System;
 
 namespace LuaFramework {
     public class LuaManager : Manager {
@@ -33,6 +34,18 @@ namespace LuaFramework {
             loop.luaState = lua;
         }
 
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int LuaOpen_Socket_Core(IntPtr L)
+        {        
+            return LuaDLL.luaopen_socket_core(L);
+        }
+
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int LuaOpen_Mime_Core(IntPtr L)
+        {
+            return LuaDLL.luaopen_mime_core(L);
+        }
+
         //cjson 比较特殊，只new了一个table，没有注册库，这里注册一下
         protected void OpenCJson() {
             lua.LuaGetField(LuaIndexes.LUA_REGISTRYINDEX, "_LOADED");
@@ -41,6 +54,17 @@ namespace LuaFramework {
 
             lua.OpenLibs(LuaDLL.luaopen_cjson_safe);
             lua.LuaSetField(-2, "cjson.safe");
+        }
+
+        /// <summary>
+        /// 开启socket
+        /// </summary>
+        protected void OpenLuaSocket()
+        {
+            LuaConst.openLuaSocket = true;
+            lua.BeginPreLoad();
+            lua.RegFunction("socket.core", LuaOpen_Socket_Core);
+            lua.EndPreLoad();
         }
 
         void StartMain() {
@@ -63,6 +87,8 @@ namespace LuaFramework {
             lua.OpenLibs(LuaDLL.luaopen_bit);
             lua.OpenLibs(LuaDLL.luaopen_socket_core);
 
+            //luaide socket 开启
+            this.OpenLuaSocket();
             this.OpenCJson();
         }
 
