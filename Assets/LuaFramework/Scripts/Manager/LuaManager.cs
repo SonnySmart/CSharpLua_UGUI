@@ -109,12 +109,27 @@ namespace LuaFramework {
         }
 
         // Update is called once per frame
-        public object[] CallFunction(string funcName, params object[] args) {
+        public object CallFunction(string funcName, params object[] args) {
+            int len = (args == null) ? 0 : args.Length;
+            object obj = null;
             LuaFunction func = lua.GetFunction(funcName);
             if (func != null) {
-                return func.LazyCall(args);
+                switch (len) {
+                    case 0: { obj = func.Invoke<object>(); break; }
+                    case 1: { obj = func.Invoke<object, object>(args[0]); break; }
+                    case 2: { obj = func.Invoke<object, object, object>(args[0], args[1]); break; }
+                    case 3: { obj = func.Invoke<object, object, object, object>(args[0], args[1], args[2]); break; }
+                    case 4: { obj = func.Invoke<object, object, object, object, object>(args[0], args[1], args[2], args[3]); break; }
+                    case 5: { obj = func.Invoke<object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4]); break; }
+                    case 6: { obj = func.Invoke<object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5]); break; }
+                    case 7: { obj = func.Invoke<object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break; }
+                    case 8: { obj = func.Invoke<object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break; }
+                    case 9: { obj = func.Invoke<object, object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); break; }
+                }
+                // 这个有GC不能用
+                //return func.LazyCall(args);
             }
-            return null;
+            return obj;
         }
 
         public void LuaGC() {
@@ -122,8 +137,11 @@ namespace LuaFramework {
         }
 
         public void Close() {
-            loop.Destroy();
-            loop = null;
+            if (loop)
+            {
+                loop.Destroy();
+                loop = null;
+            }
 
             lua.Dispose();
             lua = null;
