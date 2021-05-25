@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<meta>
+  <assembly>
+    <namespace name="Assembly-CSharp">
+    </namespace>
+	<namespace name="wxb">
+      <class name="AutoRegILType" IgnoreGeneric="true"/>
+    </namespace>
+  </assembly>
+</meta>

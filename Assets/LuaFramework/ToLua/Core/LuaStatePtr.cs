@@ -80,12 +80,19 @@ namespace LuaInterface
 
         public void LuaOpenJit()
         {
-            if (!LuaDLL.luaL_dostring(L, jit))
+#if UNITY_ANDROID
+            //某些机型如三星arm64在jit on模式下会崩溃，临时关闭这里
+            if (IntPtr.Size == 8)
+            {
+                LuaDLL.luaL_dostring(L, "jit.off()");                                                
+            }
+            else if (!LuaDLL.luaL_dostring(L, jit))
             {
                 string str = LuaDLL.lua_tostring(L, -1);
                 LuaDLL.lua_settop(L, 0);
                 throw new Exception(str);
-            }            
+            }
+#endif
         }
 
         public void LuaClose()
@@ -216,7 +223,15 @@ namespace LuaInterface
 
         public string LuaToString(int index)
         {
-            return LuaDLL.lua_tostring(L, index);
+            string s =  LuaDLL.lua_tostring(L, index);
+            if (s == null) {
+                // 可能抛出一个table作为error参数,调用tostring获取其字符串
+                LuaDLL.lua_getglobal(L, "tostring");
+                LuaDLL.lua_pushvalue(L, index - 1);
+                LuaDLL.lua_pcall(L, 1, 1, 0);
+                s = LuaDLL.lua_tostring(L, -1);
+            }
+            return s;
         }
 
         public IntPtr LuaToLString(int index, out int len)

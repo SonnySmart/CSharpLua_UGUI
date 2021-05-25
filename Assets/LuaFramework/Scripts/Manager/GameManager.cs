@@ -232,10 +232,14 @@ namespace LuaFramework {
 
         void OnInitialize() {
             LuaManager.InitStart();
-            LuaManager.DoFile("Logic/Game");         //加载游戏
-            LuaManager.DoFile("Logic/Network");      //加载网络
-            NetManager.OnInit();                     //初始化网络
+            //LuaManager.DoFile("Logic/Game");         //加载游戏
+            //LuaManager.DoFile("Logic/Network");      //加载网络
+            //NetManager.OnInit();                     //初始化网络
+            #if USE_LUA
             Util.CallMethod("Game", "OnInitOK");     //初始化完成
+            #else
+            new Game().OnInitOK();
+            #endif
 
             initialize = true;
 

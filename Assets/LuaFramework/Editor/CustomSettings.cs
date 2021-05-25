@@ -176,7 +176,11 @@ public static class CustomSettings
         _GT(typeof(TimerManager)),
         _GT(typeof(ThreadManager)),
         _GT(typeof(NetworkManager)),
-        _GT(typeof(ResourceManager)),		  
+        _GT(typeof(ResourceManager)),	
+
+        _GT(typeof(Controller)),  
+        //NormalSingleton
+        _GT(typeof(NormalSingleton<CtrlManager>)).SetLibName("NormalSingleton_1"), 
     };
 
     public static List<Type> dynamicList = new List<Type>()

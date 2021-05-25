@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using LuaInterface;
+using System;
 
 namespace LuaFramework {
     public class PanelManager : Manager {
@@ -23,6 +24,12 @@ namespace LuaFramework {
         /// </summary>
         /// <param name="type"></param>
         public void CreatePanel(string name, LuaFunction func = null) {
+            CreatePanel(name, (go) => {
+                if (func != null) func.Call(go);
+            });
+        }
+
+        public void CreatePanel(string name, Action<GameObject> func) {
             string assetName = name + "Panel";
             string abName = name.ToLower() + AppConst.ExtName;
             if (Parent.Find(name) != null) return;
@@ -39,9 +46,13 @@ namespace LuaFramework {
                 go.transform.SetParent(Parent);
                 go.transform.localScale = Vector3.one;
                 go.transform.localPosition = Vector3.zero;
+                #if USE_LUA
                 go.AddComponent<LuaBehaviour>();
+                #else
+                go.AddComponent(Type.GetType(assetName));
+                #endif
 
-                if (func != null) func.Call(go);
+                if (func != null) func.Invoke(go);
                 Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
             });
 #else
@@ -56,7 +67,7 @@ namespace LuaFramework {
             go.transform.localPosition = Vector3.zero;
             go.AddComponent<LuaBehaviour>();
 
-            if (func != null) func.Call(go);
+            if (func != null) func.Invoke(go);
             Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
 #endif
         }

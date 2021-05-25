@@ -36,6 +36,7 @@ namespace LuaInterface
             LuaValueTypeMap[LuaValueType.Quaternion] = typeof(Quaternion);
             LuaValueTypeMap[LuaValueType.Vector2] = typeof(Vector2);
             LuaValueTypeMap[LuaValueType.Color] = typeof(Color);
+            LuaValueTypeMap[LuaValueType.Color32] = typeof(Color32);
             LuaValueTypeMap[LuaValueType.Vector4] = typeof(Vector4);
             LuaValueTypeMap[LuaValueType.Ray] = typeof(Ray);
             LuaValueTypeMap[LuaValueType.Bounds] = typeof(Bounds);
@@ -213,7 +214,8 @@ namespace LuaInterface
 
         public static T ChangeType<T>(object temp, Type type)
         {
-            if (temp.GetType() == monoType)
+            var tempType = temp.GetType();
+            if (tempType == monoType || type.IsAssignableFrom(tempType))
             {
                 return (T)temp;
             }
@@ -225,9 +227,14 @@ namespace LuaInterface
 
         public static object ChangeType(object temp, Type type)
         {
-            if (temp.GetType() == monoType)
+            var tempType = temp.GetType();
+            if (tempType == monoType)
             {
                 return (Type)temp;
+            }
+            else if (type.IsAssignableFrom(tempType))
+            {
+                return temp;
             }
             else
             {

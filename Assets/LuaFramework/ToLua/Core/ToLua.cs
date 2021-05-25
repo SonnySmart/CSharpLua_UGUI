@@ -46,14 +46,16 @@ namespace LuaInterface
 
 #if UNITY_EDITOR
         static int _instanceID = -1;
-        static int _line = 201;
+        static int _line = 203;
         private static object consoleWindow;
         private static object logListView;
         private static FieldInfo logListViewCurrentRow;
         private static MethodInfo LogEntriesGetEntry;
+        private static MethodInfo StartGettingEntries;
+        private static MethodInfo EndGettingEntries;
         private static object logEntry;
-        private static FieldInfo logEntryCondition;
-#endif                
+        private static FieldInfo logEntryCondition;            
+#endif
 
         static ToLua()
         {
@@ -61,6 +63,7 @@ namespace LuaInterface
             ToVarMap[LuaValueType.Quaternion] = ToObjectQuat;
             ToVarMap[LuaValueType.Vector2] = ToObjectVec2;
             ToVarMap[LuaValueType.Color] = ToObjectColor;
+            ToVarMap[LuaValueType.Color32] = ToObjectColor32;
             ToVarMap[LuaValueType.Vector4] = ToObjectVec4;
             ToVarMap[LuaValueType.Ray] = ToObjectRay;
             ToVarMap[LuaValueType.LayerMask] = ToObjectLayerMask;
@@ -198,7 +201,7 @@ namespace LuaInterface
                         }
                     }
 
-                    Debugger.Log(sb.ToString());            //200行与_line一致
+                    Debugger.Log(sb.ToString());            //203行与_line一致
                 }
                 return 0;
             }
@@ -267,6 +270,11 @@ namespace LuaInterface
                         throw new LuaException(error, LuaException.GetLastError());
                     }
                 }
+				else
+				{
+					string err = LuaDLL.lua_tostring(L, -1);
+					throw new LuaException(err, LuaException.GetLastError());
+				}
 
                 return LuaDLL.lua_gettop(L) - n;
             }
@@ -443,7 +451,7 @@ namespace LuaInterface
             {
                 Assembly unityEditorAssembly = Assembly.GetAssembly(typeof(EditorWindow));
                 Type consoleWindowType = unityEditorAssembly.GetType("UnityEditor.ConsoleWindow");
-                FieldInfo fieldInfo = consoleWindowType.GetField("ms_ConsoleWindow", BindingFlags.Static | BindingFlags.NonPublic);
+                FieldInfo fieldInfo = consoleWindowType.GetField("ms_ConsoleWindow", BindingFlags.Static | BindingFlags.NonPublic);                
                 consoleWindow = fieldInfo.GetValue(null);
 
                 if (consoleWindow == null)
@@ -456,16 +464,18 @@ namespace LuaInterface
                 logListView = listViewFieldInfo.GetValue(consoleWindow);
                 logListViewCurrentRow = listViewFieldInfo.FieldType.GetField("row", BindingFlags.Instance | BindingFlags.Public);
 #if UNITY_2017_1_OR_NEWER
-                Type logEntriesType = unityEditorAssembly.GetType("UnityEditor.LogEntries");
-                LogEntriesGetEntry = logEntriesType.GetMethod("GetEntryInternal", BindingFlags.Static | BindingFlags.Public);
-                Type logEntryType = unityEditorAssembly.GetType("UnityEditor.LogEntry");                
+                Type logEntriesType = unityEditorAssembly.GetType("UnityEditor.LogEntries");                
+                LogEntriesGetEntry = logEntriesType.GetMethod("GetEntryInternal", BindingFlags.Static | BindingFlags.Public);                
+                Type logEntryType = unityEditorAssembly.GetType("UnityEditor.LogEntry");                                
 #else
                 Type logEntriesType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntries");                
                 LogEntriesGetEntry = logEntriesType.GetMethod("GetEntryInternal", BindingFlags.Static | BindingFlags.Public);
-                Type logEntryType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntry");
-#endif
-                logEntry = Activator.CreateInstance(logEntryType);
+                Type logEntryType = unityEditorAssembly.GetType("UnityEditorInternal.LogEntry");                
+#endif                                
                 logEntryCondition = logEntryType.GetField("condition", BindingFlags.Instance | BindingFlags.Public);
+                StartGettingEntries = logEntriesType.GetMethod("StartGettingEntries", BindingFlags.Static | BindingFlags.Public);
+                EndGettingEntries = logEntriesType.GetMethod("EndGettingEntries", BindingFlags.Static | BindingFlags.Public);
+                logEntry = Activator.CreateInstance(logEntryType);
             }
 
             return true;
@@ -474,17 +484,23 @@ namespace LuaInterface
 
         private static string GetListViewRowCount(ref int line)
         {
-            int row = (int)logListViewCurrentRow.GetValue(logListView);
-            LogEntriesGetEntry.Invoke(null, new object[] { row, logEntry });
+#if UNITY_2017_1_OR_NEWER
+            object rows = StartGettingEntries.Invoke(null, null);
+#endif
+            int row = (int)logListViewCurrentRow.GetValue(logListView);            
+            LogEntriesGetEntry.Invoke(null, new object[] { row, logEntry });                            
             string condition = logEntryCondition.GetValue(logEntry) as string;
+#if UNITY_2017_1_OR_NEWER
+            EndGettingEntries.Invoke(null, null);
+#endif
             condition = condition.Substring(0, condition.IndexOf('\n'));
-            int index = condition.IndexOf(".lua:");
+            int index = condition.IndexOf(".lua:");            
 
             if (index >= 0)
             {
                 int start = condition.IndexOf("[");
                 int end = condition.IndexOf("]:");
-                string _line = condition.Substring(index + 5, end - index - 4);
+                string _line = condition.Substring(index + 5, end - index - 5);
                 Int32.TryParse(_line, out line);
                 return condition.Substring(start + 1, index + 3 - start);
             }
@@ -495,7 +511,7 @@ namespace LuaInterface
             {
                 int start = condition.IndexOf("[");
                 int end = condition.IndexOf("]:");
-                string _line = condition.Substring(index + 5, end - index - 4);
+                string _line = condition.Substring(index + 4, end - index - 4);
                 Int32.TryParse(_line, out line);
                 return condition.Substring(start + 1, index + 2 - start);
             }
@@ -569,7 +585,12 @@ namespace LuaInterface
                         if (path.EndsWith(fileName) || path.EndsWith(fileName + ".bytes"))
                         {
                             UnityEngine.Object obj = AssetDatabase.LoadMainAssetAtPath(path);
+#if !UNITY_2017_1_OR_NEWER
+                            EditorApplication.delayCall += () => { AssetDatabase.OpenAsset(obj, line); };
+#else
                             AssetDatabase.OpenAsset(obj, line);
+#endif
+
                             return true;
                         }
                     }
@@ -581,9 +602,9 @@ namespace LuaInterface
         }
 #endif
 #endregion
-                /*-------------------------------------------------------------------------------------------*/
+                            /*-------------------------------------------------------------------------------------------*/
 
-        public static string ToString(IntPtr L, int stackPos)
+                            public static string ToString(IntPtr L, int stackPos)
         {
             LuaTypes luaType = LuaDLL.lua_type(L, stackPos);
 
@@ -689,6 +710,13 @@ namespace LuaInterface
             float r, g, b, a;
             LuaDLL.tolua_getclr(L, stackPos, out r, out g, out b, out a);
             return new Color(r, g, b, a);
+        }
+
+        public static Color32 ToColor32(IntPtr L, int stackPos)
+        {
+            float r, g, b, a;
+            LuaDLL.tolua_getclr(L, stackPos, out r, out g, out b, out a);
+            return new Color32((byte)r, (byte)g, (byte)b, (byte)a);
         }
 
         public static Ray ToRay(IntPtr L, int stackPos)
@@ -838,6 +866,10 @@ namespace LuaInterface
         {
             return ToColor(L, stackPos);
         }
+        static object ToObjectColor32(IntPtr L, int stackPos)
+        {
+            return ToColor32(L, stackPos);
+        }
 
         static object ToObjectVec4(IntPtr L, int stackPos)
         {
@@ -862,6 +894,16 @@ namespace LuaInterface
         static object ToObjectBounds(IntPtr L, int stackPos)
         {
             return ToBounds(L, stackPos);
+        }
+      
+        public static IEnumerator ToIEnumerator(IntPtr L, int stackPos) 
+        {
+            var luaTable = ToLuaTable(L, stackPos);
+            if (luaTable != null) 
+            {
+                return LuaFramework.LuaIEnumerator.Create(luaTable);
+            }
+            return (IEnumerator)ToObject(L, 2);
         }
 
         public static LuaFunction CheckLuaFunction(IntPtr L, int stackPos)
@@ -1061,6 +1103,14 @@ namespace LuaInterface
             {
                 return null;
             }
+            else 
+            {
+                var luaTable = ToLuaTable(L, stackPos);
+                if (luaTable != null) 
+                {
+                    return LuaFramework.LuaIEnumerator.Create(luaTable);
+                }
+            }
 
             LuaDLL.luaL_typerror(L, stackPos, "Type");
             return null;
@@ -1127,13 +1177,12 @@ namespace LuaInterface
 
                 if (obj != null)
                 {
-                    Type objType = obj.GetType();
-
                     if (obj is T)
                     {
                         return obj;
                     }
 
+                    Type objType = obj.GetType();
                     LuaDLL.luaL_argerror(L, stackPos, string.Format("{0} expected, got {1}", TypeTraits<T>.GetTypeName(), objType.FullName));
                 }
 
@@ -1223,6 +1272,20 @@ namespace LuaInterface
             return new Color(r, g, b, a);
         }
 
+        static public Color32 CheckColor32(IntPtr L, int stackPos)
+        {
+            int type = LuaDLL.tolua_getvaluetype(L, stackPos);
+
+            if (type != LuaValueType.Color32)
+            {
+                LuaDLL.luaL_typerror(L, stackPos, "Color32", LuaValueTypeName.Get(type));
+                return new Color32();
+            }
+
+            float r, g, b, a;
+            LuaDLL.tolua_getclr(L, stackPos, out r, out g, out b, out a);
+            return new Color32((byte)r, (byte)g, (byte)b, (byte)a);
+        }
         static public Ray CheckRay(IntPtr L, int stackPos)
         {            
             int type = LuaDLL.tolua_getvaluetype(L, stackPos);
@@ -1287,6 +1350,30 @@ namespace LuaInterface
                 return null;
             }
 
+            TypeCode code = Type.GetTypeCode(t);
+            switch (code) {
+              case TypeCode.Boolean: {
+                return LuaDLL.luaL_checkboolean(L, stackPos);
+              }
+              case TypeCode.Char:
+              case TypeCode.SByte:
+              case TypeCode.Byte:
+              case TypeCode.Int16:
+              case TypeCode.UInt16:
+              case TypeCode.Int32:
+              case TypeCode.UInt32:
+              case TypeCode.Int64:
+              case TypeCode.UInt64:
+              case TypeCode.Single:
+              case TypeCode.Double: {
+                double d = LuaDLL.luaL_checknumber(L, stackPos);
+                return Convert.ChangeType(d, t);
+              }
+              case TypeCode.String: {
+                return CheckString(L, stackPos);
+              }
+            }
+
             if (beValue)
             {
                 if (TypeChecker.IsNullable(t))
@@ -1343,6 +1430,10 @@ namespace LuaInterface
                 {
                     return CheckColor(L, stackPos);
                 }
+                else if (t == typeof(Color32))
+                {
+                    return CheckColor32(L, stackPos);
+                }
                 else if (t == typeof(Ray))
                 {
                     return CheckRay(L, stackPos);
@@ -1380,7 +1471,7 @@ namespace LuaInterface
                 {
                     return ToLua.CheckObject(L, stackPos, t);
                 }
-                else if ( t == typeof(string))
+                else if (t == typeof(string))
                 {
                     return CheckString(L, stackPos);
                 }
@@ -1631,7 +1722,7 @@ namespace LuaInterface
                     {
                         LuaDLL.lua_rawgeti(L, stackPos, i);                        
 
-                        if (LuaDLL.lua_type(L, pos) != LuaTypes.LUA_TNUMBER)
+                        if (!TypeTraits<T>.Check(L, pos))
                         {
                             LuaDLL.lua_pop(L, 1);
                             LuaDLL.luaL_typerror(L, stackPos, TypeTraits<T[]>.GetTypeName());
@@ -2011,7 +2102,7 @@ namespace LuaInterface
                     {
                         LuaDLL.lua_rawgeti(L, stackPos, i);
 
-                        if (LuaDLL.lua_type(L, pos) != LuaTypes.LUA_TNUMBER)
+                        if (!TypeTraits<T>.Check(L, pos))
                         {
                             LuaDLL.lua_pop(L, 1);
                             LuaDLL.luaL_typerror(L, stackPos, TypeTraits<T[]>.GetTypeName());
@@ -2226,6 +2317,12 @@ namespace LuaInterface
         {            
             LuaDLL.tolua_pushclr(L, clr.r, clr.g, clr.b, clr.a);
         }
+
+        public static void Push(IntPtr L, Color32 clr)
+        {
+            LuaDLL.tolua_pushclr(L, clr.r, clr.g, clr.b, clr.a);
+        }
+
 
         public static void Push(IntPtr L, Ray ray)
         {
@@ -2461,27 +2558,32 @@ namespace LuaInterface
             {
                 LuaDLL.lua_pushnil(L);
             }
-            else
-            {                
-                int reference = LuaStatic.GetMetaReference(L, iter.GetType());
-
-                if (reference > 0)
+            else 
+            {
+                var luaIEnumerator = iter as LuaFramework.LuaIEnumerator;
+                if (luaIEnumerator != null) 
                 {
-                    PushUserData(L, iter, reference);
+                    luaIEnumerator.Push(L);
                 }
-                else
+                else 
                 {
-                    int iterMetatable = LuaStatic.GetIterMetatable(L);
-                    PushUserData(L, iter, iterMetatable);
-                }            
+                    int reference = LuaStatic.GetMetaReference(L, iter.GetType());
+                    if (reference > 0) 
+                    {
+                        PushUserData(L, iter, reference);
+                    } 
+                    else 
+                    {
+                        int iterMetatable = LuaStatic.GetIterMetatable(L);
+                        PushUserData(L, iter, iterMetatable);
+                    }
+                }
             }
         }
 
         public static void Push(IntPtr L, System.Enum e)
         {
-            object obj = null;
-            int enumMetatable = LuaStatic.GetEnumObject(L, e, out obj);
-            PushUserData(L, obj, enumMetatable);
+            LuaDLL.lua_pushinteger(L, (int)(ValueType)e);
         }
 
         //基础类型获取需要一个函数
@@ -2632,7 +2734,7 @@ namespace LuaInterface
 
         public static void PushSealed<T>(IntPtr L, T o)
         {
-            if (o == null)
+            if (o == null || o.Equals(null))
             {
                 LuaDLL.lua_pushnil(L);
             }
@@ -2688,6 +2790,63 @@ namespace LuaInterface
             }
 
             Type t = obj.GetType();
+            TypeCode code = Type.GetTypeCode(t);
+            switch (code) {
+              case TypeCode.Boolean: {
+                bool b = (bool)obj;
+                LuaDLL.lua_pushboolean(L, b);
+                return;
+              }
+              case TypeCode.Char: {
+                char ch = (char)obj;
+                LuaDLL.lua_pushnumber(L, ch);
+                return;
+              }
+              case TypeCode.SByte: {
+                LuaDLL.lua_pushnumber(L, (sbyte)obj);
+                return;
+              }
+              case TypeCode.Byte: {
+                LuaDLL.lua_pushnumber(L, (byte)obj);
+                return;
+              }
+              case TypeCode.Int16: {
+                LuaDLL.lua_pushnumber(L, (Int16)obj);
+                return;
+              }
+              case TypeCode.UInt16: {
+                LuaDLL.lua_pushnumber(L, (UInt16)obj);
+                return;
+              }
+              case TypeCode.Int32: {
+                LuaDLL.lua_pushnumber(L, (Int32)obj);
+                return;
+              }
+              case TypeCode.UInt32: {
+                LuaDLL.lua_pushnumber(L, (UInt32)obj);
+                return;
+              }
+              case TypeCode.Int64: {
+                LuaDLL.lua_pushnumber(L, (Int64)obj);
+                return;
+              }
+              case TypeCode.UInt64: {
+                LuaDLL.lua_pushnumber(L, (UInt64)obj);
+                return;
+              }
+              case TypeCode.Single: {
+                LuaDLL.lua_pushnumber(L, (Single)obj);
+                return; ;
+              }
+              case TypeCode.Double: {
+                LuaDLL.lua_pushnumber(L, (double)obj);
+                return;
+              }
+              case TypeCode.String: {
+                LuaDLL.lua_pushstring(L, (string)obj);
+                return;
+              }
+            }
 
             if (t.IsValueType)
             {
@@ -2743,6 +2902,10 @@ namespace LuaInterface
                 else if (t == typeof(Color))
                 {
                     Push(L, (Color)obj);
+                }
+                else if (t == typeof(Color32))
+                {
+                    Push(L, (Color32)obj);
                 }
                 else if (t == typeof(RaycastHit))
                 {
@@ -2871,6 +3034,7 @@ namespace LuaInterface
                 case LuaTypes.LUA_TNIL:
                     return null;
                 case LuaTypes.LUA_TFUNCTION:
+                case LuaTypes.LUA_TTABLE:
                     LuaFunction func = ToLua.ToLuaFunction(L, stackPos);
                     return DelegateFactory.CreateDelegate(t, func);
                 case LuaTypes.LUA_TUSERDATA:
@@ -2890,6 +3054,7 @@ namespace LuaInterface
                 case LuaTypes.LUA_TNIL:
                     return null;
                 case LuaTypes.LUA_TFUNCTION:
+                case LuaTypes.LUA_TTABLE:
                     LuaFunction func = ToLua.ToLuaFunction(L, stackPos);
                     return DelegateTraits<T>.Create(func);
                 case LuaTypes.LUA_TUSERDATA:

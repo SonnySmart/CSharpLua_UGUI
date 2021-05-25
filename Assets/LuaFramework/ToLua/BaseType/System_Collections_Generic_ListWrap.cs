@@ -30,23 +30,26 @@ public class System_Collections_Generic_ListWrap
 		L.RegFunction("Insert", Insert);
         L.RegFunction("InsertRange", InsertRange);
         L.RegFunction("LastIndexOf", LastIndexOf);
-		L.RegFunction("Remove", Remove);
-		L.RegFunction("RemoveAll", RemoveAll);
-		L.RegFunction("RemoveAt", RemoveAt);
-		L.RegFunction("RemoveRange", RemoveRange);
-		L.RegFunction("Reverse", Reverse);
-		L.RegFunction("Sort", Sort);
-		L.RegFunction("ToArray", ToArray);
-		L.RegFunction("TrimExcess", TrimExcess);
-		L.RegFunction("TrueForAll", TrueForAll);
-		L.RegFunction("get_Item", get_Item);
-		L.RegFunction("set_Item", set_Item);
-        L.RegFunction(".geti", get_Item);
-        L.RegFunction(".seti", set_Item);
-        L.RegFunction("__tostring", ToLua.op_ToString);
-		L.RegVar("Capacity", get_Capacity, set_Capacity);
-		L.RegVar("Count", get_Count, null);
-        L.EndClass();        
+		    L.RegFunction("Remove", Remove);
+		    L.RegFunction("RemoveAll", RemoveAll);
+		    L.RegFunction("RemoveAt", RemoveAt);
+		    L.RegFunction("RemoveRange", RemoveRange);
+		    L.RegFunction("Reverse", Reverse);
+		    L.RegFunction("Sort", Sort);
+		    L.RegFunction("ToArray", ToArray);
+		    L.RegFunction("TrimExcess", TrimExcess);
+		    L.RegFunction("TrueForAll", TrueForAll);
+		    L.RegFunction("get_Item", get_Item);
+        L.RegFunction("get", get_Item);
+        L.RegFunction("set_Item", set_Item);
+        L.RegFunction("set", set_Item);
+         L.RegFunction(".geti", get_Item);
+         L.RegFunction(".seti", set_Item);
+         L.RegFunction("__tostring", ToLua.op_ToString);
+        L.RegFunction("__len", get_Count);
+        L.RegVar("Capacity", get_Capacity, set_Capacity);
+        L.RegVar("Count", get_Count, null);
+         L.EndClass();        
     }
 
     [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]

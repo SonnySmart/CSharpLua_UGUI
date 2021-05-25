@@ -7,10 +7,12 @@ public class System_ArrayWrap
 {
 	public static void Register(LuaState L)
 	{
-        L.BeginClass(typeof(Array), typeof(System.Object));
-        L.RegFunction(".geti", get_Item);
-        L.RegFunction(".seti", set_Item);
-        L.RegFunction("ToTable", ToTable);
+      L.BeginClass(typeof(Array), typeof(System.Object));
+      L.RegFunction(".geti", get_Item);
+      L.RegFunction("get", get_Item);
+      L.RegFunction(".seti", set_Item);
+      L.RegFunction("set", set_Item);
+      L.RegFunction("ToTable", ToTable);
 		L.RegFunction("GetLength", GetLength);
 		L.RegFunction("GetLongLength", GetLongLength);
 		L.RegFunction("GetLowerBound", GetLowerBound);
@@ -31,7 +33,8 @@ public class System_ArrayWrap
 		L.RegFunction("CopyTo", CopyTo);
 		L.RegFunction("ConstrainedCopy", ConstrainedCopy);
 		L.RegFunction("__tostring", ToLua.op_ToString);
-		L.RegVar("Length", get_Length, null);
+              L.RegFunction("__len", get_Length);
+              L.RegVar("Length", get_Length, null);
 		L.RegVar("LongLength", get_LongLength, null);
 		L.RegVar("Rank", get_Rank, null);
 		L.RegVar("IsSynchronized", get_IsSynchronized, null);
@@ -75,7 +78,13 @@ public class System_ArrayWrap
             long ret = array[index];
             LuaDLL.tolua_pushint64(L, ret);
         }
-        else if (t == typeof(System.SByte))
+		else if (t == typeof(System.UInt64))
+		{
+			ulong[] array = obj as ulong[];
+			ulong ret = array[index];
+			LuaDLL.tolua_pushuint64(L, ret);
+		}
+		else if (t == typeof(System.SByte))
         {
             sbyte[] array = obj as sbyte[];
             sbyte ret = array[index];
@@ -230,7 +239,13 @@ public class System_ArrayWrap
             long val = LuaDLL.tolua_toint64(L, 3);
             array[index] = val;
         }
-        else if (t == typeof(System.SByte))
+		else if (t == typeof(System.UInt64))
+		{
+			ulong[] array = obj as ulong[];
+			ulong val = LuaDLL.tolua_touint64(L, 3);
+			array[index] = val;
+		}
+		else if (t == typeof(System.SByte))
         {
             sbyte[] array = obj as sbyte[];
             sbyte val = (sbyte)LuaDLL.luaL_checknumber(L, 3);
@@ -456,7 +471,20 @@ public class System_ArrayWrap
 
                         return 1;
                     }
-                    else if (t == typeof(System.Byte))
+					else if (t == typeof(System.UInt64))
+					{
+						ulong[] array = obj as ulong[];
+
+						for (int i = 0; i < array.Length; i++)
+						{
+							ulong ret = array[i];
+							LuaDLL.tolua_pushuint64(L, ret);
+							LuaDLL.lua_rawseti(L, -2, i + 1);
+						}
+
+						return 1;
+					}
+					else if (t == typeof(System.Byte))
                     {
                         byte[] array = obj as byte[];
 

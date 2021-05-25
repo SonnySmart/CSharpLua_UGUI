@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace LuaFramework {
     public class LuaBehaviour : View {
@@ -32,9 +33,16 @@ namespace LuaFramework {
         public void AddClick(GameObject go, LuaFunction luafunc) {
             if (go == null || luafunc == null) return;
             buttons.Add(go.name, luafunc);
+            AddClick(go, (GameObject obj) => {
+                luafunc.Call(obj);
+            });
+        }
+
+        public void AddClick(GameObject go, UnityAction<GameObject> luafunc) {
+            if (go == null || luafunc == null) return;
             go.GetComponent<Button>().onClick.AddListener(
                 delegate() {
-                    luafunc.Call(go);
+                    luafunc.Invoke(go);
                 }
             );
         }

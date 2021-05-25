@@ -25,6 +25,7 @@ namespace LuaFramework {
             InitLuaPath();
             InitLuaBundle();
             this.lua.Start();    //启动LUAVM
+            this.StartDebug();
             this.StartMain();
             this.StartLooper();
         }
@@ -67,9 +68,19 @@ namespace LuaFramework {
             lua.EndPreLoad();
         }
 
+        /// <summary>
+        /// 启动调试
+        /// </summary>
+        void StartDebug() {
+            lua.DoFile("LuaDebugjit.lua");
+            LuaFunction main = lua.GetFunction("StartDebug");
+            main.Call("localhost", 7003);
+            main.Dispose();
+            main = null; 
+        }
+
         void StartMain() {
             lua.DoFile("Main.lua");
-
             LuaFunction main = lua.GetFunction("Main");
             main.Call();
             main.Dispose();
@@ -116,9 +127,9 @@ namespace LuaFramework {
                 loader.AddBundle("lua/lua_system_reflection.unity3d");
                 loader.AddBundle("lua/lua_unityengine.unity3d");
                 loader.AddBundle("lua/lua_common.unity3d");
-                loader.AddBundle("lua/lua_logic.unity3d");
-                loader.AddBundle("lua/lua_view.unity3d");
-                loader.AddBundle("lua/lua_controller.unity3d");
+                // loader.AddBundle("lua/lua_logic.unity3d");
+                // loader.AddBundle("lua/lua_view.unity3d");
+                // loader.AddBundle("lua/lua_controller.unity3d");
                 loader.AddBundle("lua/lua_misc.unity3d");
 
                 loader.AddBundle("lua/lua_protobuf.unity3d");
@@ -127,6 +138,20 @@ namespace LuaFramework {
                 loader.AddBundle("lua/lua_3rd_pbc.unity3d");
                 loader.AddBundle("lua/lua_3rd_pblua.unity3d");
                 loader.AddBundle("lua/lua_3rd_sproto.unity3d");
+
+                loader.AddBundle("lua/lua_coresystemlua.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_collections.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_io.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_reflection.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_text.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_threading.unity3d");
+
+                loader.AddBundle("lua/lua_compiled.unity3d");
+                loader.AddBundle("lua/lua_compiled_common.unity3d");
+                loader.AddBundle("lua/lua_compiled_controller.unity3d");
+                loader.AddBundle("lua/lua_compiled_logic.unity3d");
+                loader.AddBundle("lua/lua_compiled_view.unity3d");
             }
         }
 
@@ -152,6 +177,8 @@ namespace LuaFramework {
                     case 8: { obj = func.Invoke<object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break; }
                     case 9: { obj = func.Invoke<object, object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); break; }
                 }
+                func.Dispose();
+                func = null;
                 // 这个有GC不能用
                 //return func.LazyCall(args);
             }
@@ -172,6 +199,16 @@ namespace LuaFramework {
             lua.Dispose();
             lua = null;
             loader = null;
+        }
+
+        public LuaState GetMainState()
+        {
+            return lua;
+        }
+
+        public LuaLooper GetLooper()
+        {
+            return loop;
         }
     }
 }
