@@ -142,7 +142,9 @@ namespace LuaFramework {
                 loader.AddBundle("lua/lua_coresystemlua.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_collections.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_globalization.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_io.unity3d");
+                loader.AddBundle("lua/lua_coresystemlua_coresystem_numerics.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_reflection.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_text.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_threading.unity3d");

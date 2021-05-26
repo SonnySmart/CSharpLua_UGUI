@@ -46,11 +46,7 @@ namespace LuaFramework {
                 go.transform.SetParent(Parent);
                 go.transform.localScale = Vector3.one;
                 go.transform.localPosition = Vector3.zero;
-                #if USE_LUA
-                go.AddComponent<LuaBehaviour>();
-                #else
-                go.AddComponent(Type.GetType(assetName));
-                #endif
+                AddComponent(go, assetName);
 
                 if (func != null) func.Invoke(go);
                 Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
@@ -65,7 +61,7 @@ namespace LuaFramework {
             go.transform.SetParent(Parent);
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
-            go.AddComponent<LuaBehaviour>();
+            AddComponent(go, assetName);
 
             if (func != null) func.Invoke(go);
             Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
@@ -81,6 +77,20 @@ namespace LuaFramework {
             var panelObj = Parent.Find(panelName);
             if (panelObj == null) return;
             Destroy(panelObj.gameObject);
+        }
+
+        private void AddComponent(GameObject gameObject, string assetName)
+        {
+#if USE_LUA
+            //gameObject.AddComponent<LuaBehaviour>();
+            var luaState = LuaHelper.GetLuaManager().GetMainState();
+            using (var fn = luaState.GetFunction("UnityEngine.addComponent")) {
+                string assembly = assetName + ",Assembly-CSharp";
+                fn.Call(gameObject, assembly);
+            }
+#else
+            gameObject.AddComponent(Type.GetType(assetName));
+#endif
         }
     }
 }

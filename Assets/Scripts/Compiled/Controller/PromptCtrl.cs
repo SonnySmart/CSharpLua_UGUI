@@ -16,7 +16,7 @@ public class PromptCtrl : Controller
 	    LuaHelper.GetPanelManager().CreatePanel("Prompt", this.OnCreate);
     } 
 
-    void OnCreate(GameObject obj)
+    public void OnCreate(GameObject obj)
     {
         gameObject = obj;
         transform = obj.transform;
@@ -33,7 +33,7 @@ public class PromptCtrl : Controller
         LuaHelper.GetResManager().LoadPrefab("prompt", "PromptItem", this.InitPanel);
     }
 
-    void InitPanel(Object[] objs)
+    public void InitPanel(Object[] objs)
     {
         int count = 100; 
         var parent = mPromptPanel.gridParent;
@@ -51,12 +51,12 @@ public class PromptCtrl : Controller
         }
     }
 
-    void OnClick(GameObject go)
+    public void OnClick(GameObject go)
     {
         Debug.Log("OnClick---->>>" + go.name);
     }
     
-    void OnItemClick(GameObject go)
+    public void OnItemClick(GameObject go)
     {
         Debug.Log("OnItemClick---->>>" + go.name);
     }

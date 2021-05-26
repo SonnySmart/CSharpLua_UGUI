@@ -20,6 +20,9 @@ public class CtrlManager
     {
         Debug.Log("CtrlManager.Init----->>>");
 
+        var testCode = new TestCode();
+        var testCtrl = new TestCtrl();
+
         ctrlList["Prompt"] = new PromptCtrl();
     }
 

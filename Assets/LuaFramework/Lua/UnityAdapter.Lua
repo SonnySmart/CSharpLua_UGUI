@@ -174,6 +174,11 @@ function makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeOb
 end
 
 local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, serializeObjects)
+  -- 20210526 没有构造函数设置默认构造
+  local ctor = rawget(T, "__ctor__")
+  if not ctor then
+    rawset(T, "__ctor__", emptyFn)
+  end
   local this = setmetatable({}, T)
   T.__ctor__(this)
   makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeObjects)

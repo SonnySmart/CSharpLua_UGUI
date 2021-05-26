@@ -13,7 +13,7 @@ public class Game
         this.InitViewPanels();
 
         CtrlManager.Instance.Init();
-        IController ctrl = CtrlManager.Instance.GetCtrl("Prompt");
+        Controller ctrl = CtrlManager.Instance.GetCtrl("Prompt");
         if (ctrl != null && AppConst.ExampleMode) {
             (ctrl as PromptCtrl).Awake();
         }

@@ -11,6 +11,19 @@ namespace LuaFramework {
         private string data = null;
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
 
+        public LuaTable Table { get; private set; }
+        public string LuaClass;
+
+        public void Bind(LuaTable table) {
+            Table = table;
+        }
+
+        public void Bind(LuaTable table, string luaClass) {
+            Table = table;
+            LuaClass = luaClass;
+        }
+
+        /*
         protected void Awake() {
             Util.CallMethod(name, "Awake", gameObject);
         }
@@ -26,6 +39,7 @@ namespace LuaFramework {
         protected void OnClickEvent(GameObject go) {
             Util.CallMethod(name, "OnClick", go);
         }
+        */
 
         /// <summary>
         /// 添加单击事件

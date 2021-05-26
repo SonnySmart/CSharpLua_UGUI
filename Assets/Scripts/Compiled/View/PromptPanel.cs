@@ -6,14 +6,14 @@ public class PromptPanel : LuaBehaviour
     public GameObject btnOpen;
     public Transform gridParent;
 
-    protected new void Awake()
+    public void Awake()
     {
         print("我是Cs被打印了 PromptPanel Awake");
 
         this.InitPanel();
     }
 
-    protected new void Start()
+    public void Start()
     {
         print("我是Cs被打印了 PromptPanel Start");
     }

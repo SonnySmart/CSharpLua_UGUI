@@ -56,5 +56,4 @@ end
 
 require("CoreSystemLua.All")("CoreSystemLua", config)
 require("UnityAdapter")
---require("ProtobufAdapter")
 require("Compiled.manifest")("Compiled")
