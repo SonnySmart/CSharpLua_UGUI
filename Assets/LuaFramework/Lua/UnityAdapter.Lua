@@ -179,6 +179,18 @@ local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, se
   if not ctor then
     rawset(T, "__ctor__", emptyFn)
   end
+
+  T.__newindex = function(cls, key, value)
+    print("找不到这个key " .. key)
+  end
+  T.__index = function(cls, key)
+    print("访问了这个key " .. key)
+    if cls[key] then
+      return cls[key]
+    end
+    return bridgeMonoBehaviour[key]
+  end
+
   local this = setmetatable({}, T)
   T.__ctor__(this)
   makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeObjects)

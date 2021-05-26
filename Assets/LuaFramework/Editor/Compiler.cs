@@ -9,7 +9,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace CSharpLua {
+namespace LuaFramework.Editor {
   public static class Compiler {
     private sealed class CompiledFail : Exception {
       public CompiledFail(string message) : base(message) {
