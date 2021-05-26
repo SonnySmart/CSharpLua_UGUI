@@ -20,7 +20,12 @@ public class PromptPanel : LuaBehaviour
 
     public void InitPanel()
     {
-        this.btnOpen = transform.Find("Open").gameObject;
-	    this.gridParent = transform.Find("ScrollView/Grid");
+        var behaviour = gameObject.AddComponent<BehaviourTest>();
+        behaviour.Init();
+
+        var tr = this.transform;
+
+        this.btnOpen = tr.Find("Open").gameObject;
+	    this.gridParent = tr.Find("ScrollView/Grid");
     }
 }

@@ -56,4 +56,6 @@ end
 
 require("CoreSystemLua.All")("CoreSystemLua", config)
 require("UnityAdapter")
+require("Common.All")("Common")
+require("LuaFramework.All")
 require("Compiled.manifest")("Compiled")

@@ -8,6 +8,9 @@ namespace LuaFramework {
         private LuaState lua;
         private LuaLoader loader;
         private LuaLooper loop = null;
+        // Cs2Lua
+        private LuaFunction bindFn_;
+        private LuaFunction isIEnumeratorFn_;
 
         // Use this for initialization
         void Awake() {
@@ -121,6 +124,7 @@ namespace LuaFramework {
         /// </summary>
         void InitLuaBundle() {
             if (loader.beZip) {
+                // common
                 loader.AddBundle("lua/lua.unity3d");
                 loader.AddBundle("lua/lua_math.unity3d");
                 loader.AddBundle("lua/lua_system.unity3d");
@@ -131,14 +135,14 @@ namespace LuaFramework {
                 // loader.AddBundle("lua/lua_view.unity3d");
                 // loader.AddBundle("lua/lua_controller.unity3d");
                 loader.AddBundle("lua/lua_misc.unity3d");
-
+                // 3rd
                 loader.AddBundle("lua/lua_protobuf.unity3d");
                 loader.AddBundle("lua/lua_3rd_cjson.unity3d");
                 loader.AddBundle("lua/lua_3rd_luabitop.unity3d");
                 loader.AddBundle("lua/lua_3rd_pbc.unity3d");
                 loader.AddBundle("lua/lua_3rd_pblua.unity3d");
                 loader.AddBundle("lua/lua_3rd_sproto.unity3d");
-
+                // coresystemlua
                 loader.AddBundle("lua/lua_coresystemlua.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_collections.unity3d");
@@ -148,7 +152,9 @@ namespace LuaFramework {
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_reflection.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_text.unity3d");
                 loader.AddBundle("lua/lua_coresystemlua_coresystem_threading.unity3d");
-
+                // luaframework
+                loader.AddBundle("lua/lua_luaframework.unity3d");
+                // compiled
                 loader.AddBundle("lua/lua_compiled.unity3d");
                 loader.AddBundle("lua/lua_compiled_common.unity3d");
                 loader.AddBundle("lua/lua_compiled_controller.unity3d");
@@ -192,8 +198,7 @@ namespace LuaFramework {
         }
 
         public void Close() {
-            if (loop)
-            {
+            if (loop != null) {
                 loop.Destroy();
                 loop = null;
             }
@@ -201,6 +206,15 @@ namespace LuaFramework {
             lua.Dispose();
             lua = null;
             loader = null;
+
+            if (bindFn_ != null) {
+                bindFn_.Dispose();
+                bindFn_ = null;
+            }
+            if (isIEnumeratorFn_ != null) {
+                isIEnumeratorFn_.Dispose();
+                isIEnumeratorFn_ = null;
+            }
         }
 
         public LuaState GetMainState()
@@ -211,6 +225,24 @@ namespace LuaFramework {
         public LuaLooper GetLooper()
         {
             return loop;
+        }
+
+        internal LuaTable BindLua(LuaBehaviour bridgeMonoBehaviour) {
+        return bindFn_.Invoke<LuaBehaviour, string, string, UnityEngine.Object[], LuaTable>(
+            bridgeMonoBehaviour,
+            bridgeMonoBehaviour.LuaClass,
+            bridgeMonoBehaviour.SerializeData,
+            bridgeMonoBehaviour.SerializeObjects);
+        }
+
+        internal bool IsLuaIEnumerator(LuaTable t) {
+        if (isIEnumeratorFn_ == null) {
+            isIEnumeratorFn_ = lua.GetFunction("System.IsIEnumerator");
+            if (isIEnumeratorFn_ == null) {
+            throw new InvalidProgramException();
+            }
+        }
+        return isIEnumeratorFn_.Invoke<LuaTable, bool>(t);
         }
     }
 }

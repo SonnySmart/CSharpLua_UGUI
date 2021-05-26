@@ -46,12 +46,12 @@ namespace LuaFramework {
             });
         }
 
-        public void LoadPrefab(string abName, string assetName, Action<UObject[]> func) {
-            LoadAsset<GameObject>(abName, new string[] { assetName }, func);
+        public void LoadPrefab(string abName, string assetName, Action<UObject[]> action) {
+            LoadAsset<GameObject>(abName, new string[] { assetName }, action, null);
         }
 
-        public void LoadPrefab(string abName, string[] assetNames, Action<UObject[]> func) {
-            LoadAsset<GameObject>(abName, assetNames, func);
+        public void LoadPrefab(string abName, string[] assetNames, Action<UObject[]> action) {
+            LoadAsset<GameObject>(abName, assetNames, action, null);
         }
 
         public void LoadPrefab(string abName, string[] assetNames, LuaFunction func) {

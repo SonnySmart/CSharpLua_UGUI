@@ -179,22 +179,33 @@ local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, se
   if not ctor then
     rawset(T, "__ctor__", emptyFn)
   end
-
-  T.__newindex = function(cls, key, value)
-    print("找不到这个key " .. key)
-  end
-  T.__index = function(cls, key)
-    print("访问了这个key " .. key)
-    if cls[key] then
-      return cls[key]
+  -- 20210526 有些api找不到需要适配
+  local __index = function (t, k)
+    if type(k) == "string" then
+      local c = sbyte(k, 1)
+      if c ~= 95 and c ~= 46 then -- not '.' or '_'
+        --print ("打印Key值 " .. k)      
+        local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, k)
+        if ok then
+          local v = function (this, ...)
+            return f(this.ref, ...)
+          end
+          t[k] = v
+          return v
+        end
+      end
     end
-    return bridgeMonoBehaviour[key]
+    return nil
   end
+  rawset(getmetatable(T), "__index", __index)
 
   local this = setmetatable({}, T)
   T.__ctor__(this)
   makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeObjects)
-  this:Awake()
+  -- 20210526 没有Awake会报错判断一下
+  if this.Awake then
+    this:Awake()
+  end
   return this
 end
 

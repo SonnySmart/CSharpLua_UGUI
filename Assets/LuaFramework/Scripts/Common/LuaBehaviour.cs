@@ -10,9 +10,12 @@ namespace LuaFramework {
     public class LuaBehaviour : View {
         private string data = null;
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
-
+        // Cs2Lua
+        private static readonly YieldInstruction[] updateYieldInstructions_ = new YieldInstruction[] { null, new WaitForFixedUpdate(), new WaitForEndOfFrame() };
         public LuaTable Table { get; private set; }
         public string LuaClass;
+        public string SerializeData;
+        public UnityEngine.Object[] SerializeObjects;
 
         public void Bind(LuaTable table) {
             Table = table;
@@ -21,6 +24,43 @@ namespace LuaFramework {
         public void Bind(LuaTable table, string luaClass) {
             Table = table;
             LuaClass = luaClass;
+        }
+
+        public void Bind(string luaClass, string serializeData, UnityEngine.Object[] serializeObjects) {
+            LuaClass = luaClass;
+            SerializeData = serializeData;
+            SerializeObjects = serializeObjects;
+        }
+        
+        public void RegisterUpdate(int instructionIndex, LuaFunction updateFn) {
+            StartCoroutine(StartUpdate(updateFn, updateYieldInstructions_[instructionIndex]));
+        }
+
+        private IEnumerator StartUpdate(LuaFunction updateFn, YieldInstruction yieldInstruction) {
+            while (true) {
+                yield return yieldInstruction;
+                updateFn.Call(Table);
+            }
+        }
+
+        /* 不对头这里挂载的时候对象都没初始化完成
+        private void Awake() {
+            if (!string.IsNullOrEmpty(LuaClass)) {
+                if (Table == null) {
+                    Table = LuaHelper.GetLuaManager().BindLua(this);
+                } else {
+                    using (var fn = Table.GetLuaFunction("Awake")) {
+                        if (fn != null) fn.Call(Table);
+                    }
+                }
+            }
+        }
+        */
+
+        private void Start() {
+            using (var fn = Table.GetLuaFunction("Start")) {
+                if (fn != null) fn.Call(Table);
+            }
         }
 
         /*

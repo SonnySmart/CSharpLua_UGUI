@@ -23,7 +23,7 @@
         </method>
       </class>
       <class name="Component">
-		<property name="transform" IsField="true" />
+		<!--<property name="transform" IsField="true" />-->
         <method name="BroadcastMessage" Baned="true" />
         <method name="SendMessage" Baned="true" />
         <method name="SendMessageUpwards" Baned="true" />

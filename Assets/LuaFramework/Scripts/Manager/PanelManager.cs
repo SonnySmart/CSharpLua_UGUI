@@ -25,7 +25,11 @@ namespace LuaFramework {
         /// <param name="type"></param>
         public void CreatePanel(string name, LuaFunction func = null) {
             CreatePanel(name, (go) => {
-                if (func != null) func.Call(go);
+                if (func != null) {
+                    func.Call(go);
+                    func.Dispose();
+                    func = null;
+                }
             });
         }
 

@@ -52,17 +52,19 @@ public class Packager {
     /// </summary>
     public static void BuildAssetResource(BuildTarget target) {
         // C# to Lua
-        //Compiler.Compile();
+        Compiler.Compile();
 
-        if (Directory.Exists(Util.DataPath)) {
-            Directory.Delete(Util.DataPath, true);
-        }
+        // if (Directory.Exists(Util.DataPath)) {
+        //     Directory.Delete(Util.DataPath, true);
+        // }
         string streamPath = Application.streamingAssetsPath;
-        if (Directory.Exists(streamPath)) {
-            Directory.Delete(streamPath, true);
+        // if (Directory.Exists(streamPath)) {
+        //     Directory.Delete(streamPath, true);
+        // }
+        if (!Directory.Exists(streamPath)) {
+            Directory.CreateDirectory(streamPath);
         }
-        Directory.CreateDirectory(streamPath);
-        AssetDatabase.Refresh();
+        //AssetDatabase.Refresh();
 
         maps.Clear();
         if (AppConst.LuaBundleMode) {
