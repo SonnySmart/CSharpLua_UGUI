@@ -58,6 +58,10 @@ namespace LuaFramework {
             LoadAsset<GameObject>(abName, assetNames, null, func);
         }
 
+        public void LoadPrefab(string abName, string assetName, LuaFunction func) {
+            LoadAsset<GameObject>(abName, new string[] { assetName }, null, func);
+        } 
+
         string GetRealAssetPath(string abName) {
             if (abName.Equals(AppConst.AssetDir)) {
                 return abName;

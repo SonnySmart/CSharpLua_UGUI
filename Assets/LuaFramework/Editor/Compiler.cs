@@ -175,9 +175,9 @@ namespace LuaFramework.Editor {
     }
 
 #if USE_LUA
-        [MenuItem("LuaFramework/Run C# Code", false, 81)]
+        [MenuItem("LuaFramework/执行 C# 脚本 (当前Lua)", false, 81)]
 #else
-        [MenuItem("LuaFramework/Run Lua Code", false, 81)]
+        [MenuItem("LuaFramework/执行 Lua 脚本 (当前C#)", false, 81)]
 #endif
         static void Switch()
         {
