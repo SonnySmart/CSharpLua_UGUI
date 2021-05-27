@@ -12,7 +12,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// Ìí¼ÓÒ»¸öÉùÒô
+        /// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         void Add(string key, AudioClip value) {
             if (sounds[key] != null || value == null) return;
@@ -20,7 +20,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// »ñÈ¡Ò»¸öÉùÒô
+        /// ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         AudioClip Get(string key) {
             if (sounds[key] == null) return null;
@@ -28,7 +28,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// ÔØÈëÒ»¸öÒôÆµ
+        /// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Æµ
         /// </summary>
         public AudioClip LoadAudioClip(string path) {
             AudioClip ac = Get(path);
@@ -40,7 +40,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// ÊÇ·ñ²¥·Å±³¾°ÒôÀÖ£¬Ä¬ÈÏÊÇ1£º²¥·Å
+        /// ï¿½Ç·ñ²¥·Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public bool CanPlayBackSound() {
@@ -50,7 +50,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// ²¥·Å±³¾°ÒôÀÖ
+        /// ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="canPlay"></param>
         public void PlayBacksound(string name, bool canPlay) {
@@ -76,7 +76,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// ÊÇ·ñ²¥·ÅÒôÐ§,Ä¬ÈÏÊÇ1£º²¥·Å
+        /// ï¿½Ç·ñ²¥·ï¿½ï¿½ï¿½Ð§,Ä¬ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <returns></returns>
         public bool CanPlaySoundEffect() {
@@ -86,7 +86,7 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// ²¥·ÅÒôÆµ¼ô¼­
+        /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="clip"></param>
         /// <param name="position"></param>

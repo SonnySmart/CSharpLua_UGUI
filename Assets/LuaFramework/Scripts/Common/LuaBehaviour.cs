@@ -8,7 +8,6 @@ using UnityEngine.Events;
 
 namespace LuaFramework {
     public class LuaBehaviour : View {
-        private string data = null;
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
         // Cs2Lua
         private static readonly YieldInstruction[] updateYieldInstructions_ = new YieldInstruction[] { null, new WaitForFixedUpdate(), new WaitForEndOfFrame() };

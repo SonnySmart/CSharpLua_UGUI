@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using LuaInterface;
 using System;
+using UnityEngine.Networking;
 
 //click Lua/Build lua bundle
 public class TestABLoader : MonoBehaviour 
@@ -13,7 +14,7 @@ public class TestABLoader : MonoBehaviour
 
     IEnumerator CoLoadBundle(string name, string path)
     {
-        using (WWW www = new WWW(path))
+        using (UnityWebRequest www = new UnityWebRequest(path))
         {
             if (www == null)
             {
@@ -21,7 +22,7 @@ public class TestABLoader : MonoBehaviour
                 yield break;
             }
 
-            yield return www;
+            yield return www.SendWebRequest();
 
             if (www.error != null)
             {
@@ -30,9 +31,9 @@ public class TestABLoader : MonoBehaviour
             }
 
             --bundleCount;
-            LuaFileUtils.Instance.AddSearchBundle(name, www.assetBundle);
+            //LuaFileUtils.Instance.AddSearchBundle(name, www.assetBundle);
             www.Dispose();
-        }                     
+        }                 
     }
 
     IEnumerator LoadFinished()
@@ -55,10 +56,11 @@ public class TestABLoader : MonoBehaviour
 #else
         string main = "file:///" + streamingPath + "/" + LuaConst.osDir + "/" + LuaConst.osDir;
 #endif
-        WWW www = new WWW(main);
-        yield return www;
+        UnityWebRequest www = new UnityWebRequest(main);
+        yield return www.SendWebRequest();
 
-        AssetBundleManifest manifest = (AssetBundleManifest)www.assetBundle.LoadAsset("AssetBundleManifest");
+        AssetBundleManifest manifest = null;
+        //(AssetBundleManifest)www.assetBundle.LoadAsset("AssetBundleManifest");
         List<string> list = new List<string>(manifest.GetAllAssetBundles());        
 #else
         //此处应该配表获取

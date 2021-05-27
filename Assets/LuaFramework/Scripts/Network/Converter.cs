@@ -106,11 +106,12 @@ namespace LuaFramework {
         }
 
         private static Int32 swapByteOrder(Int32 value) {
-            Int32 swap = (Int32)((0x000000FF) & (value >> 24)
-                | (0x0000FF00) & (value >> 8)
-                | (0x00FF0000) & (value << 8)
-                | (0xFF000000) & (value << 24));
-            return swap;
+            UInt32 uvalue = (UInt32)value;
+            UInt32 swap = ((0x000000FF) & (uvalue >> 24)
+                | (0x0000FF00) & (uvalue >> 8)
+                | (0x00FF0000) & (uvalue << 8)
+                | (0xFF000000) & (uvalue << 24));
+            return (Int32)swap;
         }
 
         private static Int64 swapByteOrder(Int64 value) {

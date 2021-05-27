@@ -19,6 +19,4 @@ public class Define
         PBC = 2,
         SPROTO = 3
     }
-
-    ProtocalType TestProtoType = ProtocalType.BINARY;
 }

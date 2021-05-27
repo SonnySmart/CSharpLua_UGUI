@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using LuaInterface;
 using System.Reflection;
 using System.IO;
-
+using UnityEngine.Networking;
 
 namespace LuaFramework {
     public class GameManager : Manager {
@@ -58,11 +58,11 @@ namespace LuaFramework {
             Debug.Log(infile);
             Debug.Log(outfile);
             if (Application.platform == RuntimePlatform.Android) {
-                WWW www = new WWW(infile);
-                yield return www;
+                UnityWebRequest www = new UnityWebRequest(infile);
+                yield return www.SendWebRequest();
 
                 if (www.isDone) {
-                    File.WriteAllBytes(outfile, www.bytes);
+                    File.WriteAllBytes(outfile, www.downloadHandler.data);
                 }
                 yield return 0;
             } else File.Copy(infile, outfile, true);
@@ -83,11 +83,11 @@ namespace LuaFramework {
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
                 if (Application.platform == RuntimePlatform.Android) {
-                    WWW www = new WWW(infile);
-                    yield return www;
+                    UnityWebRequest www = new UnityWebRequest(infile);
+                    yield return www.SendWebRequest();
 
                     if (www.isDone) {
-                        File.WriteAllBytes(outfile, www.bytes);
+                        File.WriteAllBytes(outfile, www.downloadHandler.data);
                     }
                     yield return 0;
                 } else {
@@ -122,7 +122,8 @@ namespace LuaFramework {
             string listUrl = url + "files.txt?v=" + random;
             Debug.LogWarning("LoadUpdate---->>>" + listUrl);
 
-            WWW www = new WWW(listUrl); yield return www;
+            UnityWebRequest www = new UnityWebRequest(listUrl);
+            yield return www.SendWebRequest();
             if (www.error != null) {
                 OnUpdateFailed(string.Empty);
                 yield break;
@@ -130,8 +131,8 @@ namespace LuaFramework {
             if (!Directory.Exists(dataPath)) {
                 Directory.CreateDirectory(dataPath);
             }
-            File.WriteAllBytes(dataPath + "files.txt", www.bytes);
-            string filesText = www.text;
+            File.WriteAllBytes(dataPath + "files.txt", www.downloadHandler.data);
+            string filesText = www.downloadHandler.text;
             string[] files = filesText.Split('\n');
 
             for (int i = 0; i < files.Length; i++) {

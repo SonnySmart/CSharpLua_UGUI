@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using LuaInterface;
 using LuaFramework;
+using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -321,7 +322,8 @@ namespace LuaFramework {
                 EditorApplication.isPlaying = false;
                 return false;
             }
-            if (Application.loadedLevelName == "Test" && !AppConst.DebugMode) {
+            string name = SceneManager.GetActiveScene().name;
+            if (name == "Test" && !AppConst.DebugMode) {
                 Debug.LogError("测试场景，必须打开调试模式，AppConst.DebugMode = true！！");
                 EditorApplication.isPlaying = false;
                 return false;

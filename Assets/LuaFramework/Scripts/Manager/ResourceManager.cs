@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using LuaInterface;
 using UObject = UnityEngine.Object;
+using UnityEngine.Networking;
 
 public class AssetBundleInfo {
     public AssetBundle m_AssetBundle;
@@ -156,9 +157,10 @@ namespace LuaFramework {
         IEnumerator OnLoadAssetBundle(string abName, Type type) {
             string url = m_BaseDownloadingURL + abName;
 
-            WWW download = null;
-            if (type == typeof(AssetBundleManifest))
-                download = new WWW(url);
+            UnityWebRequest download = null;
+            if (type == typeof(AssetBundleManifest)) {
+                download = new UnityWebRequest(url);
+            }
             else {
                 string[] dependencies = m_AssetBundleManifest.GetAllDependencies(abName);
                 if (dependencies.Length > 0) {
@@ -173,11 +175,20 @@ namespace LuaFramework {
                         }
                     }
                 }
-                download = WWW.LoadFromCacheOrDownload(url, m_AssetBundleManifest.GetAssetBundleHash(abName), 0);
+                download = new UnityWebRequest(url);
             }
-            yield return download;
+            yield return download.SendWebRequest();
 
-            AssetBundle assetObj = download.assetBundle;
+            while (download.isHttpError || download.isNetworkError)
+            {
+                yield return null;
+            }
+            while (!download.isDone)
+            {
+                yield return null;
+            }
+
+            AssetBundle assetObj = AssetBundle.LoadFromMemory(download.downloadHandler.data);
             if (assetObj != null) {
                 m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));
             }
