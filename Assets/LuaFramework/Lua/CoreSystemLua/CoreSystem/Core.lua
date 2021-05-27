@@ -231,6 +231,8 @@ local function setBase(cls, kind)
         setmetatable(cls, Object)
       else        
         -- 20210526 基类的call函数有问题导致无法调用call方法,强制改为new函数
+        -- 这里始终有问题不设置__index基类的属性无法查找到
+        --rawset(base, "__index", base)
         rawset(base, "__call", new)
         setmetatable(cls, base)
         if #extends > 1 then

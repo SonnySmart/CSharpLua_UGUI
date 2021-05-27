@@ -228,21 +228,27 @@ namespace LuaFramework {
         }
 
         internal LuaTable BindLua(LuaBehaviour bridgeMonoBehaviour) {
-        return bindFn_.Invoke<LuaBehaviour, string, string, UnityEngine.Object[], LuaTable>(
-            bridgeMonoBehaviour,
-            bridgeMonoBehaviour.LuaClass,
-            bridgeMonoBehaviour.SerializeData,
-            bridgeMonoBehaviour.SerializeObjects);
+            if (bindFn_ == null) {
+                bindFn_ = lua.GetFunction("UnityEngine.bind");
+                if (bindFn_ == null) {
+                    throw new InvalidProgramException();
+                }
+            }
+            return bindFn_.Invoke<LuaBehaviour, string, string, UnityEngine.Object[], LuaTable>(
+                bridgeMonoBehaviour,
+                bridgeMonoBehaviour.LuaClass,
+                bridgeMonoBehaviour.SerializeData,
+                bridgeMonoBehaviour.SerializeObjects);
         }
 
         internal bool IsLuaIEnumerator(LuaTable t) {
-        if (isIEnumeratorFn_ == null) {
-            isIEnumeratorFn_ = lua.GetFunction("System.IsIEnumerator");
             if (isIEnumeratorFn_ == null) {
-            throw new InvalidProgramException();
+                isIEnumeratorFn_ = lua.GetFunction("System.IsIEnumerator");
+                if (isIEnumeratorFn_ == null) {
+                throw new InvalidProgramException();
+                }
             }
-        }
-        return isIEnumeratorFn_.Invoke<LuaTable, bool>(t);
+            return isIEnumeratorFn_.Invoke<LuaTable, bool>(t);
         }
     }
 }

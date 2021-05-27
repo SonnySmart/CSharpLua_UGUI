@@ -180,19 +180,29 @@ local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, se
     rawset(T, "__ctor__", emptyFn)
   end
   -- 20210526 有些api找不到需要适配
-  local __index = function (t, k)
-    if type(k) == "string" then
-      local c = sbyte(k, 1)
-      if c ~= 95 and c ~= 46 then -- not '.' or '_'
-        --print ("打印Key值 " .. k)      
-        local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, k)
+  local __index = function (cls, key)
+    if type(key) == "string" then
+      local c = sbyte(key, 1)
+      if c ~= 95 and c ~= 46 then -- not '.' or '_'        
+        -- metatableOfMonoBehaviour
+        local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, key)
         if ok then
           local v = function (this, ...)
             return f(this.ref, ...)
           end
-          t[k] = v
+          cls[key] = v
           return v
         end
+        local metatableOfSuper = getmetatable(cls)
+        local ok, f = pcall(getMonoBehaviourFunction, metatableOfSuper, key)
+        if ok then
+          local v = function (this, ...)
+            return f(this, ...)
+          end
+          cls[key] = v
+          return v
+        end
+        print ("没有找到打印Key值 " .. key)   
       end
     end
     return nil

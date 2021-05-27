@@ -46,8 +46,13 @@ public static class CustomSettings
         _DT(typeof(System.Func<int, int>)),
     };
 
+    public static BindType[] customTypeList
+    {
+        get { return CustomTypeRule.GetBindTypes(); }
+    }
+
     //在这里添加你要导出注册到lua的类型列表
-    public static BindType[] customTypeList =
+    public static BindType[] customTypeList_ =
     {                
         //------------------------为例子导出--------------------------------
         //_GT(typeof(TestEventListener)),

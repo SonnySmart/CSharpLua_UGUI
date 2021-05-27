@@ -9,7 +9,6 @@ namespace LuaFramework {
     private LuaTable table_;
     private LuaFunction current_;
     private LuaFunction moveNext_;
-    private LuaFunction isIEnumeratorFn_;
 
     private LuaIEnumerator(LuaTable table) {
       table_ = table;
@@ -40,7 +39,7 @@ namespace LuaFramework {
       get {
         object obj = current_.Invoke<LuaTable, object>(table_);
         var t = obj as LuaTable;
-        if (t != null && IsLuaIEnumerator(t)) {
+        if (t != null && LuaHelper.GetLuaManager().IsLuaIEnumerator(t)) {
           return Create(t);
         }
         return obj;
@@ -62,11 +61,6 @@ namespace LuaFramework {
         table_.Dispose();
         table_ = null;
       }
-
-      if (isIEnumeratorFn_ != null) {
-        isIEnumeratorFn_.Dispose();
-        isIEnumeratorFn_ = null;
-      }
     }
 
     public bool MoveNext() {
@@ -79,17 +73,6 @@ namespace LuaFramework {
 
     public void Reset() {
       throw new NotSupportedException();
-    }
-
-    internal bool IsLuaIEnumerator(LuaTable t) {
-      if (isIEnumeratorFn_ == null) {
-        LuaState lua = LuaHelper.GetLuaManager().GetMainState();
-        isIEnumeratorFn_ = lua.GetFunction("System.IsIEnumerator");
-        if (isIEnumeratorFn_ == null) {
-          throw new InvalidProgramException();
-        }
-      }
-      return isIEnumeratorFn_.Invoke<LuaTable, bool>(t);
     }
   }
 }

@@ -38,4 +38,12 @@ Cs2Lua使用注意事项:
 		
 		public void LoadPrefab(string abName, string assetName, LuaFunction func)
 		Action<UObject[]> 替换为了 LuaFunction 这样Lua才能调用回调
-	4....
+	4.使用模板存在一些问题需要注意
+	5.Compiled继承需要注意的地方:
+		只能继承框架生成了Wrap的基类如:
+		MonoBehaviour
+		LuaBehaviour
+		
+		
+		
+		
