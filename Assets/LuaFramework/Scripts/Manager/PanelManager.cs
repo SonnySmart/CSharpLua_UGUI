@@ -34,7 +34,7 @@ namespace LuaFramework {
         }
 
         public void CreatePanel(string name, Action<GameObject> func) {
-            string assetName = name + "Panel";
+            string assetName = name + "Form";
             string abName = name.ToLower() + AppConst.ExtName;
             if (Parent.Find(name) != null) return;
 
@@ -77,7 +77,7 @@ namespace LuaFramework {
         /// </summary>
         /// <param name="name"></param>
         public void ClosePanel(string name) {
-            var panelName = name + "Panel";
+            var panelName = name + "Form";
             var panelObj = Parent.Find(panelName);
             if (panelObj == null) return;
             Destroy(panelObj.gameObject);

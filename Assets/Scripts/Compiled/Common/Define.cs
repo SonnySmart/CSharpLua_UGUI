@@ -9,7 +9,7 @@ public class Define
     };
 
     public List<string> PanelNames = new List<string>() {
-        "PromptPanel",
+        "PromptForm",
         "MessagePanel"
     };
 

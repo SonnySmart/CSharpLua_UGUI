@@ -51,8 +51,10 @@ public class Packager {
     /// 生成绑定素材
     /// </summary>
     public static void BuildAssetResource(BuildTarget target) {
+#if USE_LUA
         // C# to Lua
         Compiler.Compile();
+#endif
 
         // if (Directory.Exists(Util.DataPath)) {
         //     Directory.Delete(Util.DataPath, true);

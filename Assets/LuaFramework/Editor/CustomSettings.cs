@@ -184,7 +184,12 @@ public static class CustomSettings
         _GT(typeof(NetworkManager)),
         _GT(typeof(ResourceManager)),	
 
+        //MVC
         _GT(typeof(Controller)),
+
+        //SUIFW
+        _GT(typeof(SUIFW.BaseUIForms)),
+        _GT(typeof(SUIFW.UIManager)),
     };
 
     public static List<Type> dynamicList = new List<Type>()
