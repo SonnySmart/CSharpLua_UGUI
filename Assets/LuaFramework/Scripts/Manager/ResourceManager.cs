@@ -159,7 +159,7 @@ namespace LuaFramework {
 
             UnityWebRequest download = null;
             if (type == typeof(AssetBundleManifest)) {
-                download = new UnityWebRequest(url);
+                download = UnityWebRequestAssetBundle.GetAssetBundle(url);
             }
             else {
                 string[] dependencies = m_AssetBundleManifest.GetAllDependencies(abName);
@@ -175,20 +175,16 @@ namespace LuaFramework {
                         }
                     }
                 }
-                download = new UnityWebRequest(url);
+                download = UnityWebRequestAssetBundle.GetAssetBundle(url);
             }
             yield return download.SendWebRequest();
 
-            while (download.isHttpError || download.isNetworkError)
-            {
-                yield return null;
-            }
-            while (!download.isDone)
+            if (download.isHttpError || download.isNetworkError || !download.isDone)
             {
                 yield return null;
             }
 
-            AssetBundle assetObj = AssetBundle.LoadFromMemory(download.downloadHandler.data);
+            AssetBundle assetObj = (download.downloadHandler as DownloadHandlerAssetBundle).assetBundle;
             if (assetObj != null) {
                 m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));
             }

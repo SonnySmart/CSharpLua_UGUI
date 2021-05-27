@@ -53,7 +53,7 @@ namespace LuaFramework {
                 AddComponent(go, assetName);
 
                 if (func != null) func.Invoke(go);
-                Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
+                Debug.Log("CreatePanel::>> " + name + " " + prefab);
             });
 #else
             GameObject prefab = ResManager.LoadAsset<GameObject>(name, assetName);
@@ -68,7 +68,7 @@ namespace LuaFramework {
             AddComponent(go, assetName);
 
             if (func != null) func.Invoke(go);
-            Debug.LogWarning("CreatePanel::>> " + name + " " + prefab);
+            Debug.Log("CreatePanel::>> " + name + " " + prefab);
 #endif
         }
 
