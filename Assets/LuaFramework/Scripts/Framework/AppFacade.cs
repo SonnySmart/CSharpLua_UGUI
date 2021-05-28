@@ -16,6 +16,7 @@ public class AppFacade : Facade
         get{
             if (_instance == null) {
                 _instance = new AppFacade();
+                _instance.InitFramework();
             }
             return _instance;
         }

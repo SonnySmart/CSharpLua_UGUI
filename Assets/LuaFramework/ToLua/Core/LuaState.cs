@@ -753,7 +753,12 @@ namespace LuaInterface
 
             fullPath = ToPackagePath(fullPath);
             LuaFileUtils.Instance.RemoveSearchPath(fullPath);
-        }        
+        }       
+
+        public List<string> GetSearchPath()
+        {
+            return LuaFileUtils.Instance.GetSearchPath();
+        } 
 
         public int BeginPCall(int reference)
         {

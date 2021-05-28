@@ -5,5 +5,5 @@
     time:2021-04-01 10:37:52
 ]]
 
-import('.FixBehaviour')
---import('.LuaBehaviour')
+require('LuaFramework.FixBehaviour')
+require("LuaFramework.Scripts.manifest")("LuaFramework.Scripts")

@@ -129,7 +129,7 @@ local function set(className, cls)
       starIndex = pos + 1
     else
       if cls then
-        assert(rawget(scope, name) == nil, className)
+        assert(rawget(scope, name) == nil, "className => " .. className .. " is nil")
         rawset(scope, name, cls)
         return cls
       else

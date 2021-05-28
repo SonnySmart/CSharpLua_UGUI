@@ -22,7 +22,7 @@ public class Facade {
     }
 
     protected Facade() {
-        InitFramework();
+        //InitFramework();
     }
     protected virtual void InitFramework() {
         m_controller = Controller.Instance;

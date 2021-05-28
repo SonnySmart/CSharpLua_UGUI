@@ -111,6 +111,11 @@ namespace LuaInterface
             return false;
         }
 
+        public List<string> GetSearchPath()
+        {
+            return searchPaths;
+        }
+
         public void AddSearchBundle(string name, AssetBundle bundle)
         {
             zipMap[name] = bundle;

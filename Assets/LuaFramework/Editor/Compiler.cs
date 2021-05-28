@@ -81,7 +81,7 @@ namespace LuaFramework.Editor {
       };
       string lib = string.Join(";", libs.ToArray());
       string meta = string.Join(";", metas);
-      string args = $"{csharpLua_}  -s \"{compiledScriptDir}\" -d \"{outDir_}\" -l \"{lib}\" -m {meta} -c";
+      string args = $"{csharpLua_}  -s \"{compiledScriptDir}\" -d \"{outDir}\" -l \"{lib}\" -m {meta} -c";
       string definesString = GetScriptingDefineSymbolsForGroup();
       if (!string.IsNullOrEmpty(definesString)) {
         args += $" -csc -define:{definesString}";
