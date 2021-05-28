@@ -184,6 +184,10 @@ public static class CustomSettings
         _GT(typeof(NetworkManager)),
         _GT(typeof(ResourceManager)),	
 
+        _GT(typeof(Base)),
+        _GT(typeof(View)),
+        _GT(typeof(Manager)),
+
         //MVC
         // _GT(typeof(Facade)),
         // _GT(typeof(AppFacade)),

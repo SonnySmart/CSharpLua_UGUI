@@ -16,6 +16,7 @@ public class Proxy : IProxy
 
     public Proxy(string proxyName, object data)
     {
+        proxyName = GetType().Name;
         this.m_proxyName = (proxyName != null) ? proxyName : NAME;
         if (data != null)
         {

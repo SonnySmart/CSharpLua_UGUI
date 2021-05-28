@@ -17,12 +17,17 @@ public class Game : LuaBehaviour
         this.InitViewPanels();
 
         CtrlManager.Instance.Init();
-        SimpleCommand ctrl = CtrlManager.Instance.GetCtrl("Prompt");
-        if (ctrl != null && AppConst.ExampleMode) {
-            (ctrl as PromptCtrl).Awake();
-        }
 
+        // 注册命令
+        AppFacade.Instance.RegisterCommand(CmdConst.PromptCtrlCommandTest, typeof(PromptCtrl));
+        // 注册模型
         AppFacade.Instance.RegisterProxy(new TestModel());
+
+        TestModel model = AppFacade.Instance.RetrieveProxy(typeof(TestModel).Name) as TestModel;
+        Debug.Log($" model bb is {model.bb}");
+
+        // 执行命令
+        AppFacade.Instance.SendMessageCommand(CmdConst.PromptCtrlCommandTest);
         
         Debug.Log("LuaFramework InitOK--->>>");
     }

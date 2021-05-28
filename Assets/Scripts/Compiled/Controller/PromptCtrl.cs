@@ -5,10 +5,10 @@ using SUIFW;
 
 public class PromptCtrl : SimpleCommand
 {
-
-    public void Awake() {
-        Debug.Log("PromptCtrl.Awake--->>");
+    public override void Execute(IMessage message)
+    {
+        Debug.Log("PromptCtrl.Execute--->>");
 	    //LuaHelper.GetPanelManager().CreatePanel("Prompt", this.OnCreate);
         UIManager.GetInstance().ShowUIForms("PromptForm");
-    } 
+    }
 }

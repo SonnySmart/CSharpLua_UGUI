@@ -92,6 +92,24 @@ public class Facade {
     }
     #endregion
 
+    #region View
+    /// <summary>
+    /// 注册消息
+    /// </summary>
+    public void RegisterMessage(IView view, List<string> messages) {
+        if (messages == null || messages.Count == 0) return;
+        m_controller.RegisterViewCommand(view, messages.ToArray());
+    }
+
+    /// <summary>
+    /// 移除消息
+    /// </summary>
+    public void RemoveMessage(IView view, List<string> messages) {
+        if (messages == null || messages.Count == 0) return;
+        m_controller.RemoveViewCommand(view, messages.ToArray());
+    }
+    #endregion
+
     /// <summary>
     /// 添加管理器
     /// </summary>

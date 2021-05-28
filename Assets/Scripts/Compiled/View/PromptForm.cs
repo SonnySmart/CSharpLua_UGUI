@@ -2,6 +2,7 @@ using UnityEngine;
 using LuaFramework;
 using SUIFW;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PromptForm : BaseUIForms
 {
@@ -19,6 +20,8 @@ public class PromptForm : BaseUIForms
         this.BaseUIFormsTest();
 
         this.DoTest();
+
+        AppFacade.Instance.RegisterMessage(this, new List<string> { MessageConst.PromptFormMessageTest });
     }
 
     public void Start()
@@ -60,6 +63,14 @@ public class PromptForm : BaseUIForms
     public override void OnDisplay()
     {
         OnCreate();
+
+        // 向自己发送消息
+        AppFacade.Instance.SendMessageCommand(MessageConst.PromptFormMessageTest, "测试消息");
+    }
+
+    public override void OnMessage(IMessage message)
+    {
+        Debug.Log($"PromptForm OnMessage name is {message.Name} body is {message.Body}");
     }
 
     public void OnCreate()

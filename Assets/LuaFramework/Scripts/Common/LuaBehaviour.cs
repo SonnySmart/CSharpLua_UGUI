@@ -43,8 +43,10 @@ namespace LuaFramework {
         }
 
         private void Start() {
-            using (var fn = Table.GetLuaFunction("Start")) {
-                if (fn != null) fn.Call(Table);
+            if (Table != null) {
+                using (var fn = Table.GetLuaFunction("Start")) {
+                    if (fn != null) fn.Call(Table);
+                }
             }
         }
 
