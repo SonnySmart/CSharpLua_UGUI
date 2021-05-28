@@ -51,6 +51,10 @@ public class Packager {
     /// 生成绑定素材
     /// </summary>
     public static void BuildAssetResource(BuildTarget target) {
+
+        //Gen UI Config
+        FormResConfigEditor.GenUIFormConfigJson();
+        
 #if USE_LUA
         // C# to Lua
         Compiler.Compile();

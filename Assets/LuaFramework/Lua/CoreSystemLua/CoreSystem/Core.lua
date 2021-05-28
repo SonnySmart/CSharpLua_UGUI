@@ -54,6 +54,9 @@ local System, Object, ValueType
 
 local function new(cls, ...)
   local this = setmetatable({}, cls)
+  if not rawget(cls, "__ctor__") then
+    rawset(cls, "__ctor__", emptyFn)
+  end
   return this, cls.__ctor__(this, ...)
 end
 
@@ -945,8 +948,7 @@ end
 function System.base(this)
   --20210526 基类没有构造函数填充一个默认的构造函数
   local cls = getmetatable(getmetatable(this))
-  local ctor = rawget(cls, "__ctor__")
-  if not ctor then
+  if not rawget(cls, "__ctor__") then
     rawset(cls, "__ctor__", emptyFn)
   end
   return cls

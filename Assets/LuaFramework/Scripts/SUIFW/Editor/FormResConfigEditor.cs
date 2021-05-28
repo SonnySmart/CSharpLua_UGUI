@@ -10,14 +10,14 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class FormResConfigEditor
+public static class FormResConfigEditor
 {
-    [MenuItem("Tools/UpdateFormResConfig")]
-    static void UpdateFormResConfig()
+    [MenuItem("LuaFramework/Gen SUIFW 窗体配置", false, 83)]
+    public static void GenUIFormConfigJson()
     {
         string resourceDir = Application.dataPath + "/Resources";
         string formDir = resourceDir + "/Prefabs/Forms";
-        string jsonFile = resourceDir + "/Config//UIFormsConfigInfo.json";
+        string jsonFile = resourceDir + "/Config/UIFormsConfigInfo.json";
 
         if (!Directory.Exists(resourceDir))
         {

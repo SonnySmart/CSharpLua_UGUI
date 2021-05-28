@@ -771,14 +771,16 @@ public static class ToLuaExport
 
     public static void Generate(string dir)
     {
+        /* 这里不知道为什么要屏蔽Interface
 #if !EXPORT_INTERFACE
         Type iterType = typeof(System.Collections.IEnumerator);
-
+        
         if (type.IsInterface && type != iterType)
         {
             return;
         }
 #endif
+        */
 
         //Debugger.Log("Begin Generate lua Wrap for class {0}", className);        
         sb = new StringBuilder();

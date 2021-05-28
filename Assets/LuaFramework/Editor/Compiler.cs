@@ -22,8 +22,10 @@ namespace LuaFramework.Editor {
     private const string kDotnet = "/usr/local/share/dotnet/dotnet";
 #endif
 
+    private static readonly string frameworkDir_ = Application.dataPath + "/LuaFramework";
+    private static readonly string outLuaDir_ = $"{frameworkDir_}/Lua";
     private static readonly string compiledScriptDir_ = Application.dataPath + "/Scripts/Compiled";
-    private static readonly string outDir_ = Application.dataPath + "/LuaFramework/Lua/Compiled";
+    private static readonly string outDir_ = $"{frameworkDir_}/Lua/Compiled";
     private static readonly string toolDir = Application.dataPath + "/../Tools";
     private static readonly string csharpToolsDir_ = $"{toolDir}/CSharpLua";
     private static readonly string csharpLua_ = $"{csharpToolsDir_}/CSharp.lua/CSharp.lua.Launcher.dll";
@@ -32,6 +34,20 @@ namespace LuaFramework.Editor {
 
     [MenuItem("LuaFramework/Compile C#2Lua", false, 80)]
     public static void Compile() {
+      // 程序集编译
+      Compile(compiledScriptDir_, outDir_);
+      // 框架编译
+      string compiledScriptDir = $"{frameworkDir_}/Scripts/Framework";
+      string outDir = $"{outLuaDir_}/LuaFramework/Scripts";
+      Compile(compiledScriptDir, outDir);
+    }
+
+    /// <summary>
+    /// Cs2Lua 编译
+    /// </summary>
+    /// <param name="compiledScriptDir"> 编译脚本目录 </param>
+    /// <param name="outDir"> 输出目录 </param>
+    public static void Compile(string compiledScriptDir, string outDir) {
       if (!CheckDotnetInstall()) {
         return;
       }
@@ -40,7 +56,7 @@ namespace LuaFramework.Editor {
         throw new InvalidProgramException($"{csharpLua_} not found");
       }
 
-      var outDirectoryInfo = new DirectoryInfo(outDir_);
+      var outDirectoryInfo = new DirectoryInfo(outDir);
       if (outDirectoryInfo.Exists) {
         foreach (var luaFile in outDirectoryInfo.EnumerateFiles("*.lua", SearchOption.AllDirectories)) {
           luaFile.Delete();
@@ -65,7 +81,7 @@ namespace LuaFramework.Editor {
       };
       string lib = string.Join(";", libs.ToArray());
       string meta = string.Join(";", metas);
-      string args = $"{csharpLua_}  -s \"{compiledScriptDir_}\" -d \"{outDir_}\" -l \"{lib}\" -m {meta} -c";
+      string args = $"{csharpLua_}  -s \"{compiledScriptDir}\" -d \"{outDir_}\" -l \"{lib}\" -m {meta} -c";
       string definesString = GetScriptingDefineSymbolsForGroup();
       if (!string.IsNullOrEmpty(definesString)) {
         args += $" -csc -define:{definesString}";

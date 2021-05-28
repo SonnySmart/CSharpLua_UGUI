@@ -185,9 +185,11 @@ public static class CustomSettings
         _GT(typeof(ResourceManager)),	
 
         //MVC
-        _GT(typeof(SimpleCommand)),
-        _GT(typeof(MacroCommand)),
-        _GT(typeof(Proxy)),
+        // _GT(typeof(Facade)),
+        // _GT(typeof(AppFacade)),
+        // _GT(typeof(SimpleCommand)),
+        // _GT(typeof(MacroCommand)),
+        // _GT(typeof(Proxy)),
 
         //SUIFW
         _GT(typeof(SUIFW.BaseUIForms)),
