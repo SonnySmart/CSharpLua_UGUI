@@ -6,16 +6,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// 事件命令
-/// </summary>
-public class ControllerCommand : ICommand {
-    public virtual void Execute(IMessage message) {
-    }
-}
-
 public class Facade {
     protected IController m_controller;
+    protected IModel m_model;
     static GameObject m_GameManager;
     static Dictionary<string, object> m_Managers = new Dictionary<string, object>();
 
@@ -32,10 +25,11 @@ public class Facade {
         InitFramework();
     }
     protected virtual void InitFramework() {
-        if (m_controller != null) return;
         m_controller = Controller.Instance;
+        m_model = Model.Instance;
     }
 
+    #region Command
     public virtual void RegisterCommand(string commandName, Type commandType) {
         m_controller.RegisterCommand(commandName, commandType);
     }
@@ -65,6 +59,38 @@ public class Facade {
     public void SendMessageCommand(string message, object body = null) {
         m_controller.ExecuteCommand(new Message(message, body));
     }
+    #endregion
+
+    #region Proxy
+    /// <summary>
+    /// 注册代理
+    /// </summary>
+    public virtual void RegisterProxy(IProxy proxy)
+    {
+        this.m_model.RegisterProxy(proxy);
+    }
+
+    /// <summary>
+    /// 删除代理
+    /// </summary>
+    public virtual IProxy RemoveProxy(string proxyName)
+    {
+        return this.m_model.RemoveProxy(proxyName);
+    }
+
+    /// <summary>
+    /// 获取代理
+    /// </summary>
+    public IProxy RetrieveProxy(string proxyName)
+    {
+        return this.m_model.RetrieveProxy(proxyName);
+    }
+
+    public virtual bool HasProxy(string proxyName)
+    {
+        return this.m_model.HasProxy(proxyName);
+    }
+    #endregion
 
     /// <summary>
     /// 添加管理器

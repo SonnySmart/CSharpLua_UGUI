@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LuaFramework;
 
-public class SocketCommand : ControllerCommand {
+public class SocketCommand : SimpleCommand {
 
     public override void Execute(IMessage message) {
         object data = message.Body;

@@ -4,7 +4,7 @@ using UnityEngine;
 public class CtrlManager
 {
     private static CtrlManager _instance;
-    private Dictionary<string, Controller> ctrlList = new Dictionary<string, Controller>();
+    private Dictionary<string, SimpleCommand> ctrlList = new Dictionary<string, SimpleCommand>();
 
     public static CtrlManager Instance
     {
@@ -26,12 +26,12 @@ public class CtrlManager
         ctrlList["Prompt"] = new PromptCtrl();
     }
 
-    public void AddCtrl(string ctrlName, Controller ctrlObj)
+    public void AddCtrl(string ctrlName, SimpleCommand ctrlObj)
     {
         ctrlList[ctrlName] = ctrlObj;
     }
 
-    public Controller GetCtrl(string ctrlName)
+    public SimpleCommand GetCtrl(string ctrlName)
     {
         return ctrlList[ctrlName];
     }

@@ -1,4 +1,4 @@
-public class TestCtrl : Controller 
+public class TestCtrl : SimpleCommand 
 {
 
 }

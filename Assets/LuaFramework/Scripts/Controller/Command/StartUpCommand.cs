@@ -2,7 +2,7 @@
 using System.Collections;
 using LuaFramework;
 
-public class StartUpCommand : ControllerCommand {
+public class StartUpCommand : SimpleCommand {
 
     public override void Execute(IMessage message) {
         if (!Util.CheckEnvironment()) return;

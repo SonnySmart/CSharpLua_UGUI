@@ -3,7 +3,7 @@ using LuaFramework;
 using UnityEngine.UI;
 using SUIFW;
 
-public class PromptCtrl : Controller
+public class PromptCtrl : SimpleCommand
 {
 
     public void Awake() {

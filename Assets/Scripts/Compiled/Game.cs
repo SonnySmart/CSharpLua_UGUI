@@ -17,10 +17,12 @@ public class Game : LuaBehaviour
         this.InitViewPanels();
 
         CtrlManager.Instance.Init();
-        Controller ctrl = CtrlManager.Instance.GetCtrl("Prompt");
+        SimpleCommand ctrl = CtrlManager.Instance.GetCtrl("Prompt");
         if (ctrl != null && AppConst.ExampleMode) {
             (ctrl as PromptCtrl).Awake();
         }
+
+        AppFacade.Instance.RegisterProxy(new TestModel());
         
         Debug.Log("LuaFramework InitOK--->>>");
     }
