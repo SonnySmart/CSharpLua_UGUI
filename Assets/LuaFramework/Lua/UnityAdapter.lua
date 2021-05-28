@@ -213,6 +213,11 @@ local function addBridgeMonoBehaviour(gameObject, T)
   local metatableOfSuper = getmetatable(T)
   local MonoBehaviour = SystemTypeof(metatableOfSuper)[1]
   assert(MonoBehaviour, "addBridgeMonoBehaviour MonoBehaviour is nil .")
+  assert(isFromCSharp(MonoBehaviour), "addBridgeMonoBehaviour MonoBehaviour is not C# Object .")
+  -- 20210528 适配 -> 如果基类是MonoBehaviour那么添加LuaBehaviour
+  if MonoBehaviour == UnityEngineMonoBehaviour then
+    MonoBehaviour = BridgeMonoBehaviour
+  end
   local typeofMonoBehaviour = typeof(MonoBehaviour)
   local monoBehaviour = sourceAddComponent(gameObject, typeofMonoBehaviour)
   return newMonoBehaviour(T, monoBehaviour)

@@ -18,7 +18,7 @@ public class PromptForm : BaseUIForms
         this.LuaBehaviourTest();
         this.BaseUIFormsTest();
 
-        //this.DoTest();
+        this.DoTest();
     }
 
     public void Start()

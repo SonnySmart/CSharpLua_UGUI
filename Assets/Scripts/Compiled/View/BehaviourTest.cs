@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using LuaFramework;
 
-public class BehaviourTest : LuaBehaviour
+public class BehaviourTest : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
