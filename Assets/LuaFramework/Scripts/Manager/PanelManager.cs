@@ -95,6 +95,15 @@ namespace LuaFramework {
         /// <summary>
         /// 根据运行环境添加Form组件
         /// </summary>
+        public void AddComponent(GameObject gameObject, Type component)
+        {
+            string fullName = component.FullName;
+            AddComponent(gameObject, fullName);
+        }
+
+        /// <summary>
+        /// 根据运行环境添加Form组件
+        /// </summary>
         public void AddComponent(GameObject gameObject, string component)
         {
             if (gameObject == null)

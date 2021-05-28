@@ -1,8 +1,12 @@
 using LuaFramework;
 using UnityEngine;
 
-public class Game
+public class Game : LuaBehaviour
 {
+    private void Awake() {
+        OnInitOK();
+    }
+
     public void InitViewPanels()
     {
 

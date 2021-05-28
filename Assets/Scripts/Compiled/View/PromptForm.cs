@@ -13,9 +13,12 @@ public class PromptForm : BaseUIForms
     {
         print("我是Cs被打印了 PromptForm Awake");
 
-        this.InitPanel();
+        this.InitPanelTest();
 
-        this.DoTest();
+        this.LuaBehaviourTest();
+        this.BaseUIFormsTest();
+
+        //this.DoTest();
     }
 
     public void Start()
@@ -23,7 +26,7 @@ public class PromptForm : BaseUIForms
         print("我是Cs被打印了 PromptForm Start");
     }
 
-    public void InitPanel()
+    public void InitPanelTest()
     {
         var tr = this.transform;
 

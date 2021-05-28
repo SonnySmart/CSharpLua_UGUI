@@ -180,5 +180,10 @@ namespace SUIFW
 
         #endregion
 
+        public void BaseUIFormsTest()
+        {
+            Debug.Log("BaseUIFormsTest is call .");
+        }
+
     }//Class_end
 }

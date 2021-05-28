@@ -42,20 +42,6 @@ namespace LuaFramework {
             }
         }
 
-        /* 不对头这里挂载的时候对象都没初始化完成
-        private void Awake() {
-            if (!string.IsNullOrEmpty(LuaClass)) {
-                if (Table == null) {
-                    Table = LuaHelper.GetLuaManager().BindLua(this);
-                } else {
-                    using (var fn = Table.GetLuaFunction("Awake")) {
-                        if (fn != null) fn.Call(Table);
-                    }
-                }
-            }
-        }
-        */
-
         private void Start() {
             using (var fn = Table.GetLuaFunction("Start")) {
                 if (fn != null) fn.Call(Table);
@@ -135,6 +121,11 @@ namespace LuaFramework {
 #endif
             Util.ClearMemory();
             Debug.Log("~" + LuaClass + " was destroy!");
+        }
+
+        public void LuaBehaviourTest()
+        {
+            Debug.Log("LuaBehaviourTest is call .");
         }
     }
 }

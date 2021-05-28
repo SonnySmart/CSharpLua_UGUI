@@ -194,7 +194,8 @@ namespace LuaFramework {
         }
 
         public void LuaGC() {
-            lua.LuaGC(LuaGCOptions.LUA_GCCOLLECT);
+            if (lua != null)
+                lua.LuaGC(LuaGCOptions.LUA_GCCOLLECT);
         }
 
         public void Close() {
@@ -203,8 +204,11 @@ namespace LuaFramework {
                 loop = null;
             }
 
+            LuaGC();
             lua.Dispose();
             lua = null;
+
+            loader.Dispose();
             loader = null;
 
             if (bindFn_ != null) {
