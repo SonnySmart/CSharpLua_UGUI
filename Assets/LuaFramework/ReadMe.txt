@@ -103,6 +103,10 @@ Cs2Lua使用注意事项:
 		支持的组件:
 			LuaFramework.LuaBehaviour
 			SUIFW.BaseUIForms
+	6.避免使用:
+		这种语法好像有bug导致li为空
+		string []string_array;
+		var li = new List<string>(string_array)
 		
 		
 		

@@ -82,7 +82,9 @@ public class Controller : IController {
                     }
                 }
             } else {
-                m_viewCmdMap.Add(view, new List<string>(commandNames));
+                List<string> li = new List<string>();
+                li.AddRange(commandNames);
+                m_viewCmdMap.Add(view, li);
             }
         }
     }
