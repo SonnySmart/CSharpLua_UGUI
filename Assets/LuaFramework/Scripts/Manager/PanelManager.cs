@@ -83,17 +83,34 @@ namespace LuaFramework {
             Destroy(panelObj.gameObject);
         }
 
-        private void AddComponent(GameObject gameObject, string assetName)
+        /// <summary>
+        /// 根据运行环境添加Form组件
+        /// </summary>
+        public T AddComponent<T>(GameObject gameObject, string component)
         {
+            AddComponent(gameObject, component);
+            return gameObject.GetComponent<T>();
+        }
+
+        /// <summary>
+        /// 根据运行环境添加Form组件
+        /// </summary>
+        public void AddComponent(GameObject gameObject, string component)
+        {
+            if (gameObject == null)
+                return;
+
+            if (string.IsNullOrEmpty(component))
+                return;
+
+            string assembly = component + ",Assembly-CSharp";
 #if USE_LUA
-            //gameObject.AddComponent<LuaBehaviour>();
             var luaState = LuaHelper.GetLuaManager().GetMainState();
             using (var fn = luaState.GetFunction("UnityEngine.addComponent")) {
-                string assembly = assetName + ",Assembly-CSharp";
                 fn.Call(gameObject, assembly);
             }
 #else
-            gameObject.AddComponent(Type.GetType(assetName));
+            gameObject.AddComponent(Type.GetType(component));
 #endif
         }
     }

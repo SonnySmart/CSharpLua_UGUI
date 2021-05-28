@@ -237,7 +237,15 @@ local sourceGetComponentsInChildren = rawget(metatableOfGameObject, "GetComponen
 local sourceGetComponentsInParent = rawget(metatableOfGameObject, "GetComponentsInParent")
 
 local function addBridgeMonoBehaviour(gameObject, T)
-  local monoBehaviour = sourceAddComponent(gameObject, typeofBridgeMonoBehaviour)
+  -- 20210528 默认添加基类组件
+  local metatableOfSuper = getmetatable(T)
+  local typeofSuper = typeof(metatableOfSuper)
+  -- 20210528 找不到基类类型的话添加LuaBehaviour
+  if not typeofSuper then
+    typeofSuper = typeofBridgeMonoBehaviour
+  end
+  --typeofBridgeMonoBehaviour
+  local monoBehaviour = sourceAddComponent(gameObject, typeofSuper)
   return newMonoBehaviour(T, monoBehaviour)
 end
 

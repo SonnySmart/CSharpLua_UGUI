@@ -82,7 +82,7 @@ namespace LuaFramework {
                     return m_AllManifest[i];
                 }
             }
-            Debug.LogError("GetRealAssetPath Error:>>" + abName);
+            Debug.LogWarning("GetRealAssetPath Error:>>" + abName);
             return null;
         }
 
@@ -216,6 +216,8 @@ namespace LuaFramework {
         /// <param name="isThorough"></param>
         public void UnloadAssetBundle(string abName, bool isThorough = false) {
             abName = GetRealAssetPath(abName);
+            if (abName == null)
+                return;
             Debug.Log(m_LoadedAssetBundles.Count + " assetbundle(s) in memory before unloading " + abName);
             UnloadAssetBundleInternal(abName, isThorough);
             UnloadDependencies(abName, isThorough);

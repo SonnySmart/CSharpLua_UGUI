@@ -363,7 +363,7 @@ namespace SUIFW
             if (_CanvasTransform != null && goCloneUIPrefab != null)
             {
                 // 添加Form组件
-                AddComponent(goCloneUIPrefab, strUIFormsName);
+                LuaHelper.GetPanelManager().AddComponent(goCloneUIPrefab, strUIFormsName);
                 baseUIForm = goCloneUIPrefab.GetComponent<BaseUIForms>();
                 if (baseUIForm == null)
                 {
@@ -397,22 +397,6 @@ namespace SUIFW
 
             Log.Write(GetType() + string.Format("/LoadUIForms()/ 出现不可预知错误，请检查！ 方法参数 strUIFormsName={0} ", strUIFormsName), Log.Level.High);
             return null;
-        }
-
-        /// <summary>
-        /// 根据运行环境添加Form组件
-        /// </summary>
-        private void AddComponent(GameObject gameObject, string assetName)
-        {
-#if USE_LUA
-            var luaState = LuaHelper.GetLuaManager().GetMainState();
-            using (var fn = luaState.GetFunction("UnityEngine.addComponent")) {
-                string assembly = assetName + ",Assembly-CSharp";
-                fn.Call(gameObject, assembly);
-            }
-#else
-            gameObject.AddComponent(Type.GetType(assetName));
-#endif
         }
 
         /// <summary>
