@@ -28,6 +28,63 @@ Cs2Lua目录结构:
 	
 	*此目录为C#翻译之后的文件,不需要去手动编辑他
 	Assets/LuaFramework/Lua/Compiled
+
+Lua挂载脚本实现原理:
+	LuaFramework.LuaBehaviour继承至MonoBehaviour
+	MonoBehaviour不能直接AddComponent会报错
+	例子:
+	public LuaChildClass : LuaFramework.LuaBehaviour {
+		...
+	}
+	
+	FixBehaviour.lua:
+	-- 修复节点对象
+	local function fixbehaviour(cls)
+		local define = cls[".name"]
+		local BridgeMonoBehaviour = cls
+		-- 这里定义是把原来的LuaFramework.LuaBehaviour替换成了一个table
+		local MonoBehaviour = System.define(define, {
+			...
+		})
+		-- 这里保存了原先的组件
+		SystemTypeof(MonoBehaviour)[1] = BridgeMonoBehaviour
+		-- 获取父table
+		local metatableOfMonoBehaviour = getmetatable(BridgeMonoBehaviour) 
+		-- 设置父table
+		setmetatable(MonoBehaviour, {
+			-- 设置索引
+			__index = function (t, k)
+				if type(k) == "string" then
+				local c = sbyte(k, 1)
+				if c ~= 95 and c ~= 46 then -- not '.' or '_'
+					local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, k)
+					if ok then
+					local v = function (this, ...)
+						-- 利用this.ref来修复绑定对象,table是不具备组件对象的
+						return f(this.ref, ...)
+					end
+					t[k] = v
+					return v
+					end
+				end
+				end
+				return nil
+			end
+		})
+	end
+	
+	UnityAdapter.lua:
+	local function addBridgeMonoBehaviour(gameObject, T)
+		-- 这里获取父table也就是TableLuaChildClass
+		local metatableOfSuper = getmetatable(T)
+		-- 挂载的时候是挂载的父节点组件而不是table这里被替换掉了,否则不能挂载成功
+		local MonoBehaviour = SystemTypeof(metatableOfSuper)[1]
+		assert(MonoBehaviour, "addBridgeMonoBehaviour MonoBehaviour is nil .")
+		local typeofMonoBehaviour = typeof(MonoBehaviour)
+		-- 挂载父节点组件
+		local monoBehaviour = sourceAddComponent(gameObject, typeofMonoBehaviour)
+		return newMonoBehaviour(T, monoBehaviour)
+	end
 	
 Cs2Lua使用注意事项:
 	1.所有Compiled下的文件继承基类,基类必须生成Lua Wrap绑定文件,否则Lua会找不到基类
@@ -40,9 +97,12 @@ Cs2Lua使用注意事项:
 		Action<UObject[]> 替换为了 LuaFunction 这样Lua才能调用回调
 	4.使用模板存在一些问题需要注意
 	5.Compiled继承需要注意的地方:
-		只能继承框架生成了Wrap的基类如:
-		MonoBehaviour
-		LuaBehaviour
+		需要继承新的类,要在Lua/LuaFramework/FixBehaviour.lua中修复基类函数
+		注意事项:
+			不能直接继承MonoBehaviour,详细 => Lua挂载脚本实现原理
+		支持的组件:
+			LuaFramework.LuaBehaviour
+			SUIFW.BaseUIForms
 		
 		
 		

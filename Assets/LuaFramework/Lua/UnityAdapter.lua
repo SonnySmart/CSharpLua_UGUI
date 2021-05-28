@@ -210,34 +210,11 @@ local sourceGetComponentsInParent = rawget(metatableOfGameObject, "GetComponents
 
 local function addBridgeMonoBehaviour(gameObject, T)
   -- 20210528 默认添加基类组件
-  local MonoBehaviour = getmetatable(T)
-  local metatableOfSuper = SystemTypeof(MonoBehaviour)[1]
-  local typeofBehaviour = typeof(metatableOfSuper)
-  --typeofBridgeMonoBehaviour
-  local monoBehaviour = sourceAddComponent(gameObject, typeofBehaviour)
-
-  --[[
-  -- 20210528 继承的是table实体对象是ref需要适配
-  rawset(metatableOfSuper, "__index", function (cls, key)
-    if type(key) == "string" then
-      local c = sbyte(key, 1)
-      if c ~= 95 and c ~= 46 then -- not '.' or '_'        
-        -- metatableOfMonoBehaviour
-        local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, key)
-        if ok then
-          local v = function (this, ...)
-            return f(this.ref, ...)
-          end
-          cls[key] = v
-          return v
-        end
-        print ("没有找到打印Key值 " .. key)   
-      end
-    end
-    return nil
-  end)
-  ]]
-
+  local metatableOfSuper = getmetatable(T)
+  local MonoBehaviour = SystemTypeof(metatableOfSuper)[1]
+  assert(MonoBehaviour, "addBridgeMonoBehaviour MonoBehaviour is nil .")
+  local typeofMonoBehaviour = typeof(MonoBehaviour)
+  local monoBehaviour = sourceAddComponent(gameObject, typeofMonoBehaviour)
   return newMonoBehaviour(T, monoBehaviour)
 end
 
