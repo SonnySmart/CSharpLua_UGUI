@@ -37,7 +37,7 @@ namespace LuaFramework.Editor {
       // 程序集编译
       Compile(compiledScriptDir_, outDir_);
       // 框架编译
-      string compiledScriptDir = $"{frameworkDir_}/Scripts/Framework";
+      string compiledScriptDir = $"{frameworkDir_}/Scripts/Compiled";
       string outDir = $"{outLuaDir_}/LuaFramework/Scripts";
       Compile(compiledScriptDir, outDir);
     }
