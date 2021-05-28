@@ -39,7 +39,7 @@ local StackFn = System.define("System.Collections.Generic.Stack", function(T)
     base = { System.IEnumerable_1(T), System.ICollection },
     __genericT__ = T,
   }
-end, Stack, 1)
+end, Stack)
 
 System.Stack = StackFn
 System.stack = StackFn(System.Object)

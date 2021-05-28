@@ -98,7 +98,7 @@ define("System.Lazy", function (T)
   return { 
     __genericT__ = T 
   }
-end, Lazy, 1)
+end, Lazy)
 
 local ticker, frequency
 local time = System.config.time

@@ -31,7 +31,7 @@ local pcall = pcall
 local Clamp01 = Mathf.Clamp01
 
 local Debugger = Debugger
-local LuaBehaviour = LuaFramework.LuaBehaviour
+local BridgeMonoBehaviour = LuaFramework.LuaBehaviour
 local UnityEngine = UnityEngine
 local toluaSystem = toluaSystem
 local isFromCSharp = UnityEngine.isFromCSharp
@@ -76,7 +76,7 @@ local function getMonoBehaviourFunction(metatableOfMonoBehaviour, name)
   return metatableOfMonoBehaviour[name]   
 end
 
-local metatableOfMonoBehaviour = getmetatable(LuaBehaviour) 
+local metatableOfMonoBehaviour = getmetatable(BridgeMonoBehaviour) 
 setmetatable(MonoBehaviour, {
   __index = function (t, k)
     if type(k) == "string" then
@@ -105,7 +105,7 @@ local function registerUpdate(this, bridgeMonoBehaviour, nameOfFn)
   end
 end
 
-local typeofBridgeMonoBehaviour = typeof(LuaBehaviour)
+local typeofBridgeMonoBehaviour = typeof(BridgeMonoBehaviour)
 local isInstanceOfType = typeofBridgeMonoBehaviour.IsInstanceOfType 
 
 local function isBridgeInstance(t)
@@ -179,43 +179,15 @@ local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, se
   if not ctor then
     rawset(T, "__ctor__", emptyFn)
   end
-  -- 20210526 有些api找不到需要适配
-  local __index = function (cls, key)
-    if type(key) == "string" then
-      local c = sbyte(key, 1)
-      if c ~= 95 and c ~= 46 then -- not '.' or '_'        
-        -- metatableOfMonoBehaviour
-        local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, key)
-        if ok then
-          local v = function (this, ...)
-            return f(this.ref, ...)
-          end
-          cls[key] = v
-          return v
-        end
-        local metatableOfSuper = getmetatable(cls)
-        local ok, f = pcall(getMonoBehaviourFunction, metatableOfSuper, key)
-        if ok then
-          local v = function (this, ...)
-            return f(this, ...)
-          end
-          cls[key] = v
-          return v
-        end
-        print ("没有找到打印Key值 " .. key)   
-      end
-    end
-    return nil
+  local Awake = rawget(T, "Awake")
+  if not Awake then
+    rawset(T, "Awake", emptyFn)
   end
-  rawset(getmetatable(T), "__index", __index)
 
   local this = setmetatable({}, T)
   T.__ctor__(this)
   makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeObjects)
-  -- 20210526 没有Awake会报错判断一下
-  if this.Awake then
-    this:Awake()
-  end
+  this:Awake()
   return this
 end
 
@@ -238,14 +210,34 @@ local sourceGetComponentsInParent = rawget(metatableOfGameObject, "GetComponents
 
 local function addBridgeMonoBehaviour(gameObject, T)
   -- 20210528 默认添加基类组件
-  local metatableOfSuper = getmetatable(T)
-  local typeofSuper = typeof(metatableOfSuper)
-  -- 20210528 找不到基类类型的话添加LuaBehaviour
-  if not typeofSuper then
-    typeofSuper = typeofBridgeMonoBehaviour
-  end
+  local MonoBehaviour = getmetatable(T)
+  local metatableOfSuper = SystemTypeof(MonoBehaviour)[1]
+  local typeofBehaviour = typeof(metatableOfSuper)
   --typeofBridgeMonoBehaviour
-  local monoBehaviour = sourceAddComponent(gameObject, typeofSuper)
+  local monoBehaviour = sourceAddComponent(gameObject, typeofBehaviour)
+
+  --[[
+  -- 20210528 继承的是table实体对象是ref需要适配
+  rawset(metatableOfSuper, "__index", function (cls, key)
+    if type(key) == "string" then
+      local c = sbyte(key, 1)
+      if c ~= 95 and c ~= 46 then -- not '.' or '_'        
+        -- metatableOfMonoBehaviour
+        local ok, f = pcall(getMonoBehaviourFunction, metatableOfMonoBehaviour, key)
+        if ok then
+          local v = function (this, ...)
+            return f(this.ref, ...)
+          end
+          cls[key] = v
+          return v
+        end
+        print ("没有找到打印Key值 " .. key)   
+      end
+    end
+    return nil
+  end)
+  ]]
+
   return newMonoBehaviour(T, monoBehaviour)
 end
 

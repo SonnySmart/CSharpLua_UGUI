@@ -68,7 +68,7 @@ local ListFn = System.define("System.Collections.Generic.List", function(T)
     base = { System.IList_1(T), System.IReadOnlyList_1(T), System.IList }, 
     __genericT__ = T,
   }
-end, List, 1)
+end, List)
 
 System.List = ListFn
 System.ArrayList = ListFn(System.Object)

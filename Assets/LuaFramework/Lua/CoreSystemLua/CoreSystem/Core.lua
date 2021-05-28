@@ -155,6 +155,9 @@ local function multiKey(t, ...)
 end
 
 local function genericName(name, ...)
+  if name:byte(-2) == 95 then
+    name = ssub(name, 1, -3)
+  end
   local n = select("#", ...)
   local t = { name, "`", n, "[" }
   local count = 5
@@ -320,78 +323,45 @@ local function defCore(name, kind, cls, generic)
   return cls
 end
 
-local genericClassKey = {}
-local function getGenericClass(cls)
-  return cls[genericClassKey]
-end
-
-local function getDefGenericClass(name, kind, generic, genericArgumentCount)
-  local genericClass, genericBaseName
-  if generic then
-    generic.__index = generic
-    generic.__call = new
-    genericClass = generic
-  else
-    genericClass = {}
-  end
-  genericClass[genericClassKey] = genericClass
-  if kind == 'I' then
-    genericClass.class = 'I'
-  end
-  local _, i = name:find('.*_')
-  if i then
-    genericBaseName = name:sub(1, i - 1)
-    genericArgumentCount = name:sub(i + 1, i + 1)
-  else
-    genericBaseName = name
-    if not genericArgumentCount then error(name .. ' has not pass genericArgumentCount') end
-  end
-  genericClass.__name__ = genericBaseName .. '`' .. genericArgumentCount
-  return genericClass, genericBaseName
-end
-
-local function defGeneric(name, kind, cls, generic, ...)
-  local genericClass, genericBaseName = getDefGenericClass(name, kind, generic, ...)
-  local mt = {}
-  local fn = function(_, ...)
-    local gt, gk = multiKey(mt, ...)
-    local t = gt[gk]
-    if t == nil then
-      local class, super  = cls(...)
-      t = class or {}
-      t[genericClassKey] = genericClass
-      defCore(genericName(genericBaseName, ...), kind, t, true)
-      if generic then
-        setmetatable(t, super or generic)
-      end
-      gt[gk] = t
-    end
-    return t
-  end
-
-  local base = kind ~= "S" and Object or ValueType
-  local caller = setmetatable({ __call = fn, __index = base }, base)
-  return set(name, setmetatable(genericClass, caller))
-end
-
-local function def(name, kind, cls, ...)
+local function def(name, kind, cls, generic)
   if type(cls) == "function" then
-    return defGeneric(name, kind, cls, ...)
+    local mt = {}
+    local fn = function(_, ...)
+      local gt, gk = multiKey(mt, ...)
+      local t = gt[gk]
+      if t == nil then
+        local class, super  = cls(...)
+        t = defCore(genericName(name, ...), kind, class or {}, true)
+        if generic then
+          setmetatable(t, super or generic)
+        end
+        gt[gk] = t
+      end
+      return t
+    end
+
+    local base = kind ~= "S" and Object or ValueType
+    local caller = setmetatable({ __call = fn, __index = base }, base)
+    if generic then
+      generic.__index = generic
+      generic.__call = new
+    end
+    return set(name, setmetatable(generic or {}, caller))
   else
-    return defCore(name, kind, cls, ...)
+    return defCore(name, kind, cls, generic)
   end
 end
 
-local function defCls(name, cls, ...)
-  return def(name, "C", cls, ...)
+local function defCls(name, cls, generic)
+  return def(name, "C", cls, generic)
 end
 
-local function defInf(name, cls, ...)
-  return def(name, "I", cls, ...)
+local function defInf(name, cls)
+  return def(name, "I", cls)
 end
 
-local function defStc(name, cls, ...)
-  return def(name, "S", cls, ...)
+local function defStc(name, cls, generic)
+  return def(name, "S", cls, generic)
 end
 
 local function defEnum(name, cls)
@@ -463,7 +433,6 @@ System = {
   throw = throw,
   getClass = set,
   multiKey = multiKey,
-  getGenericClass = getGenericClass,
   define = defCls,
   defInf = defInf,
   defStc = defStc,
@@ -958,12 +927,9 @@ function System.default(T)
   return T:default()
 end
 
-function System.property(name, onlyget)
+function System.property(name)
   local function g(this)
     return this[name]
-  end
-  if onlyget then
-    return g
   end
   local function s(this, v)
     this[name] = v
@@ -1429,7 +1395,7 @@ defStc("System.Nullable", function (T)
   return { 
     __genericT__ = T 
   }
-end, Nullable, 1)
+end, Nullable)
 
 function System.isNullable(T)
   return getmetatable(T) == Nullable
@@ -1522,7 +1488,7 @@ local function defIn(kind, name, f)
   end
   assert(modules[name] == nil, name)
   namespace[1], namespace[2] = name, kind == "C" or kind == "S"
-  local t = f(assembly, global)
+  local t = f(assembly)
   namespace[1], namespace[2] = namespaceName, isClass
   modules[isClass and name:gsub("+", ".") or name] = function()
     return def(name, kind, t)

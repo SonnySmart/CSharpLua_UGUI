@@ -20,7 +20,6 @@ local Object = System.Object
 local Boolean = System.Boolean
 local Delegate = System.Delegate
 local getClass = System.getClass
-local getGenericClass = System.getGenericClass
 local arrayFromTable = System.arrayFromTable
 
 local InvalidCastException = System.InvalidCastException
@@ -55,7 +54,7 @@ local floor = math.floor
 local Type, typeof
 
 local function isGenericName(name)
-  return name:find('`') ~= nil
+  return name:byte(#name) == 93
 end
 
 local function getBaseType(this)
@@ -157,12 +156,7 @@ local function isAssignableFrom(this, c)
 end
 
 local function isGenericTypeDefinition(this)
-  local cls = this[1]
-  return getGenericClass(cls) == cls
-end
-
-local function getIsArray(this)
-  return this[1].__name__:byte(-2) == 91
+  return not rawget(this[1], "__name__")
 end
 
 Type = System.define("System.Type", {
@@ -175,9 +169,14 @@ Type = System.define("System.Type", {
   end,
   getIsGenericTypeDefinition = isGenericTypeDefinition,
   GetGenericTypeDefinition = function (this)
-    local genericClass = getGenericClass(this[1])
-    if genericClass then
-      return typeof(genericClass)
+    if isGenericTypeDefinition(this) then
+      return this
+    end
+    local name = this[1].__name__
+    local i = name:find('`')
+    if i then
+      local genericTypeName = name:sub(1, i - 1)
+      return typeof(System.getClass(genericTypeName))
     end
     throw(System.InvalidOperationException())
   end,
@@ -247,13 +246,6 @@ Type = System.define("System.Type", {
       return false 
     end
     return isAssignableFrom(this, obj:GetType())
-  end,
-  getIsArray = getIsArray,
-  GetElementType = function (this)
-    if getIsArray(this) then
-      return typeof(this[1].__genericT__)
-    end
-    return nil
   end,
   ToString = function (this)
     return this[1].__name__
@@ -341,7 +333,6 @@ System.typeof = typeof
 System.Object.GetType = getType
 
 local function addCheckInterface(set, cls)
-  -- 20210526 直接调用cls.interface没有的话会出错
   local interface = rawget(cls, "interface")
   if interface then
     for i = 1, #interface do

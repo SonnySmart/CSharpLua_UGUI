@@ -55,7 +55,7 @@ if jit then
 end
 
 require("CoreSystemLua.All")("CoreSystemLua", config)
-require("UnityAdapter")
 require("Common.All")("Common")
+require("UnityAdapter")
 require("LuaFramework.All")
 require("Compiled.manifest")("Compiled")

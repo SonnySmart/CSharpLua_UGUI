@@ -53,7 +53,7 @@ local InternalEnumerable = define("System.Linq.InternalEnumerable", function(T)
   return {
     base = { IEnumerable_1(T) }
   }
-end, nil, 1)
+end)
 
 local function createEnumerable(T, GetEnumerator)
   assert(T)
@@ -64,7 +64,7 @@ local InternalEnumerator = define("System.Linq.InternalEnumerator", function(T)
   return {
     base = { IEnumerator_1(T) }
   }
-end, nil, 1)
+end)
 
 local function createEnumerator(T, source, tryGetNext, init)
   assert(T)
@@ -277,7 +277,7 @@ local Grouping = define("System.Linq.Grouping", function (TKey, TElement)
       return #this
     end
   }
-end, nil, 2)
+end)
 
 local function getGrouping(this, key)
   local hashCode = this.comparer:GetHashCodeOf(key)
@@ -313,7 +313,7 @@ local LookupFn = define("System.Linq.Lookup", function(TKey, TElement)
     __genericTElement__ = TElement,
   }
   return cls
-end, Lookup, 2)
+end, Lookup)
 
 local function addToLookup(this, key, value)
   local hashCode = this.comparer:GetHashCodeOf(key)
