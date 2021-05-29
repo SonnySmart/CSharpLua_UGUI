@@ -302,9 +302,11 @@ namespace LuaFramework {
         /// 执行Lua方法
         /// </summary>
         public static object CallMethod(string module, string func, params object[] args) {
+#if USE_LUA
             LuaManager luaMgr = AppFacade.Instance.GetManager<LuaManager>(ManagerName.Lua);
             if (luaMgr == null) return null;
             return luaMgr.CallFunction(module + "." + func, args);
+#endif
         }
 
                 /// <summary>

@@ -23,6 +23,9 @@ public class PromptForm : BaseUIForms
         //UI窗体透明度类型
         CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
 
+        // MVC注册
+        AttentionList.Add(MessageConst.PromptFormMessageTest);
+
         print($"{LuaClass} CurrentUIType.UIForms_Type is {CurrentUIType.UIForms_Type}");
 
         print($"{LuaClass} OnInit Is Call . ");
@@ -38,8 +41,6 @@ public class PromptForm : BaseUIForms
         this.BaseUIFormsTest();
 
         this.DoTest();
-
-        AppFacade.Instance.RegisterMessage(this, new List<string> { MessageConst.PromptFormMessageTest });
     }
 
     public void Start()

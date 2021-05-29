@@ -12,9 +12,12 @@ namespace LuaFramework {
         private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
         // Cs2Lua
         private static readonly YieldInstruction[] updateYieldInstructions_ = new YieldInstruction[] { null, new WaitForFixedUpdate(), new WaitForEndOfFrame() };
+        [HideInInspector]
         public LuaTable Table { get; private set; }
         public string LuaClass;
+        [HideInInspector]
         public string SerializeData;
+        [HideInInspector]
         public UnityEngine.Object[] SerializeObjects;
 
         public void Bind(LuaTable table) {

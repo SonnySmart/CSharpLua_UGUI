@@ -21,22 +21,19 @@ namespace SUIFW
         //当前(基类)窗口的类型
         private UIType _CurrentUIType=new UIType();
 
+        /// <summary>
+        /// 事件关心列表
+        /// </summary>
+        [HideInInspector]
+        private List<string> _AttentionList = new List<string>();
+
         /*  属性  */
         /// <summary>
         /// 属性_当前UI窗体类型
         /// </summary>
-        public UIType CurrentUIType
-        {
-            set
-            {
-                _CurrentUIType = value;
-            }
+        public UIType CurrentUIType { get { return _CurrentUIType; } }
 
-            get
-            {
-                return _CurrentUIType;
-            }
-        }
+        public List<string> AttentionList { get { return _AttentionList; }}
 
         #region 窗体生命周期
 
@@ -111,8 +108,23 @@ namespace SUIFW
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject,_CurrentUIType.UIForms_LucencyType);                
             }
 
+#if USE_LUA
+            // 自动注册MVC View
+            if (AttentionList.Count > 0)
+            {
+                var Instance = Util.CallMethod("AppFacade", "getInstance");
+                if (Instance != null)
+                    Util.CallMethod("Facade", "RegisterMessage", Instance, Table, AttentionList);
+            }
             CallLuaFunction("OnOpen");
+#else
+            // 自动注册MVC View
+            if (AttentionList.Count > 0)
+            {
+                AppFacade.Instance.RegisterMessage(this, AttentionList);
+            }
             OnOpen();
+#endif
         }
 
         //页面隐藏(不在“栈”集合中)
@@ -126,8 +138,23 @@ namespace SUIFW
                 UIMaskMgr.GetInstance().CancleMaskWindow();
             }
 
+#if USE_LUA
+            // 自动销毁MVC View
+            if (AttentionList.Count > 0)
+            {
+                var Instance = Util.CallMethod("AppFacade", "getInstance");
+                if (Instance != null)
+                    Util.CallMethod("Facade", "RemoveMessage", Instance, Table, AttentionList);
+            }
             CallLuaFunction("OnClose");
+#else
+            // 自动销毁MVC View
+            if (AttentionList.Count > 0)
+            {
+                AppFacade.Instance.RemoveMessage(this, AttentionList);
+            }            
             OnClose();
+#endif
         }
 
         //页面重新显示
