@@ -10,6 +10,13 @@ public class PromptForm : BaseUIForms
     public Transform gridParent;
     private PromptForm mPromptForm;
 
+    protected override void OnInit()
+    {
+        base.OnInit();
+
+        print($"{LuaClass} OnInit Is Call . ");
+    }
+
     public void Awake()
     {
         print("我是Cs被打印了 PromptForm Awake");
@@ -60,7 +67,7 @@ public class PromptForm : BaseUIForms
         //test3_.SayChild();
     }
 
-    public override void OnDisplay()
+    protected override void OnOpen()
     {
         OnCreate();
 

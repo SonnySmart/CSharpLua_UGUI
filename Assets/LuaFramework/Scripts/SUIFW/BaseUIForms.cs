@@ -39,8 +39,69 @@ namespace SUIFW
         }
 
         #region 窗体生命周期
+
+        /// <summary>
+        /// 初始化窗体
+        /// </summary>
+        protected virtual void OnInit()
+        {
+            //是否需要清空“反向切换”
+            CurrentUIType.IsClearReverseChange = false;
+            //UI窗体类型
+            CurrentUIType.UIForms_Type = UIFormsType.Normal;
+            //UI窗体显示类型
+            CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
+            //UI窗体透明度类型
+            CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
+        }
+
+        /// <summary>
+        /// 打开窗体
+        /// </summary>
+        protected virtual void OnOpen() {}
+
+        /// <summary>
+        /// 重新打开窗体
+        /// </summary>
+        protected virtual void OnReOpen() {}
+
+        /// <summary>
+        /// 关闭窗体
+        /// </summary>
+        protected virtual void OnClose() {}
+
+        /// <summary>
+        /// 冻结窗体
+        /// </summary>
+        protected virtual void OnFreeze() {}
+
+        /// <summary>
+        /// 调用lua方法
+        /// </summary>
+        /// <param name="function"> 方法名称 </param>
+        protected void CallLuaFunction(string function)
+        {
+#if USE_LUA
+            if (Table == null)
+                return;
+
+            using (var fn = Table.GetLuaFunction(function))
+            {
+                if (fn != null)
+                    fn.Call(Table);
+            }
+#endif
+        }
+
+        //初始化
+        internal void Init()
+        {
+            CallLuaFunction("OnInit");
+            OnInit();
+        }
+
         //页面显示
-        public void Display()
+        internal void Open()
         {
             this.gameObject.SetActive(true);
             if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp) 
@@ -48,23 +109,13 @@ namespace SUIFW
                 //添加UI遮罩处理
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject,_CurrentUIType.UIForms_LucencyType);                
             }
-            OnDisplay();
-        }
 
-        /// <summary>
-        /// 虚函数C#不调用他
-        /// </summary>
-        public virtual void OnDisplay()
-        {
-#if USE_LUA
-            using (var fn = Table.GetLuaFunction("OnDisplay")) {
-                if (fn != null) fn.Call(Table);
-            }
-#endif
+            CallLuaFunction("OnOpen");
+            OnOpen();
         }
 
         //页面隐藏(不在“栈”集合中)
-        public void Hiding()
+        internal void Close()
         {
             this.gameObject.SetActive(false);
             if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp)
@@ -72,23 +123,13 @@ namespace SUIFW
                 //添加UI遮罩处理
                 UIMaskMgr.GetInstance().CancleMaskWindow();
             }
-            OnHiding();
-        }
 
-        /// <summary>
-        /// 虚函数C#不调用他
-        /// </summary>
-        public virtual void OnHiding()
-        {
-#if USE_LUA
-            using (var fn = Table.GetLuaFunction("OnHiding")) {
-                if (fn != null) fn.Call(Table);
-            }
-#endif
+            CallLuaFunction("OnClose");
+            OnClose();
         }
 
         //页面重新显示
-        public void Redisplay()
+        internal void ReOpen()
         {
             this.gameObject.SetActive(true);
             if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp)
@@ -96,25 +137,18 @@ namespace SUIFW
                 //添加UI遮罩处理
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject, _CurrentUIType.UIForms_LucencyType);
             }
-            OnRedisplay();
-        }
 
-        /// <summary>
-        /// 虚函数C#不调用他
-        /// </summary>
-        public virtual void OnRedisplay()
-        {
-#if USE_LUA
-            using (var fn = Table.GetLuaFunction("OnRedisplay")) {
-                if (fn != null) fn.Call(Table);
-            }
-#endif
+            CallLuaFunction("OnReOpen");
+            OnReOpen();
         }
 
         //页面冻结(还在“栈”集合中)
-        public virtual void Freeze()
+        internal void Freeze()
         {
             this.gameObject.SetActive(true);
+
+            CallLuaFunction("OnFreeze");
+            OnFreeze();
         } 
         #endregion
 

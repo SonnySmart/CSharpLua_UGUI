@@ -41,6 +41,8 @@ namespace SUIFW
         private Transform _CanTransformFixed = null;
         //弹出模式节点
         private Transform _CanTransformPopUp = null;
+        //置顶模式节点
+        private Transform _CanTransformTopUp = null;
         //UI脚本节点（加载各种管理脚本的节点）
         private Transform _CanTransformUIScripts = null;
 
@@ -77,6 +79,7 @@ namespace SUIFW
             _CanTransformNormal = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_NORMAL_NODE_NAME);
             _CanTransformFixed = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_FIXED_NODE_NAME);
             _CanTransformPopUp = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_POPUP_NODE_NAME);
+            _CanTransformTopUp = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_TOPUP_NODE_NAME);
             _CanTransformUIScripts = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_UISCRIPTS_NODE_NAME);
 
             //把本脚本实例，作为Canvas的子节点
@@ -196,7 +199,7 @@ namespace SUIFW
             if (baseUIFormsFromAllCache != null)
             {
                 _DicCurrentShowUIForms.Add(strUIFormsName, baseUIFormsFromAllCache);
-                baseUIFormsFromAllCache.Display();
+                baseUIFormsFromAllCache.Open();
             }
         }
 
@@ -213,7 +216,7 @@ namespace SUIFW
             if (baseUIForms == null) return;
 
             //指定UI窗体，运行隐藏状态，且从“正在显示UI窗体缓存”集合中移除。
-            baseUIForms.Hiding();
+            baseUIForms.Close();
             _DicCurrentShowUIForms.Remove(strUIFormsName);
         }
 
@@ -233,11 +236,11 @@ namespace SUIFW
             //“正在显示UI窗体缓存”与“栈缓存”集合里所有窗体进行隐藏处理。
             foreach (BaseUIForms baseUIFormsItem in _DicCurrentShowUIForms.Values)
             {
-                baseUIFormsItem.Hiding();
+                baseUIFormsItem.Close();
             }
             foreach (BaseUIForms basUIFormsItem in _StaCurrentUIForms)
             {
-                basUIFormsItem.Hiding();
+                basUIFormsItem.Close();
             }
 
             //把当前窗体，加载到“正在显示UI窗体缓存”集合里
@@ -245,7 +248,7 @@ namespace SUIFW
             if (baseUIFormsFromAllCache != null)
             {
                 _DicCurrentShowUIForms.Add(strUIFormsName, baseUIFormsFromAllCache);
-                baseUIFormsFromAllCache.Display();
+                baseUIFormsFromAllCache.Open();
             }
         }
 
@@ -262,17 +265,17 @@ namespace SUIFW
             if (baseUIForms == null) return;
 
             //指定UI窗体，运行隐藏状态，且从“正在显示UI窗体缓存”集合中移除。
-            baseUIForms.Hiding();
+            baseUIForms.Close();
             _DicCurrentShowUIForms.Remove(strUIFormsName);
 
             //“正在显示UI窗体缓存”与“栈缓存”集合里所有窗体进行再次显示处理。
             foreach (BaseUIForms baseUIFormsItem in _DicCurrentShowUIForms.Values)
             {
-                baseUIFormsItem.Redisplay();
+                baseUIFormsItem.ReOpen();
             }
             foreach (BaseUIForms basUIFormsItem in _StaCurrentUIForms)
             {
-                basUIFormsItem.Redisplay();
+                basUIFormsItem.ReOpen();
             }
         }
 
@@ -299,7 +302,7 @@ namespace SUIFW
             _DicALLUIForms.TryGetValue(strUIFormsName, out baseUI);
             if (baseUI != null)
             {
-                baseUI.Display();
+                baseUI.Open();
             }
             else
             {
@@ -320,18 +323,18 @@ namespace SUIFW
                 /* 出栈逻辑 */
                 BaseUIForms topUIForms = _StaCurrentUIForms.Pop();
                 //出栈的窗体，进行隐藏处理
-                topUIForms.Hiding();
+                topUIForms.Close();
                 //出栈窗体的下一个窗体逻辑
                 BaseUIForms nextUIForms = _StaCurrentUIForms.Peek();
                 //下一个窗体"重新显示"处理
-                nextUIForms.Redisplay();
+                nextUIForms.ReOpen();
             }
             else if (_StaCurrentUIForms.Count == 1)
             {
                 /* 出栈逻辑 */
                 BaseUIForms topUIForms = _StaCurrentUIForms.Pop();
                 //出栈的窗体，进行"隐藏"处理
-                topUIForms.Hiding();
+                topUIForms.Close();
             }
         }
 
@@ -364,6 +367,7 @@ namespace SUIFW
             {
                 // 添加Form组件
                 LuaHelper.GetPanelManager().AddComponent(goCloneUIPrefab, strUIFormsName);
+                // 获取Form组件
                 baseUIForm = goCloneUIPrefab.GetComponent<BaseUIForms>();
                 if (baseUIForm == null)
                 {
@@ -381,9 +385,15 @@ namespace SUIFW
                     case UIFormsType.PopUp:
                         goCloneUIPrefab.transform.SetParent(_CanTransformPopUp, false);
                         break;
+                    case UIFormsType.TopUp:
+                        goCloneUIPrefab.transform.SetParent(_CanTransformTopUp, false);
+                        break;
                     default:
                         break;
                 }
+
+                // 初始化Form
+                baseUIForm.Init();
 
                 goCloneUIPrefab.SetActive(false);
                 //新创建的“UI窗体”，加入“UI窗体缓存”中

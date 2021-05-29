@@ -23,6 +23,7 @@ namespace SUIFW
         Normal,             // 普通全屏界面(例如主城UI界面)
         Fixed,              // 固定界面(例如“英雄信息条” [HeroTopBar])
         PopUp,              // 弹出模式(小窗口)窗口 (例如：商场、背包、确认窗口等)
+        TopUp,              // 置顶模式(小窗口)窗口 (例如：网络转圈、强制提示弹窗等)
     }
 
     /// <summary>
@@ -66,6 +67,7 @@ namespace SUIFW
         public const string SYS_CANVAS_NORMAL_NODE_NAME = "Normal";
         public const string SYS_CANVAS_FIXED_NODE_NAME = "Fixed";
         public const string SYS_CANVAS_POPUP_NODE_NAME = "PopUp";
+        public const string SYS_CANVAS_TOPUP_NODE_NAME = "TopUp";
         public const string SYS_CANVAS_UISCRIPTS_NODE_NAME = "_UIScripts";
         public const string SYS_CANVAS_UIMASKPANELS_NODE_NAME = "UIMaskPanels";
         /* 遮罩管理器常量 */

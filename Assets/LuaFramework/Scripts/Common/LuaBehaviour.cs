@@ -118,11 +118,11 @@ namespace LuaFramework {
         protected void OnDestroy() {
             ClearClick();
 #if ASYNC_MODE
-            string abName = LuaClass.ToLower().Replace("form", "");
+            string abName = name.ToLower().Replace("form(clone)", "");
             ResManager.UnloadAssetBundle(abName + AppConst.ExtName);
 #endif
             Util.ClearMemory();
-            Debug.Log("~" + LuaClass + " was destroy!");
+            Debug.Log("~" + name + " was destroy!");
         }
 
         public void LuaBehaviourTest()
