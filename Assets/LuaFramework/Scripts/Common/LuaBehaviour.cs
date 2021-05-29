@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using SUIFW;
 
 namespace LuaFramework {
     public class LuaBehaviour : View {
@@ -42,12 +43,17 @@ namespace LuaFramework {
             }
         }
 
-        private void Start() {
-            if (Table != null) {
-                using (var fn = Table.GetLuaFunction("Start")) {
-                    if (fn != null) fn.Call(Table);
-                }
+        private void Start()
+        {
+#if USE_LUA
+            if (Table == null) 
+                return;
+            using (var fn = Table.GetLuaFunction("Start"))
+            {
+                if (fn != null)
+                    fn.Call(Table);
             }
+#endif
         }
 
         /*
@@ -69,43 +75,66 @@ namespace LuaFramework {
         */
 
         /// <summary>
-        /// 添加单击事件
+        /// lua通过对象绑定点击事件
         /// </summary>
-        public void AddClick(GameObject go, LuaFunction luafunc) {
-            if (go == null || luafunc == null) return;
-            buttons.Add(go.name, luafunc);
-            AddClick(go, (GameObject obj) => {
-                luafunc.Call(obj);
+        public void AddClick(GameObject gameObj, LuaFunction callback)
+        {
+            if (gameObj == null || callback == null)
+                return;
+            buttons.Add(gameObj.name, callback);
+            AddClick(gameObj, (obj) => {
+                callback.Call(obj);
             });
         }
 
-        public void AddClick(GameObject go, UnityAction<GameObject> luafunc) {
-            if (go == null || luafunc == null) return;
-            go.GetComponent<Button>().onClick.AddListener(
-                delegate() {
-                    luafunc.Invoke(go);
-                }
-            );
+        /// <summary>
+        /// lua通过名称绑定点击事件
+        /// </summary>
+        public void AddClick(string objString, LuaFunction callback)
+        {
+            Transform transform = UnityHelper.FindTheChild(this.gameObject, objString);
+            if (transform == null)
+                return;
+            AddClick(transform.gameObject, callback);
+        }
+
+        public void AddClick(GameObject gameObj, EventTriggerListener.VoidDelegate callback)
+        {
+            if (gameObj == null || callback == null)
+                return;
+            EventTriggerListener.Get(gameObj).onClick = callback;
+        }
+
+        public void AddClick(string objString, EventTriggerListener.VoidDelegate callback)
+        {
+            Transform transform = UnityHelper.FindTheChild(this.gameObject, objString);
+            if (transform == null)
+                return;
+            AddClick(transform.gameObject, callback);
         }
 
         /// <summary>
         /// 删除单击事件
         /// </summary>
         /// <param name="go"></param>
-        public void RemoveClick(GameObject go) {
-            if (go == null) return;
+        public void RemoveClick(GameObject gameObj)
+        {
+            if (gameObj == null)
+                return;
             LuaFunction luafunc = null;
-            if (buttons.TryGetValue(go.name, out luafunc)) {
+            if (buttons.TryGetValue(gameObj.name, out luafunc))
+            {
                 luafunc.Dispose();
                 luafunc = null;
-                buttons.Remove(go.name);
+                buttons.Remove(gameObj.name);
             }
         }
 
         /// <summary>
         /// 清除单击事件
         /// </summary>
-        public void ClearClick() {
+        public void ClearClick()
+        {
             foreach (var de in buttons) {
                 if (de.Value != null) {
                     de.Value.Dispose();
@@ -115,7 +144,8 @@ namespace LuaFramework {
         }
 
         //-----------------------------------------------------------------
-        protected void OnDestroy() {
+        protected void OnDestroy()
+        {
             ClearClick();
 #if ASYNC_MODE
             string abName = name.ToLower().Replace("form(clone)", "");

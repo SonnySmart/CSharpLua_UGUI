@@ -25,7 +25,7 @@ namespace SUIFW
         /// <summary>
         /// 属性_当前UI窗体类型
         /// </summary>
-        internal UIType CurrentUIType
+        public UIType CurrentUIType
         {
             set
             {
@@ -43,7 +43,7 @@ namespace SUIFW
         /// <summary>
         /// 初始化窗体
         /// </summary>
-        protected virtual void OnInit()
+        public virtual void OnInit()
         {
             //是否需要清空“反向切换”
             CurrentUIType.IsClearReverseChange = false;
@@ -58,22 +58,22 @@ namespace SUIFW
         /// <summary>
         /// 打开窗体
         /// </summary>
-        protected virtual void OnOpen() {}
+        public virtual void OnOpen() {}
 
         /// <summary>
         /// 重新打开窗体
         /// </summary>
-        protected virtual void OnReOpen() {}
+        public virtual void OnReOpen() {}
 
         /// <summary>
         /// 关闭窗体
         /// </summary>
-        protected virtual void OnClose() {}
+        public virtual void OnClose() {}
 
         /// <summary>
         /// 冻结窗体
         /// </summary>
-        protected virtual void OnFreeze() {}
+        public virtual void OnFreeze() {}
 
         /// <summary>
         /// 调用lua方法
@@ -104,7 +104,8 @@ namespace SUIFW
         internal void Open()
         {
             this.gameObject.SetActive(true);
-            if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp) 
+            if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp 
+            || _CurrentUIType.UIForms_Type == UIFormsType.TopUp) 
             {
                 //添加UI遮罩处理
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject,_CurrentUIType.UIForms_LucencyType);                
@@ -118,7 +119,8 @@ namespace SUIFW
         internal void Close()
         {
             this.gameObject.SetActive(false);
-            if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp)
+            if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp
+            || _CurrentUIType.UIForms_Type == UIFormsType.TopUp)
             {
                 //添加UI遮罩处理
                 UIMaskMgr.GetInstance().CancleMaskWindow();
@@ -132,7 +134,8 @@ namespace SUIFW
         internal void ReOpen()
         {
             this.gameObject.SetActive(true);
-            if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp)
+            if (_CurrentUIType.UIForms_Type == UIFormsType.PopUp
+            || _CurrentUIType.UIForms_Type == UIFormsType.TopUp)
             {
                 //添加UI遮罩处理
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject, _CurrentUIType.UIForms_LucencyType);
@@ -158,10 +161,21 @@ namespace SUIFW
         /// </summary>
         /// <param name="strButtonName">(UI预设)需要注册事件的按钮名称</param>
         /// <param name="delHandle">([委托类型]按钮的注册方法)</param>
-        protected void RigisteButtonObjectEvent(string strButtonName, EventTriggerListener.VoidDelegate delHandle)
+        public void RegisteButtonObjectEvent(string strButtonName, EventTriggerListener.VoidDelegate delHandle)
         {
-            GameObject goNeedRigistButton = UnityHelper.FindTheChild(this.gameObject, strButtonName).gameObject;
-            EventTriggerListener.Get(goNeedRigistButton).onClick = delHandle;
+            Transform transform = UnityHelper.FindTheChild(this.gameObject, strButtonName);
+            if (transform == null)
+                return;
+
+            RegisteButtonObjectEvent(transform.gameObject, delHandle);
+        }
+
+        public void RegisteButtonObjectEvent(GameObject gameObj, EventTriggerListener.VoidDelegate delHandle)
+        {
+            if (gameObj == null)
+                return;
+
+            EventTriggerListener.Get(gameObj).onClick = delHandle;
         }
 
         /// <summary>

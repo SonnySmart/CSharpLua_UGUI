@@ -183,7 +183,7 @@ namespace SUIFW
     /// <summary>
     /// UI（窗体）类型
     /// </summary>
-    internal class UIType
+    public class UIType
     {
         //是否需要清空“反向切换”
         public bool IsClearReverseChange = false;

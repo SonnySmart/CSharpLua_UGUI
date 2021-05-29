@@ -196,8 +196,13 @@ public static class CustomSettings
         // _GT(typeof(Proxy)),
 
         //SUIFW
+        _GT(typeof(SUIFW.UnityHelper)),
         _GT(typeof(SUIFW.BaseUIForms)),
         _GT(typeof(SUIFW.UIManager)),
+        _GT(typeof(SUIFW.UIType)),
+        _GT(typeof(SUIFW.UIFormsType)),
+        _GT(typeof(SUIFW.UIFormsShowMode)),
+        _GT(typeof(SUIFW.UIFormsLucencyType)),
     };
 
     public static List<Type> dynamicList = new List<Type>()

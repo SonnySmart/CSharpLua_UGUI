@@ -374,6 +374,10 @@ namespace SUIFW
                     Log.Write(GetType() + string.Format("/LoadUIForms()/ baseUIForm==null！,请先确认克隆对象上是否加载了BaseUIForms的子类。参数 strUIFormsName='{0}' ", strUIFormsName), Log.Level.High);
                     return null;
                 }
+
+                // 初始化Form
+                baseUIForm.Init();
+
                 switch (baseUIForm.CurrentUIType.UIForms_Type)
                 {
                     case UIFormsType.Normal:
@@ -391,9 +395,6 @@ namespace SUIFW
                     default:
                         break;
                 }
-
-                // 初始化Form
-                baseUIForm.Init();
 
                 goCloneUIPrefab.SetActive(false);
                 //新创建的“UI窗体”，加入“UI窗体缓存”中

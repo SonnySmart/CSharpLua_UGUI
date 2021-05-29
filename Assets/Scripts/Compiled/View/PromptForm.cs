@@ -10,9 +10,20 @@ public class PromptForm : BaseUIForms
     public Transform gridParent;
     private PromptForm mPromptForm;
 
-    protected override void OnInit()
+    public override void OnInit()
     {
         base.OnInit();
+
+        //是否需要清空“反向切换”
+        CurrentUIType.IsClearReverseChange = false;
+        //UI窗体类型
+        CurrentUIType.UIForms_Type = UIFormsType.PopUp;
+        //UI窗体显示类型
+        CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
+        //UI窗体透明度类型
+        CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
+
+        print($"{LuaClass} CurrentUIType.UIForms_Type is {CurrentUIType.UIForms_Type}");
 
         print($"{LuaClass} OnInit Is Call . ");
     }
@@ -67,7 +78,7 @@ public class PromptForm : BaseUIForms
         //test3_.SayChild();
     }
 
-    protected override void OnOpen()
+    public override void OnOpen()
     {
         OnCreate();
 
@@ -86,7 +97,8 @@ public class PromptForm : BaseUIForms
 
         mPromptForm = gameObject.GetComponent<PromptForm>();
 
-        AddClick(mPromptForm.btnOpen, this.OnClick);
+        //AddClick(mPromptForm.btnOpen, this.OnClick);
+        AddClick("Open", this.OnClick);
         LuaHelper.GetResManager().LoadPrefab("prompt", "PromptItem", this.InitPanel);
     }
 
