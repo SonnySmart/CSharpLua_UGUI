@@ -74,24 +74,6 @@ namespace SUIFW
         /// </summary>
         public virtual void OnFreeze() {}
 
-        /// <summary>
-        /// 调用lua方法
-        /// </summary>
-        /// <param name="function"> 方法名称 </param>
-        protected void CallLuaFunction(string function)
-        {
-#if USE_LUA
-            if (Table == null)
-                return;
-
-            using (var fn = Table.GetLuaFunction(function))
-            {
-                if (fn != null)
-                    fn.Call(Table);
-            }
-#endif
-        }
-
         //初始化
         internal void Init()
         {

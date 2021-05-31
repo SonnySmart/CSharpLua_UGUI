@@ -168,9 +168,10 @@ namespace LuaFramework {
         /// 同步加载
         /// </summary>
         T OnLoadAssetSync<T>(string abName, string assetName) where T : UObject {
+            abName = GetRealAssetPath(abName);
             AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
             if (bundleInfo == null) {
-                OnLoadAssetBundleSync(abName);
+                OnLoadAssetBundleSync(abName, typeof(T));
                 bundleInfo = GetLoadedAssetBundle(abName);
                 if (bundleInfo == null) {
                     Debug.LogError("OnLoadAssetSync abName is --->>>" + abName);
@@ -191,7 +192,6 @@ namespace LuaFramework {
 
         IEnumerator OnLoadAssetBundle(string abName, Type type) {
             string url = m_BaseDownloadingURL + abName;
-
             UnityWebRequest download = null;
             if (type == typeof(AssetBundleManifest)) {
                 download = UnityWebRequestAssetBundle.GetAssetBundle(url);
@@ -223,9 +223,26 @@ namespace LuaFramework {
             }
         }
 
-        void OnLoadAssetBundleSync(string abName)
+        void OnLoadAssetBundleSync(string abName, Type type)
         {
-            string url = Util.DataPath + abName + AppConst.ExtName;
+            string url = Util.DataPath + abName;
+            if (type != typeof(AssetBundleManifest))
+            {
+                string[] dependencies = m_AssetBundleManifest.GetAllDependencies(abName);
+                if (dependencies.Length > 0) {
+                    m_Dependencies.Add(abName, dependencies);
+                    for (int i = 0; i < dependencies.Length; i++) {
+                        string depName = dependencies[i];
+                        AssetBundleInfo bundleInfo = null;
+                        if (m_LoadedAssetBundles.TryGetValue(depName, out bundleInfo)) {
+                            bundleInfo.m_ReferencedCount++;
+                        } else if (!abName.Equals(depName)) {
+                            OnLoadAssetBundleSync(depName, type);
+                        }
+                    }
+                }
+            }
+
             AssetBundle assetObj = AssetBundle.LoadFromFile(url);
             if (assetObj != null) {
                 m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));

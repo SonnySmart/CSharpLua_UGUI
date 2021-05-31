@@ -59,23 +59,23 @@ namespace LuaFramework {
 #endif
         }
 
-        /*
-        protected void Awake() {
-            Util.CallMethod(name, "Awake", gameObject);
-        }
+        /// <summary>
+        /// 调用lua方法
+        /// </summary>
+        /// <param name="function"> 方法名称 </param>
+        protected void CallLuaFunction(string function)
+        {
+#if USE_LUA
+            if (Table == null)
+                return;
 
-        protected void Start() {
-            Util.CallMethod(name, "Start");
+            using (var fn = Table.GetLuaFunction(function))
+            {
+                if (fn != null)
+                    fn.Call(Table);
+            }
+#endif
         }
-
-        protected void OnClick() {
-            Util.CallMethod(name, "OnClick");
-        }
-
-        protected void OnClickEvent(GameObject go) {
-            Util.CallMethod(name, "OnClick", go);
-        }
-        */
 
         /// <summary>
         /// lua通过对象绑定点击事件

@@ -12,8 +12,6 @@ public class PromptForm : BaseUIForms
 
     public override void OnInit()
     {
-        base.OnInit();
-
         //是否需要清空“反向切换”
         CurrentUIType.IsClearReverseChange = false;
         //UI窗体类型
