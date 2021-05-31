@@ -214,7 +214,7 @@ namespace LuaFramework {
             }
             yield return download.SendWebRequest();
 
-            if (!download.isNetworkError || !download.isHttpError || !download.isDone)
+            while (download.isNetworkError || download.isHttpError || !download.isDone)
                 yield return null;
 
             AssetBundle assetObj = DownloadHandlerAssetBundle.GetContent(download);;
