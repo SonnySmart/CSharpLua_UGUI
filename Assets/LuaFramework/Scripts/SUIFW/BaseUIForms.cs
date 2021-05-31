@@ -42,6 +42,7 @@ namespace SUIFW
         /// </summary>
         public virtual void OnInit()
         {
+            /*
             //是否需要清空“反向切换”
             CurrentUIType.IsClearReverseChange = false;
             //UI窗体类型
@@ -50,6 +51,7 @@ namespace SUIFW
             CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
             //UI窗体透明度类型
             CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
+            */
         }
 
         /// <summary>

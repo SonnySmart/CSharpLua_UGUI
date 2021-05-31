@@ -359,7 +359,7 @@ namespace SUIFW
             //加载指定路径的“UI窗体”
             if (!string.IsNullOrEmpty(strUIFormsPaths))
             {
-                goCloneUIPrefab = ResourcesMgr.GetInstance().LoadAsset(strUIFormsPaths, false);
+                goCloneUIPrefab = ResourcesMgr.GetInstance().LoadAsset(strUIFormsPaths, strUIFormsName, true);
             }
 
             //设置“UI窗体”克隆体的父节点，以及隐藏处理与加入“UI窗体缓存”中

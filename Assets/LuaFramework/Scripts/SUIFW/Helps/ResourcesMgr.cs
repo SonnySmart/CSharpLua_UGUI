@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using LuaFramework;
 
 namespace SUIFW
 {
@@ -64,6 +64,26 @@ namespace SUIFW
             return TResource;
         }
 
+        public T LoadResource<T>(string path, string assetName, bool isCatch) where T : UnityEngine.Object
+        {
+            if (ht.Contains(path))
+            {
+                return ht[path] as T;
+            }
+
+            T TResource = LuaHelper.GetResManager().LoadPrefabSync<T>("uiforms", assetName);
+            if (TResource == null)
+            {
+                Debug.LogError(GetType() + "/GetInstance()/TResource 提取的资源找不到，请检查。 path=" + path);
+            }
+            else if (isCatch)
+            {
+                ht.Add(path, TResource);
+            }
+
+            return TResource;
+        }
+
         /// <summary>
         /// 调用资源（带对象缓冲技术）
         /// </summary>
@@ -73,6 +93,33 @@ namespace SUIFW
         public GameObject LoadAsset(string path, bool isCatch)
         {
             GameObject goObj = LoadResource<GameObject>(path, isCatch);
+            GameObject goObjClone = GameObject.Instantiate<GameObject>(goObj);
+            if (goObjClone == null)
+            {
+                Debug.LogError(GetType() + "/LoadAsset()/克隆资源不成功，请检查。 path=" + path);
+            }
+            //goObj = null;//??????????
+            return goObjClone;
+        }
+
+        public GameObject LoadAsset(string path, string assetName, bool isCatch)
+        {
+            GameObject goObj = null;
+            if (AppConst.DebugMode)
+            {
+                goObj = LoadResource<GameObject>(path, isCatch);
+            }
+            else
+            {
+                goObj = LoadResource<GameObject>(path, assetName, isCatch);
+            }
+
+            if (goObj == null)
+            {
+                Debug.LogError(GetType() + "/LoadAsset()/加载资源不成功，请检查。 assetName=" + assetName);
+                return null;
+            }
+
             GameObject goObjClone = GameObject.Instantiate<GameObject>(goObj);
             if (goObjClone == null)
             {

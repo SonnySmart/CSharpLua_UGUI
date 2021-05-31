@@ -63,6 +63,13 @@ namespace LuaFramework {
             LoadAsset<GameObject>(abName, new string[] { assetName }, null, func);
         } 
 
+        /// <summary>
+        /// 同步加载
+        /// </summary>
+        public T LoadPrefabSync<T>(string abName, string assetName) where T : UObject {
+            return OnLoadAssetSync<T>(abName, assetName);
+        }
+
         string GetRealAssetPath(string abName) {
             if (abName.Equals(AppConst.AssetDir)) {
                 return abName;
@@ -109,6 +116,9 @@ namespace LuaFramework {
             }
         }
 
+        /// <summary>
+        /// 异步加载
+        /// </summary>
         IEnumerator OnLoadAsset<T>(string abName) where T : UObject {
             AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
             if (bundleInfo == null) {
@@ -154,6 +164,31 @@ namespace LuaFramework {
             m_LoadRequests.Remove(abName);
         }
 
+        /// <summary>
+        /// 同步加载
+        /// </summary>
+        T OnLoadAssetSync<T>(string abName, string assetName) where T : UObject {
+            AssetBundleInfo bundleInfo = GetLoadedAssetBundle(abName);
+            if (bundleInfo == null) {
+                OnLoadAssetBundleSync(abName);
+                bundleInfo = GetLoadedAssetBundle(abName);
+                if (bundleInfo == null) {
+                    Debug.LogError("OnLoadAssetSync abName is --->>>" + abName);
+                    return default(T);
+                }
+            }
+
+            AssetBundle ab = bundleInfo.m_AssetBundle;
+            T TAsset = ab.LoadAsset<T>(assetName);
+            if (TAsset == null) {
+                Debug.LogError("OnLoadAssetSync assetName is --->>>" + assetName);
+                return TAsset;
+            }                
+
+            bundleInfo.m_ReferencedCount++;
+            return TAsset;
+        }
+
         IEnumerator OnLoadAssetBundle(string abName, Type type) {
             string url = m_BaseDownloadingURL + abName;
 
@@ -183,6 +218,15 @@ namespace LuaFramework {
                 yield return null;
 
             AssetBundle assetObj = DownloadHandlerAssetBundle.GetContent(download);;
+            if (assetObj != null) {
+                m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));
+            }
+        }
+
+        void OnLoadAssetBundleSync(string abName)
+        {
+            string url = Util.DataPath + abName + AppConst.ExtName;
+            AssetBundle assetObj = AssetBundle.LoadFromFile(url);
             if (assetObj != null) {
                 m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));
             }

@@ -81,6 +81,7 @@ public class Packager {
         if (AppConst.ExampleMode) {
             HandleExampleBundle();
         }
+        HandleFormsBundle();
         string resPath = "Assets/" + AppConst.AssetDir;
         BuildPipeline.BuildAssetBundles(resPath, maps.ToArray(), BuildAssetBundleOptions.None, target);
         BuildFileIndex();
@@ -90,16 +91,35 @@ public class Packager {
         AssetDatabase.Refresh();
     }
 
-    static void AddBuildMap(string bundleName, string pattern, string path) {
-        string[] files = Directory.GetFiles(path, pattern);
+    static void AddBuildMap(string bundleName, string pattern, string path, SearchOption searchOption = SearchOption.TopDirectoryOnly) {
+        string[] files = Directory.GetFiles(path, pattern, searchOption);
         if (files.Length == 0) return;
 
         for (int i = 0; i < files.Length; i++) {
             files[i] = files[i].Replace('\\', '/');
         }
+
+        // 移除冗余
+        List<string> li = new List<string>(files);
+        foreach (var abb in maps)
+        {
+            List<string> assetNames = new List<string>(abb.assetNames);
+            for (int i = 0; i < files.Length; i++)
+            {
+                string file = files[i];
+                if (assetNames.Contains(file))
+                {
+                    li.Remove(file);
+                }
+            }
+        }
+
+        if (li.Count == 0)
+            return;
+
         AssetBundleBuild build = new AssetBundleBuild();
         build.assetBundleName = bundleName;
-        build.assetNames = files;
+        build.assetNames = li.ToArray();
         maps.Add(build);
     }
 
@@ -171,8 +191,19 @@ public class Packager {
         AddBuildMap("prompt" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Prompt");
         AddBuildMap("message" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message");
 
-        AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
-        AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
+        //AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
+        //AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
+    }
+
+    /// <summary>
+    /// 处理UI预制体
+    /// </summary>
+    static void HandleFormsBundle() {
+        string resPath = AppDataPath + "/" + AppConst.AssetDir + "/";
+        if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
+
+        AddBuildMap("uiforms" + AppConst.ExtName, "*.prefab", "Assets/Resources/Prefabs/Forms");
+        AddBuildMap("uiforms_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures", SearchOption.AllDirectories);
     }
 
     /// <summary>
