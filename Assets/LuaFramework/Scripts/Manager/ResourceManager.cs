@@ -175,16 +175,14 @@ namespace LuaFramework {
                         }
                     }
                 }
-                download = UnityWebRequestAssetBundle.GetAssetBundle(url);
+                download = UnityWebRequestAssetBundle.GetAssetBundle(url, m_AssetBundleManifest.GetAssetBundleHash(abName), 0);
             }
             yield return download.SendWebRequest();
 
-            if (download.isHttpError || download.isNetworkError || !download.isDone)
-            {
-                yield return null;
-            }
+            if (!download.isNetworkError || !download.isHttpError || !download.isDone)
+                yield return null;
 
-            AssetBundle assetObj = (download.downloadHandler as DownloadHandlerAssetBundle).assetBundle;
+            AssetBundle assetObj = DownloadHandlerAssetBundle.GetContent(download);;
             if (assetObj != null) {
                 m_LoadedAssetBundles.Add(abName, new AssetBundleInfo(assetObj));
             }

@@ -207,8 +207,9 @@ namespace LuaFramework {
         }
 
         public static string GetRelativePath() {
-            if (Application.isEditor)
+            if (Application.isEditor) {
                 return "file://" + System.Environment.CurrentDirectory.Replace("\\", "/") + "/Assets/" + AppConst.AssetDir + "/";
+            }
             else if (Application.isMobilePlatform || Application.isConsolePlatform)
                 return "file:///" + DataPath;
             else // For standalone player.
@@ -302,11 +303,14 @@ namespace LuaFramework {
         /// 执行Lua方法
         /// </summary>
         public static object CallMethod(string module, string func, params object[] args) {
+#pragma warning disable 0162
 #if USE_LUA
             LuaManager luaMgr = AppFacade.Instance.GetManager<LuaManager>(ManagerName.Lua);
             if (luaMgr == null) return null;
             return luaMgr.CallFunction(module + "." + func, args);
 #endif
+            return null;
+#pragma warning restore 0162
         }
 
                 /// <summary>

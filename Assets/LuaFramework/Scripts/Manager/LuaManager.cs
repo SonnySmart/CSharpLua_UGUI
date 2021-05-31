@@ -2,6 +2,7 @@
 using System.Collections;
 using LuaInterface;
 using System;
+using System.IO;
 
 namespace LuaFramework {
     public class LuaManager : Manager {
@@ -75,6 +76,9 @@ namespace LuaFramework {
         /// 启动调试
         /// </summary>
         void StartDebug() {
+            if (!AppConst.DebugMode)
+                return;
+            LuaConst.openLuaDebugger = true;
             lua.DoFile("LuaDebugjit.lua");
             LuaFunction main = lua.GetFunction("StartDebug");
             main.Call("localhost", 7003);
@@ -124,41 +128,67 @@ namespace LuaFramework {
         /// </summary>
         void InitLuaBundle() {
             if (loader.beZip) {
-                // common
-                loader.AddBundle("lua/lua.unity3d");
-                loader.AddBundle("lua/lua_math.unity3d");
-                loader.AddBundle("lua/lua_system.unity3d");
-                loader.AddBundle("lua/lua_system_reflection.unity3d");
-                loader.AddBundle("lua/lua_unityengine.unity3d");
-                loader.AddBundle("lua/lua_common.unity3d");
-                // loader.AddBundle("lua/lua_logic.unity3d");
-                // loader.AddBundle("lua/lua_view.unity3d");
-                // loader.AddBundle("lua/lua_controller.unity3d");
-                loader.AddBundle("lua/lua_misc.unity3d");
-                // 3rd
-                loader.AddBundle("lua/lua_protobuf.unity3d");
-                loader.AddBundle("lua/lua_3rd_cjson.unity3d");
-                loader.AddBundle("lua/lua_3rd_luabitop.unity3d");
-                loader.AddBundle("lua/lua_3rd_pbc.unity3d");
-                loader.AddBundle("lua/lua_3rd_pblua.unity3d");
-                loader.AddBundle("lua/lua_3rd_sproto.unity3d");
-                // coresystemlua
-                loader.AddBundle("lua/lua_coresystemlua.unity3d");
-                loader.AddBundle("lua/lua_coresystemlua_coresystem.unity3d");
-                loader.AddBundle("lua/lua_coresystemlua_coresystem_collections.unity3d");
-                loader.AddBundle("lua/lua_coresystemlua_coresystem_io.unity3d");
-                loader.AddBundle("lua/lua_coresystemlua_coresystem_reflection.unity3d");
-                loader.AddBundle("lua/lua_coresystemlua_coresystem_text.unity3d");
-                loader.AddBundle("lua/lua_coresystemlua_coresystem_threading.unity3d");
-                // luaframework
-                loader.AddBundle("lua/lua_luaframework.unity3d");
-                // compiled
-                loader.AddBundle("lua/lua_compiled.unity3d");
-                loader.AddBundle("lua/lua_compiled_common.unity3d");
-                loader.AddBundle("lua/lua_compiled_controller.unity3d");
-                loader.AddBundle("lua/lua_compiled_logic.unity3d");
-                loader.AddBundle("lua/lua_compiled_model.unity3d");
-                loader.AddBundle("lua/lua_compiled_view.unity3d");
+                // // common
+                // loader.AddBundle("lua/lua.unity3d");
+                // loader.AddBundle("lua/lua_math.unity3d");
+                // loader.AddBundle("lua/lua_system.unity3d");
+                // loader.AddBundle("lua/lua_system_reflection.unity3d");
+                // loader.AddBundle("lua/lua_unityengine.unity3d");
+                // loader.AddBundle("lua/lua_common.unity3d");
+                // // loader.AddBundle("lua/lua_logic.unity3d");
+                // // loader.AddBundle("lua/lua_view.unity3d");
+                // // loader.AddBundle("lua/lua_controller.unity3d");
+                // loader.AddBundle("lua/lua_misc.unity3d");
+                // // 3rd
+                // loader.AddBundle("lua/lua_protobuf.unity3d");
+                // loader.AddBundle("lua/lua_3rd_cjson.unity3d");
+                // loader.AddBundle("lua/lua_3rd_luabitop.unity3d");
+                // loader.AddBundle("lua/lua_3rd_pbc.unity3d");
+                // loader.AddBundle("lua/lua_3rd_pblua.unity3d");
+                // loader.AddBundle("lua/lua_3rd_sproto.unity3d");
+                // // coresystemlua
+                // loader.AddBundle("lua/lua_coresystemlua.unity3d");
+                // loader.AddBundle("lua/lua_coresystemlua_coresystem.unity3d");
+                // loader.AddBundle("lua/lua_coresystemlua_coresystem_collections.unity3d");
+                // loader.AddBundle("lua/lua_coresystemlua_coresystem_io.unity3d");
+                // loader.AddBundle("lua/lua_coresystemlua_coresystem_reflection.unity3d");
+                // loader.AddBundle("lua/lua_coresystemlua_coresystem_text.unity3d");
+                // loader.AddBundle("lua/lua_coresystemlua_coresystem_threading.unity3d");
+                // // luaframework
+                // loader.AddBundle("lua/lua_luaframework.unity3d");
+                // // compiled
+                // loader.AddBundle("lua/lua_compiled.unity3d");
+                // loader.AddBundle("lua/lua_compiled_common.unity3d");
+                // loader.AddBundle("lua/lua_compiled_controller.unity3d");
+                // loader.AddBundle("lua/lua_compiled_logic.unity3d");
+                // loader.AddBundle("lua/lua_compiled_model.unity3d");
+                // loader.AddBundle("lua/lua_compiled_view.unity3d");
+            }
+
+            if (!loader.beZip)
+                return;
+            
+            // 判断files.txt文件是否存在
+            string files_txt = Util.DataPath + "files.txt";
+            if (!File.Exists(files_txt))
+                return;
+
+            // 获取配置文件
+            string[] files = File.ReadAllLines(files_txt);
+            foreach (var file in files)
+            {
+                string[] fs = file.Split('|');
+                if (fs.Length < 2)
+                    continue;
+                string bundle = fs[0];
+                // 过滤掉不是.unity3d后缀的assetbundle
+                if (!bundle.EndsWith(".unity3d"))
+                    continue;
+                // 过滤掉不是lua assetbundle文件
+                if (!bundle.Contains("lua/lua"))
+                    continue;
+                // 加载剩下的assetbundle
+                loader.AddBundle(bundle);
             }
         }
 

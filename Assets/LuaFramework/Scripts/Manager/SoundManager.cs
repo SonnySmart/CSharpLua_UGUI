@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 namespace LuaFramework {
     public class SoundManager : Manager {
+#pragma warning disable 0108
         private AudioSource audio;
+#pragma warning restore 0108
         private Hashtable sounds = new Hashtable();
 
         void Start() {
