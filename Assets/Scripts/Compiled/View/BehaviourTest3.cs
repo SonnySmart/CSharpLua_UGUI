@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehaviourTest3 : TestBaseBehaviourScript3
+public class BehaviourTest3 : MonoBehaviour
 {
     public BehaviourTest3() : base()
     {
@@ -13,6 +13,6 @@ public class BehaviourTest3 : TestBaseBehaviourScript3
     {
         Debug.Log("BehaviourTest3 SayChild is Call .");
 
-        this.ClassSayHello();
+        //this.ClassSayHello();
     }
 }

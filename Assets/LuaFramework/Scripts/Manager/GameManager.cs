@@ -238,7 +238,8 @@ namespace LuaFramework {
             //LuaManager.DoFile("Logic/Network");      //加载网络
             //NetManager.OnInit();                     //初始化网络
 #endif
-            LuaHelper.GetPanelManager().AddComponent(gameObject, typeof(Game));
+            // 这里启动最终逻辑
+            LuaHelper.GetPanelManager().AddComponent(gameObject, "Game");
             
             initialize = true;
 

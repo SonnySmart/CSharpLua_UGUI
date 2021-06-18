@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BehaviourTest2 : TestBaseBehaviourScript2
+public class BehaviourTest2 : MonoBehaviour
 {
     // Start is called before the first frame update
     public BehaviourTest2()
