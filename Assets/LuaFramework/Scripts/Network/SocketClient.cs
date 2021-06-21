@@ -10,6 +10,7 @@ using LuaFramework;
 public enum DisType {
     Exception,
     Disconnect,
+    Close,
 }
 
 public class SocketClient {
@@ -73,9 +74,31 @@ public class SocketClient {
     /// 连接上服务器
     /// </summary>
     void OnConnect(IAsyncResult asr) {
-        outStream = client.GetStream();
-        client.GetStream().BeginRead(byteBuffer, 0, MAX_READ, new AsyncCallback(OnRead), null);
-        NetworkManager.AddEvent(Protocal.Connect, new ByteBuffer());
+        ByteBuffer buffer = new ByteBuffer();
+        try
+        {
+            if (!client.Connected)
+            {
+                buffer.WriteInt(-1);
+                buffer.WriteString($"服务器链接失败 addr[{AppConst.SocketAddress}] port[{AppConst.SocketPort}]");
+                NetworkManager.AddEvent(Protocal.Connect, new ByteBuffer(buffer.ToBytes()));
+                return;
+            }
+
+            outStream = client.GetStream();
+            client.GetStream().BeginRead(byteBuffer, 0, MAX_READ, new AsyncCallback(OnRead), null);
+
+            buffer.WriteInt(0);
+            buffer.WriteString("服务器链接成功");
+            NetworkManager.AddEvent(Protocal.Connect, new ByteBuffer(buffer.ToBytes()));
+        }
+        catch (Exception ex)
+        {
+            //Debug.LogError(ex.Message);
+            buffer.WriteInt(-1);
+            buffer.WriteString(string.Format("服务器链接失败 message[%s]", ex.Message));
+            NetworkManager.AddEvent(Protocal.Connect, new ByteBuffer(buffer.ToBytes()));
+        }
     }
 
     /// <summary>
@@ -110,7 +133,7 @@ public class SocketClient {
                 bytesRead = client.GetStream().EndRead(asr);
             }
             if (bytesRead < 1) {                //包尺寸有问题，断线处理
-                OnDisconnected(DisType.Disconnect, "bytesRead < 1");
+                OnDisconnected(DisType.Disconnect, "服务器主动关闭 bytesRead < 1");
                 return;
             }
             OnReceive(byteBuffer, bytesRead);   //分析数据包内容，抛给逻辑层
@@ -120,7 +143,7 @@ public class SocketClient {
             }
         } catch (Exception ex) {
             //PrintBytes();
-            OnDisconnected(DisType.Exception, ex.Message);
+            OnDisconnected(DisType.Exception, $"服务器链接异常 message[{ex.Message}]");
         }
     }
 
@@ -133,8 +156,9 @@ public class SocketClient {
         Protocal.Exception : Protocal.Disconnect;
 
         ByteBuffer buffer = new ByteBuffer();
-        buffer.WriteShort((ushort)protocal);
-        NetworkManager.AddEvent(protocal, buffer);
+        buffer.WriteInt(protocal);
+        buffer.WriteString(msg);
+        NetworkManager.AddEvent(protocal, new ByteBuffer(buffer.ToBytes()));
         Debug.LogError("Connection was closed by the server:>" + msg + " Distype:>" + dis);
     }
 
@@ -223,7 +247,11 @@ public class SocketClient {
     /// </summary>
     public void Close() {
         if (client != null) {
-            if (client.Connected) client.Close();
+            if (client.Connected)
+            {
+                client.Close();
+                OnDisconnected(DisType.Close, "客户端主动关闭");
+            }
             client = null;
         }
         loggedIn = false;
