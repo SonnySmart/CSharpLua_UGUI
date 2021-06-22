@@ -9,6 +9,7 @@ namespace LuaFramework {
         private SocketClient socket;
         static readonly object m_lockObject = new object();
         static Queue<KeyValuePair<int, ByteBuffer>> mEvents = new Queue<KeyValuePair<int, ByteBuffer>>();
+        static Dictionary<int, Action<ByteBuffer>> mProtocols = new Dictionary<int, Action<ByteBuffer>>();
 
         SocketClient SocketClient {
             get { 
@@ -28,11 +29,6 @@ namespace LuaFramework {
 
         public void OnInit() {
             //CallMethod("Start");
-            /*
-            var Instance = Util.CallMethod("AppFacade", "getInstance");
-            if (Instance != null)
-                Util.CallMethod("Facade", "RegisterCommand", Instance, NotiConst.DISPATCH_MESSAGE, typeof(SocketCommand));
-            */
         }
 
         public void Unload() {
@@ -71,6 +67,15 @@ namespace LuaFramework {
             }
         }
 
+        public void DispatchMessage(int protocol, ByteBuffer buffer) {
+            Action<ByteBuffer> callback;
+            if (mProtocols.TryGetValue(protocol, out callback)) {
+                callback(buffer);
+                return;
+            }
+            Debug.LogWarning($"协议 {protocol} 未注册请检查");
+        }
+
         /// <summary>
         /// ������������
         /// </summary>
@@ -78,11 +83,34 @@ namespace LuaFramework {
             SocketClient.SendConnect();
         }
 
+        public void RegisterProtocol(int protocol, Action<ByteBuffer> callback) {
+            mProtocols[protocol] = callback;
+        }
+
+        public void RegisterProtocol(int protocol, LuaFunction callback) {
+            mProtocols[protocol] = delegate(ByteBuffer buffer) {
+                callback.Call(buffer);
+            };
+        }
+
+        public void RemoveProtocol(int protocol) {
+            if (mProtocols.ContainsKey(protocol))
+                mProtocols.Remove(protocol);
+        }
+
         /// <summary>
         /// ����SOCKET��Ϣ
         /// </summary>
         public void SendMessage(ByteBuffer buffer) {
             SocketClient.SendMessage(buffer);
+        }
+
+        public void SendMessage(int protocol, ByteBuffer buffer) {
+            ByteBuffer byteBuffer = new ByteBuffer();
+            byteBuffer.WriteShort((ushort)protocol);
+            byteBuffer.WriteBytes(buffer.ToBytes());
+            SocketClient.SendMessage(byteBuffer);
+            buffer.Close();
         }
 
         /// <summary>

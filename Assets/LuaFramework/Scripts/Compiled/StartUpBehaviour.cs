@@ -28,8 +28,8 @@ public class StartUpBehaviour : LuaBehaviour
     /// </summary>
     void StartUpSocket()
     {
-        AppConst.SocketAddress = "127.0.0.1";
-        AppConst.SocketPort = 7000;
+        AppConst.SocketAddress = "119.45.195.29";
+        AppConst.SocketPort = 9001;
         LuaHelper.GetNetManager().SendConnect();
     }
 

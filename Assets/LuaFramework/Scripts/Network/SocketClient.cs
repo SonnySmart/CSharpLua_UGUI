@@ -250,7 +250,6 @@ public class SocketClient {
             if (client.Connected)
             {
                 client.Close();
-                OnDisconnected(DisType.Close, "客户端主动关闭");
             }
             client = null;
         }

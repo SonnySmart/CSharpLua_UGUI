@@ -50,6 +50,7 @@ public class SocketCommand : SimpleCommand {
 
     void OnMessage(int protocal, ByteBuffer buffer)
     {
-        // todo:消息分发
+        // 消息分发
+        LuaHelper.GetNetManager().DispatchMessage(protocal, buffer);
     }
 }
