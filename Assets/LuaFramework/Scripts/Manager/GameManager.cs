@@ -239,7 +239,7 @@ namespace LuaFramework {
             //NetManager.OnInit();                     //初始化网络
 #endif
             // 这里启动最终逻辑
-            LuaHelper.GetPanelManager().AddComponent(gameObject, "Game");
+            LuaHelper.GetPanelManager().AddComponent(gameObject, "StartUpBehaviour");
             
             initialize = true;
 

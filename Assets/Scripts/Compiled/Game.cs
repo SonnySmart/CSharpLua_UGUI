@@ -30,14 +30,5 @@ public class Game : LuaBehaviour
         AppFacade.Instance.SendMessageCommand(CmdConst.PromptCtrlCommandTest);
         
         Debug.Log("LuaFramework InitOK--->>>");
-
-        SocketInit();
-    }
-
-    void SocketInit()
-    {
-        AppConst.SocketAddress = "127.0.0.1";
-        AppConst.SocketPort = 7000;
-        LuaHelper.GetNetManager().SendConnect();
     }
 }

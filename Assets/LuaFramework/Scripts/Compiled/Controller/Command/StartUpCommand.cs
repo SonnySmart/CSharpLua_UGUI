@@ -2,6 +2,9 @@
 using System.Collections;
 using LuaFramework;
 
+/// <summary>
+/// 这个类不能被热更新,不必要的逻辑不要写在这里
+/// </summary>
 public class StartUpCommand : SimpleCommand {
 
     public override void Execute(IMessage message) {
@@ -11,8 +14,6 @@ public class StartUpCommand : SimpleCommand {
         if (gameMgr != null) {
             AppView appView = gameMgr.AddComponent<AppView>();
         }
-        //-----------------关联命令-----------------------
-        AppFacade.Instance.RegisterCommand(NotiConst.DISPATCH_MESSAGE, typeof(SocketCommand));
 
         //-----------------初始化管理器-----------------------
         AppFacade.Instance.AddManager<LuaManager>(ManagerName.Lua);

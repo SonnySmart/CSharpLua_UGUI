@@ -27,11 +27,16 @@ namespace LuaFramework {
         }
 
         public void OnInit() {
-            CallMethod("Start");
+            //CallMethod("Start");
+            /*
+            var Instance = Util.CallMethod("AppFacade", "getInstance");
+            if (Instance != null)
+                Util.CallMethod("Facade", "RegisterCommand", Instance, NotiConst.DISPATCH_MESSAGE, typeof(SocketCommand));
+            */
         }
 
         public void Unload() {
-            CallMethod("Unload");
+            //CallMethod("Unload");
         }
 
         /// <summary>
@@ -54,8 +59,14 @@ namespace LuaFramework {
         void Update() {
             if (mEvents.Count > 0) {
                 while (mEvents.Count > 0) {
-                    KeyValuePair<int, ByteBuffer> _event = mEvents.Dequeue();
+                    KeyValuePair<int, ByteBuffer> _event = mEvents.Dequeue();         
+#if USE_LUA
+                    var Instance = Util.CallMethod("AppFacade", "getInstance");
+                    if (Instance != null)
+                        Util.CallMethod("Facade", "SendMessageCommand", Instance, NotiConst.DISPATCH_MESSAGE, _event);
+#else
                     facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);
+#endif
                 }
             }
         }
