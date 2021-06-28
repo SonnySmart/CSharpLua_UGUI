@@ -3,11 +3,12 @@
  *Author:       guo
  *Date:         2017
  *Description:  基于MonoBehaviour的单例模板
-*/ 
+*/
 
+using System;
 using UnityEngine;
 
-
+[Obsolete("Lua暂时不支持")]
 public abstract class MonoSingleton<T> : MonoBehaviour
 	where T : MonoBehaviour
 {

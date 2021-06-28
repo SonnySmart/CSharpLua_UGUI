@@ -75,6 +75,12 @@ public class PromptForm : BaseUIForms
         // 有问题...
         //var test3_ = new BehaviourTest3();
         //test3_.SayChild();
+
+        //SingletonTest singletonTest = gameObject.AddComponent<SingletonTest>();
+
+        //SingletonTest.Instance.TestPrint();
+
+        SingletonNormalTest.Instance.TestPrint();
     }
 
     public override void OnOpen()

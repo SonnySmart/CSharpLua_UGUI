@@ -66,7 +66,7 @@ public static class CustomTypeRule
         // UnityEngine 引擎
         //GetAssemblyTypesToList(ref result, "UnityEngine");
         // UnityEngine.UI
-        //GetAssemblyTypesToList(ref result, "UnityEngine.UI");
+        GetAssemblyTypesToList(ref result, "UnityEngine.UI");
         // 全局程序集 打上LuaAutoWrap标签即可
         GetAssemblyTypesToList(ref result, "Assembly-CSharp");
         // Redmoon.Protobuf 类库
