@@ -1,6 +1,6 @@
 using UnityEngine;
 
-class SingletonNormalTest : NormalSingleton<SingletonNormalTest>
+class SingletonNormalTest : Singleton<SingletonNormalTest>
 {
     public void TestPrint()
     {

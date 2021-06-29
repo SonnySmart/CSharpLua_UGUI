@@ -29,11 +29,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 namespace libx
 {
-    public class BuildScript : IPreprocessBuild
+    public class BuildScript : IPreprocessBuildWithReport
     {
         internal static readonly string outputPath = Assets.Bundles + "/" + GetPlatformName();
 
@@ -404,7 +405,7 @@ namespace libx
             get { return 0; }
         }
 
-        public void OnPreprocessBuild(BuildTarget target, string path)
+        public void OnPreprocessBuild(BuildReport report)
         {
             SetupScenesInBuild();
             CopyAssets();

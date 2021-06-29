@@ -1,26 +1,23 @@
-﻿
-/** 
+﻿/** 
  *Author:       guo
- *Date:         2017
- *Description:  单例模板
-*/
+ *Date:         2018
+ *Description:  普通的单例模式
+*/ 
 
-using System;
-using UnityEngine;
-
-[Obsolete("Lua暂时不支持")]
-public abstract class Singleton<T> : MonoBehaviour
-	where T : MonoBehaviour
+public abstract class Singleton<T> where T : class,new()  
 {
-	private static T m_instance = null;
+	private static T _instance = null;
 
 	public static T Instance
 	{
-		get { return m_instance; }
+		get 
+		{ 
+			if (_instance == null)
+			{
+				_instance = new T ();
+			}
+			return _instance;
+		}
 	}
 
-	protected virtual void Awake()
-	{
-		m_instance = this as T;
-	}
 }
