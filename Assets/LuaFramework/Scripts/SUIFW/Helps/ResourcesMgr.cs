@@ -71,7 +71,7 @@ namespace SUIFW
                 return ht[path] as T;
             }
 
-            T TResource = LuaHelper.GetResManager().LoadPrefabSync<T>("uiforms", assetName);
+            T TResource = LuaHelper.GetResManager().LoadAsset<T>(assetName);
             if (TResource == null)
             {
                 Debug.LogError(GetType() + "/GetInstance()/TResource 提取的资源找不到，请检查。 path=" + path);

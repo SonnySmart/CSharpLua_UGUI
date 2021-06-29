@@ -219,7 +219,7 @@ namespace libx
                 }
             }
         }
-
+        
         public string AddVersion()
         {
             build = build + 1;

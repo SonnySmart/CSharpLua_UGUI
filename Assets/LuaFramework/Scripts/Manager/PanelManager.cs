@@ -38,25 +38,7 @@ namespace LuaFramework {
             string abName = name.ToLower() + AppConst.ExtName;
             if (Parent.Find(name) != null) return;
 
-#if ASYNC_MODE
-            ResManager.LoadPrefab(abName, assetName, delegate(UnityEngine.Object[] objs) {
-                if (objs.Length == 0) return;
-                GameObject prefab = objs[0] as GameObject;
-                if (prefab == null) return;
-
-                GameObject go = Instantiate(prefab) as GameObject;
-                go.name = assetName;
-                go.layer = LayerMask.NameToLayer("Default");
-                go.transform.SetParent(Parent);
-                go.transform.localScale = Vector3.one;
-                go.transform.localPosition = Vector3.zero;
-                AddComponent(go, assetName);
-
-                if (func != null) func.Invoke(go);
-                Debug.Log("CreatePanel::>> " + name + " " + prefab);
-            });
-#else
-            GameObject prefab = ResManager.LoadAsset<GameObject>(name, assetName);
+            GameObject prefab = ResManager.LoadAsset<GameObject>(assetName);
             if (prefab == null) return;
 
             GameObject go = Instantiate(prefab) as GameObject;
@@ -69,7 +51,6 @@ namespace LuaFramework {
 
             if (func != null) func.Invoke(go);
             Debug.Log("CreatePanel::>> " + name + " " + prefab);
-#endif
         }
 
         /// <summary>

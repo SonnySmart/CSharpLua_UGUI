@@ -6,6 +6,7 @@ using LuaInterface;
 using System.Reflection;
 using System.IO;
 using UnityEngine.Networking;
+using libx;
 
 namespace LuaFramework {
     public class GameManager : Manager {
@@ -25,218 +26,142 @@ namespace LuaFramework {
         void Init() {
             DontDestroyOnLoad(gameObject);  //防止销毁自己
 
-            CheckExtractResource(); //释放资源
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
             Application.targetFrameRate = AppConst.GameFrameRate;
+
+            NetworkMonitor.Instance.onReachabilityChanged += OnReachablityChanged; 
+
+            StartUpdate();
         }
 
-        /// <summary>
-        /// 释放资源
-        /// </summary>
-        public void CheckExtractResource() {
-            bool isExists = Directory.Exists(Util.DataPath) &&
-              Directory.Exists(Util.DataPath + "lua/") && File.Exists(Util.DataPath + "files.txt");
-            if (isExists || AppConst.DebugMode) {
-                StartCoroutine(OnUpdateResource());
-                return;   //文件已经解压过了，自己可添加检查文件列表逻辑
+        private void OnReachablityChanged(NetworkReachability reachability)
+        {
+            if (reachability == NetworkReachability.NotReachable)
+            { 
+                OnMessage("网络错误");
+            } 
+        }
+
+        private void OnProgress(float progress)
+        {
+            //progressBar.value = progress;
+        }
+
+        private void OnMessage(string msg)
+        {
+            //progressText.text = msg;
+        }
+
+        public void StartUpdate()
+        {
+#if UNITY_EDITOR
+            if (Assets.development)
+            {
+                StartCoroutine(OnResourceInited());
+                return;
             }
-            StartCoroutine(OnExtractResource());    //启动释放协成 
-        }
-
-        IEnumerator OnExtractResource() {
-            string dataPath = Util.DataPath;  //数据目录
-            string resPath = Util.AppContentPath(); //游戏包资源目录
-
-            if (Directory.Exists(dataPath)) Directory.Delete(dataPath, true);
-            Directory.CreateDirectory(dataPath);
-
-            string infile = resPath + "files.txt";
-            string outfile = dataPath + "files.txt";
-            if (File.Exists(outfile)) File.Delete(outfile);
-
-            string message = "正在解包文件:>files.txt";
-            Debug.Log(infile);
-            Debug.Log(outfile);
-            if (Application.platform == RuntimePlatform.Android) {
-                UnityWebRequest www = new UnityWebRequest(infile);
-                yield return www.SendWebRequest();
-
-                if (www.isDone) {
-                    File.WriteAllBytes(outfile, www.downloadHandler.data);
-                }
-                yield return 0;
-            } else File.Copy(infile, outfile, true);
-            yield return new WaitForEndOfFrame();
-
-            //释放所有文件到数据目录
-            string[] files = File.ReadAllLines(outfile);
-            foreach (var file in files) {
-                string[] fs = file.Split('|');
-                infile = resPath + fs[0];  //
-                outfile = dataPath + fs[0];
-
-                message = "正在解包文件:>" + fs[0];
-                Debug.Log("正在解包文件:>" + infile);
-                facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
-
-                string dir = Path.GetDirectoryName(outfile);
-                if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
-
-                if (Application.platform == RuntimePlatform.Android) {
-                    UnityWebRequest www = new UnityWebRequest(infile);
-                    yield return www.SendWebRequest();
-
-                    if (www.isDone) {
-                        File.WriteAllBytes(outfile, www.downloadHandler.data);
+#endif
+            OnMessage("正在获取版本信息...");
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                MessageBox.Show("提示", "请检查网络连接状态", retry =>
+                {
+                    if (retry)
+                    {
+                        StartUpdate();
                     }
-                    yield return 0;
-                } else {
-                    if (File.Exists(outfile)) {
-                        File.Delete(outfile);
+                    else
+                    {
+                        Quit();
                     }
-                    File.Copy(infile, outfile, true);
-                }
-                yield return new WaitForEndOfFrame();
+                }, "重试", "退出");
             }
-            message = "解包完成!!!";
-            facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
-            yield return new WaitForSeconds(0.1f);
-
-            message = string.Empty;
-            //释放完成，开始启动更新资源
-            StartCoroutine(OnUpdateResource());
+            else
+            {
+                DownloadVersions();
+            }
         }
 
-        /// <summary>
-        /// 启动更新下载，这里只是个思路演示，此处可启动线程下载更新
-        /// </summary>
-        IEnumerator OnUpdateResource() {
-            if (!AppConst.UpdateMode) {
-                OnResourceInited();
-                yield break;
-            }
-            string dataPath = Util.DataPath;  //数据目录
-            string url = AppConst.WebUrl;
-            string message = string.Empty;
-            string random = DateTime.Now.ToString("yyyymmddhhmmss");
-            string listUrl = url + "files.txt?v=" + random;
-            Debug.LogWarning("LoadUpdate---->>>" + listUrl);
-
-            UnityWebRequest www = new UnityWebRequest(listUrl);
-            yield return www.SendWebRequest();
-            if (www.error != null) {
-                OnUpdateFailed(string.Empty);
-                yield break;
-            }
-            if (!Directory.Exists(dataPath)) {
-                Directory.CreateDirectory(dataPath);
-            }
-            File.WriteAllBytes(dataPath + "files.txt", www.downloadHandler.data);
-            string filesText = www.downloadHandler.text;
-            string[] files = filesText.Split('\n');
-
-            for (int i = 0; i < files.Length; i++) {
-                if (string.IsNullOrEmpty(files[i])) continue;
-                string[] keyValue = files[i].Split('|');
-                string f = keyValue[0];
-                string localfile = (dataPath + f).Trim();
-                string path = Path.GetDirectoryName(localfile);
-                if (!Directory.Exists(path)) {
-                    Directory.CreateDirectory(path);
+        void DownloadVersions()
+        {
+            Assets.DownloadVersions(error =>
+            {
+                if (!string.IsNullOrEmpty(error))
+                {
+                    MessageBox.Show("提示", string.Format("获取服务器版本失败：{0}", error), retry =>
+                    {
+                        if (retry)
+                        {
+                            StartUpdate();
+                        }
+                        else
+                        {
+                            Quit();
+                        }
+                    });
                 }
-                string fileUrl = url + f + "?v=" + random;
-                bool canUpdate = !File.Exists(localfile);
-                if (!canUpdate) {
-                    string remoteMd5 = keyValue[1].Trim();
-                    string localMd5 = Util.md5file(localfile);
-                    canUpdate = !remoteMd5.Equals(localMd5);
-                    if (canUpdate) File.Delete(localfile);
+                else
+                {
+                    DownloadAll();
                 }
-                if (canUpdate) {   //本地缺少文件
-                    Debug.Log(fileUrl);
-                    message = "downloading>>" + fileUrl;
-                    facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
-                    /*
-                    www = new WWW(fileUrl); yield return www;
-                    if (www.error != null) {
-                        OnUpdateFailed(path);   //
-                        yield break;
+            });
+        }
+
+        void DownloadAll()
+        {
+            Downloader handler;
+            // 按分包下载版本更新，返回true的时候表示需要下载，false的时候，表示不需要下载
+            if (Assets.DownloadAll(Assets.patches4Init, out handler))
+            {
+                var totalSize = handler.size;
+                var tips = string.Format("发现内容更新，总计需要下载 {0} 内容", Downloader.GetDisplaySize(totalSize));
+                MessageBox.Show("提示", tips, download =>
+                {
+                    if (download)
+                    {
+                        handler.onUpdate += delegate(long progress, long size, float speed)
+                        {
+                            //刷新界面
+                            OnMessage(string.Format("下载中...{0}/{1}, 速度：{2}",
+                                Downloader.GetDisplaySize(progress),
+                                Downloader.GetDisplaySize(size),
+                                Downloader.GetDisplaySpeed(speed)));
+                            OnProgress(progress * 1f / size);
+                        };
+                        handler.onFinished += OnComplete;
+                        handler.Start();
                     }
-                    File.WriteAllBytes(localfile, www.bytes);
-                     */
-                    //这里都是资源文件，用线程下载
-                    BeginDownload(fileUrl, localfile);
-                    while (!(IsDownOK(localfile))) { yield return new WaitForEndOfFrame(); }
-                }
+                    else
+                    {
+                        Quit();
+                    }
+                }, "下载", "退出");
             }
-            yield return new WaitForEndOfFrame();
-
-            message = "更新完成!!";
-            facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
-
-            OnResourceInited();
-        }
-
-        void OnUpdateFailed(string file) {
-            string message = "更新失败!>" + file;
-            facade.SendMessageCommand(NotiConst.UPDATE_MESSAGE, message);
-        }
-
-        /// <summary>
-        /// 是否下载完成
-        /// </summary>
-        bool IsDownOK(string file) {
-            return downloadFiles.Contains(file);
-        }
-
-        /// <summary>
-        /// 线程下载
-        /// </summary>
-        void BeginDownload(string url, string file) {     //线程下载
-            object[] param = new object[2] { url, file };
-
-            ThreadEvent ev = new ThreadEvent();
-            ev.Key = NotiConst.UPDATE_DOWNLOAD;
-            ev.evParams.AddRange(param);
-            ThreadManager.AddEvent(ev, OnThreadCompleted);   //线程下载
-        }
-
-        /// <summary>
-        /// 线程完成
-        /// </summary>
-        /// <param name="data"></param>
-        void OnThreadCompleted(NotiData data) {
-            switch (data.evName) {
-                case NotiConst.UPDATE_EXTRACT:  //解压一个完成
-                //
-                break;
-                case NotiConst.UPDATE_DOWNLOAD: //下载一个完成
-                downloadFiles.Add(data.evParam.ToString());
-                break;
+            else
+            {
+                OnComplete(); 
             }
+        }
+
+        void OnComplete()
+        {
+            OnProgress(1);
+            //version.text = Assets.currentVersions.ver;
+            OnMessage("更新完成");
+            StartCoroutine(OnResourceInited());
         }
 
         /// <summary>
         /// 资源初始化结束
         /// </summary>
-        public void OnResourceInited() {
-#if ASYNC_MODE
-            ResManager.Initialize(AppConst.AssetDir, delegate() {
-                Debug.Log("Initialize OK!!!");
-                this.OnInitialize();
-            });
-#else
-            ResManager.Initialize();
+        IEnumerator OnResourceInited() {
+            yield return null;
             this.OnInitialize();
-#endif
         }
 
         void OnInitialize() {
 #if USE_LUA
             LuaManager.InitStart();
-            //LuaManager.DoFile("Logic/Game");         //加载游戏
-            //LuaManager.DoFile("Logic/Network");      //加载网络
-            //NetManager.OnInit();                     //初始化网络
 #endif
             // 这里启动最终逻辑
             LuaHelper.GetPanelManager().AddComponent(gameObject, "StartUpBehaviour");
@@ -291,6 +216,7 @@ namespace LuaFramework {
         /// 析构函数
         /// </summary>
         void OnDestroy() {
+            MessageBox.Dispose();
             if (NetManager != null) {
                 NetManager.Unload();
             }
@@ -298,6 +224,15 @@ namespace LuaFramework {
                 LuaManager.Close();
             }
             Debug.Log("~GameManager was destroyed");
+        }
+
+        void Quit()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }

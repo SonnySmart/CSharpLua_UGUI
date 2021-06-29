@@ -200,6 +200,11 @@ namespace libx
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("Assets/BundleBy/Bundles")]
+        private static void BundleAssets()
+        {
+        }
+
         private static void GroupAssets(GroupBy nameBy, string bundle = null)
         {
             var selection = Selection.GetFiltered<Object>(SelectionMode.DeepAssets);

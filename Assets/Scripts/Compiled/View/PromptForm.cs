@@ -104,16 +104,16 @@ public class PromptForm : BaseUIForms
 
         //AddClick(mPromptForm.btnOpen, this.OnClick);
         AddClick("Open", this.OnClick);
-        LuaHelper.GetResManager().LoadPrefab("prompt", "PromptItem", this.InitPanel);
+        LuaHelper.GetResManager().LoadAsset("PromptItem", this.InitPanel);
     }
 
-    public void InitPanel(Object[] objs)
+    public void InitPanel(Object objs)
     {
         int count = 100; 
         var parent = mPromptForm.gridParent;
         for (int i = 0; i < count; i++)
         {
-            var go = GameObject.Instantiate(objs[0]) as GameObject;
+            var go = GameObject.Instantiate(objs) as GameObject;
             go.name = "Item" + i.ToString();
             go.transform.SetParent(parent);
             go.transform.localScale = Vector3.one;
