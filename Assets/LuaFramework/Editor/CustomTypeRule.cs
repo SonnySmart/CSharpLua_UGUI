@@ -1,5 +1,4 @@
-
-
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -13,6 +12,8 @@ public static class CustomTypeRule
     /// </summary>
     private static List<string> _unUseEngineTypes = new List<string>() {
         "UnityEngine.UI.BaseVertexEffect",
+        "UnityEngine.UI.DefaultControls",
+        "UnityEngine.UI.GraphicRebuildTracker",
         "UnityEngine.EventSystems.TouchInputModule"     
     };
 
@@ -166,3 +167,4 @@ public static class CustomTypeRule
         }
     }
 }
+#endif

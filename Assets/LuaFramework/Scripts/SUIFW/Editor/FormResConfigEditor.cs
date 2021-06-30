@@ -4,6 +4,7 @@
  *Description:  自动生成窗体资源配置json
 */
 
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -84,3 +85,4 @@ internal class KeyValuesNode
     //值
     public string Value;
 }
+#endif

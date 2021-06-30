@@ -5,6 +5,7 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 
@@ -152,3 +153,4 @@ public static class ScriptingDefineSymbols
         PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, string.Join(";", scriptingDefineSymbols));
     }
 }
+#endif

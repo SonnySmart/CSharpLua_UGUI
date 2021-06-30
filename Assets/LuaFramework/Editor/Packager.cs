@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 using System.IO;
 using System.Text;
@@ -367,3 +368,4 @@ public class Packager {
         AssetDatabase.Refresh();
     }
 }
+#endif

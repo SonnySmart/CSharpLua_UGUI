@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -131,5 +132,4 @@ public class WelcomeScreen : EditorWindow
         UnityEngine.Object.DontDestroyOnLoad(window);
     }
 }
-
-
+#endif

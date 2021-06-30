@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 using LuaInterface;
@@ -314,3 +315,4 @@ public static class CustomSettings
         LuaClient.Instance.DetachProfiler();
     }
 }
+#endif

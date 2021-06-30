@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 1
+  build: 2
   major: 1
   minor: 1
   scenesFolders: []
@@ -74,6 +74,646 @@ MonoBehaviour:
     bundle: assets_resources_prefabs_forms.bundle
     id: 0
     groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Controller/TestCtrl.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_controller.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/All.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/md5test.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/Makefile
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Reflection/Assembly.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_reflection.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IController.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/Controller/Command/StartUpCommand.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_controller_command.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/test2.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/View/BehaviourTest.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_view.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/manifest.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Logic/SingletonTest.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_logic.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Threading/Timer.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_threading.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/example4.json
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pblua/login_pb.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pblua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Math.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/View/MessageBox.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_view.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Convert.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/img/contact.png
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc_img.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/sproto/sproto.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_sproto.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/index.html
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/test.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Text/StringBuilder.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_text.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Threading/Task.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_threading.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/All.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/ConstDefine/MessageConst.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_constdefine.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/test.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/View/PromptForm.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_view.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/protobuf.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Type.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Common/define.lua
+    group: 
+    bundle: assets_luaframework_lua_common.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_singletons.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/addressbook.proto
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/LinkedList.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Number.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/manifest.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/EqualityComparer.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Queue.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/sproto/sprotoparser.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_sproto.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/testparser.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/api.html
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/util.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/UnityAdapter.lua
+    group: 
+    bundle: assets_luaframework_lua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/Makefile.mingw
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/Sample/test.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_sample.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Controller/TestCode.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_controller.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Core.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Logic/SingletonNormalTest.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_logic.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/README
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/View/BehaviourTest2.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_view.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/bluequad.css
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/bitbench.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/installpath.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Message.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Boolean.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Array.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/nsievebits.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Utilities.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/sproto/testall.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_sproto.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Common/Define.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_common.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Threading/Thread.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_threading.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_controller_command.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pblua/login.proto
+    group: 
+    bundle: assets_luaframework_lua_3rd_pblua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/StartUpBehaviour.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Common/protocal.lua
+    group: 
+    bundle: assets_luaframework_lua_common.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/msvctest.bat
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/bluequad-print.css
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Game.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Classloader.lua
+    group: 
+    bundle: assets_luaframework_lua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Delegate.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/SortedSet.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/contact.html
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/IO/File.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_io.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Enum.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/example3.json
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Main.lua
+    group: 
+    bundle: assets_luaframework_lua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/Singletons/Singleton.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_singletons.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Facade.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/example5.json
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/semantics.html
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/ConstDefine/CmdConst.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_constdefine.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/AppFacade.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Model/TestModel.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_model.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/example2.json
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Random.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/example1.json
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/String.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/sproto/print_r.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_sproto.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/DateTime.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Exception.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Model.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaDebugjit.lua
+    group: 
+    bundle: assets_luaframework_lua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/TimeSpan.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Dictionary.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/View/BehaviourTest3.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_view.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/sproto/test.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_sproto.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Common/functions.lua
+    group: 
+    bundle: assets_luaframework_lua_common.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/addressbook.pb
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/changes.html
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Controller/PromptCtrl.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_controller.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/FixBehaviour.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/lua2json.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/bittest.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/msvcbuild.bat
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Common/All.lua
+    group: 
+    bundle: assets_luaframework_lua_common.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pbc/parser.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pbc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/luabitop/doc/install.html
+    group: 
+    bundle: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/Logic/CtrlManager.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_logic.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/List.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/sproto/testrpc.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_sproto.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/Compiled/View/BehaviourTest1.lua
+    group: 
+    bundle: assets_luaframework_lua_compiled_view.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Interfaces.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua
+    group: 
+    bundle: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/cjson/json2lua.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_cjson.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/3rd/pblua/person_pb.lua
+    group: 
+    bundle: assets_luaframework_lua_3rd_pblua.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Console.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
+  - name: Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Char.lua
+    group: 
+    bundle: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    id: 0
+    groupBy: 3
   patches: []
   bundles:
   - assetBundleName: assets_luaframework_examples_builds_prompt.bundle
@@ -95,4 +735,196 @@ MonoBehaviour:
   - assetBundleName: assets_resources_prefabs_forms.bundle
     assetNames:
     - Assets/Resources/Prefabs/Forms/PromptForm.prefab
+  - assetBundleName: assets_luaframework_lua_compiled_controller.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/Controller/TestCtrl.lua
+    - Assets/LuaFramework/Lua/Compiled/Controller/TestCode.lua
+    - Assets/LuaFramework/Lua/Compiled/Controller/PromptCtrl.lua
+  - assetBundleName: assets_luaframework_lua_luaframework.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/All.lua
+    - Assets/LuaFramework/Lua/LuaFramework/FixBehaviour.lua
+  - assetBundleName: assets_luaframework_lua_3rd_luabitop.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/luabitop/md5test.lua
+    - Assets/LuaFramework/Lua/3rd/luabitop/Makefile
+    - Assets/LuaFramework/Lua/3rd/luabitop/Makefile.mingw
+    - Assets/LuaFramework/Lua/3rd/luabitop/README
+    - Assets/LuaFramework/Lua/3rd/luabitop/bitbench.lua
+    - Assets/LuaFramework/Lua/3rd/luabitop/installpath.lua
+    - Assets/LuaFramework/Lua/3rd/luabitop/nsievebits.lua
+    - Assets/LuaFramework/Lua/3rd/luabitop/msvctest.bat
+    - Assets/LuaFramework/Lua/3rd/luabitop/bittest.lua
+    - Assets/LuaFramework/Lua/3rd/luabitop/msvcbuild.bat
+  - assetBundleName: assets_luaframework_lua_coresystemlua_coresystem_reflection.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Reflection/Assembly.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts_mvc_interfaces.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IController.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts_controller_command.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/Controller/Command/StartUpCommand.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua
+  - assetBundleName: assets_luaframework_lua_3rd_pbc.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/pbc/test2.lua
+    - Assets/LuaFramework/Lua/3rd/pbc/test.lua
+    - Assets/LuaFramework/Lua/3rd/pbc/protobuf.lua
+    - Assets/LuaFramework/Lua/3rd/pbc/addressbook.proto
+    - Assets/LuaFramework/Lua/3rd/pbc/testparser.lua
+    - Assets/LuaFramework/Lua/3rd/pbc/addressbook.pb
+    - Assets/LuaFramework/Lua/3rd/pbc/parser.lua
+  - assetBundleName: assets_luaframework_lua_compiled_view.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/View/BehaviourTest.lua
+    - Assets/LuaFramework/Lua/Compiled/View/PromptForm.lua
+    - Assets/LuaFramework/Lua/Compiled/View/BehaviourTest2.lua
+    - Assets/LuaFramework/Lua/Compiled/View/BehaviourTest3.lua
+    - Assets/LuaFramework/Lua/Compiled/View/BehaviourTest1.lua
+  - assetBundleName: assets_luaframework_lua_compiled.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/manifest.lua
+    - Assets/LuaFramework/Lua/Compiled/Game.lua
+  - assetBundleName: assets_luaframework_lua_compiled_logic.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/Logic/SingletonTest.lua
+    - Assets/LuaFramework/Lua/Compiled/Logic/SingletonNormalTest.lua
+    - Assets/LuaFramework/Lua/Compiled/Logic/CtrlManager.lua
+  - assetBundleName: assets_luaframework_lua_coresystemlua_coresystem_collections.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/LinkedList.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/EqualityComparer.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Queue.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/SortedSet.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/Dictionary.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Collections/List.lua
+  - assetBundleName: assets_luaframework_lua_coresystemlua_coresystem_threading.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Threading/Timer.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Threading/Task.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Threading/Thread.lua
+  - assetBundleName: assets_luaframework_lua_3rd_cjson.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/cjson/example4.json
+    - Assets/LuaFramework/Lua/3rd/cjson/test.lua
+    - Assets/LuaFramework/Lua/3rd/cjson/util.lua
+    - Assets/LuaFramework/Lua/3rd/cjson/example3.json
+    - Assets/LuaFramework/Lua/3rd/cjson/example5.json
+    - Assets/LuaFramework/Lua/3rd/cjson/example2.json
+    - Assets/LuaFramework/Lua/3rd/cjson/example1.json
+    - Assets/LuaFramework/Lua/3rd/cjson/lua2json.lua
+    - Assets/LuaFramework/Lua/3rd/cjson/json2lua.lua
+  - assetBundleName: assets_luaframework_lua_3rd_pblua.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/pblua/login_pb.lua
+    - Assets/LuaFramework/Lua/3rd/pblua/login.proto
+    - Assets/LuaFramework/Lua/3rd/pblua/person_pb.lua
+  - assetBundleName: assets_luaframework_lua_coresystemlua_coresystem.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Math.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Convert.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Type.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Number.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Core.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Boolean.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Array.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Utilities.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Delegate.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Enum.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Random.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/String.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/DateTime.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Exception.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/TimeSpan.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Interfaces.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Console.lua
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Char.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts_view.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/View/MessageBox.lua
+  - assetBundleName: assets_luaframework_lua_3rd_luabitop_doc_img.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/img/contact.png
+  - assetBundleName: assets_luaframework_lua_3rd_sproto.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/sproto/sproto.lua
+    - Assets/LuaFramework/Lua/3rd/sproto/sprotoparser.lua
+    - Assets/LuaFramework/Lua/3rd/sproto/testall.lua
+    - Assets/LuaFramework/Lua/3rd/sproto/print_r.lua
+    - Assets/LuaFramework/Lua/3rd/sproto/test.lua
+    - Assets/LuaFramework/Lua/3rd/sproto/testrpc.lua
+  - assetBundleName: assets_luaframework_lua_3rd_luabitop_doc.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/index.html
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/api.html
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/bluequad.css
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/bluequad-print.css
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/contact.html
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/semantics.html
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/changes.html
+    - Assets/LuaFramework/Lua/3rd/luabitop/doc/install.html
+  - assetBundleName: assets_luaframework_lua_coresystemlua_coresystem_text.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/Text/StringBuilder.lua
+  - assetBundleName: assets_luaframework_lua_coresystemlua.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/All.lua
+  - assetBundleName: assets_luaframework_lua_compiled_constdefine.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/ConstDefine/MessageConst.lua
+    - Assets/LuaFramework/Lua/Compiled/ConstDefine/CmdConst.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts_mvc_core.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Message.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Facade.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Model.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua
+  - assetBundleName: assets_luaframework_lua_common.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Common/define.lua
+    - Assets/LuaFramework/Lua/Common/protocal.lua
+    - Assets/LuaFramework/Lua/Common/functions.lua
+    - Assets/LuaFramework/Lua/Common/All.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts_singletons.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/Singletons/Singleton.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/manifest.lua
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/StartUpBehaviour.lua
+  - assetBundleName: assets_luaframework_lua.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/UnityAdapter.lua
+    - Assets/LuaFramework/Lua/Classloader.lua
+    - Assets/LuaFramework/Lua/Main.lua
+    - Assets/LuaFramework/Lua/LuaDebugjit.lua
+  - assetBundleName: assets_luaframework_lua_coresystemlua_sample.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/Sample/test.lua
+  - assetBundleName: assets_luaframework_lua_compiled_common.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/Common/Define.lua
+  - assetBundleName: assets_luaframework_lua_coresystemlua_coresystem_io.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/CoreSystemLua/CoreSystem/IO/File.lua
+  - assetBundleName: assets_luaframework_lua_luaframework_scripts_mvc.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/LuaFramework/Scripts/MVC/AppFacade.lua
+  - assetBundleName: assets_luaframework_lua_compiled_model.bundle
+    assetNames:
+    - Assets/LuaFramework/Lua/Compiled/Model/TestModel.lua
   currentScene: Main

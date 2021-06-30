@@ -22,6 +22,7 @@ SOFTWARE.
 //打开开关没有写入导出列表的纯虚类自动跳过
 //#define JUMP_NODEFINED_ABSTRACT         
 
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System;
@@ -1445,3 +1446,4 @@ public static class ToLuaMenu
         return StringBuilderCache.GetStringAndRelease(sb);
     }
 }
+#endif
