@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using libx;
 
 namespace LuaFramework {
     public class AppConst {
@@ -22,7 +23,7 @@ namespace LuaFramework {
         /// <summary>
         /// Lua代码AssetBundle模式 => 测试模式相反的
         /// </summary>
-        public static bool LuaBundleMode = !DebugMode;                    //Lua代码AssetBundle模式
+        public static bool LuaBundleMode = true;                    //Lua代码AssetBundle模式
 
         public const int TimerInterval = 1;
         public const int GameFrameRate = 30;                        //游戏帧频
@@ -31,8 +32,8 @@ namespace LuaFramework {
         public const string LuaTempDir = "Lua/";                    //临时目录
         public const string AppPrefix = AppName + "_";              //应用程序前缀
         public const string ExtName = ".unity3d";                   //素材扩展名
-        public const string AssetDir = "StreamingAssets";           //素材目录 
-        public const string WebUrl = "http://localhost:6688/";      //测试更新地址
+        public static string AssetDir = BuildScript.outputPath;     //素材目录 
+        public static string WebUrl = "http://localhost:6688/";     //测试更新地址
 
         public static string UserId = string.Empty;                 //用户ID
         public static int SocketPort = 0;                           //Socket服务器端口

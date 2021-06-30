@@ -10,118 +10,31 @@ using LuaFramework;
 using LuaFramework.Editor;
 
 public class Packager {
-    public static string platform = string.Empty;
     static List<string> paths = new List<string>();
     static List<string> files = new List<string>();
-    static List<AssetBundleBuild> maps = new List<AssetBundleBuild>();
 
-    ///-----------------------------------------------------------
-    static string[] exts = { ".txt", ".xml", ".lua", ".assetbundle", ".json" };
-    static bool CanCopy(string ext) {   //能不能复制
-        foreach (string e in exts) {
-            if (ext.Equals(e)) return true;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// 载入素材
-    /// </summary>
-    static UnityEngine.Object LoadAsset(string file) {
-        if (file.EndsWith(".lua")) file += ".txt";
-        return AssetDatabase.LoadMainAssetAtPath("Assets/LuaFramework/Examples/Builds/" + file);
-    }
-
-    [MenuItem("LuaFramework/Build iPhone Resource", false, 100)]
-    public static void BuildiPhoneResource() {
-        BuildTarget target = BuildTarget.iOS;
-        BuildAssetResource(target);
-    }
-
-    [MenuItem("LuaFramework/Build Android Resource", false, 101)]
-    public static void BuildAndroidResource() {
-        BuildAssetResource(BuildTarget.Android);
-    }
-
-    [MenuItem("LuaFramework/Build Windows Resource", false, 102)]
-    public static void BuildWindowsResource() {
-        BuildAssetResource(BuildTarget.StandaloneWindows);
-    }
-
-    /// <summary>
-    /// 生成绑定素材
-    /// </summary>
-    public static void BuildAssetResource(BuildTarget target) {
-
+    [MenuItem("LuaFramework/Export Lua Files", false, 100)]
+    public static void ExportLuaFiles()
+    {
         //Gen UI Config
-        FormResConfigEditor.GenUIFormConfigJson();
+        //FormResConfigEditor.GenUIFormConfigJson();
         
 #if USE_LUA
         // C# to Lua
         Compiler.Compile();
 #endif
 
-        // if (Directory.Exists(Util.DataPath)) {
-        //     Directory.Delete(Util.DataPath, true);
-        // }
-        string streamPath = Application.streamingAssetsPath;
-        // if (Directory.Exists(streamPath)) {
-        //     Directory.Delete(streamPath, true);
-        // }
-        if (!Directory.Exists(streamPath)) {
-            Directory.CreateDirectory(streamPath);
-        }
-        //AssetDatabase.Refresh();
-
-        maps.Clear();
         if (AppConst.LuaBundleMode) {
             HandleLuaBundle();
         } else {
             HandleLuaFile();
         }
-        if (AppConst.ExampleMode) {
-            HandleExampleBundle();
-        }
-        HandleFormsBundle();
-        string resPath = "Assets/" + AppConst.AssetDir;
-        BuildPipeline.BuildAssetBundles(resPath, maps.ToArray(), BuildAssetBundleOptions.None, target);
+
         BuildFileIndex();
 
-        string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
-        if (Directory.Exists(streamDir)) Directory.Delete(streamDir, true);
+        //string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
+        //if (Directory.Exists(streamDir)) Directory.Delete(streamDir, true);
         AssetDatabase.Refresh();
-    }
-
-    static void AddBuildMap(string bundleName, string pattern, string path, SearchOption searchOption = SearchOption.TopDirectoryOnly) {
-        string[] files = Directory.GetFiles(path, pattern, searchOption);
-        if (files.Length == 0) return;
-
-        for (int i = 0; i < files.Length; i++) {
-            files[i] = files[i].Replace('\\', '/');
-        }
-
-        // 移除冗余
-        List<string> li = new List<string>(files);
-        foreach (var abb in maps)
-        {
-            List<string> assetNames = new List<string>(abb.assetNames);
-            for (int i = 0; i < files.Length; i++)
-            {
-                string file = files[i];
-                if (assetNames.Contains(file))
-                {
-                    li.Remove(file);
-                }
-            }
-        }
-
-        if (li.Count == 0)
-            return;
-
-        AssetBundleBuild build = new AssetBundleBuild();
-        build.assetBundleName = bundleName;
-        build.assetNames = li.ToArray();
-        maps.Add(build);
     }
 
     /// <summary>
@@ -152,16 +65,6 @@ public class Packager {
                 ToLuaMenu.CopyLuaBytesFiles(srcDirs[i], streamDir);
             }
         }
-        string[] dirs = Directory.GetDirectories(streamDir, "*", SearchOption.AllDirectories);
-        for (int i = 0; i < dirs.Length; i++) {
-            string name = dirs[i].Replace(streamDir, string.Empty);
-            name = name.Replace('\\', '_').Replace('/', '_');
-            name = "lua/lua_" + name.ToLower() + AppConst.ExtName;
-
-            string path = "Assets" + dirs[i].Replace(Application.dataPath, "");
-            AddBuildMap(name, "*.bytes", path);
-        }
-        AddBuildMap("lua/lua" + AppConst.ExtName, "*.bytes", "Assets/" + AppConst.LuaTempDir);
 
         //-------------------------------处理非Lua文件----------------------------------
         string luaPath = AppDataPath + "/StreamingAssets/lua/";
@@ -180,31 +83,6 @@ public class Packager {
             }
         }
         AssetDatabase.Refresh();
-    }
-
-    /// <summary>
-    /// 处理框架实例包
-    /// </summary>
-    static void HandleExampleBundle() {
-        string resPath = AppDataPath + "/" + AppConst.AssetDir + "/";
-        if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
-
-        AddBuildMap("prompt" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Prompt");
-        AddBuildMap("message" + AppConst.ExtName, "*.prefab", "Assets/LuaFramework/Examples/Builds/Message");
-
-        //AddBuildMap("prompt_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Prompt");
-        //AddBuildMap("shared_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures/Shared");
-    }
-
-    /// <summary>
-    /// 处理UI预制体
-    /// </summary>
-    static void HandleFormsBundle() {
-        string resPath = AppDataPath + "/" + AppConst.AssetDir + "/";
-        if (!Directory.Exists(resPath)) Directory.CreateDirectory(resPath);
-
-        AddBuildMap("uiforms" + AppConst.ExtName, "*.prefab", "Assets/Resources/Prefabs/Forms");
-        AddBuildMap("uiforms_asset" + AppConst.ExtName, "*.png", "Assets/LuaFramework/Examples/Textures", SearchOption.AllDirectories);
     }
 
     /// <summary>
@@ -249,7 +127,7 @@ public class Packager {
     }
 
     static void BuildFileIndex() {
-        string resPath = AppDataPath + "/StreamingAssets/";
+        string resPath = AppConst.AssetDir;
         ///----------------------创建文件列表-----------------------
         string newFilePath = resPath + "/files.txt";
         if (File.Exists(newFilePath)) File.Delete(newFilePath);

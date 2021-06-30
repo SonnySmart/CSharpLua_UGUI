@@ -216,6 +216,7 @@ namespace LuaFramework {
         /// 析构函数
         /// </summary>
         void OnDestroy() {
+            // MessageBox 销毁
             MessageBox.Dispose();
             if (NetManager != null) {
                 NetManager.Unload();

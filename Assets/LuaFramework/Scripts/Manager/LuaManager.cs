@@ -127,44 +127,6 @@ namespace LuaFramework {
         /// 初始化LuaBundle
         /// </summary>
         void InitLuaBundle() {
-            if (loader.beZip) {
-                // // common
-                // loader.AddBundle("lua/lua.unity3d");
-                // loader.AddBundle("lua/lua_math.unity3d");
-                // loader.AddBundle("lua/lua_system.unity3d");
-                // loader.AddBundle("lua/lua_system_reflection.unity3d");
-                // loader.AddBundle("lua/lua_unityengine.unity3d");
-                // loader.AddBundle("lua/lua_common.unity3d");
-                // // loader.AddBundle("lua/lua_logic.unity3d");
-                // // loader.AddBundle("lua/lua_view.unity3d");
-                // // loader.AddBundle("lua/lua_controller.unity3d");
-                // loader.AddBundle("lua/lua_misc.unity3d");
-                // // 3rd
-                // loader.AddBundle("lua/lua_protobuf.unity3d");
-                // loader.AddBundle("lua/lua_3rd_cjson.unity3d");
-                // loader.AddBundle("lua/lua_3rd_luabitop.unity3d");
-                // loader.AddBundle("lua/lua_3rd_pbc.unity3d");
-                // loader.AddBundle("lua/lua_3rd_pblua.unity3d");
-                // loader.AddBundle("lua/lua_3rd_sproto.unity3d");
-                // // coresystemlua
-                // loader.AddBundle("lua/lua_coresystemlua.unity3d");
-                // loader.AddBundle("lua/lua_coresystemlua_coresystem.unity3d");
-                // loader.AddBundle("lua/lua_coresystemlua_coresystem_collections.unity3d");
-                // loader.AddBundle("lua/lua_coresystemlua_coresystem_io.unity3d");
-                // loader.AddBundle("lua/lua_coresystemlua_coresystem_reflection.unity3d");
-                // loader.AddBundle("lua/lua_coresystemlua_coresystem_text.unity3d");
-                // loader.AddBundle("lua/lua_coresystemlua_coresystem_threading.unity3d");
-                // // luaframework
-                // loader.AddBundle("lua/lua_luaframework.unity3d");
-                // // compiled
-                // loader.AddBundle("lua/lua_compiled.unity3d");
-                // loader.AddBundle("lua/lua_compiled_common.unity3d");
-                // loader.AddBundle("lua/lua_compiled_controller.unity3d");
-                // loader.AddBundle("lua/lua_compiled_logic.unity3d");
-                // loader.AddBundle("lua/lua_compiled_model.unity3d");
-                // loader.AddBundle("lua/lua_compiled_view.unity3d");
-            }
-
             if (!loader.beZip)
                 return;
             
@@ -185,7 +147,7 @@ namespace LuaFramework {
                 if (!bundle.EndsWith(".unity3d"))
                     continue;
                 // 过滤掉不是lua assetbundle文件
-                if (!bundle.Contains("lua/lua"))
+                if (!bundle.Contains("/assets_lua_") && !bundle.Contains("/assets_lua."))
                     continue;
                 // 加载剩下的assetbundle
                 loader.AddBundle(bundle);

@@ -4,5 +4,95 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/LuaFramework/Scenes/Init.unity
+    guid: b3b41d8cebde9274f8b684adec633a95
+  - enabled: 1
+    path: Assets/LuaFramework/Scenes/Main.unity
+    guid: 66a0f42e1e9da954a9a7d8bdbbd80ea9
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/01_HelloWorld/HelloWorld.unity
+    guid: 7ce3f2dc80a0205428a5372f74800258
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/02_ScriptsFromFile/ScriptsFromFile.unity
+    guid: e011b54a109dd1c43b5ed71ca3590a32
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/03_CallLuaFunction/CallLuaFunction.unity
+    guid: 9b95d9c7995843244812901527540c78
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/04_AccessingLuaVariables/AccessingLuaVariables.unity
+    guid: b440f9ea3ca78884cbc8bd834a84ee54
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/05_LuaCoroutine/LuaCoroutine.unity
+    guid: 811fd4e3aec57234ea72e1ed44701a9c
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/06_LuaCoroutine2/Coroutine.unity
+    guid: 4db2739d8c3e5af4ca5647e7ded00f68
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/07_LuaThread/TestThread.unity
+    guid: 4bc55bdc0d2bff34a9abc55c4eeebdc0
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/08_AccessingArray/AccessingArray.unity
+    guid: 3f3cdbddf148392458f85eed2085860c
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/09_Dictionary/UseDictionary.unity
+    guid: 5dc40f31458a9544aa74bcdad6d15d06
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/10_Enum/AccessingEnum.unity
+    guid: a217aecbea099fd4cbb21c9795f57884
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/11_Delegate/UseDelegate.unity
+    guid: 0c371c24024790e4fafc6efd6656ffa8
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/12_GameObject/TestGameObject.unity
+    guid: bd44e2bbf67026a4eb7a12cc132f5515
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/13_CustomLoader/CustomLoader.unity
+    guid: 64a15f71c3e8ada48bbf2dec47d8eb0d
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/14_Out/TestOut.unity
+    guid: c1cff06827ae69d45ba691b5714e066d
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/15_ProtoBuffer/ProtoBuffer.unity
+    guid: 1a4304ba0253d9241b8bf736a8607df6
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/16_Int64/TestInt64.unity
+    guid: 9f5fdf9606a2d854590fcbd3926005e4
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/17_Inherit/Inherit.unity
+    guid: a3cf1516f0a320b49a263c1fed026319
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/18_Bundle/TesetAssetBundle.unity
+    guid: 207ce505e47eb8542963d4972b45b05d
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/19_cjson/testcjson.unity
+    guid: 0dbc965b474b6824db5cb79d380403e4
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/20_utf8/utf8.unity
+    guid: 74b6932cd0642734eb36e554528a9825
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/21_String/TestString.unity
+    guid: 8e6bca3bb283b3247a8692ac6e03d4ff
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/22_Reflection/TestReflection.unity
+    guid: 0c297fdd08a27a54a96505801547f7b2
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/23_List/UseList.unity
+    guid: a4f35714ff91744489f71618b0ae9fd8
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/24_Struct/Struct.unity
+    guid: bab0d380ec96e4846bcd28c1d626d89f
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/Performance/Performance.unity
+    guid: 0693d19658479a642a7faaa61feb2c09
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/TestErrorStack/TestLuaStack.unity
+    guid: 706020e5c3f37944995bfe00955fdd39
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/TestInjection/TestInjection.unity
+    guid: 05dc1e98babb44f47ad2a28a88b76380
+  - enabled: 1
+    path: Assets/LuaFramework/ToLua/Examples/TestOverload/TestOverload.unity
+    guid: 45830782541ee7a49b44eb5a02d7ecef
   m_configObjects: {}

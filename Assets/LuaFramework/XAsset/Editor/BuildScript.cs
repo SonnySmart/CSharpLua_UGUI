@@ -151,6 +151,8 @@ namespace libx
         private static string CreateAssetBundleDirectory()
         {
             // Choose the output build according to the build target.
+            if (Directory.Exists(outputPath))
+                Directory.Delete(outputPath, true);
             if (!Directory.Exists(outputPath))
                 Directory.CreateDirectory(outputPath);
 

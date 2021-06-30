@@ -196,7 +196,8 @@ namespace LuaFramework {
                     return Application.persistentDataPath + "/" + game + "/";
                 }
                 if (AppConst.DebugMode) {
-                    return Application.dataPath + "/" + AppConst.AssetDir + "/";
+                    return AppConst.AssetDir + "/";
+                    //return Application.dataPath + "/" + AppConst.AssetDir + "/";
                 }
                 if (Application.platform == RuntimePlatform.OSXEditor) {
                     int i = Application.dataPath.LastIndexOf('/');
@@ -255,7 +256,8 @@ namespace LuaFramework {
                     path = Application.dataPath + "/Raw/";
                 break;
                 default:
-                    path = Application.dataPath + "/" + AppConst.AssetDir + "/";
+                    path = AppConst.AssetDir + "/";
+                    //path = Application.dataPath + "/" + AppConst.AssetDir + "/";
                 break;
             }
             return path;
@@ -314,7 +316,7 @@ namespace LuaFramework {
 #pragma warning restore 0162
         }
 
-                /// <summary>
+        /// <summary>
         /// 检查运行环境
         /// </summary>
         public static bool CheckEnvironment() {

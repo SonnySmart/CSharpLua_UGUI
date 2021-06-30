@@ -37,12 +37,12 @@ namespace LuaFramework {
                 AssetBundle bundle = AssetBundle.LoadFromMemory(bytes);
                 if (bundle != null)
                 {
-                    bundleName = bundleName.Replace("lua/", "").Replace(".unity3d", "");
+                    bundleName = bundleName.Replace("/assets_", "").Replace(".unity3d", "");
                     base.AddSearchBundle(bundleName.ToLower(), bundle);
                 }
             }
-        }
 
+        }
         /// <summary>
         /// 当LuaVM加载Lua文件的时候，这里就会被调用，
         /// 用户可以自定义加载行为，只要返回byte[]即可。
