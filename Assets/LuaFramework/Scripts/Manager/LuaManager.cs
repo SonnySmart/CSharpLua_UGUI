@@ -3,6 +3,8 @@ using System.Collections;
 using LuaInterface;
 using System;
 using System.IO;
+using libx;
+using System.Collections.Generic;
 
 namespace LuaFramework {
     public class LuaManager : Manager {
@@ -130,27 +132,13 @@ namespace LuaFramework {
             if (!loader.beZip)
                 return;
             
-            // 判断files.txt文件是否存在
-            string files_txt = Util.DataPath + "files.txt";
-            if (!File.Exists(files_txt))
-                return;
-
-            // 获取配置文件
-            string[] files = File.ReadAllLines(files_txt);
-            foreach (var file in files)
+            List<string> bundles;
+            if (Assets.GetLuaAssetBundles(out bundles))
             {
-                string[] fs = file.Split('|');
-                if (fs.Length < 2)
-                    continue;
-                string bundle = fs[0];
-                // 过滤掉不是.unity3d后缀的assetbundle
-                if (!bundle.EndsWith(".unity3d"))
-                    continue;
-                // 过滤掉不是lua assetbundle文件
-                if (!bundle.Contains("/assets_lua_") && !bundle.Contains("/assets_lua."))
-                    continue;
-                // 加载剩下的assetbundle
-                loader.AddBundle(bundle);
+                foreach (var bundle in bundles)
+                {
+                    loader.AddBundle(bundle);
+                }
             }
         }
 

@@ -423,6 +423,25 @@ namespace libx
         /// </summary>
         public static Versions currentVersions { get; private set; }
 
+        /// <summary>
+        /// 获取lua包
+        /// </summary>
+        public static bool GetLuaAssetBundles(out List<string> luaBundles)
+        {
+            bool has = false;
+            var bundles = currentVersions.bundles;
+            luaBundles = new List<string>();
+            foreach (var bundle in bundles)
+            {
+                string name = bundle.name;
+                // 过滤掉不是lua assetbundle文件
+                if (!name.Contains("assets_lua_") && !name.Contains("assets_lua."))
+                    continue;
+                luaBundles.Add(name);
+            }
+            return (has = luaBundles.Count > 0);
+        }
+
         private static bool IsNew(BundleRef bundle)
         {
             if (buildinVersions != null)

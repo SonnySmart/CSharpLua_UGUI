@@ -30,8 +30,6 @@ public class Packager {
             HandleLuaFile();
         }
 
-        BuildFileIndex();
-
         //string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
         //if (Directory.Exists(streamDir)) Directory.Delete(streamDir, true);
         AssetDatabase.Refresh();
@@ -67,7 +65,7 @@ public class Packager {
         }
 
         //-------------------------------处理非Lua文件----------------------------------
-        string luaPath = AppDataPath + "/StreamingAssets/lua/";
+        string luaPath = AppConst.AssetDir + "/lua/";
         for (int i = 0; i < srcDirs.Length; i++) {
             paths.Clear(); files.Clear();
             string luaDataPath = srcDirs[i].ToLower();
@@ -89,7 +87,7 @@ public class Packager {
     /// 处理Lua文件
     /// </summary>
     static void HandleLuaFile() {
-        string resPath = AppDataPath + "/StreamingAssets/";
+        string resPath = AppConst.AssetDir + "/";
         string luaPath = resPath + "/lua/";
 
         //----------复制Lua文件----------------
@@ -124,29 +122,6 @@ public class Packager {
         }
         EditorUtility.ClearProgressBar();
         AssetDatabase.Refresh();
-    }
-
-    static void BuildFileIndex() {
-        string resPath = AppConst.AssetDir;
-        ///----------------------创建文件列表-----------------------
-        string newFilePath = resPath + "/files.txt";
-        if (File.Exists(newFilePath)) File.Delete(newFilePath);
-
-        paths.Clear(); files.Clear();
-        Recursive(resPath);
-
-        FileStream fs = new FileStream(newFilePath, FileMode.CreateNew);
-        StreamWriter sw = new StreamWriter(fs);
-        for (int i = 0; i < files.Count; i++) {
-            string file = files[i];
-            string ext = Path.GetExtension(file);
-            if (file.EndsWith(".meta") || file.Contains(".DS_Store")) continue;
-
-            string md5 = Util.md5file(file);
-            string value = file.Replace(resPath, string.Empty);
-            sw.WriteLine(value + "|" + md5);
-        }
-        sw.Close(); fs.Close();
     }
 
     /// <summary>

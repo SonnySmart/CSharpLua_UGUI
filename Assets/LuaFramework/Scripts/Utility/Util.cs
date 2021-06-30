@@ -281,14 +281,14 @@ namespace LuaFramework {
         /// <returns></returns>
         public static int CheckRuntimeFile() {
             if (!Application.isEditor) return 0;
-            string streamDir = Application.dataPath + "/StreamingAssets/";
+            string streamDir = AppConst.AssetDir;
             if (!Directory.Exists(streamDir)) {
                 return -1;
             } else {
                 string[] files = Directory.GetFiles(streamDir);
                 if (files.Length == 0) return -1;
 
-                if (!File.Exists(streamDir + "files.txt")) {
+                if (!File.Exists(streamDir + "/" + libx.Assets.Versions)) {
                     return -1;
                 }
             }

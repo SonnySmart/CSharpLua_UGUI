@@ -48,6 +48,9 @@ namespace libx
         {
             var watch = new Stopwatch();
             watch.Start();
+            // 拷贝lua到临时目录
+            Packager.ExportLuaFiles();
+            // 打包Assetbundle
             BuildScript.BuildRules();
             BuildScript.BuildAssetBundles();
             watch.Stop();
