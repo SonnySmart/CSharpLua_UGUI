@@ -192,11 +192,10 @@ namespace SUIFW
         /// <summary>
         /// 关闭与返回UI窗体  
         /// </summary>
-        protected void CloseOrReturnUIForms()
+        public void CloseOrReturnUIForms()
         {
             string strUIFomrsName = null;
             int intPosition = -1;
-
 
             strUIFomrsName = GetType().ToString();
             intPosition = strUIFomrsName.IndexOf('.');
@@ -208,10 +207,19 @@ namespace SUIFW
         }
 
         /// <summary>
+        /// 显示UI窗体
+        /// </summary>
+        /// <param name="formType">UI窗体的类型</param>
+        public void ShowUIForms(System.Type formType)
+        {
+            UIManager.GetInstance().ShowUIForms(formType);
+        }
+
+        /// <summary>
         /// 打开UI窗体
         /// </summary>
         /// <param name="strUIFormsName"></param>
-        protected void ShowUIForms(string strUIFormsName)
+        public void ShowUIForms(string strUIFormsName)
         {
             UIManager.GetInstance().ShowUIForms(strUIFormsName);
         }

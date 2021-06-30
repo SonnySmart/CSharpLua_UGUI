@@ -9,7 +9,14 @@ namespace LuaFramework {
         private SocketClient socket;
         static readonly object m_lockObject = new object();
         static Queue<KeyValuePair<int, ByteBuffer>> mEvents = new Queue<KeyValuePair<int, ByteBuffer>>();
-        static Dictionary<int, Action<ByteBuffer>> mProtocols = new Dictionary<int, Action<ByteBuffer>>();
+        /// <summary>
+        /// 协议回调
+        /// </summary>
+        static Dictionary<int, Action<ByteBuffer>> m_proto_callbacks = new Dictionary<int, Action<ByteBuffer>>();
+        /// <summary>
+        /// 协议描述
+        /// </summary>
+        static Dictionary<int, string> m_proto_descs = new Dictionary<int, string>();
 
         SocketClient SocketClient {
             get { 
@@ -69,7 +76,7 @@ namespace LuaFramework {
 
         public void DispatchMessage(int protocol, ByteBuffer buffer) {
             Action<ByteBuffer> callback;
-            if (mProtocols.TryGetValue(protocol, out callback)) {
+            if (m_proto_callbacks.TryGetValue(protocol, out callback)) {
                 callback(buffer);
                 return;
             }
@@ -83,19 +90,56 @@ namespace LuaFramework {
             SocketClient.SendConnect();
         }
 
+        /// <summary>
+        /// 注册协议
+        /// </summary>
+        /// <param name="protocol">协议号</param>
+        /// <param name="callback">回调</param>
         public void RegisterProtocol(int protocol, Action<ByteBuffer> callback) {
-            mProtocols[protocol] = callback;
+            RegisterProtocol(protocol, callback, "");
         }
 
+        /// <summary>
+        /// 注册协议
+        /// </summary>
+        /// <param name="protocol">协议号</param>
+        /// <param name="callback">回调</param>
+        /// <param name="desc">协议描述</param>
+        public void RegisterProtocol(int protocol, Action<ByteBuffer> callback, string desc) {
+            m_proto_callbacks[protocol] = callback;
+            m_proto_descs[protocol] = desc;
+        }
+
+        /// <summary>
+        /// 注册协议
+        /// </summary>
+        /// <param name="protocol">协议号</param>
+        /// <param name="callback">回调</param>
         public void RegisterProtocol(int protocol, LuaFunction callback) {
-            mProtocols[protocol] = delegate(ByteBuffer buffer) {
+            RegisterProtocol(protocol, callback, "");
+        }
+
+        /// <summary>
+        /// 注册协议
+        /// </summary>
+        /// <param name="protocol">协议号</param>
+        /// <param name="callback">回调</param>
+        /// <param name="desc">协议描述</param>
+        public void RegisterProtocol(int protocol, LuaFunction callback, string desc) {
+            m_proto_callbacks[protocol] = delegate(ByteBuffer buffer) {
                 callback.Call(buffer);
             };
+            m_proto_descs[protocol] = desc;
         }
 
+        /// <summary>
+        /// 移除协议
+        /// </summary>
         public void RemoveProtocol(int protocol) {
-            if (mProtocols.ContainsKey(protocol))
-                mProtocols.Remove(protocol);
+            if (m_proto_callbacks.ContainsKey(protocol))
+                m_proto_callbacks.Remove(protocol);
+            if (m_proto_descs.ContainsKey(protocol))
+                m_proto_descs.Remove(protocol); 
         }
 
         /// <summary>

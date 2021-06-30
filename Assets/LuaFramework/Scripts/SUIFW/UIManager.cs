@@ -94,6 +94,16 @@ namespace SUIFW
         /// <summary>
         /// 显示UI窗体
         /// </summary>
+        /// <param name="formType">UI窗体的类型</param>
+        public void ShowUIForms(System.Type formType)
+        {
+            string formName = formType.Name;
+            ShowUIForms(formName);
+        }
+
+        /// <summary>
+        /// 显示UI窗体
+        /// </summary>
         /// <param name="strUIFormName">UI窗体的名称</param>
         public void ShowUIForms(string strUIFormName)
         {
