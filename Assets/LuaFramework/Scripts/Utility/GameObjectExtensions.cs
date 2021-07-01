@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace LuaFramework 
@@ -34,7 +35,9 @@ namespace LuaFramework
             if (string.IsNullOrEmpty(className))
                 return;
 
-            string assembly = className + ",Assembly-CSharp";
+            string assembly = className;
+            if (!assembly.Contains(","))
+                assembly += ",Assembly-CSharp";
 #if USE_LUA
             var luaState = LuaHelper.GetLuaManager().GetMainState();
             using (var fn = luaState.GetFunction("UnityEngine.addComponent"))
@@ -42,7 +45,17 @@ namespace LuaFramework
                 fn.Call(gameObject, assembly);
             }
 #else
-            gameObject.AddComponent(Type.GetType(className));
+            try {
+                Type type = Type.GetType(assembly);
+                if (type == null)
+                {
+                    type = Assembly.GetExecutingAssembly().GetType(className);
+                }
+                gameObject.AddComponent(type);
+            }
+            catch (Exception ex) {
+                Debug.LogException(ex);
+            }
 #endif
         }
     }
