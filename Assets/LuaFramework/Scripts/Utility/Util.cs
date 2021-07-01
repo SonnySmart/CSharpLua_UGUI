@@ -195,7 +195,7 @@ namespace LuaFramework {
                 if (Application.isMobilePlatform) {
                     return Application.persistentDataPath + "/" + game + "/";
                 }
-                if (AppConst.DebugMode) {
+                if (AppConst.development) {
                     return AppConst.AssetDir + "/";
                     //return Application.dataPath + "/" + AppConst.AssetDir + "/";
                 }
@@ -332,7 +332,7 @@ namespace LuaFramework {
                 return false;
             }
             string name = SceneManager.GetActiveScene().name;
-            if (name == "Test" && !AppConst.DebugMode) {
+            if (name == "Test" && !AppConst.development) {
                 Debug.LogError("测试场景，必须打开调试模式，AppConst.DebugMode = true！！");
                 EditorApplication.isPlaying = false;
                 return false;

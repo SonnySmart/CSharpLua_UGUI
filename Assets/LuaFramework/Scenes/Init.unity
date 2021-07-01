@@ -154,7 +154,7 @@ MonoBehaviour:
   loggable: 1
   verifyBy: 1
   downloadURL: http://192.168.1.242/Bundles/
-  development: 0
+  development: 1
   dontDestroyOnLoad: 1
   launchScene: Main
   searchPaths:

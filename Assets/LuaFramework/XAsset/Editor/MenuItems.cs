@@ -148,7 +148,7 @@ namespace libx
             ScreenCapture.CaptureScreenshot(path);
         }
 
-        [MenuItem("Assets/ToJson")]
+        [MenuItem("Assets/XASSET ToJson")]
         private static void ToJson()
         {
             var path = AssetDatabase.GetAssetPath(Selection.activeObject);
@@ -157,38 +157,38 @@ namespace libx
             AssetDatabase.Refresh();
         }
 
-        [MenuItem("Assets/Copy Path")]
+        [MenuItem("Assets/XASSET Copy Path")]
         private static void CopyPath()
         {
             var path = AssetDatabase.GetAssetPath(Selection.activeObject);
             EditorGUIUtility.systemCopyBuffer = path;
         }
 
-        [MenuItem("Assets/GroupBy/None")]
+        [MenuItem("Assets/XASSET GroupBy/None")]
         private static void GroupByNone()
         {
             GroupAssets(GroupBy.None);
         }
 
-        [MenuItem("Assets/GroupBy/Filename")]
+        [MenuItem("Assets/XASSET GroupBy/Filename")]
         private static void GroupByFilename()
         {
             GroupAssets(GroupBy.Filename);
         }
 
-        [MenuItem("Assets/GroupBy/Directory")]
+        [MenuItem("Assets/XASSET GroupBy/Directory")]
         private static void GroupByDirectory()
         {
             GroupAssets(GroupBy.Directory);
         }
 
-        [MenuItem("Assets/GroupBy/Explicit/shaders")]
+        [MenuItem("Assets/XASSET GroupBy/Explicit/shaders")]
         private static void GroupByExplicitShaders()
         {
             GroupAssets(GroupBy.Explicit, "shaders");
         }
 
-        [MenuItem("Assets/PatchBy/CurrentScene")]
+        [MenuItem("Assets/XASSET PatchBy/CurrentScene")]
         private static void PatchAssets()
         {
             var selection = Selection.GetFiltered<Object>(SelectionMode.DeepAssets);

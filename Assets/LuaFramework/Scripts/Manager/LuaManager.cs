@@ -78,7 +78,7 @@ namespace LuaFramework {
         /// 启动调试
         /// </summary>
         void StartDebug() {
-            if (!AppConst.DebugMode)
+            if (!AppConst.development)
                 return;
             LuaConst.openLuaDebugger = true;
             lua.DoFile("LuaDebugjit.lua");
@@ -116,7 +116,7 @@ namespace LuaFramework {
         /// 初始化Lua代码加载路径
         /// </summary>
         void InitLuaPath() {
-            if (AppConst.DebugMode) {
+            if (AppConst.development) {
                 string rootPath = AppConst.FrameworkRoot;
                 lua.AddSearchPath(rootPath + "/Lua");
                 lua.AddSearchPath(rootPath + "/ToLua/Lua");
@@ -139,6 +139,10 @@ namespace LuaFramework {
                 {
                     loader.AddBundle(bundle);
                 }
+            }
+            else
+            {
+                Debug.LogError("没有加载Lua Assetbundle请检查环境配置");
             }
         }
 

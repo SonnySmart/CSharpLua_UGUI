@@ -24,7 +24,7 @@ public class Packager {
         Compiler.Compile();
 #endif
 
-        if (AppConst.LuaBundleMode) {
+        if (AppConst.luabundle) {
             HandleLuaBundle();
         } else {
             HandleLuaFile();
@@ -44,7 +44,7 @@ public class Packager {
 
         string[] srcDirs = { CustomSettings.luaDir, CustomSettings.FrameworkPath + "/ToLua/Lua" };
         for (int i = 0; i < srcDirs.Length; i++) {
-            if (AppConst.LuaByteMode) {
+            if (AppConst.luajit) {
                 string sourceDir = srcDirs[i];
                 string[] files = Directory.GetFiles(sourceDir, "*.lua", SearchOption.AllDirectories);
                 int len = sourceDir.Length;
@@ -112,7 +112,7 @@ public class Packager {
                 if (File.Exists(newpath)) {
                     File.Delete(newpath);
                 }
-                if (AppConst.LuaByteMode) {
+                if (AppConst.luajit) {
                     EncodeLuaFile(f, newpath);
                 } else {
                     File.Copy(f, newpath, true);
@@ -191,10 +191,7 @@ public class Packager {
 
     [MenuItem("LuaFramework/Build Protobuf-lua-gen File")]
     public static void BuildProtobufFile() {
-        if (!AppConst.ExampleMode) {
-            UnityEngine.Debug.LogError("若使用编码Protobuf-lua-gen功能，需要自己配置外部环境！！");
-            return;
-        }
+        //UnityEngine.Debug.LogError("若使用编码Protobuf-lua-gen功能，需要自己配置外部环境！！");
         string dir = AppDataPath + "/Lua/3rd/pblua";
         paths.Clear(); files.Clear(); Recursive(dir);
 

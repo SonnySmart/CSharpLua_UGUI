@@ -105,7 +105,7 @@ namespace SUIFW
         public GameObject LoadAsset(string path, string assetName, bool isCatch)
         {
             GameObject goObj = null;
-            if (AppConst.DebugMode)
+            if (AppConst.development)
             {
                 goObj = LoadResource<GameObject>(path, isCatch);
             }

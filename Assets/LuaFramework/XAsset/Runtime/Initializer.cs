@@ -10,7 +10,7 @@ namespace libx
         public bool loggable;
         public VerifyBy verifyBy = VerifyBy.CRC;
         public string downloadURL;
-        public bool development;  
+        public bool development;
         public bool dontDestroyOnLoad = true;
         public string launchScene;
         public string[] searchPaths;
@@ -52,6 +52,10 @@ namespace libx
         {
             Assets.development = development; 
             Assets.loggable = loggable;
+
+            //AppConst
+            LuaFramework.AppConst.development = development;
+            LuaFramework.AppConst.luabundle = !development;
         }
 
         [Conditional("UNITY_EDITOR")]
