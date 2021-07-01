@@ -16,7 +16,7 @@ public static class FormResConfigEditor
     [MenuItem("LuaFramework/Gen SUIFW 窗体配置", false, 83)]
     public static void GenUIFormConfigJson()
     {
-        string resourceDir = Application.dataPath + "/Resources";
+        string resourceDir = Application.dataPath + "/ResHotfix";
         string formDir = resourceDir + "/Prefabs/Forms";
         string jsonFile = resourceDir + "/Config/UIFormsConfigInfo.json";
 

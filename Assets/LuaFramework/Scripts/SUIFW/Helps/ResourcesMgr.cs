@@ -63,7 +63,7 @@ namespace SUIFW
 
         public T LoadResource<T>(string path, string asset, bool isCatch) where T : UnityEngine.Object
         {
-            if (ht.Contains(path))
+            if (!string.IsNullOrEmpty(path) && ht.Contains(path))
             {
                 return ht[path] as T;
             }

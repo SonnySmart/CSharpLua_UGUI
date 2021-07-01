@@ -50,7 +50,7 @@ namespace libx
             var request = Assets.LoadAsset(R.GetPrefab("MessageBox"), typeof(GameObject));
             gameObject = Object.Instantiate(request.asset) as GameObject;
             Assert.IsNotNull(gameObject, "gameObject != null");
-            gameObject.name = title;
+            //gameObject.name = title;
             request.Require(gameObject);
 
             Object.DontDestroyOnLoad(gameObject);

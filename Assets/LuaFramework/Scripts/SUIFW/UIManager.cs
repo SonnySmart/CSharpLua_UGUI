@@ -362,14 +362,13 @@ namespace SUIFW
             GameObject goCloneUIPrefab = null;              //克隆的"窗体预设"
             BaseUIForms baseUIForm;                         //UI窗体
 
-
             //得到UI窗体的路径
             _DicUIFormsPaths.TryGetValue(strUIFormsName, out strUIFormsPaths);
 
             //加载指定路径的“UI窗体”
-            if (!string.IsNullOrEmpty(strUIFormsPaths))
+            //if (!string.IsNullOrEmpty(strUIFormsPaths))
             {
-                goCloneUIPrefab = ResourcesMgr.GetInstance().LoadAsset(strUIFormsPaths, strUIFormsName, true);
+                goCloneUIPrefab = ResourcesMgr.GetInstance().LoadAsset(strUIFormsPaths, strUIFormsName, false);
             }
 
             //设置“UI窗体”克隆体的父节点，以及隐藏处理与加入“UI窗体缓存”中
