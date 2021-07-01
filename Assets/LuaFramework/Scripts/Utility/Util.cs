@@ -191,19 +191,10 @@ namespace LuaFramework {
         /// </summary>
         public static string DataPath {
             get {
-                string game = AppConst.AppName.ToLower();
-                if (Application.isMobilePlatform) {
-                    return Application.persistentDataPath + "/" + game + "/";
-                }
                 if (AppConst.development) {
                     return AppConst.AssetDir + "/";
-                    //return Application.dataPath + "/" + AppConst.AssetDir + "/";
                 }
-                if (Application.platform == RuntimePlatform.OSXEditor) {
-                    int i = Application.dataPath.LastIndexOf('/');
-                    return Application.dataPath.Substring(0, i + 1) + game + "/";
-                }
-                return "c:/" + game + "/";
+                return Application.persistentDataPath + "/" + AppConst.Bundles;
             }
         }
 

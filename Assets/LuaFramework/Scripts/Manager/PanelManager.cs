@@ -34,11 +34,11 @@ namespace LuaFramework {
         }
 
         public void CreatePanel(string name, Action<GameObject> func) {
-            string assetName = name + "Form";
+            string assetName = name;
             string abName = name.ToLower() + AppConst.ExtName;
             if (Parent.Find(name) != null) return;
 
-            GameObject prefab = ResManager.LoadAsset<GameObject>(assetName);
+            GameObject prefab = ResManager.LoadAsset<GameObject>(R.GetPrefab(assetName));
             if (prefab == null) return;
 
             GameObject go = Instantiate(prefab) as GameObject;

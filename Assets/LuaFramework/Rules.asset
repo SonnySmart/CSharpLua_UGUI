@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 10
+  build: 14
   major: 1
   minor: 1
   scenesFolders: []
@@ -969,6 +969,41 @@ MonoBehaviour:
     bundle: assets_luaframework_resources_animations.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/ResHotfix/Config/LauguageJSONConfig_CN.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Canvas.prefab
+    group: 
+    bundle: assets_reshotfix.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/LauguageJSONConfig.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/SysConfigInfo.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_forms.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/UIFormsConfigInfo.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_utility.unity3d
+    id: 0
+    groupBy: 3
   patches: []
   bundles:
   - assetBundleName: assets_luaframework_examples_builds_prompt.unity3d
@@ -1253,6 +1288,21 @@ MonoBehaviour:
     assetNames:
     - Assets/LuaFramework/Resources/Animations/MessageBox.controller
     - Assets/LuaFramework/Resources/Animations/MessageBox.anim
+  - assetBundleName: assets_reshotfix_config.unity3d
+    assetNames:
+    - Assets/ResHotfix/Config/LauguageJSONConfig_CN.json
+    - Assets/ResHotfix/Config/LauguageJSONConfig.json
+    - Assets/ResHotfix/Config/SysConfigInfo.json
+    - Assets/ResHotfix/Config/UIFormsConfigInfo.json
+  - assetBundleName: assets_reshotfix.unity3d
+    assetNames:
+    - Assets/ResHotfix/Canvas.prefab
+  - assetBundleName: assets_reshotfix_prefabs_forms.unity3d
+    assetNames:
+    - Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
+  - assetBundleName: assets_lua_luaframework_scripts_utility.unity3d
+    assetNames:
+    - Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
   - assetBundleName: children_assets_luaframework_examples_builds_prompt.unity3d
     assetNames:
     - Assets/LuaFramework/Examples/Textures/Prompt/1.png

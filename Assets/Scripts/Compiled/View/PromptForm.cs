@@ -2,13 +2,11 @@ using UnityEngine;
 using LuaFramework;
 using SUIFW;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class PromptForm : BaseUIForms
 {
     public GameObject btnOpen;
     public Transform gridParent;
-    private PromptForm mPromptForm;
 
     public override void OnInit()
     {
@@ -100,22 +98,19 @@ public class PromptForm : BaseUIForms
     {
         Debug.Log("Start lua--->>" + gameObject.name);
 
-        mPromptForm = gameObject.GetComponent<PromptForm>();
-
-        //AddClick(mPromptForm.btnOpen, this.OnClick);
         AddClick("Open", this.OnClick);
-        LuaHelper.GetResManager().LoadAsset("PromptItem", this.InitPanel);
+        LuaHelper.GetResManager().LoadAsset(R.GetPrefab("PromptItem"), this.InitPanel);
     }
 
     public void InitPanel(Object objs)
     {
         int count = 100; 
-        var parent = mPromptForm.gridParent;
+        var parent = this.gridParent;
         for (int i = 0; i < count; i++)
         {
             var go = GameObject.Instantiate(objs) as GameObject;
             go.name = "Item" + i.ToString();
-            go.transform.SetParent(parent);
+            go.transform.SetParent(parent, false);
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
             AddClick(go, this.OnItemClick);

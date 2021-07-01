@@ -167,9 +167,6 @@ public static class CustomSettings
 		_GT(typeof(LuaProfiler)),
           
         //for LuaFramework
-        _GT(typeof(RectTransform)),
-        _GT(typeof(Text)),
-
         _GT(typeof(Util)),
         _GT(typeof(AppConst)),
         _GT(typeof(LuaHelper)),
@@ -188,13 +185,6 @@ public static class CustomSettings
         _GT(typeof(Base)),
         _GT(typeof(View)),
         _GT(typeof(Manager)),
-
-        //MVC
-        // _GT(typeof(Facade)),
-        // _GT(typeof(AppFacade)),
-        // _GT(typeof(SimpleCommand)),
-        // _GT(typeof(MacroCommand)),
-        // _GT(typeof(Proxy)),
 
         //SUIFW
         _GT(typeof(SUIFW.UnityHelper)),

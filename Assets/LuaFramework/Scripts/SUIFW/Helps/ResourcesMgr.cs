@@ -16,9 +16,6 @@ namespace SUIFW
         private static ResourcesMgr _Instance;              //本脚本私有单例实例
         private Hashtable ht = null;                        //容器键值对集合
 
-
-
-
         /// <summary>
         /// 得到实例(单例)
         /// </summary>
@@ -51,7 +48,7 @@ namespace SUIFW
                 return ht[path] as T;
             }
 
-            T TResource = Resources.Load<T>(path);
+            T TResource = LuaHelper.GetResManager().LoadAsset<T>(R.GetPrefab(path));
             if (TResource == null)
             {
                 Debug.LogError(GetType() + "/GetInstance()/TResource 提取的资源找不到，请检查。 path=" + path);
@@ -64,14 +61,14 @@ namespace SUIFW
             return TResource;
         }
 
-        public T LoadResource<T>(string path, string assetName, bool isCatch) where T : UnityEngine.Object
+        public T LoadResource<T>(string path, string asset, bool isCatch) where T : UnityEngine.Object
         {
             if (ht.Contains(path))
             {
                 return ht[path] as T;
             }
 
-            T TResource = LuaHelper.GetResManager().LoadAsset<T>(assetName);
+            T TResource = LuaHelper.GetResManager().LoadAsset<T>(R.GetPrefab(asset));
             if (TResource == null)
             {
                 Debug.LogError(GetType() + "/GetInstance()/TResource 提取的资源找不到，请检查。 path=" + path);
@@ -102,31 +99,22 @@ namespace SUIFW
             return goObjClone;
         }
 
-        public GameObject LoadAsset(string path, string assetName, bool isCatch)
+        public GameObject LoadAsset(string path, string asset, bool isCatch)
         {
-            GameObject goObj = null;
-            if (AppConst.development)
+            GameObject obj = LoadResource<GameObject>(path, asset, isCatch);
+            if (obj == null)
             {
-                goObj = LoadResource<GameObject>(path, isCatch);
-            }
-            else
-            {
-                goObj = LoadResource<GameObject>(path, assetName, isCatch);
-            }
-
-            if (goObj == null)
-            {
-                Debug.LogError(GetType() + "/LoadAsset()/加载资源不成功，请检查。 assetName=" + assetName);
+                Debug.LogError(GetType() + "/LoadAsset()/加载资源不成功，请检查。 assetName=" + asset);
                 return null;
             }
 
-            GameObject goObjClone = GameObject.Instantiate<GameObject>(goObj);
-            if (goObjClone == null)
+            GameObject clone = GameObject.Instantiate<GameObject>(obj);
+            if (clone == null)
             {
                 Debug.LogError(GetType() + "/LoadAsset()/克隆资源不成功，请检查。 path=" + path);
             }
             //goObj = null;//??????????
-            return goObjClone;
+            return clone;
         }       
     }//Class_end
 }

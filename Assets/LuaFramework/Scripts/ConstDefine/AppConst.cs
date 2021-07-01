@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using libx;
 
 namespace LuaFramework {
     public class AppConst {
@@ -28,14 +24,37 @@ namespace LuaFramework {
         public const string LuaTempDir = "Lua/";                    //临时目录
         public const string AppPrefix = AppName + "_";              //应用程序前缀
         public const string ExtName = ".unity3d";                   //素材扩展名
-        public static string AssetDir = BuildScript.outputPath;     //素材目录 
+        public const string Bundles = "Bundles/";
+        public static string AssetDir = Bundles + PlatformName;     //素材目录 
         public static string WebUrl = "http://localhost:6688/";     //测试更新地址
         public static int SocketPort = 0;                           //Socket服务器端口
         public static string SocketAddress = string.Empty;          //Socket服务器地址
 
-        public static string FrameworkRoot {
-            get {
-                return Application.dataPath + "/" + AppName;
+        public static string FrameworkRoot
+        {
+            get { return Application.dataPath + "/" + AppName; }
+        }
+
+        /// <summary>
+        /// 平台名称
+        /// </summary>
+        public static string PlatformName
+        {
+            get
+            {
+#if UNITY_ANDROID
+                return "Android";
+#elif UNITY_IPHONE
+                return "iOS";
+#elif UNITY_WEBGL
+                return "WebGL";
+#elif UNITY_STANDALONE_WIN
+                return "Windows";
+#elif UNITY_STANDALONE_OSX
+                return "OSX";
+#else
+                return "None";
+#endif
             }
         }
     }

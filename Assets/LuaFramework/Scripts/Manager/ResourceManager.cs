@@ -1,22 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using System.IO;
+﻿using System;
 using LuaInterface;
 using UObject = UnityEngine.Object;
-using UnityEngine.Networking;
 using libx;
-
-public class AssetBundleInfo {
-    public AssetBundle m_AssetBundle;
-    public int m_ReferencedCount;
-
-    public AssetBundleInfo(AssetBundle assetBundle) {
-        m_AssetBundle = assetBundle;
-        m_ReferencedCount = 0;
-    }
-}
 
 namespace LuaFramework {
 
@@ -27,7 +12,7 @@ namespace LuaFramework {
         /// </summary>
         public void LoadAsset(string asset, Action<UObject> callback)
         {            
-            var request = Assets.LoadAsset(R.GetPrefab(asset), typeof(UObject));
+            var request = Assets.LoadAsset(asset, typeof(UObject));
             if (callback != null)
                 callback(request.asset);
         }
@@ -37,7 +22,7 @@ namespace LuaFramework {
         /// </summary>
         public void LoadAsset(string asset, LuaFunction callback)
         {
-            var request = Assets.LoadAsset(R.GetPrefab(asset), typeof(UObject));
+            var request = Assets.LoadAsset(asset, typeof(UObject));
             if (callback != null)
             {
                 callback.Call<UObject>(request.asset);
@@ -51,7 +36,7 @@ namespace LuaFramework {
         /// </summary>
         public T LoadAsset<T>(string asset) where T : UObject
         {
-            var request = Assets.LoadAsset(R.GetPrefab(asset), typeof(UObject));
+            var request = Assets.LoadAsset(asset, typeof(UObject));
             return request.asset as T;
         }
 
@@ -60,7 +45,7 @@ namespace LuaFramework {
         /// </summary>
         public void LoadAssetAsync(string asset, Action<UObject> callback)
         {
-            var request = Assets.LoadAssetAsync(R.GetPrefab(asset), typeof(UObject));
+            var request = Assets.LoadAssetAsync(asset, typeof(UObject));
             request.completed += delegate
             {
                 if (callback != null)
@@ -73,7 +58,7 @@ namespace LuaFramework {
         /// </summary>
         public void LoadAssetAsync(string asset, LuaFunction callback)
         {
-            var request = Assets.LoadAssetAsync(R.GetPrefab(asset), typeof(UObject));
+            var request = Assets.LoadAssetAsync(asset, typeof(UObject));
             request.completed += delegate
             {
                 if (callback != null)

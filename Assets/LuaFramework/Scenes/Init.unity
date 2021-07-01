@@ -154,13 +154,14 @@ MonoBehaviour:
   loggable: 1
   verifyBy: 1
   downloadURL: http://192.168.1.242/Bundles/
-  development: 1
+  development: 0
   dontDestroyOnLoad: 1
   launchScene: Main
   searchPaths:
   - Assets/LuaFramework/Scenes
   - Assets/LuaFramework/Resources/Prefabs
   - Assets/LuaFramework/Examples/Builds/Prompt
+  - Assets/ResHotfix
   patches4Init: []
   updateAll: 1
 --- !u!4 &688479980

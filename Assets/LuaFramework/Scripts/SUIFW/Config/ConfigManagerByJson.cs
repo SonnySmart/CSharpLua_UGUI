@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using LuaFramework;
 using UnityEngine;
 
 namespace SUIFW
@@ -45,7 +46,7 @@ namespace SUIFW
 
             try
             {
-                configInfo = Resources.Load<TextAsset>(JsonPath);
+                configInfo = LuaHelper.GetResManager().LoadAsset<TextAsset>(R.GetJson(JsonPath));
                 keyValuesInfoObj = JsonUtility.FromJson<KeyValuesInfo>(configInfo.text);
             }
             catch
