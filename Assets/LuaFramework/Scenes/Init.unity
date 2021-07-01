@@ -157,6 +157,7 @@ MonoBehaviour:
   development: 0
   dontDestroyOnLoad: 1
   launchScene: Main
+  luaEntry: Game
   searchPaths:
   - Assets/LuaFramework/Scenes
   - Assets/LuaFramework/Resources/Prefabs

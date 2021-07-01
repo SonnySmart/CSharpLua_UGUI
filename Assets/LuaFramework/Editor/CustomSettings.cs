@@ -105,7 +105,7 @@ public static class CustomSettings
       
         _GT(typeof(Behaviour)),
         _GT(typeof(MonoBehaviour)),
-        _GT(typeof(GameObject)),
+        _GT(typeof(GameObject)).AddExtendType(typeof(GameObjectExtensions)),
         _GT(typeof(TrackedReference)),
         _GT(typeof(Application)),
         _GT(typeof(Physics)),
@@ -185,6 +185,7 @@ public static class CustomSettings
         _GT(typeof(Base)),
         _GT(typeof(View)),
         _GT(typeof(Manager)),
+        _GT(typeof(GameObjectExtensions)),
 
         //SUIFW
         _GT(typeof(SUIFW.UnityHelper)),

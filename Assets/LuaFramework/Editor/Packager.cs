@@ -24,7 +24,7 @@ public class Packager {
         Compiler.Compile();
 #endif
 
-        if (AppConst.luabundle) {
+        if (AppConst.luaBundle) {
             HandleLuaBundle();
         } else {
             HandleLuaFile();

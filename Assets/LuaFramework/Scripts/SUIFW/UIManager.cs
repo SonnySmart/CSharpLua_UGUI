@@ -375,7 +375,7 @@ namespace SUIFW
             if (_CanvasTransform != null && goCloneUIPrefab != null)
             {
                 // 添加Form组件
-                LuaHelper.GetPanelManager().AddComponent(goCloneUIPrefab, strUIFormsName);
+                goCloneUIPrefab.AddLuaComponent(strUIFormsName);
                 // 获取Form组件
                 baseUIForm = goCloneUIPrefab.GetComponent<BaseUIForms>();
                 if (baseUIForm == null)

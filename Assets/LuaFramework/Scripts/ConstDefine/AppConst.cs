@@ -16,7 +16,13 @@ namespace LuaFramework {
         /// 判断lua是否从AssetBundle中读取,一般与 '编辑器模式' 相反
         /// 发布模式配置 XAsset/Runtime/Initializer 组件面板中修改
         /// </summary>
-        public static bool luabundle = true;                        //Lua代码AssetBundle模式
+        public static bool luaBundle = true;                        //Lua代码AssetBundle模式
+        /// <summary>
+        /// lua最终启动实例的名称,业务逻辑的启动在这里
+        /// Assets\Scripts\Compiled\Game.cs
+        /// 发布模式配置 XAsset/Runtime/Initializer 组件面板中修改
+        /// </summary>
+        public static string luaEntry;
 
         public const int TimerInterval = 1;
         public const int GameFrameRate = 30;                        //游戏帧频

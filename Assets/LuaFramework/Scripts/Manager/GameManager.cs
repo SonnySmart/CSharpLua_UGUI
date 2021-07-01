@@ -164,7 +164,7 @@ namespace LuaFramework {
             LuaManager.InitStart();
 #endif
             // 这里启动最终逻辑
-            LuaHelper.GetPanelManager().AddComponent(gameObject, "StartUpBehaviour");
+            gameObject.AddLuaComponent(typeof(StartUpBehaviour));
             
             initialize = true;
         }

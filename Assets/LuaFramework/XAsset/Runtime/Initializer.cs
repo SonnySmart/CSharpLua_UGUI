@@ -13,6 +13,7 @@ namespace libx
         public bool development;
         public bool dontDestroyOnLoad = true;
         public string launchScene;
+        public string luaEntry = "Game";
         public string[] searchPaths;
         public string[] patches4Init;
         public bool updateAll;
@@ -55,7 +56,8 @@ namespace libx
 
             //AppConst
             LuaFramework.AppConst.development = development;
-            LuaFramework.AppConst.luabundle = !development;
+            LuaFramework.AppConst.luaBundle = !development;
+            LuaFramework.AppConst.luaEntry = luaEntry;
         }
 
         [Conditional("UNITY_EDITOR")]

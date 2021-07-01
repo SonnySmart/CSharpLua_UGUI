@@ -11,7 +11,7 @@ public class StartUpBehaviour : LuaBehaviour
 
         StartUpSocket();
 
-        StartUpGame();
+        StartUpEntry();
     }
 
     /// <summary>
@@ -36,9 +36,10 @@ public class StartUpBehaviour : LuaBehaviour
     /// <summary>
     /// 启动游戏实例
     /// </summary>
-    void StartUpGame()
+    void StartUpEntry()
     {
-        // 启动实例可以在这里修改
-        LuaHelper.GetPanelManager().AddComponent(gameObject, "Game");
+        // 启动实例
+        // XAsset/Runtime/Initializer 组件面板中修改
+        gameObject.AddLuaComponent(AppConst.luaEntry);
     }
 }
