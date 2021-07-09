@@ -46,6 +46,9 @@ public class SocketCommand : SimpleCommand {
         int state = buffer.ReadInt();
         string message = buffer.ReadString();
         Debug.LogError(message);
+
+        // 重新链接
+        LuaHelper.GetNetManager().SendConnect();
     }
 
     void OnMessage(int protocal, ByteBuffer buffer)

@@ -6,7 +6,7 @@ using LuaInterface;
 
 namespace LuaFramework {
     public class NetworkManager : Manager {
-        private SocketClient socket;
+        private HiSocket socket;
         static readonly object m_lockObject = new object();
         static Queue<KeyValuePair<int, ByteBuffer>> mEvents = new Queue<KeyValuePair<int, ByteBuffer>>();
         /// <summary>
@@ -18,10 +18,10 @@ namespace LuaFramework {
         /// </summary>
         static Dictionary<int, string> m_proto_descs = new Dictionary<int, string>();
 
-        SocketClient SocketClient {
+        HiSocket SocketClient {
             get { 
                 if (socket == null)
-                    socket = new SocketClient();
+                    socket = new HiSocket();
                 return socket;                    
             }
         }
@@ -62,14 +62,17 @@ namespace LuaFramework {
         void Update() {
             if (mEvents.Count > 0) {
                 while (mEvents.Count > 0) {
-                    KeyValuePair<int, ByteBuffer> _event = mEvents.Dequeue();         
+                    lock (m_lockObject) {
+                        KeyValuePair<int, ByteBuffer> _event = mEvents.Dequeue();         
 #if USE_LUA
-                    var Instance = Util.CallMethod("AppFacade", "getInstance");
-                    if (Instance != null)
-                        Util.CallMethod("Facade", "SendMessageCommand", Instance, NotiConst.DISPATCH_MESSAGE, _event);
+                        var Instance = Util.CallMethod("AppFacade", "getInstance");
+                        if (Instance != null)
+                            Util.CallMethod("Facade", "SendMessageCommand", Instance, NotiConst.DISPATCH_MESSAGE, _event);
 #else
-                    facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);
-#endif
+                        facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);
+#endif                        
+                    }
+
                 }
             }
         }
@@ -87,7 +90,7 @@ namespace LuaFramework {
         /// ������������
         /// </summary>
         public void SendConnect() {
-            SocketClient.SendConnect();
+            SocketClient.Connect();
         }
 
         /// <summary>
@@ -146,22 +149,24 @@ namespace LuaFramework {
         /// ����SOCKET��Ϣ
         /// </summary>
         public void SendMessage(ByteBuffer buffer) {
-            SocketClient.SendMessage(buffer);
+            SocketClient.Send(buffer.ToBytes());
+            buffer.Close();
         }
 
         public void SendMessage(int protocol, ByteBuffer buffer) {
-            ByteBuffer byteBuffer = new ByteBuffer();
-            byteBuffer.WriteShort((ushort)protocol);
-            byteBuffer.WriteBytes(buffer.ToBytes());
-            SocketClient.SendMessage(byteBuffer);
+            ByteBuffer bytes = new ByteBuffer();
+            bytes.WriteShort((ushort)protocol);
+            bytes.WriteBytes(buffer.ToBytes());
+            SocketClient.Send(bytes.ToBytes());
             buffer.Close();
+            bytes.Close();
         }
 
         /// <summary>
         /// ��������
         /// </summary>
         void OnDestroy() {
-            SocketClient.OnRemove();
+            SocketClient.Dispose();
             Debug.Log("~NetworkManager was destroy");
         }
     }
