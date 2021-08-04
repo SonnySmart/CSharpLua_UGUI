@@ -25,8 +25,8 @@ exportconfig = './__export.txt'
 pythonpath = 'sample\\tools\\py37\\py37.exe ' if platform.system() == 'Windows' else 'python '
 csprotonpath = 'sample\\tools\\CSharpGeneratorForProton\\CSharpGeneratorForProton.exe '
 xlsxfolder = './sample' # 默认xlsx路径
-xlsxdatafolder = '../../Assets/ResHotfix/Data/' # 默认xlsx输出路径
-xlsxcsfolder = '../../Assets/ResHotfix/Data/' # 默认xlsx->c#输出路径
+xlsxdatafolder = '../../Assets/ResHotfix/' # 默认xlsx输出路径
+xlsxcsfolder = '../../Assets/Scripts/Compiled/' # 默认xlsx->c#输出路径
 
 class ExportError(Exception):
   pass
@@ -79,8 +79,8 @@ def codegenerator(schema, outfolder, namespace, suffix):
       raise ExportError('codegenerator fail, please see print')
         
 def exportserver():
-  export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'config_server', 'Config', 'schemaserver.json')
-  codegenerator('schemaserver.json', 'config_server/ConfigGenerator/Template', 'Ice.Project.Config', 'Template') 
+  export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'ConfigGenerator', 'Config', 'schemaserver.json')
+  codegenerator('schemaserver.json', 'ConfigGenerator', 'CSharpGeneratorForProton.Json', 'Config') 
     
 def exportclient():
   export(EXPORT_FILES + EXPORT_CLIENT_ONLY, 'lua', 'client', 'config_client', 'Template', None)
@@ -90,7 +90,7 @@ def main():
     readconfig()
     readxlsx()
     exportserver()
-    exportclient()
+    #exportclient()
     print("all operation finish successful")
     return 0
   except ExportError as e:

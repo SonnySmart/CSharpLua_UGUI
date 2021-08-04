@@ -195,6 +195,9 @@ public static class CustomSettings
         _GT(typeof(SUIFW.UIFormsType)),
         _GT(typeof(SUIFW.UIFormsShowMode)),
         _GT(typeof(SUIFW.UIFormsLucencyType)),
+
+        //Proton
+        _GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility)),
     };
 
     public static List<Type> dynamicList = new List<Type>()
