@@ -31,6 +31,7 @@ namespace LuaFramework.Editor {
     private static readonly string csharpToolsDir_ = $"{toolDir}/CSharpLua";
     private static readonly string csharpLua_ = $"{csharpToolsDir_}/CSharp.lua/CSharp.lua.Launcher.dll";
     private static readonly string genProtobuf = $"{toolDir}/ProtobufGen/protogen.bat";
+    private static readonly string kCompiledFrameworkScripts = "LuaFramework.Runtime";//"Compiled";
     private static readonly string kCompiledScripts = "Assembly-CSharp";//"Compiled";
 
     [MenuItem("LuaFramework/Compile C#2Lua", false, 80)]
@@ -66,6 +67,7 @@ namespace LuaFramework.Editor {
 
       HashSet<string> libs = new HashSet<string>();
       FillUnityLibraries(libs);
+      FillFrameworkLibraries(libs);
       AssemblyName assemblyName = new AssemblyName(kCompiledScripts);
       Assembly assembly = Assembly.Load(assemblyName);
       foreach (var referenced in assembly.GetReferencedAssemblies()) {
@@ -145,6 +147,17 @@ namespace LuaFramework.Editor {
       string baseDir = Path.GetDirectoryName(unityObjectPath);
       foreach (string path in Directory.EnumerateFiles(baseDir, "*.dll")) {
         libs.Add(path);
+      }
+    }
+
+    private static void FillFrameworkLibraries(HashSet<string> libs) {
+      AssemblyName assemblyName = new AssemblyName(kCompiledFrameworkScripts);
+      Assembly assembly = Assembly.Load(assemblyName);
+      foreach (var referenced in assembly.GetReferencedAssemblies()) {
+        if (referenced.Name != "mscorlib" && !referenced.Name.StartsWith("System")) {
+          string libPath = Assembly.Load(referenced).Location;
+          libs.Add(libPath);
+        }
       }
     }
 

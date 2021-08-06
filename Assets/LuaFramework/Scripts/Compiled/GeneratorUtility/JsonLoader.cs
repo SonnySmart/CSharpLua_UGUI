@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
+using LuaFramework;
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace CSharpGeneratorForProton.Json {
   public interface ConfigElement {
@@ -23,7 +24,7 @@ namespace CSharpGeneratorForProton.Json {
   }
 
   public static class GeneratorConfig {
-    public static string ConfigDir = "";
+    public static string ConfigDir = "ConfigGenerator/";
     private static List<Action> DelayInitAction = new List<Action>();
 
     public static void InvokeDelayInitAction() {
@@ -46,6 +47,11 @@ namespace CSharpGeneratorForProton.Json {
   }
 
   public static class GeneratorUtility {
+    public static object Get(ConfigElement element, string name, object _) {
+      string s = element.GetAttribute(name);
+      return Convert(s, System.Convert.ToInt32(_));
+    }
+
     public static int Get(ConfigElement element, string name, int _) {
       string s = element.GetAttribute(name);
       return Convert(s, _);
@@ -177,8 +183,12 @@ namespace CSharpGeneratorForProton.Json {
     }
 
     private static Stream GetContentStream(string fileName) {
-      string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".json");
-      Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+      //string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".json");
+      //Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+      string path = GeneratorConfig.ConfigDir + fileName + ".json";
+      ResourceManager manager = LuaHelper.GetResManager();
+      TextAsset ta = manager.LoadAsset<TextAsset>(path);
+      Stream stream = new MemoryStream(ta.bytes);
       return stream;
     }
 

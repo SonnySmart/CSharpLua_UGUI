@@ -2,6 +2,7 @@ using UnityEngine;
 using LuaFramework;
 using SUIFW;
 using UnityEngine.UI;
+using CSharpGeneratorForProton.Json;
 
 public class PromptForm : BaseUIForms
 {
@@ -79,6 +80,10 @@ public class PromptForm : BaseUIForms
         //SingletonTest.Instance.TestPrint();
 
         SingletonNormalTest.Instance.TestPrint();
+
+        // ConfigTest
+        var config = GlobalConfig.Load();
+        int NameLimit = config.NameLimit;
     }
 
     public override void OnOpen()

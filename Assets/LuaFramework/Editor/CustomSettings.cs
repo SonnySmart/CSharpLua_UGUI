@@ -165,6 +165,9 @@ public static class CustomSettings
         _GT(typeof(RenderTexture)), 
 		_GT(typeof(Resources)),      
 		_GT(typeof(LuaProfiler)),
+
+        _GT(typeof(UnityEngine.TextAsset)),
+        //end UnityEngine
           
         //for LuaFramework
         _GT(typeof(Util)),
@@ -197,7 +200,17 @@ public static class CustomSettings
         _GT(typeof(SUIFW.UIFormsLucencyType)),
 
         //Proton
-        _GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility)),
+        _GT(typeof(CSharpGeneratorForProton.Json.NameSpace)),
+        //_GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility)),
+
+        //end LuaFramework
+
+        //start lib
+        //Newtonsoft.Json
+        _GT(typeof(Newtonsoft.Json.Linq.JObject)),
+        _GT(typeof(Newtonsoft.Json.Linq.JArray)),
+        _GT(typeof(Newtonsoft.Json.Linq.JToken)),
+        //end lib
     };
 
     public static List<Type> dynamicList = new List<Type>()

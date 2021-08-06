@@ -229,6 +229,11 @@ local function setBase(cls, kind)
     if extends then
       local base = extends[1]
       if not base then error(cls.__name__ .. "'s base is nil") end
+      if not pcall(function() local class = base.class end) then
+        --print(cls.__name__ .. "'s class is nil")
+        -- 20210805 暂时只有Interface这种类型读取不了class属性 -> 强制改为 "I"
+        rawset(base, "class", "I")
+      end
       if base.class == "I" then
         cls.interface = extends
         setmetatable(cls, Object)

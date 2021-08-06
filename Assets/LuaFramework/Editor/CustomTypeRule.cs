@@ -72,8 +72,8 @@ public static class CustomTypeRule
         GetAssemblyTypesToList(ref result, "Assembly-CSharp");
         // Redmoon.Protobuf 类库
         //GetAssemblyTypesToList(ref result, "Redmoon.Protobuf");
-        // LitJson
-        //GetAssemblyTypesToList(ref result, "LitJson");
+        // Newtonsoft.Json
+        //GetAssemblyTypesToList(ref result, "Newtonsoft.Json");
 
         // TODO : 游戏里还需要额外添加的加到这里
 
