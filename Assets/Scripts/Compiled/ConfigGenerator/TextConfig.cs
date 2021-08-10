@@ -22,7 +22,7 @@ namespace CSharpGeneratorForProton.Json {
     // 文本3
     public string Text_3 { get; private set; }
     
-    public void Read(ConfigElement element) {
+    public override void Read(ConfigElement element) {
       this.Text_1 = GeneratorUtility.Get(element, "Text_1", this.Text_1);
       this.Text_2 = GeneratorUtility.Get(element, "Text_2", this.Text_2);
       this.Text_3 = GeneratorUtility.Get(element, "Text_3", this.Text_3);

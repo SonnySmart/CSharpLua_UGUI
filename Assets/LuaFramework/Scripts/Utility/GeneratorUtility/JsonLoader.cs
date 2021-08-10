@@ -15,8 +15,8 @@ namespace CSharpGeneratorForProton.Json {
     ConfigElement GetElement(string name);
   }
 
-  public interface IGeneratorObject {
-    void Read(ConfigElement item);
+  public class IGeneratorObject {
+    virtual public void Read(ConfigElement item) {}
   }
 
   public interface IDelayInit {

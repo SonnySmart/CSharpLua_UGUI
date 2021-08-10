@@ -16,7 +16,7 @@ namespace CSharpGeneratorForProton.Json {
     // 索引
     public int Id { get; private set; }
     
-    public void Read(ConfigElement element) {
+    public override void Read(ConfigElement element) {
       this.Id = GeneratorUtility.Get(element, "Id", this.Id);
       this.OnInit();
     }

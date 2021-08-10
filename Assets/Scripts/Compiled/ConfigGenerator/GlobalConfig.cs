@@ -25,13 +25,13 @@ namespace CSharpGeneratorForProton.Json {
     // 初始任务获得道具
     public int[] InitItems { get; private set; }
     
-    public void Read(ConfigElement element) {
+    public override void Read(ConfigElement element) {
       this.NameLimit = GeneratorUtility.Get(element, "NameLimit", this.NameLimit);
       this.HitCorrection = GeneratorUtility.Get(element, "HitCorrection", this.HitCorrection);
       this.LevelRange = GeneratorUtility.Get(element, "LevelRange", this.LevelRange);
       this.InitItems = GeneratorUtility.Get(element, "InitItems", this.InitItems);
       this.OnInit();
-    }
+    }    
     
     protected virtual void OnInit() {
     }
