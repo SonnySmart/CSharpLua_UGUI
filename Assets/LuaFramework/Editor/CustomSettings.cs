@@ -200,7 +200,9 @@ public static class CustomSettings
         _GT(typeof(SUIFW.UIFormsLucencyType)),
 
         //Proton
+        _GT(typeof(CSharpGeneratorForProton.Json.IGeneratorObject)),
         _GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility)),
+        _GT(typeof(CSharpGeneratorForProton.Json.ConfigElement)),
         //end LuaFramework
 
         //start lib

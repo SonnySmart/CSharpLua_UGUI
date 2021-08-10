@@ -15,8 +15,8 @@ namespace CSharpGeneratorForProton.Json {
     ConfigElement GetElement(string name);
   }
 
-  public class IGeneratorObject {
-    virtual public void Read(ConfigElement item) {}
+  public interface IGeneratorObject {
+    void Read(ConfigElement item);
   }
 
   public interface IDelayInit {
@@ -72,10 +72,7 @@ namespace CSharpGeneratorForProton.Json {
       return Convert(s, _);
     }
 
-    public static T Get<T>(ConfigElement element, string name, T _) where T : IGeneratorObject, new() {
-      var node = element.GetElement(name);
-      return Convert(node, _);
-    }
+
 
     public static int[] Get(ConfigElement element, string itemName, int[] _) {
       return GetArray<int>(element, itemName, _, Convert);
@@ -89,8 +86,28 @@ namespace CSharpGeneratorForProton.Json {
       return GetArray<string>(element, itemName, _, Convert);
     }
 
+    public static T Get<T>(ConfigElement element, string name, T _) where T : IGeneratorObject, new() {
+      var node = element.GetElement(name);
+      return Convert(node, _);
+    }
+
     public static T[] Get<T>(ConfigElement element, string itemName, T[] _) where T : IGeneratorObject, new() {
       return GetArray<T>(element, itemName, _, Convert);
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    public static LuaInterface.LuaTable Get(ConfigElement element, string name, LuaInterface.LuaTable _, LuaInterface.LuaTable obj) {
+      var node = element.GetElement(name);
+      return Convert(node, obj);
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    public static LuaInterface.LuaTable[] Get(ConfigElement element, string itemName, LuaInterface.LuaTable[] _, LuaInterface.LuaTable obj) {
+      return GetArray(element, itemName, obj, Convert);
     }
 
     public static T[] Load<T>(string fileName, string itemName) where T : IGeneratorObject, new() {
@@ -106,6 +123,49 @@ namespace CSharpGeneratorForProton.Json {
         var root = LoadRootElement(stream);
         return Convert(root, default(T));
       }
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    public static LuaInterface.LuaTable Load(string fileName, LuaInterface.LuaTable obj) {
+      using (var stream = GetContentStream(fileName)) {
+        var root = LoadRootElement(stream);
+        return Convert(root, obj);
+      }
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    public static LuaInterface.LuaTable[] Load(string fileName, string itemName, LuaInterface.LuaTable obj) {
+      using (var stream = GetContentStream(fileName)) {
+        var root = LoadRootElement(stream);
+        LuaInterface.LuaTable[] items = GetArray(root, obj, Convert);
+        return items != null ? items : new LuaInterface.LuaTable[0];
+      }
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    private static LuaInterface.LuaTable[] GetArray(ConfigElement element, LuaInterface.LuaTable obj, Func<ConfigElement, LuaInterface.LuaTable, LuaInterface.LuaTable> convert) {
+      List<LuaInterface.LuaTable> list = new List<LuaInterface.LuaTable>();
+      foreach (var node in element.GetElements()) {
+        list.Add(convert(node, obj));
+      }
+      return list.Count > 0 ? list.ToArray() : null;
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    private static LuaInterface.LuaTable[] GetArray(ConfigElement element, string itemName, LuaInterface.LuaTable obj, Func<ConfigElement, LuaInterface.LuaTable, LuaInterface.LuaTable> convert) {
+      var listNode = element.GetElement(itemName);
+      if (listNode != null) {
+        return GetArray(listNode, obj, convert);
+      }
+      return null;
     }
 
     private static T[] GetArray<T>(ConfigElement element, T[] _, Func<ConfigElement, T, T> convert) {
@@ -153,6 +213,19 @@ namespace CSharpGeneratorForProton.Json {
         GeneratorConfig.AddDelayAction(delayInit.OnDelayInit);
       }
       return t;
+    }
+
+    private static LuaInterface.LuaTable Convert(ConfigElement e, LuaInterface.LuaTable obj) {
+      if (e == null || obj == null) {
+        return null;
+      }
+      // 调用元方法__call 也就是new
+      LuaInterface.LuaTable table = obj.Invoke<LuaInterface.LuaTable, LuaInterface.LuaTable>("__call", obj);
+      // 调用普通方法Read
+      table.Call("Read", table, e);
+      obj.Dispose();
+      obj = null;
+      return table;
     }
 
     private static int Convert(string s, int _) {

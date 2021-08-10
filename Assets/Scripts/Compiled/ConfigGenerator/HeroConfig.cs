@@ -63,7 +63,7 @@ namespace CSharpGeneratorForProton.Json {
       
       public int Magic { get; private set; }
       
-      public override void Read(ConfigElement element) {
+      public void Read(ConfigElement element) {
         this.Hp = GeneratorUtility.Get(element, "Hp", this.Hp);
         this.Magic = GeneratorUtility.Get(element, "Magic", this.Magic);
       }

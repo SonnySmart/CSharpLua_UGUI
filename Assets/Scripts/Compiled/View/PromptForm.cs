@@ -84,6 +84,19 @@ public class PromptForm : BaseUIForms
         // ConfigTest
         var config = GlobalConfig.Load();
         int NameLimit = config.NameLimit;
+        var LevelRange = config.LevelRange;
+        int Max = LevelRange.Max;
+        print ($"Max -> {Max}");
+
+        var heroConfigs = HeroConfig.Load();
+        foreach (var heroConfig in heroConfigs)
+        {
+            var Bags = heroConfig.Bags;
+            foreach (var bag in Bags)
+            {
+                print($"bag.Id -> {bag.Id}");
+            }
+        }
     }
 
     public override void OnOpen()
