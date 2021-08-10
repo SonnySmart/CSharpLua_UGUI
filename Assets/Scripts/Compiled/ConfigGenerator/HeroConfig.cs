@@ -39,9 +39,9 @@ namespace CSharpGeneratorForProton.Json {
       this.MountId = GeneratorUtility.Get(element, "MountId", this.MountId);
       this.Sex = GeneratorUtility.Get(element, "Sex", this.Sex);
       this.Height = GeneratorUtility.Get(element, "Height", this.Height);
-      this.Weapons = GeneratorUtility.Get(element, "Weapons", this.Weapons);
+      this.Weapons = GeneratorUtility.Gets(element, "Weapons", this.Weapons);
       this.Property = GeneratorUtility.Get(element, "Property", this.Property);
-      this.Bags = GeneratorUtility.Get(element, "Bags", this.Bags);
+      this.Bags = GeneratorUtility.Gets(element, "Bags", this.Bags);
       this.OnInit();
     }
     

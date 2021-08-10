@@ -29,7 +29,7 @@ namespace CSharpGeneratorForProton.Json {
       this.NameLimit = GeneratorUtility.Get(element, "NameLimit", this.NameLimit);
       this.HitCorrection = GeneratorUtility.Get(element, "HitCorrection", this.HitCorrection);
       this.LevelRange = GeneratorUtility.Get(element, "LevelRange", this.LevelRange);
-      this.InitItems = GeneratorUtility.Get(element, "InitItems", this.InitItems);
+      this.InitItems = GeneratorUtility.Gets(element, "InitItems", this.InitItems);
       this.OnInit();
     }
     
@@ -54,7 +54,7 @@ namespace CSharpGeneratorForProton.Json {
       public void Read(ConfigElement element) {
         this.Min = GeneratorUtility.Get(element, "Min", this.Min);
         this.Max = GeneratorUtility.Get(element, "Max", this.Max);
-      }    
+      }
     }
   }
 }

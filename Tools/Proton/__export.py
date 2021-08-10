@@ -20,13 +20,15 @@ import traceback
 import shutil
 import sys
 
+workpath = os.getcwd()
 exportscript = './proton.py'     
 exportconfig = './__export.txt'
 pythonpath = 'sample\\tools\\py37\\py37.exe ' if platform.system() == 'Windows' else 'python '
 csprotonpath = 'sample\\tools\\CSharpGeneratorForProton\\CSharpGeneratorForProton.exe '
 xlsxfolder = './sample' # 默认xlsx路径
-xlsxdatafolder = '../../Assets/ResHotfix/' # 默认xlsx输出路径
-xlsxcsfolder = '../../Assets/Scripts/Compiled/' # 默认xlsx->c#输出路径
+assetsfolder = os.path.join(workpath, '..', '..', 'Assets')
+xlsxdatafolder = os.path.join(assetsfolder, 'ResHotfix') # 默认xlsx输出路径 -> .json/.xml
+xlsxcsfolder = os.path.join(assetsfolder, 'Scripts', 'Compiled') # 默认xlsx -> c#输出路径 -> .cs
 
 class ExportError(Exception):
   pass
@@ -56,7 +58,7 @@ def readxlsx():
     pass
 
 def export(filelist, format, sign, outfolder, suffix, schema):
-  outfolder = xlsxdatafolder + outfolder
+  outfolder = os.path.join(xlsxdatafolder, outfolder)
   cmd = r' -p "' + ','.join(filelist) + '" -f ' + outfolder + ' -e ' + format + ' -s ' + sign
   if suffix:
     cmd += ' -t ' + suffix
@@ -68,7 +70,7 @@ def export(filelist, format, sign, outfolder, suffix, schema):
     raise ExportError('export excel fail, please see print')
 
 def codegenerator(schema, outfolder, namespace, suffix):
-  outfolder = xlsxcsfolder + outfolder
+  outfolder = os.path.join(xlsxcsfolder, outfolder)
   if os.path.exists(schema):
     cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
     if suffix:
