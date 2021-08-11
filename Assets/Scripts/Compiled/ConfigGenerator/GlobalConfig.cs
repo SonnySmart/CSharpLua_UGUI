@@ -25,6 +25,9 @@ namespace CSharpGeneratorForProton.Json {
     // 初始任务获得道具
     public int[] InitItems { get; private set; }
     
+    // 缓存静态实例减少开销
+    private static GlobalConfig _obj;
+    
     public void Read(ConfigElement element) {
       this.NameLimit = GeneratorUtility.Get(element, "NameLimit", this.NameLimit);
       this.HitCorrection = GeneratorUtility.Get(element, "HitCorrection", this.HitCorrection);
@@ -37,7 +40,7 @@ namespace CSharpGeneratorForProton.Json {
     }
     
     public static GlobalConfig Load() {
-      return Load<GlobalConfig>();
+      return _obj = (_obj == null ? Load<GlobalConfig>() : _obj);
     }
     
     public static T Load<T>()

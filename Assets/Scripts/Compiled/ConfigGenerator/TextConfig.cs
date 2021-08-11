@@ -22,6 +22,9 @@ namespace CSharpGeneratorForProton.Json {
     // 文本3
     public string Text_3 { get; private set; }
     
+    // 缓存静态实例减少开销
+    private static TextConfig _obj;
+    
     public void Read(ConfigElement element) {
       this.Text_1 = GeneratorUtility.Get(element, "Text_1", this.Text_1);
       this.Text_2 = GeneratorUtility.Get(element, "Text_2", this.Text_2);
@@ -33,7 +36,7 @@ namespace CSharpGeneratorForProton.Json {
     }
     
     public static TextConfig Load() {
-      return Load<TextConfig>();
+      return _obj = (_obj == null ? Load<TextConfig>() : _obj);
     }
     
     public static T Load<T>()

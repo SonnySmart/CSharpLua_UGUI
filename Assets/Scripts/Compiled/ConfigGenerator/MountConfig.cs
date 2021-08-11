@@ -16,6 +16,9 @@ namespace CSharpGeneratorForProton.Json {
     // 索引
     public int Id { get; private set; }
     
+    // 缓存静态实例减少开销
+    private static MountConfig[] _obj;
+    
     public void Read(ConfigElement element) {
       this.Id = GeneratorUtility.Get(element, "Id", this.Id);
       this.OnInit();
@@ -25,7 +28,7 @@ namespace CSharpGeneratorForProton.Json {
     }
     
     public static MountConfig[] Load() {
-      return Load<MountConfig>();
+      return _obj = (_obj == null ? Load<MountConfig>() : _obj);
     }
     
     public static T[] Load<T>()

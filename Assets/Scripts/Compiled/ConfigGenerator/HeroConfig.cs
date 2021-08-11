@@ -34,6 +34,9 @@ namespace CSharpGeneratorForProton.Json {
     // 背包
     public Bag_[] Bags { get; private set; }
     
+    // 缓存静态实例减少开销
+    private static HeroConfig[] _obj;
+    
     public void Read(ConfigElement element) {
       this.Id = GeneratorUtility.Get(element, "Id", this.Id);
       this.MountId = GeneratorUtility.Get(element, "MountId", this.MountId);
@@ -49,7 +52,7 @@ namespace CSharpGeneratorForProton.Json {
     }
     
     public static HeroConfig[] Load() {
-      return Load<HeroConfig>();
+      return _obj = (_obj == null ? Load<HeroConfig>() : _obj);
     }
     
     public static T[] Load<T>()
