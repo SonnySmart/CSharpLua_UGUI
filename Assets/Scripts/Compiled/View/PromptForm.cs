@@ -4,6 +4,7 @@ using SUIFW;
 using UnityEngine.UI;
 using CSharpGeneratorForProton.Json;
 using CSharpGeneratorForProton.Protobuf;
+using System.IO;
 
 public class PromptForm : BaseUIForms
 {
@@ -123,6 +124,12 @@ public class PromptForm : BaseUIForms
                 print($"bag.Id -> {bag.Id}");
             }
         }
+
+        byte[] data = DataUtils.ObjectToBytes<GlobalProto>(config);
+        print (data);
+
+        var deconfig = DataUtils.BytesToObject<GlobalProto>(data, 0, data.Length);
+        print (deconfig);
     }
 
     public override void OnOpen()
