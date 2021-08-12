@@ -69,29 +69,38 @@ def export(filelist, format, sign, outfolder, suffix, schema):
   if code != 0:
     raise ExportError('export excel fail, please see print')
 
-def codegenerator(schema, outfolder, namespace, suffix):
+def codegenerator(schema, outfolder, namespace, suffix, protobuf = None):
   outfolder = os.path.join(xlsxcsfolder, outfolder)
   if os.path.exists(schema):
     cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
     if suffix:
       cmd += ' -t ' + suffix 
+    if protobuf:
+      cmd += ' -e -d ' + outfolder + ' -b .bytes'
     code = os.system(cmd)
     os.remove(schema)      
     if code != 0:
       raise ExportError('codegenerator fail, please see print')
         
-def exportserver():
-  export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'ConfigGenerator', 'Config', 'schemaserver.json')
-  codegenerator('schemaserver.json', 'ConfigGenerator', 'CSharpGeneratorForProton.Json', 'Config') 
+def exportserver(proto):
+  export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Config', 'schemaserver.json')
+  if proto:
+    codegenerator('schemaserver.json', 'Generator/Proto', 'CSharpGeneratorForProton.Protobuf', 'Proto', True) 
+  else:
+    codegenerator('schemaserver.json', 'Generator/Config', 'CSharpGeneratorForProton.Json', 'Config') 
     
 def exportclient():
   export(EXPORT_FILES + EXPORT_CLIENT_ONLY, 'lua', 'client', 'config_client', 'Template', None)
     
 def main():
   try:
+    proto = False
+    args = sys.argv
+    if len(args) >= 2:
+      proto = True
     readconfig()
     readxlsx()
-    exportserver()
+    exportserver(proto)
     #exportclient()
     print("all operation finish successful")
     return 0

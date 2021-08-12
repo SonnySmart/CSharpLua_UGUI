@@ -24,7 +24,7 @@ namespace CSharpGeneratorForProton.Json {
   }
 
   public static class GeneratorConfig {
-    public static string ConfigDir = "ConfigGenerator/";
+    public static string ConfigDir = "Generator/";
     private static List<Action> DelayInitAction = new List<Action>();
 
     public static void InvokeDelayInitAction() {
