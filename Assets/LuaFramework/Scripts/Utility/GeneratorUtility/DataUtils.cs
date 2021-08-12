@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using ProtoBuf;
+using UnityEngine;
 
 namespace CSharpGeneratorForProton.Protobuf
 {
@@ -30,7 +31,7 @@ namespace CSharpGeneratorForProton.Protobuf
             }
             catch (Exception ex)
             {
-
+                Debug.LogError(ex.Message);
                 return new byte[0];
             }
         }
@@ -52,6 +53,7 @@ namespace CSharpGeneratorForProton.Protobuf
             }
             catch (Exception ex)
             {
+                Debug.LogError(ex.Message);
                 return default(T);
             }
         }
