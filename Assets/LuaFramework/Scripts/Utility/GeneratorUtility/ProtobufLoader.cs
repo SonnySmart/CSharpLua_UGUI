@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using LuaFramework;
 using ProtoBuf.Meta;
+using UnityEngine;
 
 namespace CSharpGeneratorForProton.Protobuf {
-  internal interface IGeneratorObject {
+  public interface IGeneratorObject {
     void OnInit();
   }
 
@@ -14,7 +15,7 @@ namespace CSharpGeneratorForProton.Protobuf {
   }
 
   public static class GeneratorConfig {
-    public static string ConfigDir = "";
+    public static string ConfigDir = "Generator";
     private static List<Action> DelayInitAction = new List<Action>();
 
     public static void InvokeDelayInitAction() {
@@ -36,7 +37,7 @@ namespace CSharpGeneratorForProton.Protobuf {
     }
   }
 
-  internal static class GeneratorUtility {
+  public static class GeneratorUtility {
     public static T[] Load<T>(string fileName, string itemName) where T : IGeneratorObject, new() {
       TryAddSubTypeTypeModel(typeof(T));
       using (Stream stream = GetContentStream(fileName)) {
@@ -61,6 +62,20 @@ namespace CSharpGeneratorForProton.Protobuf {
         }
         return t;
       }
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    public static LuaInterface.LuaTable[] Load(string fileName, string itemName, LuaInterface.LuaTable obj) {
+      return null;
+    }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    public static LuaInterface.LuaTable Load(string fileName, LuaInterface.LuaTable obj) {
+      return null;
     }
 
     /// <summary>
@@ -116,10 +131,16 @@ namespace CSharpGeneratorForProton.Protobuf {
 
     private static Stream GetContentStream(string fileName) {
       string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".bytes");
+      /*
       if (!File.Exists(path)) {
         return null;
       }
-      return new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
+      */
+      ResourceManager manager = LuaHelper.GetResManager();
+      TextAsset ta = manager.LoadAsset<TextAsset>(path);
+      Stream stream = new MemoryStream(ta.bytes);
+      return stream;
+      //return new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
     }
   }
 }

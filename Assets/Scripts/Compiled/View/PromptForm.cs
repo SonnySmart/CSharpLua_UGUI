@@ -3,6 +3,7 @@ using LuaFramework;
 using SUIFW;
 using UnityEngine.UI;
 using CSharpGeneratorForProton.Json;
+using CSharpGeneratorForProton.Protobuf;
 
 public class PromptForm : BaseUIForms
 {
@@ -38,6 +39,8 @@ public class PromptForm : BaseUIForms
         this.BaseUIFormsTest();
 
         this.DoTest();
+        this.ConfigTest();
+        this.ProtoTest();
     }
 
     public void Start()
@@ -80,7 +83,10 @@ public class PromptForm : BaseUIForms
         //SingletonTest.Instance.TestPrint();
 
         SingletonNormalTest.Instance.TestPrint();
+    }
 
+    void ConfigTest()
+    {
         // ConfigTest
         var config = GlobalConfig.Load();
         int NameLimit = config.NameLimit;
@@ -89,6 +95,26 @@ public class PromptForm : BaseUIForms
         print ($"Max -> {Max}");
 
         var heroConfigs = HeroConfig.Load();
+        foreach (var heroConfig in heroConfigs)
+        {
+            var Bags = heroConfig.Bags;
+            foreach (var bag in Bags)
+            {
+                print($"bag.Id -> {bag.Id}");
+            }
+        }
+    }
+
+    void ProtoTest()
+    {
+        // ProtoTest
+        var config = GlobalProto.Load();
+        int NameLimit = config.NameLimit;
+        var LevelRange = config.LevelRange;
+        int Max = LevelRange.Max;
+        print ($"Max -> {Max}");
+
+        var heroConfigs = HeroProto.Load();
         foreach (var heroConfig in heroConfigs)
         {
             var Bags = heroConfig.Bags;

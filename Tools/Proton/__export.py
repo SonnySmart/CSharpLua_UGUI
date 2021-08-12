@@ -69,14 +69,16 @@ def export(filelist, format, sign, outfolder, suffix, schema):
   if code != 0:
     raise ExportError('export excel fail, please see print')
 
-def codegenerator(schema, outfolder, namespace, suffix, protobuf = None):
+def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofolder = None):
   outfolder = os.path.join(xlsxcsfolder, outfolder)
+  if protobuf:
+    protofolder = os.path.join(xlsxdatafolder, protofolder)
   if os.path.exists(schema):
     cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
     if suffix:
       cmd += ' -t ' + suffix 
     if protobuf:
-      cmd += ' -e -d ' + outfolder + ' -b .bytes'
+      cmd += ' -e -d ' + protofolder + ' -b .bytes'
     code = os.system(cmd)
     os.remove(schema)      
     if code != 0:
@@ -85,7 +87,7 @@ def codegenerator(schema, outfolder, namespace, suffix, protobuf = None):
 def exportserver(proto):
   export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Config', 'schemaserver.json')
   if proto:
-    codegenerator('schemaserver.json', 'Generator/Proto', 'CSharpGeneratorForProton.Protobuf', 'Proto', True) 
+    codegenerator('schemaserver.json', 'Generator/Proto', 'CSharpGeneratorForProton.Protobuf', 'Proto', True, 'Generator') 
   else:
     codegenerator('schemaserver.json', 'Generator/Config', 'CSharpGeneratorForProton.Json', 'Config') 
     
