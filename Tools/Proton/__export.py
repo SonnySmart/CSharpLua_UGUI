@@ -80,7 +80,7 @@ def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofo
     if protobuf:
       cmd += ' -e -d ' + protofolder + ' -b .bytes'
     code = os.system(cmd)
-    os.remove(schema)      
+    #os.remove(schema)      
     if code != 0:
       raise ExportError('codegenerator fail, please see print')
         
