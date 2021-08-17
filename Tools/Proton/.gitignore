@@ -1,4 +1,4 @@
 *.pyc
 *.txt
 ~$*.xlsx
-schemaserver.json
+*.json

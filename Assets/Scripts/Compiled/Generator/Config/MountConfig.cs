@@ -33,7 +33,7 @@ namespace CSharpGeneratorForProton.Json {
     
     public static T[] Load<T>()
       where T : MountConfig, new () {
-      return GeneratorUtility.Load<T>("MountConfig", "Mount");
+      return GeneratorUtility.Load<T>("MountsConfig", "Mount");
     }
   }
 }
