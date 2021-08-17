@@ -1,1 +1,4 @@
+# 默认xlsx路径
 D:\git\LuaFramework_UGUI_V2\Tools\Proton\sample
+# protobuf 输出路径
+D:\git\LuaFramework_UGUI_V2\Tools\Proton\sample\Export

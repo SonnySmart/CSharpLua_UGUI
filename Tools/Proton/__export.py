@@ -29,20 +29,41 @@ xlsxfolder = './sample' # 默认xlsx路径
 assetsfolder = os.path.join(workpath, '..', '..', 'Assets')
 xlsxdatafolder = os.path.join(assetsfolder, 'ResHotfix') # 默认xlsx输出路径 -> .json/.xml
 xlsxcsfolder = os.path.join(assetsfolder, 'Scripts', 'Compiled') # 默认xlsx -> c#输出路径 -> .cs
+protogenfolder = xlsxfolder
 
 class ExportError(Exception):
   pass
 
+def defconfig():
+  strconfig = '# 默认xlsx路径\n'
+  strconfig += (xlsxfolder + '\n')
+  strconfig += '# protobuf 输出路径\n'
+  strconfig += (protogenfolder)
+  return strconfig
+
+def readline(f):
+  s = f.readline()
+  if '#' in s:
+    s = f.readline()
+  s = s.replace('\n', '')
+  return s
+
 def readconfig():
   global xlsxfolder
+  global protogenfolder
   if not os.path.isfile(exportconfig):
     with open(exportconfig, 'w') as f:
-      f.write(xlsxfolder)
+      strconfig = defconfig()
+      f.write(strconfig)
       pass
   with open(exportconfig, 'r') as f:
-    xlsxfolder = f.readline()
+    xlsxfolder = readline(f)
+    protogenfolder = readline(f)
     pass
   print ('xlsxfolder ->' , xlsxfolder)
+  print ('protogenfolder ->' , protogenfolder)
+  if not os.path.isdir(xlsxfolder):
+    raise ExportError('xlsxfolder is not exist .')
   pass
 
 def readxlsx():
@@ -65,20 +86,22 @@ def export(filelist, format, sign, outfolder, suffix, schema):
   if schema:
     cmd += ' -c ' + schema
   cmd = pythonpath + exportscript + cmd
+  print ('export cmd -> ', cmd)
   code = os.system(cmd)
   if code != 0:
     raise ExportError('export excel fail, please see print')
 
 def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofolder = None):
-  outfolder = os.path.join(xlsxcsfolder, outfolder)
+  outfolder = os.path.join(xlsxcsfolder, outfolder.replace('/', os.path.sep))
   if protobuf:
-    protofolder = os.path.join(xlsxdatafolder, protofolder)
+    protofolder = os.path.join(xlsxdatafolder, protofolder.replace('/', os.path.sep))
   if os.path.exists(schema):
     cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
     if suffix:
       cmd += ' -t ' + suffix 
     if protobuf:
-      cmd += ' -e -d ' + protofolder + ' -b .bytes'
+      cmd += ' -e -d ' + protofolder + ' -g ' + protogenfolder + ' -b .bytes'
+    print ('codegenerator cmd -> ', cmd)
     code = os.system(cmd)
     #os.remove(schema)      
     if code != 0:
