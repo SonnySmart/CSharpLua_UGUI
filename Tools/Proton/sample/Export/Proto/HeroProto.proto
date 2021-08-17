@@ -43,4 +43,12 @@ message Property
     int32 Magic = 2;
 }
 
+message Bag
+{
+    // 
+    int32 Id = 1;
+    // 
+    int32 Count = 2;
+}
+
 

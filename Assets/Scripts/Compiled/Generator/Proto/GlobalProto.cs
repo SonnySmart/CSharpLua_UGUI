@@ -43,7 +43,7 @@ namespace CSharpGeneratorForProton.Protobuf {
     
     public static T Load<T>()
       where T : GlobalProto, new () {
-      return GeneratorUtility.Load<T>("GlobalConfig");
+      return GeneratorUtility.Load<T>("GlobalProto");
     }
     
     [ProtoContract()]

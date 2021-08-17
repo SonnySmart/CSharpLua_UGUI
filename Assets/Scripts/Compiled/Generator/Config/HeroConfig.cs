@@ -57,7 +57,7 @@ namespace CSharpGeneratorForProton.Json {
     
     public static T[] Load<T>()
       where T : HeroConfig, new () {
-      return GeneratorUtility.Load<T>("HerosConfig", "Hero");
+      return GeneratorUtility.Load<T>("HeroConfig", "Hero");
     }
     
     public sealed class Property_ : IGeneratorObject {

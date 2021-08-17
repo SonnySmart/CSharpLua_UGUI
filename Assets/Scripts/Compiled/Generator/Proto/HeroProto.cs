@@ -55,7 +55,7 @@ namespace CSharpGeneratorForProton.Protobuf {
     
     public static T[] Load<T>()
       where T : HeroProto, new () {
-      return GeneratorUtility.Load<T>("HerosConfig", "Hero");
+      return GeneratorUtility.Load<T>("HerosProto", "Hero");
     }
     
     [ProtoContract()]

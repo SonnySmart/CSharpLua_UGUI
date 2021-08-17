@@ -39,7 +39,7 @@ namespace CSharpGeneratorForProton.Protobuf {
     
     public static T Load<T>()
       where T : TextProto, new () {
-      return GeneratorUtility.Load<T>("TextConfig");
+      return GeneratorUtility.Load<T>("TextProto");
     }
   }
 }

@@ -31,7 +31,7 @@ namespace CSharpGeneratorForProton.Protobuf {
     
     public static T[] Load<T>()
       where T : MountProto, new () {
-      return GeneratorUtility.Load<T>("MountsConfig", "Mount");
+      return GeneratorUtility.Load<T>("MountsProto", "Mount");
     }
   }
 }

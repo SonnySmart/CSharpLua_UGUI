@@ -108,10 +108,11 @@ def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofo
       raise ExportError('codegenerator fail, please see print')
         
 def exportserver(proto):
-  export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Config', 'schemaserver.json')
   if proto:
+    export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Proto', 'schemaserver.json')
     codegenerator('schemaserver.json', 'Generator/Proto', 'CSharpGeneratorForProton.Protobuf', 'Proto', True, 'Generator') 
   else:
+    export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Config', 'schemaserver.json')
     codegenerator('schemaserver.json', 'Generator/Config', 'CSharpGeneratorForProton.Json', 'Config') 
     
 def exportclient():
