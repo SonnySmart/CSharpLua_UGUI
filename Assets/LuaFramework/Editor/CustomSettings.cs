@@ -203,7 +203,7 @@ public static class CustomSettings
         _GT(typeof(CSharpGeneratorForProton.Json.IGeneratorObject)),
         _GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility)),
         _GT(typeof(CSharpGeneratorForProton.Protobuf.IGeneratorObject)),
-        _GT(typeof(CSharpGeneratorForProton.Protobuf.GeneratorUtility)),
+        //_GT(typeof(CSharpGeneratorForProton.Protobuf.GeneratorUtility)),
         //end LuaFramework
 
         //start lib

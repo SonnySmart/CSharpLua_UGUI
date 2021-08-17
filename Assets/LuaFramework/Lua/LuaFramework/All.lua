@@ -6,4 +6,5 @@
 ]]
 
 require('LuaFramework.FixBehaviour')
+require('LuaFramework.GeneratorUtility')
 require("LuaFramework.Scripts.manifest")("LuaFramework.Scripts")
