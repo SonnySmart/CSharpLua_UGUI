@@ -19,22 +19,22 @@ option csharp_namespace = "CSharpGeneratorForProton.Protobuf";
 
 message GlobalProto
 {
+    message LevelRange_
+    {
+        // 
+        int32 Min = 1;
+        // 
+        int32 Max = 2;
+    }
+
     // 名字字数限制
     int32 NameLimit = 1;
     // 命中修正系数
     double HitCorrection = 2;
     // 等级区间
-    LevelRange LevelRange = 3;
+    LevelRange_ LevelRange = 3;
     // 初始任务获得道具
     repeated int32 InitItems = 4;
-}
-
-message LevelRange
-{
-    // 
-    int32 Min = 1;
-    // 
-    int32 Max = 2;
 }
 
 

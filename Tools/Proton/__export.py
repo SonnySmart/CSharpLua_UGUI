@@ -101,7 +101,9 @@ def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofo
       cmd += ' -t ' + suffix 
     if protobuf:
       cmd += ' -e -d ' + protofolder + ' -g ' + protogenfolder + ' -b .bytes'
-    print ('codegenerator cmd -> ', cmd)
+    with open('__cmd.txt', 'w') as f:
+      f.write(cmd)
+    #print ('codegenerator cmd -> ', cmd)
     code = os.system(cmd)
     #os.remove(schema)      
     if code != 0:

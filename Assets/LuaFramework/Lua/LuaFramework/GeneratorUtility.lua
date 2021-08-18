@@ -17,6 +17,6 @@ local Module = 'Compiled.Generator.Proto'
 function GeneratorUtility.Load(fileName, T)
     print (fileName)
     local module_name = string.format('%s.%s_pb', Module, fileName)
-    local r = require (module_name)
-    return r
+    local m = require (module_name)
+    return m
 end

@@ -19,6 +19,22 @@ option csharp_namespace = "CSharpGeneratorForProton.Protobuf";
 
 message HeroProto
 {
+    message Property_
+    {
+        // 
+        int32 Hp = 1;
+        // 
+        int32 Magic = 2;
+    }
+
+    message Bag_
+    {
+        // 
+        int32 Id = 1;
+        // 
+        int32 Count = 2;
+    }
+
     // 索引
     int32 Id = 1;
     // 坐骑
@@ -30,25 +46,9 @@ message HeroProto
     // 武器
     repeated int32 Weapons = 5;
     // 主要属性
-    Property Property = 6;
+    Property_ Property = 6;
     // 背包
-    repeated Bag Bags = 7;
-}
-
-message Property
-{
-    // 
-    int32 Hp = 1;
-    // 
-    int32 Magic = 2;
-}
-
-message Bag
-{
-    // 
-    int32 Id = 1;
-    // 
-    int32 Count = 2;
+    repeated Bag_ Bags = 7;
 }
 
 
