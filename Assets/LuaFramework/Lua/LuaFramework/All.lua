@@ -5,6 +5,7 @@
     time:2021-04-01 10:37:52
 ]]
 
-require('LuaFramework.FixBehaviour')
-require('LuaFramework.GeneratorUtility')
+require('LuaFramework.Wraper.FixBehaviour')
+require('LuaFramework.Wraper.GeneratorUtility')
+-- 这个先初始化有问题
 require("LuaFramework.Scripts.manifest")("LuaFramework.Scripts")
