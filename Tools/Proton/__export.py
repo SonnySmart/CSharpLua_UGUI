@@ -12,6 +12,10 @@ EXPORT_CLIENT_ONLY = [
 EXPORT_SERVER_ONLY = [
 ]
 
+# Protobuf导出配置文件
+EXPORT_PROTO_FILES = [
+]
+
 # do not modify the following
 
 import os
@@ -25,19 +29,22 @@ exportscript = './proton.py'
 exportconfig = './__export.txt'
 pythonpath = 'sample\\tools\\py37\\py37.exe ' if platform.system() == 'Windows' else 'python '
 csprotonpath = 'sample\\tools\\CSharpGeneratorForProton\\CSharpGeneratorForProton.exe '
-xlsxfolder = './sample' # 默认xlsx路径
+xlsxfolder = 'sample/Config' # 默认xlsx配置路径
+protofolder = 'sample/Proto' # 默认protobuf配置路径
+protogenfolder = 'sample/Export'
 assetsfolder = os.path.join(workpath, '..', '..', 'Assets')
 xlsxdatafolder = os.path.join(assetsfolder, 'ResHotfix') # 默认xlsx输出路径 -> .json/.xml
 xlsxcsfolder = os.path.join(assetsfolder, 'Scripts', 'Compiled') # 默认xlsx -> c#输出路径 -> .cs
-protogenfolder = xlsxfolder
 
 class ExportError(Exception):
   pass
 
 def defconfig():
-  strconfig = '# 默认xlsx路径\n'
+  strconfig = '# 默认xlsx配置路径\n'
   strconfig += (xlsxfolder + '\n')
-  strconfig += '# protobuf 输出路径\n'
+  strconfig += '# 默认protobuf配置路径\n'
+  strconfig += (protofolder + '\n')
+  strconfig += '# 默认protobuf输出路径\n'
   strconfig += (protogenfolder)
   return strconfig
 
@@ -50,6 +57,7 @@ def readline(f):
 
 def readconfig():
   global xlsxfolder
+  global protofolder
   global protogenfolder
   if not os.path.isfile(exportconfig):
     with open(exportconfig, 'w') as f:
@@ -58,23 +66,31 @@ def readconfig():
       pass
   with open(exportconfig, 'r') as f:
     xlsxfolder = readline(f)
+    protofolder = readline(f)
     protogenfolder = readline(f)
     pass
   print ('xlsxfolder ->' , xlsxfolder)
+  print ('protofolder ->' , protofolder)
   print ('protogenfolder ->' , protogenfolder)
-  if not os.path.isdir(xlsxfolder):
-    raise ExportError('xlsxfolder is not exist .')
   pass
 
-def readxlsx():
-  for root, dirs, files in os.walk(xlsxfolder):
+def readxlsx(proto):
+  if proto:
+    _readxlsx(protofolder, EXPORT_PROTO_FILES)
+  else:
+    _readxlsx(xlsxfolder, EXPORT_FILES, EXPORT_SERVER_ONLY, EXPORT_CLIENT_ONLY)
+
+def _readxlsx(folder, export_files, export_s = None, export_c = None):
+  if not os.path.isdir(folder):
+    raise ExportError('xlsxfolder [%s] is not exist .' % folder)
+  for root, dirs, files in os.walk(folder):
     for f in files:
       if not f.endswith('.xlsx'):
         continue
       if '~$' in f:
         continue
       path = os.path.join(root, f)
-      EXPORT_FILES.append(path)
+      export_files.append(path)
       pass
     pass
 
@@ -91,16 +107,16 @@ def export(filelist, format, sign, outfolder, suffix, schema):
   if code != 0:
     raise ExportError('export excel fail, please see print')
 
-def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofolder = None):
+def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, outprotofolder = None):
   outfolder = os.path.join(xlsxcsfolder, outfolder.replace('/', os.path.sep))
   if protobuf:
-    protofolder = os.path.join(xlsxdatafolder, protofolder.replace('/', os.path.sep))
+    outprotofolder = os.path.join(xlsxdatafolder, outprotofolder.replace('/', os.path.sep))
   if os.path.exists(schema):
     cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
     if suffix:
       cmd += ' -t ' + suffix 
     if protobuf:
-      cmd += ' -e -d ' + protofolder + ' -g ' + protogenfolder + ' -b .bytes'
+      cmd += ' -e -d ' + outprotofolder + ' -g ' + protogenfolder + ' -b .bytes'
     with open('__cmd.txt', 'w') as f:
       f.write(cmd)
     #print ('codegenerator cmd -> ', cmd)
@@ -111,7 +127,7 @@ def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, protofo
         
 def exportserver(proto):
   if proto:
-    export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Proto', 'schemaserver.proto.json')
+    export(EXPORT_PROTO_FILES, 'json', 'server', 'Generator', 'Proto', 'schemaserver.proto.json')
     codegenerator('schemaserver.proto.json', 'Generator/Proto', 'CSharpGeneratorForProton.Protobuf', 'Proto', True, 'Generator') 
   else:
     export(EXPORT_FILES + EXPORT_SERVER_ONLY, 'json', 'server', 'Generator', 'Config', 'schemaserver.json')
@@ -127,7 +143,7 @@ def main():
     if len(args) >= 2:
       proto = True
     readconfig()
-    readxlsx()
+    readxlsx(proto)
     exportserver(proto)
     #exportclient()
     print("all operation finish successful")

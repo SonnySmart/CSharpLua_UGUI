@@ -109,27 +109,19 @@ public class PromptForm : BaseUIForms
     void ProtoTest()
     {
         // ProtoTest
-        var config = GlobalProto.Load();
-        int NameLimit = config.NameLimit;
-        var LevelRange = config.LevelRange;
-        int Max = LevelRange.Max;
-        print ($"Max -> {Max}");
+        var config = TextProto.Load();
+        var Text_1 = config.Text_1;
+        var Text_2 = config.Text_2;
+        var Text_3 = config.Text_3;
+        print ($"Text_1 -> {Text_1}");
+        print ($"Text_2 -> {Text_2}");
+        print ($"Text_3 -> {Text_3}");
 
-        var heroConfigs = HeroProto.Load();
-        foreach (var heroConfig in heroConfigs)
-        {
-            var Bags = heroConfig.Bags;
-            foreach (var bag in Bags)
-            {
-                print($"bag.Id -> {bag.Id}");
-            }
-        }
+        // byte[] data = DataUtils.ObjectToBytes<TextProto>(config);
+        // print (data);
 
-        byte[] data = DataUtils.ObjectToBytes<GlobalProto>(config);
-        print (data);
-
-        var deconfig = DataUtils.BytesToObject<GlobalProto>(data, 0, data.Length);
-        print (deconfig);
+        // var deconfig = DataUtils.BytesToObject<TextProto>(data, 0, data.Length);
+        // print (deconfig);
     }
 
     public override void OnOpen()

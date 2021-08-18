@@ -5,7 +5,15 @@
     time:2021-08-17 13:39:05
 ]]
 
+local global = _G
+local sgsub = string.gsub
+local sformat = string.format
+
 local Protobuf = CSharpGeneratorForProton.Protobuf
+
+local ResourceManager = LuaFramework.LuaHelper.GetResManager()
+
+local NameSpace = 'CSharpGeneratorForProton.Protobuf.'
 
 local GeneratorUtility = {}
 
@@ -13,10 +21,29 @@ Protobuf.GeneratorUtility = GeneratorUtility
 
 local Module = 'Compiled.Generator.Proto'
 
---CSharpGeneratorForProtonProtobuf.GeneratorUtility.Load("HerosProto", "Hero", T)
-function GeneratorUtility.Load(fileName, T)
+--[[
+    protobuf lua模块加载适配
+    @test CSharpGeneratorForProtonProtobuf.GeneratorUtility.Load("HerosProto", "Hero", T)
+]]
+function GeneratorUtility.Load(arg1, arg2, arg3)
+    if arg3 == nil then
+        return GeneratorUtility.Load3(arg1, nil, arg2)
+    else
+        return GeneratorUtility.Load3(arg1, arg2, arg3)
+    end
+end
+
+function GeneratorUtility.Load3(fileName, itemName, T)
     print (fileName)
-    local module_name = string.format('%s.%s_pb', Module, fileName)
-    local m = require (module_name)
-    return m
+    local class_name = sgsub((T.__name__ or ''), NameSpace, '')
+    local module_name = sformat('%s_pb', fileName)
+    local module_full_name = sformat('%s.%s', Module, module_name)
+    -- 加载模块
+    require (module_full_name)
+    -- 实例化
+    local message = global[module_name][class_name]()
+    local path = 'Generator/' .. fileName .. '.bytes'
+    local bytes = ResourceManager:LoadAsset(path)
+    message:ParseFromString(bytes)
+    return message
 end

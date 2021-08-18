@@ -142,5 +142,16 @@ namespace CSharpGeneratorForProton.Protobuf {
       return stream;
       //return new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
     }
+
+    /// <summary>
+    /// lua function
+    /// </summary>
+    [LuaInterface.LuaByteBuffer]
+    public static byte []GetContentBytes(string fileName) {
+      string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".bytes");
+      ResourceManager manager = LuaHelper.GetResManager();
+      TextAsset ta = manager.LoadAsset<TextAsset>(path);
+      return ta.bytes;
+    }
   }
 }

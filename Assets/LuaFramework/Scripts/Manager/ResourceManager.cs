@@ -2,6 +2,7 @@
 using LuaInterface;
 using UObject = UnityEngine.Object;
 using libx;
+using UnityEngine;
 
 namespace LuaFramework {
 
@@ -38,6 +39,16 @@ namespace LuaFramework {
         {
             var request = Assets.LoadAsset(asset, typeof(UObject));
             return request.asset as T;
+        }
+
+        /// <summary>
+        /// 同步加载
+        /// </summary>
+        [LuaByteBuffer]
+        public byte []LoadAsset(string asset)
+        {
+            TextAsset ta = LoadAsset<TextAsset>(asset);
+            return ta == null ? null : ta.bytes;
         }
 
         /// <summary>
