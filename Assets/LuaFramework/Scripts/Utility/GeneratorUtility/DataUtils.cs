@@ -36,7 +36,7 @@ namespace CSharpGeneratorForProton.Protobuf
             }
         }
 
-        public static T BytesToObject<T>(byte[] bytesData, int offset, int length)
+        public static T BytesToObject<T>(byte[] bytesData)
         {
             if (bytesData.Length == 0)
             {
@@ -56,6 +56,27 @@ namespace CSharpGeneratorForProton.Protobuf
                 Debug.LogError(ex.Message);
                 return default(T);
             }
+        }
+
+        /// <summary>
+        /// lua function
+        /// </summary>
+        [LuaInterface.LuaByteBuffer]
+        public static byte[] ObjectToBytes(LuaInterface.LuaTable instance, LuaInterface.LuaTable T)
+        {
+            //local pb_data = msg:SerializeToString() 
+            return instance.Invoke<LuaInterface.LuaTable, byte []>("SerializeToString", instance);
+        }
+
+        /// <summary>
+        /// lua function
+        /// </summary>
+        [LuaInterface.LuaByteBuffer]
+        public static LuaInterface.LuaTable BytesToObject(byte[] bytesData, LuaInterface.LuaTable T)
+        {
+            //local pb_data = msg:SerializeToString() 
+            //return instance.Invoke<byte []>("ParseFromString");
+            return null;
         }
     }
 

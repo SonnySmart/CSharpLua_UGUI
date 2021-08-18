@@ -117,11 +117,11 @@ public class PromptForm : BaseUIForms
         print ($"Text_2 -> {Text_2}");
         print ($"Text_3 -> {Text_3}");
 
-        // byte[] data = DataUtils.ObjectToBytes<TextProto>(config);
-        // print (data);
+        byte[] data = DataUtils.ObjectToBytes<TextProto>(config);
+        print (data);
 
-        // var deconfig = DataUtils.BytesToObject<TextProto>(data, 0, data.Length);
-        // print (deconfig);
+        var deconfig = DataUtils.BytesToObject<TextProto>(data);
+        print (deconfig);
     }
 
     public override void OnOpen()

@@ -35,6 +35,7 @@ protogenfolder = 'sample/Export'
 assetsfolder = os.path.join(workpath, '..', '..', 'Assets')
 xlsxdatafolder = os.path.join(assetsfolder, 'ResHotfix') # 默认xlsx输出路径 -> .json/.xml
 xlsxcsfolder = os.path.join(assetsfolder, 'Scripts', 'Compiled') # 默认xlsx -> c#输出路径 -> .cs
+luagenfolder = os.path.join(assetsfolder, 'LuaFramework', 'Lua', 'Compiled', 'Generator', 'Proto') # lua protobuf 路径
 
 class ExportError(Exception):
   pass
@@ -107,15 +108,15 @@ def export(filelist, format, sign, outfolder, suffix, schema):
   if code != 0:
     raise ExportError('export excel fail, please see print')
 
-def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, outprotofolder = None):
+def codegenerator(schema, outfolder, namespace, suffix, proto = None, outprotofolder = None):
   outfolder = os.path.join(xlsxcsfolder, outfolder.replace('/', os.path.sep))
-  if protobuf:
+  if proto:
     outprotofolder = os.path.join(xlsxdatafolder, outprotofolder.replace('/', os.path.sep))
   if os.path.exists(schema):
     cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
     if suffix:
       cmd += ' -t ' + suffix 
-    if protobuf:
+    if proto:
       cmd += ' -e -d ' + outprotofolder + ' -g ' + protogenfolder + ' -b .bytes'
     with open('__cmd.txt', 'w') as f:
       f.write(cmd)
@@ -124,6 +125,31 @@ def codegenerator(schema, outfolder, namespace, suffix, protobuf = None, outprot
     #os.remove(schema)      
     if code != 0:
       raise ExportError('codegenerator fail, please see print')
+    else:
+      # protobuf生成成功处理 -> 拷贝lua到项目
+      if proto:
+        copy_lua_generator()        
+        pass
+
+def copy_lua_generator():
+  folder = os.path.join(protogenfolder, 'Gen', 'Lua')
+  target = luagenfolder
+  if not os.path.isdir(folder):
+    return
+  for root, dirs, files in os.walk(folder):
+    for f in files:
+      if not f.endswith('.lua'):
+        continue
+      source = os.path.join(root, f)
+      try:
+        shutil.copy(source, target)
+        print ('shutil.copy [%s] -> [%s]' % (source, 'Generator/Proto'))
+      except IOError as e:
+        print('Unable to copy file. %s' % e)
+      except:
+        print('Unexpected error:', sys.exc_info())
+      pass
+    pass
         
 def exportserver(proto):
   if proto:
