@@ -42,6 +42,7 @@ public class PromptForm : BaseUIForms
         this.DoTest();
         this.ConfigTest();
         this.ProtoTest();
+        this.ProtoPersionTest();
     }
 
     public void Start()
@@ -129,6 +130,43 @@ public class PromptForm : BaseUIForms
         print ($"deconfig Text_1 -> {Text_1}");
         print ($"deconfig Text_2 -> {Text_2}");
         print ($"deconfig Text_3 -> {Text_3}");
+    }
+
+    void ProtoPersionTest()
+    {
+        var config = PersonProto.Load();
+        print ($"config.id -> {config.id}");
+        print ($"config.name -> {config.name}");
+        print ($"config.age -> {config.age}");
+        print ($"config.email -> {config.email}");        
+        foreach (var a in config.arrays)
+        {
+            print ($"config.a -> {a}");
+        }
+
+        config.id = 2;
+        config.name = "蛤蟆怪";
+        config.age = 999;
+        config.email = "9999@qq.com";
+        config.arrays[0] = 111;
+        config.arrays[1] = 222;
+        config.arrays[2] = 333;
+
+        var arrays1 = config.arrays[0];
+        print (arrays1);
+
+        byte[] data = DataUtils.ObjectToBytes<PersonProto>(config);
+        print ("-------------------------分割线----------------------------------");
+
+        var deconfig = DataUtils.BytesToObject<PersonProto>(data);
+        print ($"config.id -> {config.id}");
+        print ($"config.name -> {config.name}");
+        print ($"config.age -> {config.age}");
+        print ($"config.email -> {config.email}");        
+        foreach (var a in config.arrays)
+        {
+            print ($"config.a -> {a}");
+        }
     }
 
     public override void OnOpen()

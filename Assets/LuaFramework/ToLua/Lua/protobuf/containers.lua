@@ -62,6 +62,18 @@ local _RSFC_meta = {
         table.remove(self, key)
         self._listener:Modified()
     end,
+    -- 20210825 适配set函数
+    set = function(self, i, value)
+        self._type_checker(value)
+        local index = i + 1
+        rawset(self, index, value)
+        self._listener:Modified()
+    end,
+    -- 20210825 适配get函数
+    get = function(self, i)
+        local index = i + 1
+        return self[index]
+    end,
     __newindex = function(self, key, value)
         error("RepeatedCompositeFieldContainer Can't set value directly")
     end

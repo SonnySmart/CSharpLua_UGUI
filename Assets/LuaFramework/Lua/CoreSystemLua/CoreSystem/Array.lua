@@ -115,6 +115,9 @@ end
 local function each(t)
   if t == nil then throw(NullReferenceException(), 1) end
   local getEnumerator = t.GetEnumerator
+  if getEnumerator == nil then
+    return ipairs(t)
+  end
   if getEnumerator == arrayEnumerator then
     return ipairs(t)
   end

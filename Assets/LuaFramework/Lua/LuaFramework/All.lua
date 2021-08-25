@@ -7,5 +7,6 @@
 
 require('LuaFramework.Wraper.FixBehaviour')
 require('LuaFramework.Wraper.GeneratorUtility')
+require('LuaFramework.Wraper.DataUtils')
 -- 这个先初始化有问题
 require("LuaFramework.Scripts.manifest")("LuaFramework.Scripts")

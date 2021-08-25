@@ -114,7 +114,7 @@ def codegenerator(schema, outfolder, namespace, suffix, proto = None, outprotofo
   if proto:
     outprotofolder = os.path.join(xlsxdatafolder, outprotofolder.replace('/', os.path.sep))
   if os.path.exists(schema):
-    cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema
+    cmd = csprotonpath + '-n ' + namespace + ' -f ' + outfolder + ' -p ' + schema + ' -k '
     if suffix:
       cmd += ' -t ' + suffix 
     if proto:
