@@ -52,7 +52,7 @@ namespace LuaFramework.Editor {
     /// </summary>
     private static void CopyLuaGenerator()
     {
-      string bat = $"{protonToolsDir_}/__export_proto_cooylua.bat";
+      string bat = $"{protonToolsDir_}/__export_proto_copylua.bat";
       var info = new ProcessStartInfo() {
         WorkingDirectory = protonToolsDir_,
         FileName = bat,
