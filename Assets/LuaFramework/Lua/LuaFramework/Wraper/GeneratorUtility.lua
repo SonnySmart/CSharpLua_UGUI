@@ -33,6 +33,9 @@ function GeneratorUtility.Load(arg1, arg2, arg3)
     end
 end
 
+--[[
+    加载pb.lua bytes进行序列化
+]]
 function GeneratorUtility.Load3(fileName, itemName, T)
     print (fileName)
     local class_name = sgsub((T.__name__ or ''), NameSpace, '')
@@ -44,6 +47,19 @@ function GeneratorUtility.Load3(fileName, itemName, T)
     local message = global[module_name][class_name]()
     local path = 'Generator/' .. fileName .. '.bytes'
     local bytes = ResourceManager:LoadAsset(path)
+    message:ParseFromString(bytes)
+    return message
+end
+
+--[[
+    加载bytes进行序列化
+]]
+function GeneratorUtility.BytesToObject(bytes, T)
+    local class_name = sgsub((T.__name__ or ''), NameSpace, '')
+    local module_name = sformat('%s_pb', class_name)
+    local module_full_name = sformat('%s.%s', Module, module_name)
+    -- 实例化
+    local message = global[module_name][class_name]()
     message:ParseFromString(bytes)
     return message
 end

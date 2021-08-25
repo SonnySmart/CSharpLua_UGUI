@@ -25,6 +25,7 @@ import shutil
 import sys
 
 workpath = os.getcwd()
+print ('workpath ->', workpath)
 exportscript = './proton.py'     
 exportconfig = './__export.txt'
 pythonpath = 'sample\\tools\\py37\\py37.exe ' if platform.system() == 'Windows' else 'python '
@@ -165,10 +166,16 @@ def exportclient():
 def main():
   try:
     proto = False
+    copylua = False
     args = sys.argv
     if len(args) >= 2:
       proto = True
+    if len(args) >= 3:
+      copylua = True
     readconfig()
+    if copylua:
+      copy_lua_generator()
+      return 0
     readxlsx(proto)
     exportserver(proto)
     #exportclient()

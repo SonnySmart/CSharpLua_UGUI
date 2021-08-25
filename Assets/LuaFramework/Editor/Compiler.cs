@@ -29,6 +29,7 @@ namespace LuaFramework.Editor {
     private static readonly string outDir_ = $"{frameworkDir_}/Lua/Compiled";
     private static readonly string toolDir = Application.dataPath + "/../Tools";
     private static readonly string csharpToolsDir_ = $"{toolDir}/CSharpLua";
+    private static readonly string protonToolsDir_ = $"{toolDir}/Proton";
     private static readonly string csharpLua_ = $"{csharpToolsDir_}/CSharp.lua/CSharp.lua.Launcher.dll";
     private static readonly string genProtobuf = $"{toolDir}/ProtobufGen/protogen.bat";
     private static readonly string kCompiledFrameworkScripts = "LuaFramework.Runtime";//"Compiled";
@@ -42,6 +43,39 @@ namespace LuaFramework.Editor {
       string compiledScriptDir = $"{frameworkDir_}/Scripts/Compiled";
       string outDir = $"{outLuaDir_}/LuaFramework/Scripts";
       Compile(compiledScriptDir, outDir);
+      // 拷贝pb.lua文件
+      CopyLuaGenerator();
+    }
+
+    /// <summary>
+    /// 拷贝protobuf pb文件
+    /// </summary>
+    private static void CopyLuaGenerator()
+    {
+      string bat = $"{protonToolsDir_}/__export_proto_cooylua.bat";
+      var info = new ProcessStartInfo() {
+        WorkingDirectory = protonToolsDir_,
+        FileName = bat,
+        UseShellExecute = false,
+        RedirectStandardOutput = true,
+        RedirectStandardError = true,
+        StandardOutputEncoding = Encoding.UTF8,
+        StandardErrorEncoding = Encoding.UTF8,        
+      };
+      using (var p = Process.Start(info)) {
+        var output = new StringBuilder();
+        var error = new StringBuilder();
+        p.OutputDataReceived += (sender, eventArgs) => output.AppendLine(eventArgs.Data);
+        p.ErrorDataReceived += (sender, eventArgs) => error.AppendLine(eventArgs.Data);
+        p.BeginOutputReadLine();
+        p.BeginErrorReadLine();
+        p.WaitForExit();
+        if (p.ExitCode == 0) {
+          UnityEngine.Debug.Log(output);
+        } else {
+          throw new CompiledFail($"Compile fail, {error}\n{output}");
+        }
+      }
     }
 
     /// <summary>
@@ -49,7 +83,7 @@ namespace LuaFramework.Editor {
     /// </summary>
     /// <param name="compiledScriptDir"> 编译脚本目录 </param>
     /// <param name="outDir"> 输出目录 </param>
-    public static void Compile(string compiledScriptDir, string outDir) {
+    private static void Compile(string compiledScriptDir, string outDir) {
       if (!CheckDotnetInstall()) {
         return;
       }

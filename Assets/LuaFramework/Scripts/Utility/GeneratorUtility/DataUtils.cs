@@ -2,6 +2,7 @@
 using System.IO;
 using ProtoBuf;
 using UnityEngine;
+using LuaFramework;
 
 namespace CSharpGeneratorForProton.Protobuf
 {
@@ -71,12 +72,15 @@ namespace CSharpGeneratorForProton.Protobuf
         /// <summary>
         /// lua function
         /// </summary>
-        [LuaInterface.LuaByteBuffer]
-        public static LuaInterface.LuaTable BytesToObject(byte[] bytesData, LuaInterface.LuaTable T)
+        //[LuaInterface.LuaByteBuffer]
+        public static LuaInterface.LuaTable BytesToObject(string bytesData, LuaInterface.LuaTable T)
         {
-            //local pb_data = msg:SerializeToString() 
-            //return instance.Invoke<byte []>("ParseFromString");
-            return null;
+            const string ns_func = "CSharpGeneratorForProton.Protobuf.GeneratorUtility.BytesToObject";
+            LuaInterface.LuaState state = LuaHelper.GetLuaManager().GetMainState();
+            using (var func = state.GetFunction(ns_func))
+            {
+                return func.Invoke<string, LuaInterface.LuaTable, LuaInterface.LuaTable>(bytesData, T);
+            }
         }
     }
 
