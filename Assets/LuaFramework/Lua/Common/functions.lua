@@ -286,7 +286,7 @@ function class(classname, ...)
             -- if super is function, set it to __create
             cls.__create = super
         elseif superType == "table" then
-            if super[".isclass"] then
+            if rawget(super, ".isclass") then
                 -- super is native class
                 assert(cls.__create == nil,
                     string.format("class() - create class \"%s\" with more than one creating function or native class",
@@ -320,7 +320,7 @@ function class(classname, ...)
         end})
     end
 
-    if not cls.ctor then
+    if not rawget(cls, "ctor") then
         -- add default constructor
         cls.ctor = function() end
     end

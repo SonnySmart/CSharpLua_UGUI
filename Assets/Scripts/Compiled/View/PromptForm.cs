@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using CSharpGeneratorForProton.Json;
 using CSharpGeneratorForProton.Protobuf;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PromptForm : BaseUIForms
 {
@@ -163,10 +165,16 @@ public class PromptForm : BaseUIForms
         print ($"config.name -> {config.name}");
         print ($"config.age -> {config.age}");
         print ($"config.email -> {config.email}");        
+        List<int> list = new List<int>();
         foreach (var a in config.arrays)
         {
-            print ($"config.a -> {a}");
-        }
+            print ($"config.arrays.a -> {a}");
+            list.Add(a);
+        } 
+        foreach (var a in list)
+        {
+            print ($"list.a -> {a}");
+        }         
     }
 
     public override void OnOpen()

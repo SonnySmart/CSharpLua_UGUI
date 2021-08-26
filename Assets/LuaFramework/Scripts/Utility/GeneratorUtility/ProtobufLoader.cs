@@ -65,20 +65,6 @@ namespace CSharpGeneratorForProton.Protobuf {
     }
 
     /// <summary>
-    /// lua function
-    /// </summary>
-    public static LuaInterface.LuaTable[] Load(string fileName, string itemName, LuaInterface.LuaTable obj) {
-      return null;
-    }
-
-    /// <summary>
-    /// lua function
-    /// </summary>
-    public static LuaInterface.LuaTable Load(string fileName, LuaInterface.LuaTable obj) {
-      return null;
-    }
-
-    /// <summary>
     ///  动态注入派生类
     /// </summary>
     private static void TryAddSubTypeTypeModel(Type type) {
@@ -147,11 +133,11 @@ namespace CSharpGeneratorForProton.Protobuf {
     /// lua function
     /// </summary>
     [LuaInterface.LuaByteBuffer]
-    public static byte []GetContentBytes(string fileName) {
+    public static byte[] GetContentBytes(string fileName) {
       string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".bytes");
       ResourceManager manager = LuaHelper.GetResManager();
       TextAsset ta = manager.LoadAsset<TextAsset>(path);
-      return ta.bytes;
+      return ta == null ? null : ta.bytes;
     }
   }
 }
