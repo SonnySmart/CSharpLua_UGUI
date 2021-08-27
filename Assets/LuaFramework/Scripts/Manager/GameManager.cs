@@ -17,6 +17,7 @@ namespace LuaFramework {
         /// 初始化游戏管理器
         /// </summary>
         void Awake() {
+            Util.CalcTime("热更新启动开始");
             Init();
         }
 
@@ -156,12 +157,15 @@ namespace LuaFramework {
         /// </summary>
         IEnumerator OnResourceInited() {
             yield return null;
+            Util.CalcTime("热更新启动完成");
             this.OnInitialize();
         }
 
         void OnInitialize() {
 #if USE_LUA
-            LuaManager.InitStart();
+            Util.CalcTime("lua启动开始");
+            LuaManager.InitStart(); // use 2.1s时间...这里太久
+            Util.CalcTime("lua启动完成");
 #endif
             // 这里启动最终逻辑
             gameObject.AddLuaComponent(typeof(StartUpBehaviour));

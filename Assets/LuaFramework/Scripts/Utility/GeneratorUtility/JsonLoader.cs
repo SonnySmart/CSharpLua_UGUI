@@ -271,7 +271,7 @@ namespace CSharpGeneratorForProton.Json {
       //Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
       //string path = GeneratorConfig.ConfigDir + fileName + ".json";
       ResourceManager manager = LuaHelper.GetResManager();
-      TextAsset ta = manager.LoadAsset<TextAsset>(path);
+      TextAsset ta = manager.LoadAsset<TextAsset>(path.Replace('\\', '/'));
       Stream stream = new MemoryStream(ta.bytes);
       return stream;
     }

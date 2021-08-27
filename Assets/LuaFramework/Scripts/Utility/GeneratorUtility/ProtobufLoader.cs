@@ -136,7 +136,7 @@ namespace CSharpGeneratorForProton.Protobuf {
     public static byte[] GetContentBytes(string fileName) {
       string path = Path.Combine(GeneratorConfig.ConfigDir, fileName + ".bytes");
       ResourceManager manager = LuaHelper.GetResManager();
-      TextAsset ta = manager.LoadAsset<TextAsset>(path);
+      TextAsset ta = manager.LoadAsset<TextAsset>(path.Replace('\\', '/'));
       return ta == null ? null : ta.bytes;
     }
   }

@@ -217,6 +217,8 @@ public class PromptForm : BaseUIForms
             var label = go.transform.Find("Text");
             label.GetComponent<Text>().text = i.ToString();
         }
+
+        Util.CalcTime("执行lua完成");
     }
 
     public void OnClick(GameObject go)

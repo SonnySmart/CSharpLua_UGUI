@@ -7,11 +7,13 @@ public class StartUpBehaviour : LuaBehaviour
 {
     private void Awake()
     {
+        Util.CalcTime("执行lua开始");
+
         RegisterCommand();
 
         StartUpSocket();
 
-        StartUpEntry();
+        StartUpEntry();        
     }
 
     /// <summary>

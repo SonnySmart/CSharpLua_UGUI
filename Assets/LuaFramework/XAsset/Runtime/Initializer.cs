@@ -19,6 +19,9 @@ namespace libx
         public bool updateAll;
         private void Start()
         {
+            // 启动时间
+            LuaFramework.Util.CalcTime("程序启动");
+
             if (dontDestroyOnLoad)
             {
                 DontDestroyOnLoad(gameObject);

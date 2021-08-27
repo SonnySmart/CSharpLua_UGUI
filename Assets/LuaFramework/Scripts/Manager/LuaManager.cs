@@ -31,7 +31,7 @@ namespace LuaFramework {
             InitLuaPath();
             InitLuaBundle();
             this.lua.Start();    //启动LUAVM
-            this.StartDebug();
+            this.StartDebug(); // 这里使用了2s发布模式关闭掉 AppConst.development
             this.StartMain();
             this.StartLooper();
         }

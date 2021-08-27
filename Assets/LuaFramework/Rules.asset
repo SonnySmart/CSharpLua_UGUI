@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 15
+  build: 16
   major: 2
   minor: 2
   scenesFolders: []
@@ -1004,6 +1004,116 @@ MonoBehaviour:
     bundle: assets_lua_luaframework_scripts_utility.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_wraper.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Config/TextConfig.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Proto/TextProto.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_proto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Proto/TextProto_pb.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_proto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Wraper/FixBehaviour.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_wraper.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Proto/PersonProto_pb.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_proto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Config/MountConfig.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/Utility/Prefab.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_utility.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/View/SpineForm.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_view.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Wraper/GeneratorUtility.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_wraper.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Proto/PersonProto.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_proto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Config/HeroConfig.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Config/GlobalConfig.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/PersonProto.bytes
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_forms.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/TextConfig.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/HerosConfig.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/GlobalConfig.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/MountsConfig.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/TextProto.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/TextProto.bytes
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/PersonProto.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
   patches: []
   bundles:
   - assetBundleName: assets_luaframework_examples_builds_prompt.unity3d
@@ -1219,6 +1329,7 @@ MonoBehaviour:
     - Assets/Lua/Compiled/View/BehaviourTest3.lua.bytes
     - Assets/Lua/Compiled/View/BehaviourTest.lua.bytes
     - Assets/Lua/Compiled/View/BehaviourTest1.lua.bytes
+    - Assets/Lua/Compiled/View/SpineForm.lua.bytes
   - assetBundleName: assets_lua_compiled_common.unity3d
     assetNames:
     - Assets/Lua/Compiled/Common/Define.lua.bytes
@@ -1300,9 +1411,38 @@ MonoBehaviour:
   - assetBundleName: assets_reshotfix_prefabs_forms.unity3d
     assetNames:
     - Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
+    - Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
   - assetBundleName: assets_lua_luaframework_scripts_utility.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/Utility/Prefab.lua.bytes
+  - assetBundleName: assets_lua_luaframework_wraper.unity3d
+    assetNames:
+    - Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
+    - Assets/Lua/LuaFramework/Wraper/FixBehaviour.lua.bytes
+    - Assets/Lua/LuaFramework/Wraper/GeneratorUtility.lua.bytes
+  - assetBundleName: assets_lua_compiled_generator_config.unity3d
+    assetNames:
+    - Assets/Lua/Compiled/Generator/Config/TextConfig.lua.bytes
+    - Assets/Lua/Compiled/Generator/Config/MountConfig.lua.bytes
+    - Assets/Lua/Compiled/Generator/Config/HeroConfig.lua.bytes
+    - Assets/Lua/Compiled/Generator/Config/GlobalConfig.lua.bytes
+  - assetBundleName: assets_lua_compiled_generator_proto.unity3d
+    assetNames:
+    - Assets/Lua/Compiled/Generator/Proto/TextProto.lua.bytes
+    - Assets/Lua/Compiled/Generator/Proto/TextProto_pb.lua.bytes
+    - Assets/Lua/Compiled/Generator/Proto/PersonProto_pb.lua.bytes
+    - Assets/Lua/Compiled/Generator/Proto/PersonProto.lua.bytes
+  - assetBundleName: assets_reshotfix_generator.unity3d
+    assetNames:
+    - Assets/ResHotfix/Generator/PersonProto.bytes
+    - Assets/ResHotfix/Generator/TextConfig.json
+    - Assets/ResHotfix/Generator/HerosConfig.json
+    - Assets/ResHotfix/Generator/GlobalConfig.json
+    - Assets/ResHotfix/Generator/MountsConfig.json
+    - Assets/ResHotfix/Generator/TextProto.json
+    - Assets/ResHotfix/Generator/TextProto.bytes
+    - Assets/ResHotfix/Generator/PersonProto.json
   - assetBundleName: children_assets_luaframework_examples_builds_prompt.unity3d
     assetNames:
     - Assets/LuaFramework/Examples/Textures/Prompt/1.png

@@ -17,7 +17,7 @@ public class Packager {
     public static void ExportLuaFiles()
     {
         //Gen UI Config
-        //FormResConfigEditor.GenUIFormConfigJson();
+        FormResConfigEditor.GenUIFormConfigJson();
         
 #if USE_LUA
         // C# to Lua

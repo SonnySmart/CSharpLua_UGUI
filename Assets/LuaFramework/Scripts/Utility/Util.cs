@@ -17,6 +17,11 @@ using UnityEditor;
 namespace LuaFramework {
     public class Util {
         private static List<string> luaPaths = new List<string>();
+        /// <summary>
+        /// 启动开始时间
+        /// </summary>
+        public static long lStartupTime = 0;
+        private static int nPrintIndex = 0;
 
         public static int Int(object o) {
             return Convert.ToInt32(o);
@@ -46,6 +51,22 @@ namespace LuaFramework {
         public static long GetTime() {
             TimeSpan ts = new TimeSpan(DateTime.UtcNow.Ticks - new DateTime(1970, 1, 1, 0, 0, 0).Ticks);
             return (long)ts.TotalMilliseconds;
+        }
+
+        /// <summary>
+        /// 测试计算时间
+        /// </summary>
+        public static void CalcTime(string desc) {
+#if false
+            long t = GetTime();
+            if (lStartupTime == 0)
+            {
+                lStartupTime = t;
+            }
+            long useTime = (t - lStartupTime);
+            float fTime = useTime / 1000F;
+            LogError($"{++nPrintIndex} 使用时间 -> {fTime} 秒 : {desc}");
+#endif
         }
 
         /// <summary>
