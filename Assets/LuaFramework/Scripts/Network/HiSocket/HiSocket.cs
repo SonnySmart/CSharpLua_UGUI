@@ -8,7 +8,9 @@ namespace LuaFramework
 {
     public class HiSocket : IDisposable
     {
+#pragma warning disable 0414
         static int SocketTimeout = 1000;
+#pragma warning restore 0414
         static TcpConnection _connection;
         static TcpConnection Connection
         {

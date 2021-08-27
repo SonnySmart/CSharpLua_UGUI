@@ -1613,7 +1613,8 @@ public static class ToLuaExport
 
             if (IsGenericMethod(m.Method))
             {
-                Debugger.Log("Generic Method {0}.{1} cannot be export to lua", LuaMisc.GetTypeName(type), m.GetTotalName());
+                // 关闭日志
+                //Debugger.Log("Generic Method {0}.{1} cannot be export to lua", LuaMisc.GetTypeName(type), m.GetTotalName());
                 continue;
             }
 

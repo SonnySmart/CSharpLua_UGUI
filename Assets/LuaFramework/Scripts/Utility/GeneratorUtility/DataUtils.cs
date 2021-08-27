@@ -58,30 +58,6 @@ namespace CSharpGeneratorForProton.Protobuf
                 return default(T);
             }
         }
-
-        /// <summary>
-        /// lua function
-        /// </summary>
-        [LuaInterface.LuaByteBuffer]
-        public static byte[] ObjectToBytes(LuaInterface.LuaTable instance, LuaInterface.LuaTable T)
-        {
-            //local pb_data = msg:SerializeToString() 
-            return instance.Invoke<LuaInterface.LuaTable, byte []>("SerializeToString", instance);
-        }
-
-        /// <summary>
-        /// lua function
-        /// </summary>
-        //[LuaInterface.LuaByteBuffer]
-        public static LuaInterface.LuaTable BytesToObject(string bytesData, LuaInterface.LuaTable T)
-        {
-            const string ns_func = "CSharpGeneratorForProton.Protobuf.GeneratorUtility.BytesToObject";
-            LuaInterface.LuaState state = LuaHelper.GetLuaManager().GetMainState();
-            using (var func = state.GetFunction(ns_func))
-            {
-                return func.Invoke<string, LuaInterface.LuaTable, LuaInterface.LuaTable>(bytesData, T);
-            }
-        }
     }
 
     [ProtoContract]

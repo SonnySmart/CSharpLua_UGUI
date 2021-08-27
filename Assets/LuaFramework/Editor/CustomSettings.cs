@@ -66,7 +66,12 @@ public static class CustomSettings
         //_GT(typeof(Dictionary<int, TestAccount>.ValueCollection)),
         //_GT(typeof(TestExport)),
         //_GT(typeof(TestExport.Space)),
-        //-------------------------------------------------------------------        
+        //-------------------------------------------------------------------  
+        // start System.Collections
+        // 警告 -> Type System.Collections.Generic.List<string> not wrap to lua, push as System.Collections.Generic.List<T>, the warning is only raised once
+        //_GT(typeof(List<string>)), // 这个加了代码就有问题了 
+        _GT(typeof(KeyValuePair<int, LuaFramework.ByteBuffer>)),
+        // end System.Collections 
                         
         _GT(typeof(LuaInjectionStation)),
         _GT(typeof(InjectType)),
@@ -94,11 +99,13 @@ public static class CustomSettings
                                          
         _GT(typeof(Component)),
         _GT(typeof(Transform)),
+        _GT(typeof(RectTransform)),
         _GT(typeof(Material)),
         _GT(typeof(Light)),
         _GT(typeof(Rigidbody)),
         _GT(typeof(Camera)),
         _GT(typeof(AudioSource)),
+        _GT(typeof(AudioBehaviour)),
         //_GT(typeof(LineRenderer))
         //_GT(typeof(TrailRenderer))
 #endif
@@ -203,6 +210,7 @@ public static class CustomSettings
         //Proton
         _GT(typeof(CSharpGeneratorForProton.Json.IGeneratorObject)),
         _GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility)),
+        _GT(typeof(CSharpGeneratorForProton.Json.GeneratorUtility.JsonConfigElement)),
         _GT(typeof(CSharpGeneratorForProton.Protobuf.IGeneratorObject)),
         _GT(typeof(CSharpGeneratorForProton.Protobuf.GeneratorUtility)),
         //_GT(typeof(CSharpGeneratorForProton.Protobuf.DataUtils)),

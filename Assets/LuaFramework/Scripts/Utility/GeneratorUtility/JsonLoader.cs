@@ -282,7 +282,7 @@ namespace CSharpGeneratorForProton.Json {
       return new JsonConfigElement(token);
     }
 
-    private sealed class JsonConfigElement : ConfigElement {
+    public sealed class JsonConfigElement : ConfigElement {
       private JToken element_;
 
       public JsonConfigElement(JToken element) {

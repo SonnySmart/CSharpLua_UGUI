@@ -110,6 +110,12 @@ public static class CustomTypeRule
             // 引擎忽略类型
             if (assemblyName.Contains("UnityEngine"))
             {
+                // "UnityEngine.Events.UnityEvent"
+                if (type.IsSubclassOf(typeof(UnityEngine.Events.UnityEventBase)))
+                {
+                    //Debug.LogError(type.FullName);
+                    continue;
+                }
                 if (_unUseEngineTypes.Contains(type.FullName))
                     continue;
             }

@@ -9,7 +9,7 @@ namespace LuaInterface
     public class LuaStatePtr
     {
         protected IntPtr L;
-
+#pragma warning disable 0414
         string jit = @"            
         function Euler(x, y, z)
             x = x * 0.0087266462599716
@@ -67,7 +67,7 @@ namespace LuaInterface
                 end                
             end	                   
         end";
-
+#pragma warning restore 0414
         public int LuaUpValueIndex(int i)
         {
             return LuaIndexes.LUA_GLOBALSINDEX - i;

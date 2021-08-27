@@ -21,7 +21,9 @@ namespace LuaFramework {
         /// 启动开始时间
         /// </summary>
         public static long lStartupTime = 0;
+#pragma warning disable 0414
         private static int nPrintIndex = 0;
+#pragma warning restore 0414
 
         public static int Int(object o) {
             return Convert.ToInt32(o);
@@ -39,7 +41,7 @@ namespace LuaFramework {
             return UnityEngine.Random.Range(min, max);
         }
 
-        public static float Random(float min, float max) {
+        public static System.Single Random(System.Single min, System.Single max) {
             return UnityEngine.Random.Range(min, max);
         }
 
