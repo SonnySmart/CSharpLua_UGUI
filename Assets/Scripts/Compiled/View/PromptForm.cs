@@ -56,8 +56,9 @@ public class PromptForm : BaseUIForms
     {
         var tr = this.transform;
 
-        this.btnOpen = Prefab.Find<GameObject>(tr, "Open");
-        this.gridParent = Prefab.Find(tr, "ScrollView/Grid");
+        this.btnOpen = Find("Open").gameObject;
+        this.gridParent = Find("ScrollView/Grid");
+        this.gridParent = Find("Grid");
     }
 
     public void DoTest()
@@ -195,7 +196,7 @@ public class PromptForm : BaseUIForms
         Debug.Log("Start lua--->>" + gameObject.name);
 
         //AddClick("Open", this.OnClick);
-        Prefab.AddClickEventListener(transform, "Open", this.OnClick);
+        AddClickEventListener("Open", this.OnClick);
         LuaHelper.GetResManager().LoadAsset(R.GetPrefab("PromptItem"), this.InitPanel);
     }
 
@@ -211,7 +212,7 @@ public class PromptForm : BaseUIForms
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
             //AddClick(go, this.OnItemClick);
-            Prefab.AddClickEventListenerByObject(go, this.OnClick);
+            AddClickEventListener(go, this.OnClick);
 
             var label = go.transform.Find("Text");
             label.GetComponent<Text>().text = i.ToString();

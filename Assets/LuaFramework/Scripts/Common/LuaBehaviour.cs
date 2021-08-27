@@ -9,7 +9,7 @@ using SUIFW;
 
 namespace LuaFramework {
     public class LuaBehaviour : View {
-        private Dictionary<string, LuaFunction> buttons = new Dictionary<string, LuaFunction>();
+        private List<LuaFunction> luaCallbacks = new List<LuaFunction>();
         // Cs2Lua
         private static readonly YieldInstruction[] updateYieldInstructions_ = new YieldInstruction[] { null, new WaitForFixedUpdate(), new WaitForEndOfFrame() };
         [HideInInspector]
@@ -77,79 +77,97 @@ namespace LuaFramework {
 #endif
         }
 
+        #region UI 查找相关
         /// <summary>
-        /// lua通过对象绑定点击事件
+        /// 查找节点 - 名称
         /// </summary>
-        public void AddClick(GameObject gameObj, LuaFunction callback)
+        public Transform Find(string n)
         {
-            if (gameObj == null || callback == null)
-                return;
-            buttons.Add(gameObj.name, callback);
-            AddClick(gameObj, (obj) => {
-                callback.Call(obj);
+            return Prefab.Find(transform, n);
+        }
+
+        /// <summary>
+        /// 获取节点 - 索引
+        /// </summary>
+        public Transform GetChild(int index)
+        {
+            return Prefab.GetChild(transform, index);
+        }
+
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        public void AddClickEventListener(string n, EventTriggerListener.VoidDelegate callback)
+        {
+            Prefab.AddClickEventListener(transform, n, callback);
+        }
+
+        /// <summary>
+        /// 点击事件 lua function
+        /// </summary>
+        public void AddClickEventListener(string n, LuaFunction callback)
+        {
+            AddClickEventListener(n, (go) => {
+                callback.Call(go);
             });
+            luaCallbacks.Add(callback);
         }
 
         /// <summary>
-        /// lua通过名称绑定点击事件
+        /// 点击事件
         /// </summary>
-        public void AddClick(string objString, LuaFunction callback)
+        public void AddClickEventListener(Transform transform, EventTriggerListener.VoidDelegate callback)
         {
-            Transform transform = UnityHelper.FindTheChild(this.gameObject, objString);
-            if (transform == null)
-                return;
-            AddClick(transform.gameObject, callback);
-        }
-
-        public void AddClick(GameObject gameObj, EventTriggerListener.VoidDelegate callback)
-        {
-            if (gameObj == null || callback == null)
-                return;
-            EventTriggerListener.Get(gameObj).onClick = callback;
-        }
-
-        public void AddClick(string objString, EventTriggerListener.VoidDelegate callback)
-        {
-            Transform transform = UnityHelper.FindTheChild(this.gameObject, objString);
-            if (transform == null)
-                return;
-            AddClick(transform.gameObject, callback);
+            Prefab.AddClickEventListenerByTransform(transform, callback);
         }
 
         /// <summary>
-        /// 删除单击事件
+        /// 点击事件 lua function
         /// </summary>
-        /// <param name="go"></param>
-        public void RemoveClick(GameObject gameObj)
+        public void AddClickEventListener(Transform transform, LuaFunction callback)
         {
-            if (gameObj == null)
-                return;
-            LuaFunction luafunc = null;
-            if (buttons.TryGetValue(gameObj.name, out luafunc))
+            AddClickEventListener(transform, (go) => {
+                callback.Call(go);
+            });
+            luaCallbacks.Add(callback);
+        }
+
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        public void AddClickEventListener(GameObject gameObject, EventTriggerListener.VoidDelegate callback)
+        {
+            Prefab.AddClickEventListenerByGameObject(gameObject, callback);
+        }
+
+        /// <summary>
+        /// 点击事件 lua function
+        /// </summary>
+        public void AddClickEventListener(GameObject gameObject, LuaFunction callback)
+        {
+            AddClickEventListener(gameObject, (go) => {
+                callback.Call(go);
+            });
+            luaCallbacks.Add(callback);
+        }
+
+        /// <summary>
+        /// 删除点击事件
+        /// </summary>
+        public void RemoveClickEventListener()
+        {
+            foreach (var fn in luaCallbacks)
             {
-                luafunc.Dispose();
-                luafunc = null;
-                buttons.Remove(gameObj.name);
+                fn.Dispose();
             }
+            luaCallbacks.Clear();
         }
-
-        /// <summary>
-        /// 清除单击事件
-        /// </summary>
-        public void ClearClick()
-        {
-            foreach (var de in buttons) {
-                if (de.Value != null) {
-                    de.Value.Dispose();
-                }
-            }
-            buttons.Clear();
-        }
+        #endregion
 
         //-----------------------------------------------------------------
         protected void OnDestroy()
         {
-            ClearClick();
+            RemoveClickEventListener();
 
             Util.ClearMemory();
             Debug.Log("~" + name + " was destroy!");
