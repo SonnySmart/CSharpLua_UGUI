@@ -198,6 +198,7 @@ public static class CustomSettings
         _GT(typeof(SUIFW.UIFormsType)),
         _GT(typeof(SUIFW.UIFormsShowMode)),
         _GT(typeof(SUIFW.UIFormsLucencyType)),
+        _GT(typeof(SUIFW.EventTriggerListener)),
 
         //Proton
         _GT(typeof(CSharpGeneratorForProton.Json.IGeneratorObject)),

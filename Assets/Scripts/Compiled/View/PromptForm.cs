@@ -10,15 +10,15 @@ using System.Collections.Generic;
 
 public class PromptForm : BaseUIForms
 {
-    public GameObject btnOpen;
-    public Transform gridParent;
+    GameObject btnOpen;
+    Transform gridParent;
 
     public override void OnInit()
     {
         //是否需要清空“反向切换”
         CurrentUIType.IsClearReverseChange = false;
         //UI窗体类型
-        CurrentUIType.UIForms_Type = UIFormsType.PopUp;
+        CurrentUIType.UIForms_Type = UIFormsType.Normal;
         //UI窗体显示类型
         CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
         //UI窗体透明度类型
@@ -56,8 +56,8 @@ public class PromptForm : BaseUIForms
     {
         var tr = this.transform;
 
-        this.btnOpen = tr.Find("Open").gameObject;
-	    this.gridParent = tr.Find("ScrollView/Grid");
+        this.btnOpen = Prefab.Find<GameObject>(tr, "Open");
+        this.gridParent = Prefab.Find(tr, "ScrollView/Grid");
     }
 
     public void DoTest()
@@ -194,7 +194,8 @@ public class PromptForm : BaseUIForms
     {
         Debug.Log("Start lua--->>" + gameObject.name);
 
-        AddClick("Open", this.OnClick);
+        //AddClick("Open", this.OnClick);
+        Prefab.AddClickEventListener(transform, "Open", this.OnClick);
         LuaHelper.GetResManager().LoadAsset(R.GetPrefab("PromptItem"), this.InitPanel);
     }
 
@@ -209,7 +210,8 @@ public class PromptForm : BaseUIForms
             go.transform.SetParent(parent, false);
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
-            AddClick(go, this.OnItemClick);
+            //AddClick(go, this.OnItemClick);
+            Prefab.AddClickEventListenerByObject(go, this.OnClick);
 
             var label = go.transform.Find("Text");
             label.GetComponent<Text>().text = i.ToString();
