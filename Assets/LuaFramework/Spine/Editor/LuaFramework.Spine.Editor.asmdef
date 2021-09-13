@@ -1,0 +1,12 @@
+{
+    "name": "LuaFramework.Spine.Editor",
+    "references": [
+        "LuaFramework.Spine.Runtime"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
