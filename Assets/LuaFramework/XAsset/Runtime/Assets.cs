@@ -451,8 +451,12 @@ namespace libx
             var path = string.Format("{0}{1}", updatePath, bundle.name);
             var info = new FileInfo(path);
             if (!info.Exists)
+            {
+                LogFormat("path => {0} is not exist .", path);
                 return true;
+            }
 
+            /*
             // 直接读取 PlayerPrefs 中保存的内容，该值在 Download.Copy 方法中写入
             var comparison = StringComparison.OrdinalIgnoreCase;
             var ver = PlayerPrefs.GetString(path);
@@ -461,16 +465,20 @@ namespace libx
                 return false;
             }
 
+            LogFormat("path => {0} is diff .", path);
+
             return true;
-            // using (var stream = File.OpenRead(path))
-            // {
-            //     if (stream.Length != bundle.len)
-            //         return true;
-            //     if (verifyBy != VerifyBy.CRC)
-            //         return false;
-            //     var crc = Utility.GetCRC32Hash(stream);
-            //     return !crc.Equals(bundle.crc, comparison);
-            // }
+            */
+            var comparison = StringComparison.OrdinalIgnoreCase;
+            using (var stream = File.OpenRead(path))
+            {
+                if (stream.Length != bundle.len)
+                    return true;
+                if (verifyBy != VerifyBy.CRC)
+                    return false;
+                var crc = Utility.GetCRC32Hash(stream);
+                return !crc.Equals(bundle.crc, comparison);
+            }
         }
 
         private static List<BundleRef> GetNewFiles(string patch)

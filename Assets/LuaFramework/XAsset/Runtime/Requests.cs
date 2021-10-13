@@ -94,15 +94,23 @@ namespace libx
 
         internal virtual void Load()
         {
-            if (!File.Exists(url))
-            {
-                error = "error! file not exist:" + url;
-                loadState = LoadState.Loaded;
-                return;
-            }
+            // if (!File.Exists(url))
+            // {
+            //     error = "error! file not exist:" + url;
+            //     loadState = LoadState.Loaded;
+            //     return;
+            // }
 
+            // 开发模式
             if (Assets.development && Assets.assetLoader != null)
                 asset = Assets.assetLoader(url, assetType);
+            else
+            {
+                // Release模式
+                // 这里改为Resources加载
+                asset = Resources.Load(url, assetType);
+            }
+
             if (asset == null)
             {
                 error = "error! file not exist:" + url;
@@ -115,7 +123,7 @@ namespace libx
             if (asset == null)
                 return;
 
-            if (!Assets.development)
+            //if (!Assets.development)
             {
                 if (!(asset is GameObject))
                     Resources.UnloadAsset(asset);

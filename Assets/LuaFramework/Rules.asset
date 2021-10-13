@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 16
+  build: 18
   major: 2
   minor: 2
   scenesFolders: []
@@ -29,39 +29,19 @@ MonoBehaviour:
   nameByHash: 0
   options: 256
   assets:
-  - name: Assets/LuaFramework/Examples/Builds/Prompt/PromptItem.prefab
+  - name: Assets/Lua/Compiled/Generator/Config/HeroConfig.lua.bytes
     group: 
-    bundle: assets_luaframework_examples_builds_prompt.unity3d
+    bundle: assets_lua_compiled_generator_config.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/LuaFramework/Examples/Builds/Prompt/PromptForm.prefab
+  - name: Assets/Lua/3rd/pblua/login_pb.lua.bytes
     group: 
-    bundle: assets_luaframework_examples_builds_prompt.unity3d
+    bundle: assets_lua_3rd_pblua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/LuaFramework/Examples/Builds/Message/MessagePanel.prefab
+  - name: Assets/Lua/Classloader.lua.bytes
     group: 
-    bundle: assets_luaframework_examples_builds_message.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/pbc/test.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_pbc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/luabitop/md5test.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_luabitop.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/socket/tp.lua.bytes
-    group: 
-    bundle: assets_lua_socket.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_singletons.unity3d
+    bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Facade.lua.bytes
@@ -69,127 +49,22 @@ MonoBehaviour:
     bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/p.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/AppFacade.lua.bytes
     group: 
-    bundle: assets_lua_jit.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/String.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua.bytes
     group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/All.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/misc/strict.lua.bytes
-    group: 
-    bundle: assets_lua_misc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/protobuf/wire_format.lua.bytes
-    group: 
-    bundle: assets_lua_protobuf.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Threading/Task.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_threading.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Core.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/ConstDefine/CmdConst.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_constdefine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/manifest.lua.bytes
-    group: 
-    bundle: assets_lua_compiled.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Interfaces.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/Sample/test.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_sample.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/protobuf/protobuf.lua.bytes
-    group: 
-    bundle: assets_lua_protobuf.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/v.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Profiler.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/sproto/sproto.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_sproto.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/luabitop/bittest.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_luabitop.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/socket/url.lua.bytes
-    group: 
-    bundle: assets_lua_socket.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Touch.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/socket/smtp.lua.bytes
-    group: 
-    bundle: assets_lua_socket.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/tolua.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/sproto/print_r.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_sproto.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/bc.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Console.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/protobuf/listener.lua.bytes
+    group: 
+    bundle: assets_lua_protobuf.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/protobuf/containers.lua.bytes
     group: 
     bundle: assets_lua_protobuf.unity3d
     id: 0
@@ -209,9 +84,34 @@ MonoBehaviour:
     bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/EqualityComparer.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_wraper.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/sproto/testall.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_sproto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/dis_x86.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/jit/dis_mips64.lua.bytes
     group: 
     bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Logic/SingletonNormalTest.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_logic.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/Compiled/Controller/PromptCtrl.lua.bytes
@@ -224,6 +124,16 @@ MonoBehaviour:
     bundle: assets_lua_3rd_pbc.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/UnityEngine/Color.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Wraper/GeneratorUtility.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_wraper.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/CoreSystemLua/CoreSystem/Threading/Thread.lua.bytes
     group: 
     bundle: assets_lua_coresystemlua_coresystem_threading.unity3d
@@ -234,14 +144,34 @@ MonoBehaviour:
     bundle: assets_lua_socket.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Config/TextConfig.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/Vector3.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/View/PromptForm.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_view.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/List.lua.bytes
     group: 
     bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/bcsave.lua.bytes
+  - name: Assets/Lua/jit/dis_mipsel.lua.bytes
     group: 
     bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Common/protocal.lua.bytes
+    group: 
+    bundle: assets_lua_common.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/protobuf/encoder.lua.bytes
@@ -249,14 +179,24 @@ MonoBehaviour:
     bundle: assets_lua_protobuf.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Threading/Timer.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/IO/File.lua.bytes
     group: 
-    bundle: assets_lua_coresystemlua_coresystem_threading.unity3d
+    bundle: assets_lua_coresystemlua_coresystem_io.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/View/SpineForm.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_view.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/list.lua.bytes
     group: 
     bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Threading/Timer.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_threading.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/3rd/cjson/test.lua.bytes
@@ -269,6 +209,16 @@ MonoBehaviour:
     bundle: assets_lua_system.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/3rd/sproto/test.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_sproto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/cjson/util.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_cjson.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/lpeg/re.lua.bytes
     group: 
     bundle: assets_lua_lpeg.unity3d
@@ -277,6 +227,36 @@ MonoBehaviour:
   - name: Assets/Lua/Compiled/Model/TestModel.lua.bytes
     group: 
     bundle: assets_lua_compiled_model.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Type.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/Vector2.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/Quaternion.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Common/Define.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_common.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Text/StringBuilder.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_text.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Convert.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/Compiled/Controller/TestCode.lua.bytes
@@ -289,104 +269,9 @@ MonoBehaviour:
     bundle: assets_lua_3rd_cjson.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/UnityEngine/Vector2.lua.bytes
+  - name: Assets/Lua/Compiled/Generator/Proto/TextProto_pb.lua.bytes
     group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Type.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/AppFacade.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/cjson/util.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_cjson.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/sproto/test.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_sproto.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/socket.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/View/MessageBox.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_view.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/LayerMask.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/Queue.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Random.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/View/PromptForm.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_view.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/dis_arm64be.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/Common/Define.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_common.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/ltn12.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/Controller/Command/StartUpCommand.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_controller_command.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/View/BehaviourTest2.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_view.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Array.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/pbc/test2.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_pbc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/cjson/util.lua.bytes
-    group: 
-    bundle: assets_lua_cjson.unity3d
+    bundle: assets_lua_compiled_generator_proto.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/protobuf/decoder.lua.bytes
@@ -394,59 +279,49 @@ MonoBehaviour:
     bundle: assets_lua_protobuf.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/cjson/util.lua.bytes
+    group: 
+    bundle: assets_lua_cjson.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/LuaDebugjit.lua.bytes
     group: 
     bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/luabitop/installpath.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_luabitop.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Enum.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/LinkedList.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/mime.lua.bytes
+  - name: Assets/Lua/ltn12.lua.bytes
     group: 
     bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/dis_x86.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua.bytes
     group: 
-    bundle: assets_lua_jit.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/sproto/testall.lua.bytes
+  - name: Assets/Lua/LuaFramework/FixBehaviour.lua.bytes
     group: 
-    bundle: assets_lua_3rd_sproto.unity3d
+    bundle: assets_lua_luaframework.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/EqualityComparer.lua.bytes
+  - name: Assets/Lua/3rd/cjson/json2lua.lua.bytes
     group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    bundle: assets_lua_3rd_cjson.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/Game.lua.bytes
+  - name: Assets/Lua/UnityEngine/RaycastHit.lua.bytes
     group: 
-    bundle: assets_lua_compiled.unity3d
+    bundle: assets_lua_unityengine.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/protobuf/containers.lua.bytes
+  - name: Assets/Lua/3rd/pbc/test2.lua.bytes
     group: 
-    bundle: assets_lua_protobuf.unity3d
+    bundle: assets_lua_3rd_pbc.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Array.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/System/Injection/InjectionBridgeInfo.lua.bytes
@@ -459,24 +334,9 @@ MonoBehaviour:
     bundle: assets_lua_compiled_view.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/cjson/json2lua.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Math.lua.bytes
     group: 
-    bundle: assets_lua_3rd_cjson.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/misc/misc.lua.bytes
-    group: 
-    bundle: assets_lua_misc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/typeof.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/Compiled/ConstDefine/MessageConst.lua.bytes
@@ -484,124 +344,9 @@ MonoBehaviour:
     bundle: assets_lua_compiled_constdefine.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/luabitop/nsievebits.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua.bytes
     group: 
-    bundle: assets_lua_3rd_luabitop.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Ray.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/pblua/login_pb.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_pblua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Color.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/Logic/SingletonNormalTest.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_logic.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/RaycastHit.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/dump.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/System/Timer.lua.bytes
-    group: 
-    bundle: assets_lua_system.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/System/Reflection/BindingFlags.lua.bytes
-    group: 
-    bundle: assets_lua_system_reflection.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/misc/utf8.lua.bytes
-    group: 
-    bundle: assets_lua_misc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedSet.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Common/All.lua.bytes
-    group: 
-    bundle: assets_lua_common.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Classloader.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/IO/File.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_io.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Common/protocal.lua.bytes
-    group: 
-    bundle: assets_lua_common.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/dis_mips.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/Logic/SingletonTest.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_logic.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Number.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/socket/headers.lua.bytes
-    group: 
-    bundle: assets_lua_socket.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/StartUpBehaviour.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Model.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/event.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/System/ValueType.lua.bytes
@@ -609,24 +354,9 @@ MonoBehaviour:
     bundle: assets_lua_system.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/dis_mips64el.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua.bytes
     group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/slot.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Reflection/Assembly.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_reflection.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Boolean.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Message.lua.bytes
@@ -634,39 +364,34 @@ MonoBehaviour:
     bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua.bytes
+  - name: Assets/Lua/jit/dis_arm.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_jit.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Math.lua.bytes
+  - name: Assets/Lua/jit/v.lua.bytes
     group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    bundle: assets_lua_jit.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/sproto/sprotoparser.lua.bytes
+  - name: Assets/Lua/event.lua.bytes
     group: 
-    bundle: assets_lua_3rd_sproto.unity3d
+    bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/Singletons/Singleton.lua.bytes
+  - name: Assets/Lua/3rd/pbc/test.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_singletons.unity3d
+    bundle: assets_lua_3rd_pbc.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/UnityEngine/Plane.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua.bytes
     group: 
-    bundle: assets_lua_unityengine.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/System/Injection/LuaInjectionBus.lua.bytes
+  - name: Assets/Lua/protobuf/type_checkers.lua.bytes
     group: 
-    bundle: assets_lua_system_injection.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/Logic/CtrlManager.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_logic.unity3d
+    bundle: assets_lua_protobuf.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/protobuf/descriptor.lua.bytes
@@ -674,7 +399,7 @@ MonoBehaviour:
     bundle: assets_lua_protobuf.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua.bytes
     group: 
     bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     id: 0
@@ -684,94 +409,24 @@ MonoBehaviour:
     bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Common/define.lua.bytes
-    group: 
-    bundle: assets_lua_common.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/misc/functions.lua.bytes
-    group: 
-    bundle: assets_lua_misc.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/dis_mipsel.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Vector3.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/protobuf/text_format.lua.bytes
-    group: 
-    bundle: assets_lua_protobuf.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua.bytes
     group: 
     bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/UnityEngine/Time.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/zone.lua.bytes
+  - name: Assets/Lua/jit/vmdef.lua.bytes
     group: 
     bundle: assets_lua_jit.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/pblua/person_pb.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_pblua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/All.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Exception.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/TimeSpan.lua.bytes
     group: 
     bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Char.lua.bytes
+  - name: Assets/Lua/Compiled/Generator/Proto/PersonProto.lua.bytes
     group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/socket/ftp.lua.bytes
-    group: 
-    bundle: assets_lua_socket.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/jit/dis_arm.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/3rd/sproto/testrpc.lua.bytes
-    group: 
-    bundle: assets_lua_3rd_sproto.unity3d
+    bundle: assets_lua_compiled_generator_proto.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/jit/dis_ppc.lua.bytes
@@ -784,22 +439,17 @@ MonoBehaviour:
     bundle: assets_lua_compiled_view.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/vmdef.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Convert.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Exception.lua.bytes
     group: 
     bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Text/StringBuilder.lua.bytes
+  - name: Assets/Lua/UnityEngine/Time.lua.bytes
     group: 
-    bundle: assets_lua_coresystemlua_coresystem_text.unity3d
+    bundle: assets_lua_unityengine.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/UnityEngine/Quaternion.lua.bytes
+  - name: Assets/Lua/UnityEngine/Vector4.lua.bytes
     group: 
     bundle: assets_lua_unityengine.unity3d
     id: 0
@@ -809,22 +459,22 @@ MonoBehaviour:
     bundle: assets_lua_compiled_view.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua.bytes
+  - name: Assets/Lua/System/Timer.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_controller_command.unity3d
+    bundle: assets_lua_system.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/pbc/protobuf.lua.bytes
+  - name: Assets/Lua/jit/dump.lua.bytes
     group: 
-    bundle: assets_lua_3rd_pbc.unity3d
+    bundle: assets_lua_jit.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Delegate.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/protobuf/type_checkers.lua.bytes
+  - name: Assets/Lua/protobuf/text_format.lua.bytes
     group: 
     bundle: assets_lua_protobuf.unity3d
     id: 0
@@ -834,49 +484,29 @@ MonoBehaviour:
     bundle: assets_lua_unityengine.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/Delegate.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/Controller/TestCtrl.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_controller.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Vector4.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/TimeSpan.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/CoreSystemLua/CoreSystem/DateTime.lua.bytes
-    group: 
-    bundle: assets_lua_coresystemlua_coresystem.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/manifest.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Main.lua.bytes
+  - name: Assets/Lua/slot.lua.bytes
     group: 
     bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/3rd/luabitop/bitbench.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Reflection/Assembly.lua.bytes
     group: 
-    bundle: assets_lua_3rd_luabitop.unity3d
+    bundle: assets_lua_coresystemlua_coresystem_reflection.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/socket/mbox.lua.bytes
+  - name: Assets/Lua/UnityEngine/Ray.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/socket/ftp.lua.bytes
     group: 
     bundle: assets_lua_socket.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Char.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/UnityEngine/Bounds.lua.bytes
@@ -884,134 +514,19 @@ MonoBehaviour:
     bundle: assets_lua_unityengine.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/dis_x64.lua.bytes
-    group: 
-    bundle: assets_lua_jit.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityAdapter.lua.bytes
-    group: 
-    bundle: assets_lua.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/UnityEngine/Mathf.lua.bytes
-    group: 
-    bundle: assets_lua_unityengine.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Common/functions.lua.bytes
-    group: 
-    bundle: assets_lua_common.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/System/Injection/LuaInjectionStation.lua.bytes
+  - name: Assets/Lua/System/Injection/LuaInjectionBus.lua.bytes
     group: 
     bundle: assets_lua_system_injection.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/jit/dis_arm64.lua.bytes
+  - name: Assets/Lua/UnityEngine/Plane.lua.bytes
     group: 
-    bundle: assets_lua_jit.unity3d
+    bundle: assets_lua_unityengine.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/FixBehaviour.lua.bytes
+  - name: Assets/Lua/socket/smtp.lua.bytes
     group: 
-    bundle: assets_lua_luaframework.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Sprites/MessageBox/Btn_button04_Yellow.png
-    group: 
-    bundle: assets_luaframework_resources_sprites_messagebox.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Prefabs/MessageBox.prefab
-    group: 
-    bundle: assets_luaframework_resources_prefabs.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Sprites/MessageBox/Tips.png
-    group: 
-    bundle: assets_luaframework_resources_sprites_messagebox.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Sprites/Backgrounds/bg_black.png
-    group: 
-    bundle: assets_luaframework_resources_sprites_backgrounds.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Sprites/MessageBox/TitleLine_Right.png
-    group: 
-    bundle: assets_luaframework_resources_sprites_messagebox.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Sprites/MessageBox/Btn_button04_n.png
-    group: 
-    bundle: assets_luaframework_resources_sprites_messagebox.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Sprites/MessageBox/TitleLine_Left.png
-    group: 
-    bundle: assets_luaframework_resources_sprites_messagebox.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/TestGameObjectPrefab.prefab
-    group: 
-    bundle: assets_luaframework_resources.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Animations/MessageBox.controller
-    group: 
-    bundle: assets_luaframework_resources_animations.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/LuaFramework/Resources/Animations/MessageBox.anim
-    group: 
-    bundle: assets_luaframework_resources_animations.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Config/LauguageJSONConfig_CN.json
-    group: 
-    bundle: assets_reshotfix_config.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Canvas.prefab
-    group: 
-    bundle: assets_reshotfix.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Config/LauguageJSONConfig.json
-    group: 
-    bundle: assets_reshotfix_config.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Config/SysConfigInfo.json
-    group: 
-    bundle: assets_reshotfix_config.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
-    group: 
-    bundle: assets_reshotfix_prefabs_forms.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Config/UIFormsConfigInfo.json
-    group: 
-    bundle: assets_reshotfix_config.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_utility.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_wraper.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/Compiled/Generator/Config/TextConfig.lua.bytes
-    group: 
-    bundle: assets_lua_compiled_generator_config.unity3d
+    bundle: assets_lua_socket.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/Compiled/Generator/Proto/TextProto.lua.bytes
@@ -1019,24 +534,119 @@ MonoBehaviour:
     bundle: assets_lua_compiled_generator_proto.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/Generator/Proto/TextProto_pb.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
     group: 
-    bundle: assets_lua_compiled_generator_proto.unity3d
+    bundle: assets_lua_luaframework_scripts_utility.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Wraper/FixBehaviour.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Model.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_wraper.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/Generator/Proto/PersonProto_pb.lua.bytes
+  - name: Assets/Lua/mime.lua.bytes
     group: 
-    bundle: assets_lua_compiled_generator_proto.unity3d
+    bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/Generator/Config/MountConfig.lua.bytes
+  - name: Assets/Lua/socket/url.lua.bytes
     group: 
-    bundle: assets_lua_compiled_generator_config.unity3d
+    bundle: assets_lua_socket.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/Mathf.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityAdapter.lua.bytes
+    group: 
+    bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Random.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/ConstDefine/CmdConst.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_constdefine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Core.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/socket/mbox.lua.bytes
+    group: 
+    bundle: assets_lua_socket.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/misc/misc.lua.bytes
+    group: 
+    bundle: assets_lua_misc.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/luabitop/bitbench.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_luabitop.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Number.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Logic/SingletonTest.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_logic.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/pbc/protobuf.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_pbc.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_controller_command.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/dis_mips.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/System/Injection/LuaInjectionStation.lua.bytes
+    group: 
+    bundle: assets_lua_system_injection.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Common/functions.lua.bytes
+    group: 
+    bundle: assets_lua_common.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Common/define.lua.bytes
+    group: 
+    bundle: assets_lua_common.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/Singletons/Singleton.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_singletons.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/misc/strict.lua.bytes
+    group: 
+    bundle: assets_lua_misc.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/sproto/sprotoparser.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_sproto.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/LuaFramework/Scripts/Utility/Prefab.lua.bytes
@@ -1044,24 +654,29 @@ MonoBehaviour:
     bundle: assets_lua_luaframework_scripts_utility.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/View/SpineForm.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua.bytes
     group: 
-    bundle: assets_lua_compiled_view.unity3d
+    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Wraper/GeneratorUtility.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/Queue.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_wraper.unity3d
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/Generator/Proto/PersonProto.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Boolean.lua.bytes
     group: 
-    bundle: assets_lua_compiled_generator_proto.unity3d
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/Compiled/Generator/Config/HeroConfig.lua.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Console.lua.bytes
     group: 
-    bundle: assets_lua_compiled_generator_config.unity3d
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/LinkedList.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/Compiled/Generator/Config/GlobalConfig.lua.bytes
@@ -1069,29 +684,299 @@ MonoBehaviour:
     bundle: assets_lua_compiled_generator_config.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Generator/PersonProto.bytes
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Enum.lua.bytes
     group: 
-    bundle: assets_reshotfix_generator.unity3d
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
+  - name: Assets/Lua/Compiled/Generator/Proto/PersonProto_pb.lua.bytes
     group: 
-    bundle: assets_reshotfix_prefabs_forms.unity3d
+    bundle: assets_lua_compiled_generator_proto.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Generator/TextConfig.json
+  - name: Assets/Lua/CoreSystemLua/All.lua.bytes
     group: 
-    bundle: assets_reshotfix_generator.unity3d
+    bundle: assets_lua_coresystemlua.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Generator/HerosConfig.json
+  - name: Assets/Lua/misc/utf8.lua.bytes
     group: 
-    bundle: assets_reshotfix_generator.unity3d
+    bundle: assets_lua_misc.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Generator/GlobalConfig.json
+  - name: Assets/Lua/LuaFramework/Scripts/manifest.lua.bytes
     group: 
-    bundle: assets_reshotfix_generator.unity3d
+    bundle: assets_lua_luaframework_scripts.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/dis_mips64el.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/LayerMask.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Game.lua.bytes
+    group: 
+    bundle: assets_lua_compiled.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/socket/headers.lua.bytes
+    group: 
+    bundle: assets_lua_socket.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/System/Reflection/BindingFlags.lua.bytes
+    group: 
+    bundle: assets_lua_system_reflection.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/socket.lua.bytes
+    group: 
+    bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/sproto/testrpc.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_sproto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/luabitop/md5test.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_luabitop.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/protobuf/wire_format.lua.bytes
+    group: 
+    bundle: assets_lua_protobuf.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Controller/TestCtrl.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_controller.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/sproto/sproto.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_sproto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Main.lua.bytes
+    group: 
+    bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/StartUpBehaviour.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/luabitop/nsievebits.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_luabitop.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedSet.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/View/BehaviourTest2.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_view.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/dis_arm64.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/bc.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Generator/Config/MountConfig.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_generator_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/dis_x64.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/Profiler.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/Logic/CtrlManager.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_logic.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Compiled/manifest.lua.bytes
+    group: 
+    bundle: assets_lua_compiled.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/Controller/Command/StartUpCommand.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_controller_command.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/luabitop/bittest.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_luabitop.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Threading/Task.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_threading.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/misc/functions.lua.bytes
+    group: 
+    bundle: assets_lua_misc.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/tolua.lua.bytes
+    group: 
+    bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/typeof.lua.bytes
+    group: 
+    bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/dis_arm64be.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/UnityEngine/Touch.lua.bytes
+    group: 
+    bundle: assets_lua_unityengine.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Wraper/FixBehaviour.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_wraper.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/bcsave.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/View/MessageBox.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_view.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/pblua/person_pb.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_pblua.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/socket/tp.lua.bytes
+    group: 
+    bundle: assets_lua_socket.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/p.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/DateTime.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/String.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework_scripts_singletons.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/LuaFramework/All.lua.bytes
+    group: 
+    bundle: assets_lua_luaframework.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/Common/All.lua.bytes
+    group: 
+    bundle: assets_lua_common.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/Sample/test.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_sample.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Interfaces.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/luabitop/installpath.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_luabitop.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/3rd/sproto/print_r.lua.bytes
+    group: 
+    bundle: assets_lua_3rd_sproto.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/jit/zone.lua.bytes
+    group: 
+    bundle: assets_lua_jit.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/protobuf/protobuf.lua.bytes
+    group: 
+    bundle: assets_lua_protobuf.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/LauguageJSONConfig.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
     id: 0
     groupBy: 3
   - name: Assets/ResHotfix/Generator/MountsConfig.json
@@ -1099,7 +984,32 @@ MonoBehaviour:
     bundle: assets_reshotfix_generator.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Generator/TextProto.json
+  - name: Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_forms.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Prefabs/Spines/dragon.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_spines.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Scenes/Main.unity
+    group: 
+    bundle: assets_reshotfix_scenes_main.unity3d
+    id: 0
+    groupBy: 2
+  - name: Assets/ResHotfix/Textures/Shared/SmallBaseMap.png
+    group: 
+    bundle: assets_reshotfix_textures_shared.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon.png
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/GlobalConfig.json
     group: 
     bundle: assets_reshotfix_generator.unity3d
     id: 0
@@ -1109,353 +1019,473 @@ MonoBehaviour:
     bundle: assets_reshotfix_generator.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/license.txt
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/UIFormsConfigInfo.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon.json
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/TextConfig.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/LauguageJSONConfig_CN.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Textures/Shared/ButtonDisable.png
+    group: 
+    bundle: assets_reshotfix_textures_shared.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Canvas.prefab
+    group: 
+    bundle: assets_reshotfix.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/TextProto.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/PersonProto.bytes
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Generator/HerosConfig.json
+    group: 
+    bundle: assets_reshotfix_generator.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Textures/Shared/ButtonClick.png
+    group: 
+    bundle: assets_reshotfix_textures_shared.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/ResHotfix/Generator/PersonProto.json
     group: 
     bundle: assets_reshotfix_generator.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon2.png
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon.atlas.txt
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Config/SysConfigInfo.json
+    group: 
+    bundle: assets_reshotfix_config.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Textures/Shared/ButtonNormal.png
+    group: 
+    bundle: assets_reshotfix_textures_shared.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_forms.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Scenes/Init.unity
+    group: 
+    bundle: assets_reshotfix_scenes_init.unity3d
+    id: 0
+    groupBy: 2
+  - name: Assets/ResHotfix/Prefabs/Forms/PromptItem.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_forms.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Dragon/dragon_Atlas.asset
+    group: 
+    bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Textures/Prompt/1.png
+    group: 
+    bundle: assets_reshotfix_textures_prompt.unity3d
+    id: 0
+    groupBy: 3
   patches: []
   bundles:
-  - assetBundleName: assets_luaframework_examples_builds_prompt.unity3d
+  - assetBundleName: assets_lua_compiled_generator_config.unity3d
     assetNames:
-    - Assets/LuaFramework/Examples/Builds/Prompt/PromptItem.prefab
-    - Assets/LuaFramework/Examples/Builds/Prompt/PromptForm.prefab
-  - assetBundleName: assets_luaframework_examples_builds_message.unity3d
+    - Assets/Lua/Compiled/Generator/Config/HeroConfig.lua.bytes
+    - Assets/Lua/Compiled/Generator/Config/TextConfig.lua.bytes
+    - Assets/Lua/Compiled/Generator/Config/GlobalConfig.lua.bytes
+    - Assets/Lua/Compiled/Generator/Config/MountConfig.lua.bytes
+  - assetBundleName: assets_lua_3rd_pblua.unity3d
     assetNames:
-    - Assets/LuaFramework/Examples/Builds/Message/MessagePanel.prefab
-  - assetBundleName: assets_lua_3rd_pbc.unity3d
+    - Assets/Lua/3rd/pblua/login_pb.lua.bytes
+    - Assets/Lua/3rd/pblua/person_pb.lua.bytes
+  - assetBundleName: assets_lua.unity3d
     assetNames:
-    - Assets/Lua/3rd/pbc/test.lua.bytes
-    - Assets/Lua/3rd/pbc/parser.lua.bytes
-    - Assets/Lua/3rd/pbc/testparser.lua.bytes
-    - Assets/Lua/3rd/pbc/test2.lua.bytes
-    - Assets/Lua/3rd/pbc/protobuf.lua.bytes
-  - assetBundleName: assets_lua_3rd_luabitop.unity3d
-    assetNames:
-    - Assets/Lua/3rd/luabitop/md5test.lua.bytes
-    - Assets/Lua/3rd/luabitop/bittest.lua.bytes
-    - Assets/Lua/3rd/luabitop/installpath.lua.bytes
-    - Assets/Lua/3rd/luabitop/nsievebits.lua.bytes
-    - Assets/Lua/3rd/luabitop/bitbench.lua.bytes
-  - assetBundleName: assets_lua_socket.unity3d
-    assetNames:
-    - Assets/Lua/socket/tp.lua.bytes
-    - Assets/Lua/socket/url.lua.bytes
-    - Assets/Lua/socket/smtp.lua.bytes
-    - Assets/Lua/socket/http.lua.bytes
-    - Assets/Lua/socket/headers.lua.bytes
-    - Assets/Lua/socket/ftp.lua.bytes
-    - Assets/Lua/socket/mbox.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_singletons.unity3d
-    assetNames:
-    - Assets/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/Singletons/Singleton.lua.bytes
+    - Assets/Lua/Classloader.lua.bytes
+    - Assets/Lua/list.lua.bytes
+    - Assets/Lua/LuaDebugjit.lua.bytes
+    - Assets/Lua/ltn12.lua.bytes
+    - Assets/Lua/event.lua.bytes
+    - Assets/Lua/slot.lua.bytes
+    - Assets/Lua/mime.lua.bytes
+    - Assets/Lua/UnityAdapter.lua.bytes
+    - Assets/Lua/socket.lua.bytes
+    - Assets/Lua/Main.lua.bytes
+    - Assets/Lua/tolua.lua.bytes
+    - Assets/Lua/typeof.lua.bytes
   - assetBundleName: assets_lua_luaframework_scripts_mvc_core.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/MVC/Core/Facade.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Message.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Core/Model.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Message.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua.bytes
-  - assetBundleName: assets_lua_jit.unity3d
+  - assetBundleName: assets_lua_luaframework_scripts_mvc.unity3d
     assetNames:
-    - Assets/Lua/jit/p.lua.bytes
-    - Assets/Lua/jit/v.lua.bytes
-    - Assets/Lua/jit/bc.lua.bytes
-    - Assets/Lua/jit/dis_mips64.lua.bytes
-    - Assets/Lua/jit/bcsave.lua.bytes
-    - Assets/Lua/jit/dis_arm64be.lua.bytes
-    - Assets/Lua/jit/dis_x86.lua.bytes
-    - Assets/Lua/jit/dump.lua.bytes
-    - Assets/Lua/jit/dis_mips.lua.bytes
-    - Assets/Lua/jit/dis_mips64el.lua.bytes
-    - Assets/Lua/jit/dis_mipsel.lua.bytes
-    - Assets/Lua/jit/zone.lua.bytes
-    - Assets/Lua/jit/dis_arm.lua.bytes
-    - Assets/Lua/jit/dis_ppc.lua.bytes
-    - Assets/Lua/jit/vmdef.lua.bytes
-    - Assets/Lua/jit/dis_x64.lua.bytes
-    - Assets/Lua/jit/dis_arm64.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua_coresystem.unity3d
-    assetNames:
-    - Assets/Lua/CoreSystemLua/CoreSystem/String.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Core.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Interfaces.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Console.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Utilities.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Type.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Random.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Array.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Enum.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Number.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Boolean.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Math.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Exception.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Char.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Convert.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Delegate.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/TimeSpan.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/DateTime.lua.bytes
-  - assetBundleName: assets_lua_luaframework.unity3d
-    assetNames:
-    - Assets/Lua/LuaFramework/All.lua.bytes
-    - Assets/Lua/LuaFramework/FixBehaviour.lua.bytes
-  - assetBundleName: assets_lua_misc.unity3d
-    assetNames:
-    - Assets/Lua/misc/strict.lua.bytes
-    - Assets/Lua/misc/misc.lua.bytes
-    - Assets/Lua/misc/utf8.lua.bytes
-    - Assets/Lua/misc/functions.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/MVC/AppFacade.lua.bytes
   - assetBundleName: assets_lua_protobuf.unity3d
     assetNames:
-    - Assets/Lua/protobuf/wire_format.lua.bytes
-    - Assets/Lua/protobuf/protobuf.lua.bytes
     - Assets/Lua/protobuf/listener.lua.bytes
+    - Assets/Lua/protobuf/containers.lua.bytes
     - Assets/Lua/protobuf/encoder.lua.bytes
     - Assets/Lua/protobuf/decoder.lua.bytes
-    - Assets/Lua/protobuf/containers.lua.bytes
+    - Assets/Lua/protobuf/type_checkers.lua.bytes
     - Assets/Lua/protobuf/descriptor.lua.bytes
     - Assets/Lua/protobuf/text_format.lua.bytes
-    - Assets/Lua/protobuf/type_checkers.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua_coresystem_threading.unity3d
+    - Assets/Lua/protobuf/wire_format.lua.bytes
+    - Assets/Lua/protobuf/protobuf.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua_coresystem.unity3d
     assetNames:
-    - Assets/Lua/CoreSystemLua/CoreSystem/Threading/Task.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Threading/Thread.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Threading/Timer.lua.bytes
-  - assetBundleName: assets_lua_compiled_constdefine.unity3d
+    - Assets/Lua/CoreSystemLua/CoreSystem/Utilities.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Type.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Convert.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Array.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Math.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/TimeSpan.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Exception.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Delegate.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Char.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Random.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Core.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Number.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Boolean.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Console.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Enum.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/DateTime.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/String.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Interfaces.lua.bytes
+  - assetBundleName: assets_lua_3rd_pbc.unity3d
     assetNames:
-    - Assets/Lua/Compiled/ConstDefine/CmdConst.lua.bytes
-    - Assets/Lua/Compiled/ConstDefine/MessageConst.lua.bytes
+    - Assets/Lua/3rd/pbc/parser.lua.bytes
+    - Assets/Lua/3rd/pbc/testparser.lua.bytes
+    - Assets/Lua/3rd/pbc/test2.lua.bytes
+    - Assets/Lua/3rd/pbc/test.lua.bytes
+    - Assets/Lua/3rd/pbc/protobuf.lua.bytes
   - assetBundleName: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
     assetNames:
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IController.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua.bytes
-  - assetBundleName: assets_lua_compiled.unity3d
+    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua_coresystem_collections.unity3d
     assetNames:
-    - Assets/Lua/Compiled/manifest.lua.bytes
-    - Assets/Lua/Compiled/Game.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua_sample.unity3d
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/EqualityComparer.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/List.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Dictionary.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Queue.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/LinkedList.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedSet.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua.bytes
+  - assetBundleName: assets_lua_luaframework_wraper.unity3d
     assetNames:
-    - Assets/Lua/CoreSystemLua/Sample/test.lua.bytes
-  - assetBundleName: assets_lua_unityengine.unity3d
-    assetNames:
-    - Assets/Lua/UnityEngine/Profiler.lua.bytes
-    - Assets/Lua/UnityEngine/Touch.lua.bytes
-    - Assets/Lua/UnityEngine/Vector2.lua.bytes
-    - Assets/Lua/UnityEngine/LayerMask.lua.bytes
-    - Assets/Lua/UnityEngine/Ray.lua.bytes
-    - Assets/Lua/UnityEngine/Color.lua.bytes
-    - Assets/Lua/UnityEngine/RaycastHit.lua.bytes
-    - Assets/Lua/UnityEngine/Plane.lua.bytes
-    - Assets/Lua/UnityEngine/Vector3.lua.bytes
-    - Assets/Lua/UnityEngine/Time.lua.bytes
-    - Assets/Lua/UnityEngine/Quaternion.lua.bytes
-    - Assets/Lua/UnityEngine/Color32.lua.bytes
-    - Assets/Lua/UnityEngine/Vector4.lua.bytes
-    - Assets/Lua/UnityEngine/Bounds.lua.bytes
-    - Assets/Lua/UnityEngine/Mathf.lua.bytes
+    - Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
+    - Assets/Lua/LuaFramework/Wraper/GeneratorUtility.lua.bytes
+    - Assets/Lua/LuaFramework/Wraper/FixBehaviour.lua.bytes
   - assetBundleName: assets_lua_3rd_sproto.unity3d
     assetNames:
-    - Assets/Lua/3rd/sproto/sproto.lua.bytes
-    - Assets/Lua/3rd/sproto/print_r.lua.bytes
-    - Assets/Lua/3rd/sproto/test.lua.bytes
     - Assets/Lua/3rd/sproto/testall.lua.bytes
+    - Assets/Lua/3rd/sproto/test.lua.bytes
     - Assets/Lua/3rd/sproto/sprotoparser.lua.bytes
     - Assets/Lua/3rd/sproto/testrpc.lua.bytes
-  - assetBundleName: assets_lua.unity3d
+    - Assets/Lua/3rd/sproto/sproto.lua.bytes
+    - Assets/Lua/3rd/sproto/print_r.lua.bytes
+  - assetBundleName: assets_lua_jit.unity3d
     assetNames:
-    - Assets/Lua/tolua.lua.bytes
-    - Assets/Lua/list.lua.bytes
-    - Assets/Lua/socket.lua.bytes
-    - Assets/Lua/ltn12.lua.bytes
-    - Assets/Lua/LuaDebugjit.lua.bytes
-    - Assets/Lua/mime.lua.bytes
-    - Assets/Lua/typeof.lua.bytes
-    - Assets/Lua/Classloader.lua.bytes
-    - Assets/Lua/event.lua.bytes
-    - Assets/Lua/slot.lua.bytes
-    - Assets/Lua/Main.lua.bytes
-    - Assets/Lua/UnityAdapter.lua.bytes
+    - Assets/Lua/jit/dis_x86.lua.bytes
+    - Assets/Lua/jit/dis_mips64.lua.bytes
+    - Assets/Lua/jit/dis_mipsel.lua.bytes
+    - Assets/Lua/jit/dis_arm.lua.bytes
+    - Assets/Lua/jit/v.lua.bytes
+    - Assets/Lua/jit/vmdef.lua.bytes
+    - Assets/Lua/jit/dis_ppc.lua.bytes
+    - Assets/Lua/jit/dump.lua.bytes
+    - Assets/Lua/jit/dis_mips.lua.bytes
+    - Assets/Lua/jit/dis_mips64el.lua.bytes
+    - Assets/Lua/jit/dis_arm64.lua.bytes
+    - Assets/Lua/jit/bc.lua.bytes
+    - Assets/Lua/jit/dis_x64.lua.bytes
+    - Assets/Lua/jit/dis_arm64be.lua.bytes
+    - Assets/Lua/jit/bcsave.lua.bytes
+    - Assets/Lua/jit/p.lua.bytes
+    - Assets/Lua/jit/zone.lua.bytes
+  - assetBundleName: assets_lua_compiled_logic.unity3d
+    assetNames:
+    - Assets/Lua/Compiled/Logic/SingletonNormalTest.lua.bytes
+    - Assets/Lua/Compiled/Logic/SingletonTest.lua.bytes
+    - Assets/Lua/Compiled/Logic/CtrlManager.lua.bytes
   - assetBundleName: assets_lua_compiled_controller.unity3d
     assetNames:
     - Assets/Lua/Compiled/Controller/PromptCtrl.lua.bytes
     - Assets/Lua/Compiled/Controller/TestCode.lua.bytes
     - Assets/Lua/Compiled/Controller/TestCtrl.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua_coresystem_collections.unity3d
+  - assetBundleName: assets_lua_unityengine.unity3d
     assetNames:
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/List.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Queue.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/LinkedList.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/EqualityComparer.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedSet.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Dictionary.lua.bytes
-    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua.bytes
+    - Assets/Lua/UnityEngine/Color.lua.bytes
+    - Assets/Lua/UnityEngine/Vector3.lua.bytes
+    - Assets/Lua/UnityEngine/Vector2.lua.bytes
+    - Assets/Lua/UnityEngine/Quaternion.lua.bytes
+    - Assets/Lua/UnityEngine/RaycastHit.lua.bytes
+    - Assets/Lua/UnityEngine/Time.lua.bytes
+    - Assets/Lua/UnityEngine/Vector4.lua.bytes
+    - Assets/Lua/UnityEngine/Color32.lua.bytes
+    - Assets/Lua/UnityEngine/Ray.lua.bytes
+    - Assets/Lua/UnityEngine/Bounds.lua.bytes
+    - Assets/Lua/UnityEngine/Plane.lua.bytes
+    - Assets/Lua/UnityEngine/Mathf.lua.bytes
+    - Assets/Lua/UnityEngine/LayerMask.lua.bytes
+    - Assets/Lua/UnityEngine/Profiler.lua.bytes
+    - Assets/Lua/UnityEngine/Touch.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua_coresystem_threading.unity3d
+    assetNames:
+    - Assets/Lua/CoreSystemLua/CoreSystem/Threading/Thread.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Threading/Timer.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Threading/Task.lua.bytes
+  - assetBundleName: assets_lua_socket.unity3d
+    assetNames:
+    - Assets/Lua/socket/http.lua.bytes
+    - Assets/Lua/socket/ftp.lua.bytes
+    - Assets/Lua/socket/smtp.lua.bytes
+    - Assets/Lua/socket/url.lua.bytes
+    - Assets/Lua/socket/mbox.lua.bytes
+    - Assets/Lua/socket/headers.lua.bytes
+    - Assets/Lua/socket/tp.lua.bytes
+  - assetBundleName: assets_lua_compiled_view.unity3d
+    assetNames:
+    - Assets/Lua/Compiled/View/PromptForm.lua.bytes
+    - Assets/Lua/Compiled/View/SpineForm.lua.bytes
+    - Assets/Lua/Compiled/View/BehaviourTest3.lua.bytes
+    - Assets/Lua/Compiled/View/BehaviourTest.lua.bytes
+    - Assets/Lua/Compiled/View/BehaviourTest1.lua.bytes
+    - Assets/Lua/Compiled/View/BehaviourTest2.lua.bytes
+  - assetBundleName: assets_lua_common.unity3d
+    assetNames:
+    - Assets/Lua/Common/protocal.lua.bytes
+    - Assets/Lua/Common/functions.lua.bytes
+    - Assets/Lua/Common/define.lua.bytes
+    - Assets/Lua/Common/All.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua_coresystem_io.unity3d
+    assetNames:
+    - Assets/Lua/CoreSystemLua/CoreSystem/IO/File.lua.bytes
   - assetBundleName: assets_lua_3rd_cjson.unity3d
     assetNames:
     - Assets/Lua/3rd/cjson/test.lua.bytes
-    - Assets/Lua/3rd/cjson/lua2json.lua.bytes
     - Assets/Lua/3rd/cjson/util.lua.bytes
+    - Assets/Lua/3rd/cjson/lua2json.lua.bytes
     - Assets/Lua/3rd/cjson/json2lua.lua.bytes
   - assetBundleName: assets_lua_system.unity3d
     assetNames:
     - Assets/Lua/System/coroutine.lua.bytes
-    - Assets/Lua/System/Timer.lua.bytes
     - Assets/Lua/System/ValueType.lua.bytes
+    - Assets/Lua/System/Timer.lua.bytes
   - assetBundleName: assets_lua_lpeg.unity3d
     assetNames:
     - Assets/Lua/lpeg/re.lua.bytes
   - assetBundleName: assets_lua_compiled_model.unity3d
     assetNames:
     - Assets/Lua/Compiled/Model/TestModel.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_mvc.unity3d
-    assetNames:
-    - Assets/Lua/LuaFramework/Scripts/MVC/AppFacade.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_view.unity3d
-    assetNames:
-    - Assets/Lua/LuaFramework/Scripts/View/MessageBox.lua.bytes
-  - assetBundleName: assets_lua_compiled_view.unity3d
-    assetNames:
-    - Assets/Lua/Compiled/View/PromptForm.lua.bytes
-    - Assets/Lua/Compiled/View/BehaviourTest2.lua.bytes
-    - Assets/Lua/Compiled/View/BehaviourTest3.lua.bytes
-    - Assets/Lua/Compiled/View/BehaviourTest.lua.bytes
-    - Assets/Lua/Compiled/View/BehaviourTest1.lua.bytes
-    - Assets/Lua/Compiled/View/SpineForm.lua.bytes
   - assetBundleName: assets_lua_compiled_common.unity3d
     assetNames:
     - Assets/Lua/Compiled/Common/Define.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_controller_command.unity3d
+  - assetBundleName: assets_lua_coresystemlua_coresystem_text.unity3d
     assetNames:
-    - Assets/Lua/LuaFramework/Scripts/Controller/Command/StartUpCommand.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Text/StringBuilder.lua.bytes
+  - assetBundleName: assets_lua_compiled_generator_proto.unity3d
+    assetNames:
+    - Assets/Lua/Compiled/Generator/Proto/TextProto_pb.lua.bytes
+    - Assets/Lua/Compiled/Generator/Proto/PersonProto.lua.bytes
+    - Assets/Lua/Compiled/Generator/Proto/TextProto.lua.bytes
+    - Assets/Lua/Compiled/Generator/Proto/PersonProto_pb.lua.bytes
   - assetBundleName: assets_lua_cjson.unity3d
     assetNames:
     - Assets/Lua/cjson/util.lua.bytes
+  - assetBundleName: assets_lua_luaframework.unity3d
+    assetNames:
+    - Assets/Lua/LuaFramework/FixBehaviour.lua.bytes
+    - Assets/Lua/LuaFramework/All.lua.bytes
   - assetBundleName: assets_lua_system_injection.unity3d
     assetNames:
     - Assets/Lua/System/Injection/InjectionBridgeInfo.lua.bytes
     - Assets/Lua/System/Injection/LuaInjectionBus.lua.bytes
     - Assets/Lua/System/Injection/LuaInjectionStation.lua.bytes
-  - assetBundleName: assets_lua_3rd_pblua.unity3d
+  - assetBundleName: assets_lua_compiled_constdefine.unity3d
     assetNames:
-    - Assets/Lua/3rd/pblua/login_pb.lua.bytes
-    - Assets/Lua/3rd/pblua/person_pb.lua.bytes
-  - assetBundleName: assets_lua_compiled_logic.unity3d
-    assetNames:
-    - Assets/Lua/Compiled/Logic/SingletonNormalTest.lua.bytes
-    - Assets/Lua/Compiled/Logic/SingletonTest.lua.bytes
-    - Assets/Lua/Compiled/Logic/CtrlManager.lua.bytes
-  - assetBundleName: assets_lua_system_reflection.unity3d
-    assetNames:
-    - Assets/Lua/System/Reflection/BindingFlags.lua.bytes
-  - assetBundleName: assets_lua_common.unity3d
-    assetNames:
-    - Assets/Lua/Common/All.lua.bytes
-    - Assets/Lua/Common/protocal.lua.bytes
-    - Assets/Lua/Common/define.lua.bytes
-    - Assets/Lua/Common/functions.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua_coresystem_io.unity3d
-    assetNames:
-    - Assets/Lua/CoreSystemLua/CoreSystem/IO/File.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts.unity3d
-    assetNames:
-    - Assets/Lua/LuaFramework/Scripts/StartUpBehaviour.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/manifest.lua.bytes
+    - Assets/Lua/Compiled/ConstDefine/MessageConst.lua.bytes
+    - Assets/Lua/Compiled/ConstDefine/CmdConst.lua.bytes
   - assetBundleName: assets_lua_coresystemlua_coresystem_reflection.unity3d
     assetNames:
     - Assets/Lua/CoreSystemLua/CoreSystem/Reflection/Assembly.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua.unity3d
-    assetNames:
-    - Assets/Lua/CoreSystemLua/All.lua.bytes
-  - assetBundleName: assets_lua_coresystemlua_coresystem_text.unity3d
-    assetNames:
-    - Assets/Lua/CoreSystemLua/CoreSystem/Text/StringBuilder.lua.bytes
-  - assetBundleName: assets_luaframework_resources_sprites_messagebox.unity3d
-    assetNames:
-    - Assets/LuaFramework/Resources/Sprites/MessageBox/Btn_button04_Yellow.png
-    - Assets/LuaFramework/Resources/Sprites/MessageBox/Tips.png
-    - Assets/LuaFramework/Resources/Sprites/MessageBox/TitleLine_Right.png
-    - Assets/LuaFramework/Resources/Sprites/MessageBox/Btn_button04_n.png
-    - Assets/LuaFramework/Resources/Sprites/MessageBox/TitleLine_Left.png
-  - assetBundleName: assets_luaframework_resources_prefabs.unity3d
-    assetNames:
-    - Assets/LuaFramework/Resources/Prefabs/MessageBox.prefab
-  - assetBundleName: assets_luaframework_resources_sprites_backgrounds.unity3d
-    assetNames:
-    - Assets/LuaFramework/Resources/Sprites/Backgrounds/bg_black.png
-  - assetBundleName: assets_luaframework_resources.unity3d
-    assetNames:
-    - Assets/LuaFramework/Resources/TestGameObjectPrefab.prefab
-  - assetBundleName: assets_luaframework_resources_animations.unity3d
-    assetNames:
-    - Assets/LuaFramework/Resources/Animations/MessageBox.controller
-    - Assets/LuaFramework/Resources/Animations/MessageBox.anim
-  - assetBundleName: assets_reshotfix_config.unity3d
-    assetNames:
-    - Assets/ResHotfix/Config/LauguageJSONConfig_CN.json
-    - Assets/ResHotfix/Config/LauguageJSONConfig.json
-    - Assets/ResHotfix/Config/SysConfigInfo.json
-    - Assets/ResHotfix/Config/UIFormsConfigInfo.json
-  - assetBundleName: assets_reshotfix.unity3d
-    assetNames:
-    - Assets/ResHotfix/Canvas.prefab
-  - assetBundleName: assets_reshotfix_prefabs_forms.unity3d
-    assetNames:
-    - Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
-    - Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
   - assetBundleName: assets_lua_luaframework_scripts_utility.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/Utility/Prefab.lua.bytes
-  - assetBundleName: assets_lua_luaframework_wraper.unity3d
+  - assetBundleName: assets_lua_misc.unity3d
     assetNames:
-    - Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
-    - Assets/Lua/LuaFramework/Wraper/FixBehaviour.lua.bytes
-    - Assets/Lua/LuaFramework/Wraper/GeneratorUtility.lua.bytes
-  - assetBundleName: assets_lua_compiled_generator_config.unity3d
+    - Assets/Lua/misc/misc.lua.bytes
+    - Assets/Lua/misc/strict.lua.bytes
+    - Assets/Lua/misc/utf8.lua.bytes
+    - Assets/Lua/misc/functions.lua.bytes
+  - assetBundleName: assets_lua_3rd_luabitop.unity3d
     assetNames:
-    - Assets/Lua/Compiled/Generator/Config/TextConfig.lua.bytes
-    - Assets/Lua/Compiled/Generator/Config/MountConfig.lua.bytes
-    - Assets/Lua/Compiled/Generator/Config/HeroConfig.lua.bytes
-    - Assets/Lua/Compiled/Generator/Config/GlobalConfig.lua.bytes
-  - assetBundleName: assets_lua_compiled_generator_proto.unity3d
+    - Assets/Lua/3rd/luabitop/bitbench.lua.bytes
+    - Assets/Lua/3rd/luabitop/md5test.lua.bytes
+    - Assets/Lua/3rd/luabitop/nsievebits.lua.bytes
+    - Assets/Lua/3rd/luabitop/bittest.lua.bytes
+    - Assets/Lua/3rd/luabitop/installpath.lua.bytes
+  - assetBundleName: assets_lua_luaframework_scripts_controller_command.unity3d
     assetNames:
-    - Assets/Lua/Compiled/Generator/Proto/TextProto.lua.bytes
-    - Assets/Lua/Compiled/Generator/Proto/TextProto_pb.lua.bytes
-    - Assets/Lua/Compiled/Generator/Proto/PersonProto_pb.lua.bytes
-    - Assets/Lua/Compiled/Generator/Proto/PersonProto.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/Controller/Command/StartUpCommand.lua.bytes
+  - assetBundleName: assets_lua_luaframework_scripts_singletons.unity3d
+    assetNames:
+    - Assets/Lua/LuaFramework/Scripts/Singletons/Singleton.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua.unity3d
+    assetNames:
+    - Assets/Lua/CoreSystemLua/All.lua.bytes
+  - assetBundleName: assets_lua_luaframework_scripts.unity3d
+    assetNames:
+    - Assets/Lua/LuaFramework/Scripts/manifest.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/StartUpBehaviour.lua.bytes
+  - assetBundleName: assets_lua_compiled.unity3d
+    assetNames:
+    - Assets/Lua/Compiled/Game.lua.bytes
+    - Assets/Lua/Compiled/manifest.lua.bytes
+  - assetBundleName: assets_lua_system_reflection.unity3d
+    assetNames:
+    - Assets/Lua/System/Reflection/BindingFlags.lua.bytes
+  - assetBundleName: assets_lua_luaframework_scripts_view.unity3d
+    assetNames:
+    - Assets/Lua/LuaFramework/Scripts/View/MessageBox.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua_sample.unity3d
+    assetNames:
+    - Assets/Lua/CoreSystemLua/Sample/test.lua.bytes
+  - assetBundleName: assets_reshotfix_config.unity3d
+    assetNames:
+    - Assets/ResHotfix/Config/LauguageJSONConfig.json
+    - Assets/ResHotfix/Config/UIFormsConfigInfo.json
+    - Assets/ResHotfix/Config/LauguageJSONConfig_CN.json
+    - Assets/ResHotfix/Config/SysConfigInfo.json
   - assetBundleName: assets_reshotfix_generator.unity3d
     assetNames:
-    - Assets/ResHotfix/Generator/PersonProto.bytes
-    - Assets/ResHotfix/Generator/TextConfig.json
-    - Assets/ResHotfix/Generator/HerosConfig.json
-    - Assets/ResHotfix/Generator/GlobalConfig.json
     - Assets/ResHotfix/Generator/MountsConfig.json
-    - Assets/ResHotfix/Generator/TextProto.json
+    - Assets/ResHotfix/Generator/GlobalConfig.json
     - Assets/ResHotfix/Generator/TextProto.bytes
+    - Assets/ResHotfix/Generator/TextConfig.json
+    - Assets/ResHotfix/Generator/TextProto.json
+    - Assets/ResHotfix/Generator/PersonProto.bytes
+    - Assets/ResHotfix/Generator/HerosConfig.json
     - Assets/ResHotfix/Generator/PersonProto.json
-  - assetBundleName: children_assets_luaframework_examples_builds_prompt.unity3d
+  - assetBundleName: assets_reshotfix_prefabs_forms.unity3d
     assetNames:
-    - Assets/LuaFramework/Examples/Textures/Prompt/1.png
-  - assetBundleName: children_assets_luaframework_resources_prefabs.unity3d
+    - Assets/ResHotfix/Prefabs/Forms/PromptForm.prefab
+    - Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
+    - Assets/ResHotfix/Prefabs/Forms/PromptItem.prefab
+  - assetBundleName: assets_reshotfix_prefabs_spines.unity3d
     assetNames:
-    - Assets/LuaFramework/Shaders/UIBlur.mat
+    - Assets/ResHotfix/Prefabs/Spines/dragon.prefab
+  - assetBundleName: assets_reshotfix_scenes_main.unity3d
+    assetNames:
+    - Assets/ResHotfix/Scenes/Main.unity
+  - assetBundleName: assets_reshotfix_textures_shared.unity3d
+    assetNames:
+    - Assets/ResHotfix/Textures/Shared/SmallBaseMap.png
+    - Assets/ResHotfix/Textures/Shared/ButtonDisable.png
+    - Assets/ResHotfix/Textures/Shared/ButtonClick.png
+    - Assets/ResHotfix/Textures/Shared/ButtonNormal.png
+  - assetBundleName: assets_reshotfix_spines_dragon.unity3d
+    assetNames:
+    - Assets/ResHotfix/Spines/Dragon/dragon.png
+    - Assets/ResHotfix/Spines/Dragon/license.txt
+    - Assets/ResHotfix/Spines/Dragon/dragon.json
+    - Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
+    - Assets/ResHotfix/Spines/Dragon/dragon2.png
+    - Assets/ResHotfix/Spines/Dragon/dragon.atlas.txt
+    - Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
+    - Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
+    - Assets/ResHotfix/Spines/Dragon/dragon_Atlas.asset
+  - assetBundleName: assets_reshotfix.unity3d
+    assetNames:
+    - Assets/ResHotfix/Canvas.prefab
+  - assetBundleName: assets_reshotfix_scenes_init.unity3d
+    assetNames:
+    - Assets/ResHotfix/Scenes/Init.unity
+  - assetBundleName: assets_reshotfix_textures_prompt.unity3d
+    assetNames:
+    - Assets/ResHotfix/Textures/Prompt/1.png
+  - assetBundleName: children_assets_reshotfix_prefabs_spines.unity3d
+    assetNames:
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/Materials/SkeletonGraphicDefault.mat
   - assetBundleName: shaders.unity3d
     assetNames:
-    - Assets/LuaFramework/Shaders/SimpleGrabPassBlur.shader
-  - assetBundleName: shared_assets_luaframework_examples_textures_shared.unity3d
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/SkeletonGraphic/Spine-SkeletonGraphic.shader
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/BlendModes/Spine-Skeleton-PMA-Screen.shader
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/BlendModes/Spine-Skeleton-PMA-Additive.shader
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/Spine-Skeleton.shader
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/BlendModes/Spine-Skeleton-PMA-Multiply.shader
+  - assetBundleName: children_assets_reshotfix_spines_dragon.unity3d
     assetNames:
-    - Assets/LuaFramework/Examples/Textures/Shared/ButtonClick.png
-    - Assets/LuaFramework/Examples/Textures/Shared/ButtonNormal.png
-    - Assets/LuaFramework/Examples/Textures/Shared/ButtonDisable.png
-    - Assets/LuaFramework/Examples/Textures/Shared/SmallBaseMap.png
-  currentScene: Main
+    - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/AtlasAsset Icon.png
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAAdditive.mat
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAMultiply.mat
+    - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/SkeletonDataAsset Icon.png
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAScreen.mat
+  currentScene: Init

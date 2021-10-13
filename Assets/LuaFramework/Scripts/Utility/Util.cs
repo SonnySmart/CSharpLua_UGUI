@@ -59,7 +59,7 @@ namespace LuaFramework {
         /// 测试计算时间
         /// </summary>
         public static void CalcTime(string desc) {
-#if false
+#if true
             long t = GetTime();
             if (lStartupTime == 0)
             {
@@ -67,7 +67,7 @@ namespace LuaFramework {
             }
             long useTime = (t - lStartupTime);
             float fTime = useTime / 1000F;
-            LogError($"{++nPrintIndex} 使用时间 -> {fTime} 秒 : {desc}");
+            Log($"{++nPrintIndex} 使用时间 -> {fTime} 秒 : {desc}");
 #endif
         }
 

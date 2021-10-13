@@ -269,6 +269,19 @@ namespace LuaInterface
                     buffer = luaCode.bytes;
                     Resources.UnloadAsset(luaCode);
                 }
+                else
+                {
+                    Debug.LogError(string.Format("fileName => {0} luaCode is null .", fileName));
+                }
+            }
+            else
+            {
+                Debug.LogError(string.Format("zipName => {0} zipFile is null .", zipName));
+            }
+
+            if (buffer != null)
+            {
+                Debug.Log(string.Format("fileName -> {0} size[{1}]", fileName, buffer.Length));
             }
 
             return buffer;

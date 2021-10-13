@@ -51,6 +51,7 @@ namespace LuaFramework {
         private void OnMessage(string msg)
         {
             //progressText.text = msg;
+            Debug.Log(msg);
         }
 
         public void StartUpdate()

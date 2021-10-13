@@ -123,7 +123,7 @@ namespace CSharpGeneratorForProton.Protobuf {
       }
       */
       ResourceManager manager = LuaHelper.GetResManager();
-      TextAsset ta = manager.LoadAsset<TextAsset>(path);
+      TextAsset ta = manager.LoadAsset<TextAsset>(path.Replace('\\', '/'));
       Stream stream = new MemoryStream(ta.bytes);
       return stream;
       //return new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
