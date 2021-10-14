@@ -47,7 +47,7 @@ namespace libx
 
         private MessageBox(string title, string content, Action<bool> completed, string ok, string no)
         {
-            var request = Assets.LoadAsset("Prefabs/MessageBox", typeof(GameObject));
+            var request = Assets.LoadAsset(R.GetPrefab("Prefabs/MessageBox"), typeof(GameObject));
             gameObject = Object.Instantiate(request.asset) as GameObject;
             Assert.IsNotNull(gameObject, "gameObject != null");
             //gameObject.name = title;

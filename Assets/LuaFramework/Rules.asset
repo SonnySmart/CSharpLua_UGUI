@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 18
+  build: 19
   major: 2
   minor: 2
   scenesFolders: []
@@ -1049,11 +1049,6 @@ MonoBehaviour:
     bundle: assets_reshotfix_textures_shared.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Canvas.prefab
-    group: 
-    bundle: assets_reshotfix.unity3d
-    id: 0
-    groupBy: 3
   - name: Assets/ResHotfix/Generator/TextProto.json
     group: 
     bundle: assets_reshotfix_generator.unity3d
@@ -1462,9 +1457,6 @@ MonoBehaviour:
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_Atlas.asset
-  - assetBundleName: assets_reshotfix.unity3d
-    assetNames:
-    - Assets/ResHotfix/Canvas.prefab
   - assetBundleName: assets_reshotfix_scenes_init.unity3d
     assetNames:
     - Assets/ResHotfix/Scenes/Init.unity

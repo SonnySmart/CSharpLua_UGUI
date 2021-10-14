@@ -11,7 +11,7 @@ namespace LuaFramework {
         /// lua字节码,不会用于运行模式
         /// 发布模式配置
         /// </summary>
-        public static bool luajit = true;                           //Lua字节码模式-默认开启
+        public static bool luajit = false;                           //Lua字节码模式-默认关闭 - 安卓测试有问题
         /// <summary>
         /// 判断lua是否从AssetBundle中读取,一般与 '编辑器模式' 相反
         /// 发布模式配置 XAsset/Runtime/Initializer 组件面板中修改

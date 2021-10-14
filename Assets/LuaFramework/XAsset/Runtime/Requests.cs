@@ -108,6 +108,10 @@ namespace libx
             {
                 // Release模式
                 // 这里改为Resources加载
+                // xxx.prefab -> xxx
+                var urls = url.Split('.');
+                if (urls.Length > 1)
+                    url = urls[0];
                 asset = Resources.Load(url, assetType);
             }
 
@@ -123,7 +127,7 @@ namespace libx
             if (asset == null)
                 return;
 
-            //if (!Assets.development)
+            if (!Assets.development)
             {
                 if (!(asset is GameObject))
                     Resources.UnloadAsset(asset);

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splash: 0
-  loggable: 1
+  loggable: 0
   verifyBy: 1
   downloadURL: http://192.168.1.242/Bundles/
   development: 0

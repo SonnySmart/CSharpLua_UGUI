@@ -27,6 +27,7 @@ namespace libx
                 DontDestroyOnLoad(gameObject);
             }
             EditorInit();  
+            Init();
             Assets.updateAll = updateAll;
             Assets.downloadURL = downloadURL;
             Assets.verifyBy = verifyBy;
@@ -63,7 +64,22 @@ namespace libx
             LuaFramework.AppConst.luaEntry = luaEntry;
         }
 
-        [Conditional("UNITY_EDITOR")]
+        // PLATFORM        
+        [Conditional("UNITY_STANDALONE")]
+        [Conditional("UNITY_IOS")]
+        [Conditional("UNITY_ANDROID")]
+        private void Init()
+        {
+            Assets.development = development; 
+            Assets.loggable = loggable;
+
+            //AppConst
+            LuaFramework.AppConst.development = development;
+            LuaFramework.AppConst.luaBundle = true;
+            LuaFramework.AppConst.luaEntry = luaEntry;
+        }
+
+        [Conditional("UNITY_EDITOR")] 
         private void Update()
         {
             Assets.loggable = loggable; 

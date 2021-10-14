@@ -281,7 +281,7 @@ namespace LuaInterface
 
             if (buffer != null)
             {
-                Debug.Log(string.Format("fileName -> {0} size[{1}]", fileName, buffer.Length));
+                //Debug.Log(string.Format("fileName -> {0} size[{1}]", fileName, buffer.Length));
             }
 
             return buffer;

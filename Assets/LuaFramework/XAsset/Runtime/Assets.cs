@@ -452,7 +452,7 @@ namespace libx
             var info = new FileInfo(path);
             if (!info.Exists)
             {
-                LogFormat("path => {0} is not exist .", path);
+                //LogFormat("path => {0} is not exist .", path);
                 return true;
             }
 
