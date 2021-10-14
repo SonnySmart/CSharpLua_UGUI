@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -6,7 +7,7 @@ namespace libx
 {
     public class Initializer : MonoBehaviour
     {
-        public bool splash;
+        public float splashTime = 0.5f;
         public bool loggable;
         public VerifyBy verifyBy = VerifyBy.CRC;
         public string downloadURL;
@@ -41,16 +42,15 @@ namespace libx
                     return;
                 }
 
-                if (splash)
-                {
-                    Assets.LoadSceneAsync(R.GetScene("Splash"));
-                }
-                else
-                {
-                    Assets.LoadSceneAsync(R.GetScene(launchScene)); 
-                }
+                StartCoroutine(LoadSceneAsync());
             });   
         }  
+
+        private IEnumerator LoadSceneAsync()
+        {
+            yield return new WaitForSeconds(splashTime);
+            Assets.LoadSceneAsync(R.GetScene(launchScene));
+        }
 
         [Conditional("UNITY_EDITOR")] 
         private void EditorInit()

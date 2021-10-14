@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 19
+  build: 20
   major: 2
   minor: 2
   scenesFolders: []
@@ -20,11 +20,10 @@ MonoBehaviour:
   autoGroupByDirectories: []
   validateAssetPath: 0
   allAssetsToBuild: 0
-  patchesInBuild:
-  - Init
-  - Main
+  patchesInBuild: []
   scenesInBuild:
   - {fileID: 102900000, guid: b3b41d8cebde9274f8b684adec633a95, type: 3}
+  - {fileID: 102900000, guid: 66a0f42e1e9da954a9a7d8bdbbd80ea9, type: 3}
   extension: .unity3d
   nameByHash: 0
   options: 256
@@ -994,11 +993,6 @@ MonoBehaviour:
     bundle: assets_reshotfix_prefabs_spines.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Scenes/Main.unity
-    group: 
-    bundle: assets_reshotfix_scenes_main.unity3d
-    id: 0
-    groupBy: 2
   - name: Assets/ResHotfix/Textures/Shared/SmallBaseMap.png
     group: 
     bundle: assets_reshotfix_textures_shared.unity3d
@@ -1104,11 +1098,6 @@ MonoBehaviour:
     bundle: assets_reshotfix_prefabs_forms.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Scenes/Init.unity
-    group: 
-    bundle: assets_reshotfix_scenes_init.unity3d
-    id: 0
-    groupBy: 2
   - name: Assets/ResHotfix/Prefabs/Forms/PromptItem.prefab
     group: 
     bundle: assets_reshotfix_prefabs_forms.unity3d
@@ -1134,6 +1123,16 @@ MonoBehaviour:
     bundle: assets_reshotfix_textures_prompt.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/ResHotfix/Scenes/1_Initializer.unity
+    group: 
+    bundle: assets_reshotfix_scenes_1_initializer.unity3d
+    id: 0
+    groupBy: 2
+  - name: Assets/ResHotfix/Scenes/2_Download.unity
+    group: 
+    bundle: assets_reshotfix_scenes_2_download.unity3d
+    id: 0
+    groupBy: 2
   patches: []
   bundles:
   - assetBundleName: assets_lua_compiled_generator_config.unity3d
@@ -1437,9 +1436,6 @@ MonoBehaviour:
   - assetBundleName: assets_reshotfix_prefabs_spines.unity3d
     assetNames:
     - Assets/ResHotfix/Prefabs/Spines/dragon.prefab
-  - assetBundleName: assets_reshotfix_scenes_main.unity3d
-    assetNames:
-    - Assets/ResHotfix/Scenes/Main.unity
   - assetBundleName: assets_reshotfix_textures_shared.unity3d
     assetNames:
     - Assets/ResHotfix/Textures/Shared/SmallBaseMap.png
@@ -1457,12 +1453,15 @@ MonoBehaviour:
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_Atlas.asset
-  - assetBundleName: assets_reshotfix_scenes_init.unity3d
-    assetNames:
-    - Assets/ResHotfix/Scenes/Init.unity
   - assetBundleName: assets_reshotfix_textures_prompt.unity3d
     assetNames:
     - Assets/ResHotfix/Textures/Prompt/1.png
+  - assetBundleName: assets_reshotfix_scenes_1_initializer.unity3d
+    assetNames:
+    - Assets/ResHotfix/Scenes/1_Initializer.unity
+  - assetBundleName: assets_reshotfix_scenes_2_download.unity3d
+    assetNames:
+    - Assets/ResHotfix/Scenes/2_Download.unity
   - assetBundleName: children_assets_reshotfix_prefabs_spines.unity3d
     assetNames:
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Materials/SkeletonGraphicDefault.mat
@@ -1480,4 +1479,7 @@ MonoBehaviour:
     - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAMultiply.mat
     - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/SkeletonDataAsset Icon.png
     - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAScreen.mat
-  currentScene: Init
+  - assetBundleName: children_assets_reshotfix_scenes_1_initializer.unity3d
+    assetNames:
+    - Assets/Resources/Textures/flash.jpg
+  currentScene: 2_Download
