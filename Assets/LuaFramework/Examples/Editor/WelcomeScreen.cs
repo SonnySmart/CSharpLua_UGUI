@@ -16,7 +16,7 @@ public class WelcomeScreen : EditorWindow
     private Texture mDocImage;
     private Rect mDocImageRect = new Rect(15f, 124f, 53f, 50f);
     private Rect mForumDescriptionRect = new Rect(70f, 278f, 380f, 30f);
-    private Rect mForumHeaderRect = new Rect(70f, 258f, 250f, 20f);
+    private Rect mForumHeaderRect = new Rect(70f, 258f, 300f, 20f);
     private Texture mForumImage;
     private Rect mForumImageRect = new Rect(15f, 256f, 50f, 50f);
     private Rect mSamplesDescriptionRect = new Rect(70f, 77f, 250f, 30f);
@@ -57,19 +57,19 @@ public class WelcomeScreen : EditorWindow
         GUI.Label(this.mWelcomeIntroRect, "欢迎使用LuaFramework，它是个基于tolua#，\n将C#类注册进Lua，并且附带了AssetBundle管理的演示框架。入门步骤如下：");
         GUI.DrawTexture(this.mSamplesImageRect, this.mSamplesImage);
         GUI.Label(this.mSamplesHeaderRect, "新手入门 - 生成Wrap文件(必须)" );
-        GUI.Label(this.mSamplesDescriptionRect, "单击Lua菜单里面Generate All子菜单.");
+        GUI.Label(this.mSamplesDescriptionRect, "单机菜单 - Lua/Generate All");
         GUI.DrawTexture(this.mDocImageRect, this.mDocImage);
         GUI.Label(this.mDocHeaderRect, "新手入门 - 根据不同平台生成AssetBundle资源(必须)");
-        GUI.Label(this.mDocDescriptionRect, "单击Game菜单里面Build XXX Resources子菜单.");
+        GUI.Label(this.mDocDescriptionRect, "单机菜单 - XASSET/Build/Bundles");
         GUI.DrawTexture(this.mVideoImageRect, this.mVideoImage);
         GUI.Label(this.mVideoHeaderRect, "新手入门 - 改完注册到Lua的C#类，需清除文件缓存，重新生成");
-        GUI.Label(this.mVideoDescriptionRect, "单击Lua菜单里面Clear Wrap Files子菜单.");
+        GUI.Label(this.mVideoDescriptionRect, "单机菜单 - Lua/Clear Wrap Files");
         GUI.DrawTexture(this.mForumImageRect, this.mForumImage);
-        GUI.Label(this.mForumHeaderRect, "新手入门 - Lua需要统一的UTF-8文件编码");
-        GUI.Label(this.mForumDescriptionRect, "单击Lua菜单里面Encode LuaFile with UTF-8子菜单.");
+        GUI.Label(this.mForumHeaderRect, "新手入门 - 生成CSharp.lua翻译文件.cs -> .lua");
+        GUI.Label(this.mForumDescriptionRect, "单机菜单 - LuaFramework/Compile C#2Lua");
         GUI.DrawTexture(this.mContactImageRect, this.mContactImage);
-        GUI.Label(this.mContactHeaderRect, " 加入技术支持社群");
-        GUI.Label(this.mContactDescriptionRect, "QQ群:469941220 或者 QQ群:62978170");
+        GUI.Label(this.mContactHeaderRect, "新手入门 - 打包apk exe");
+        GUI.Label(this.mContactDescriptionRect, "单机菜单 - XASSET/Build/Player");
         GUI.Label(this.mVersionRect, version );
 
         flag = GUI.Toggle(this.mToggleButtonRect, flag, "开始时候显示对话框");
