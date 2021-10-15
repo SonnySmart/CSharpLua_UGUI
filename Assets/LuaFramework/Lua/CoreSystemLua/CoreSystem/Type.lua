@@ -341,8 +341,7 @@ System.typeof = typeof
 System.Object.GetType = getType
 
 local function addCheckInterface(set, cls)
-  -- 这里interface可能会出错
-  local interface = rawget(cls, "interface")
+  local interface = cls.interface
   if interface then
     for i = 1, #interface do
       local it = interface[i]
@@ -396,7 +395,7 @@ checks[Number] = function (obj, T)
     [UInt16] = function (obj) return type(obj) == "number" and obj >= 0 and obj <= 32767 and floor(obj) == obj end,
     [Int32] = function (obj) return type(obj) == "number" and obj >= -2147483648 and obj <= 2147483647 and floor(obj) == obj end,
     [UInt32] = function (obj) return type(obj) == "number" and obj >= 0 and obj <= 4294967295 and floor(obj) == obj end,
-    [Int64] = function (obj) return type(obj) == "number" and obj >= -9223372036854775808 and obj <= 9223372036854775807 and floor(obj) == obj end,
+    [Int64] = function (obj) return type(obj) == "number" and obj >= (-9223372036854775807 - 1) and obj <= 9223372036854775807 and floor(obj) == obj end,
     [UInt64] = function (obj) return type(obj) == "number" and obj >= 0 and obj <= 18446744073709551615 and floor(obj) == obj end,
     [Single] = function (obj) return type(obj) == "number" and obj >= -3.40282347E+38 and obj <= 3.40282347E+38 end,
     [Double] = function (obj) return type(obj) == "number" end

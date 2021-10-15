@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 20
+  build: 21
   major: 2
   minor: 2
   scenesFolders: []
@@ -1133,6 +1133,71 @@ MonoBehaviour:
     bundle: assets_reshotfix_scenes_2_download.unity3d
     id: 0
     groupBy: 2
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/HashCodeHelper.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Matrix4x4.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Globalization/Globalization.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_globalization.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedList.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedDictionary.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Collections/PriorityQueue.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_collections.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Plane.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Vector3.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Complex.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Vector4.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Quaternion.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Vector2.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Matrix3x2.lua.bytes
+    group: 
+    bundle: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    id: 0
+    groupBy: 3
   patches: []
   bundles:
   - assetBundleName: assets_lua_compiled_generator_config.unity3d
@@ -1229,6 +1294,9 @@ MonoBehaviour:
     - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Stack.lua.bytes
     - Assets/Lua/CoreSystemLua/CoreSystem/Collections/Linq.lua.bytes
     - Assets/Lua/CoreSystemLua/CoreSystem/Collections/HashSet.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedList.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/SortedDictionary.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Collections/PriorityQueue.lua.bytes
   - assetBundleName: assets_lua_luaframework_wraper.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
@@ -1462,6 +1530,20 @@ MonoBehaviour:
   - assetBundleName: assets_reshotfix_scenes_2_download.unity3d
     assetNames:
     - Assets/ResHotfix/Scenes/2_Download.unity
+  - assetBundleName: assets_lua_coresystemlua_coresystem_numerics.unity3d
+    assetNames:
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/HashCodeHelper.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Matrix4x4.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Plane.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Vector3.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Complex.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Vector4.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Quaternion.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Vector2.lua.bytes
+    - Assets/Lua/CoreSystemLua/CoreSystem/Numerics/Matrix3x2.lua.bytes
+  - assetBundleName: assets_lua_coresystemlua_coresystem_globalization.unity3d
+    assetNames:
+    - Assets/Lua/CoreSystemLua/CoreSystem/Globalization/Globalization.lua.bytes
   - assetBundleName: children_assets_reshotfix_prefabs_spines.unity3d
     assetNames:
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Materials/SkeletonGraphicDefault.mat

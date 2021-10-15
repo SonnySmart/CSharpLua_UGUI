@@ -23,6 +23,8 @@ local each = System.each
 local lengthFn = System.lengthFn
 local versions = System.versions
 local Array = System.Array
+local toString = System.toString
+
 local checkIndexAndCount = System.checkIndexAndCount
 local throwFailedVersion = System.throwFailedVersion
 local ArgumentNullException = System.ArgumentNullException
@@ -78,33 +80,40 @@ local KeyValuePairFn
 local KeyValuePair = {
   __ctor__ = function (this, ...)
     if select("#", ...) == 0 then
-      this.Key, this.Value = this.__genericTKey__:default(), this.__genericTValue__:default()
+      this[1], this[2] = this.__genericTKey__:default(), this.__genericTValue__:default()
     else
-      this.Key, this.Value = ...
+      this[1], this[2] = ...
     end
   end,
   Create = function (key, value, TKey, TValue)
-    return setmetatable({ Key = key, Value = value }, KeyValuePairFn(TKey, TValue))
+    return setmetatable({ key, value }, KeyValuePairFn(TKey, TValue))
   end,
   Deconstruct = function (this)
-    return this.Key, this.Value
+    return this[1], this[2]
   end,
   ToString = function (this)
     local t = { "[" }
     local count = 2
-    local k, v = this.Key, this.Value
+    local k, v = this[1], this[2]
     if k ~= nil then
-      t[count] = k:ToString()
+      t[count] = toString(k)
       count = count + 1
     end
     t[count] = ", "
     count = count + 1
     if v ~= nil then
-      t[count] = v:ToString()
+      t[count] = toString(v)
       count = count + 1
     end
     t[count] = "]"
     return tconcat(t)
+  end,
+  -- 20211015 使用getKey/getValue方法进行适配 不能用[1]/[2]下标
+  getKey = function (this)
+    return this[1]
+  end,
+  getValue = function (this)
+    return this[2]
   end
 }
 
@@ -133,9 +142,9 @@ local DictionaryEnumerator = define("System.Collections.Generic.DictionaryEnumer
     local k, v = next(t, this.index)
     if k ~= nil then
       if kind then
-        kind.Key = k
+        kind[1] = k
         if v == null then v = nil end
-        kind.Value = v
+        kind[2] = v
       elseif kind == false then
         if v == null then v = nil end
         this.current = v
@@ -146,7 +155,7 @@ local DictionaryEnumerator = define("System.Collections.Generic.DictionaryEnumer
       return true
     else
       if kind then
-        kind.Key, kind.Value = kind.__genericTKey__:default(), kind.__genericTValue__:default()
+        kind[1], kind[2] = kind.__genericTKey__:default(), kind.__genericTValue__:default()
       elseif kind == false then
         this.current = t.__genericTValue__:default()
       else
@@ -161,7 +170,7 @@ local function dictionaryEnumerator(t, kind)
   local current
   if not kind then
     local TKey, TValue = t.__genericTKey__, t.__genericTValue__
-    kind = setmetatable({ Key = TKey:default(), Value = TValue:default() }, t.__genericT__)
+    kind = setmetatable({ TKey:default(), TValue:default() }, t.__genericT__)
     current = kind
   elseif kind == 1 then
     local TKey = t.__genericTKey__
@@ -274,7 +283,7 @@ local Dictionary = {
     local k, v
     if select("#", ...) == 1 then
       local pair = ... 
-      k, v = pair.Key, pair.Value
+      k, v = pair[1], pair[2]
     else
       k, v = ...
     end
@@ -311,13 +320,13 @@ local Dictionary = {
     return false
   end,
   Contains = function (this, pair)
-    local key = pair.Key
+    local key = pair[1]
     if key == nil then throw(ArgumentNullException("key")) end
     local value = this[key]
     if value ~= nil then
       if value == null then value = nil end
       local comparer = EqualityComparer(this.__genericTValue__).getDefault()
-      if comparer:EqualsOf(value, pair.Value) then
+      if comparer:EqualsOf(value, pair[2]) then
         return true
       end
     end
@@ -331,7 +340,7 @@ local Dictionary = {
       index = index + 1
       for k, v in pairs(this) do
         if v == null then v = nil end
-        array[index] = setmetatable({ Key = k, Value = v }, KeyValuePair)
+        array[index] = setmetatable({ k, v }, KeyValuePair)
         index = index + 1
       end
     end
@@ -339,7 +348,7 @@ local Dictionary = {
   RemoveKey = remove,
   Remove = function (this, key)
     if isKeyValuePair(key) then
-      local k, v = key.Key, key.Value
+      local k, v = key[1], key[2]
       if k == nil then throw(ArgumentNullException("key")) end
       local value = this[k]
       if value ~= nil then
@@ -413,10 +422,10 @@ end, {
     local index = this.index
     local pair = t[index]
     if pair ~= nil then
-      if t.kind then
-        this.current = pair.Value
+      if this.kind then
+        this.current = pair[2]
       else
-        this.current = pair.Key
+        this.current = pair[1]
       end
       this.index = index + 1
       return true
@@ -441,7 +450,21 @@ local ArrayDictionaryCollection = define("System.Collections.Generic.ArrayDictio
     this.kind = kind
   end,
   getCount = function (this)
-    return getCount(this.dict)
+    return #this.dict
+  end,
+  get = function (this, index)
+    local p = this.dict[index + 1]
+    if p == nil then throw(System.ArgumentOutOfRangeException()) end
+    if this.kind then
+      return p[2]
+    end
+    return p[1]
+  end,
+  Contains = function (this, v)
+    if this.kind then
+      return this.dict:ContainsValue(v)
+    end 
+    return this.dict:ContainsKey(v)
   end,
   GetEnumerator = function (this)
     return arrayDictionaryEnumerator(this.dict, this.kind, this.__genericT__)
@@ -454,11 +477,11 @@ local ArrayDictionary = (function ()
     local count = 1
     local KeyValuePair = this.__genericT__
     for _, pair in each(dictionary) do
-      local k, v = pair.Key, pair.Value
+      local k, v = pair[1], pair[2]
       if type(k) == "table" and k.class == 'S' then
         k = k:__clone__()
       end
-      this[count] = setmetatable({ Key = k, Value = v }, KeyValuePair)
+      this[count] = setmetatable({ k, v }, KeyValuePair)
       count = count + 1
     end
   end 
@@ -470,9 +493,9 @@ local ArrayDictionary = (function ()
       local comparer = this.comparer
       local equals = comparer.EqualsOf
       for i = 1, len do
-        if equals(comparer, this[i].Key, key) then
+        if equals(comparer, this[i][1], key) then
           if set then
-            this[i].Value = value
+            this[i][2] = value
             return
           else
             throw(ArgumentException("key already exists"))
@@ -480,7 +503,7 @@ local ArrayDictionary = (function ()
         end
       end
     end
-    this[len + 1] = setmetatable({ Key = key, Value = value }, this.__genericT__)
+    this[len + 1] = setmetatable({ key, value }, this.__genericT__)
     versions[this] = (versions[this] or 0) + 1
   end
   
@@ -491,7 +514,7 @@ local ArrayDictionary = (function ()
       local comparer = this.comparer
       local equals = comparer.EqualsOf
       for i = 1, len do
-        if equals(comparer, this[i].Key, key) then
+        if equals(comparer, this[i][1], key) then
           tremove(this, i)
           versions[this] = (versions[this] or 0) + 1
           return true
@@ -533,7 +556,7 @@ local ArrayDictionary = (function ()
       local k, v
       if select("#", ...) == 1 then
         local pair = ... 
-        k, v = pair.Key, pair.Value
+        k, v = pair[1], pair[2]
       else
         k, v = ...
       end
@@ -547,7 +570,7 @@ local ArrayDictionary = (function ()
         local comparer = this.comparer
         local equals = comparer.EqualsOf
         for i = 1, len do
-          if equals(comparer, this[i].Key, key) then
+          if equals(comparer, this[i][1], key) then
             return true
           end
         end
@@ -559,8 +582,8 @@ local ArrayDictionary = (function ()
       if len > 0 then
         local comparer = EqualityComparer(this.__genericTValue__).getDefault()
         local equals = comparer.EqualsOf
-        for i = 1, #this do
-          if equals(comparer, value, this[i].Value) then
+        for i = 1, len do
+          if equals(comparer, value, this[i][2]) then
             return true
           end
         end
@@ -568,7 +591,7 @@ local ArrayDictionary = (function ()
       return false
     end,
     Contains = function (this, pair)
-      local key = pair.Key
+      local key = pair[1]
       if key == nil then throw(ArgumentNullException("key")) end
       local len = #this
       if len > 0 then
@@ -576,9 +599,9 @@ local ArrayDictionary = (function ()
         local equals = comparer.EqualsOf
         for i = 1, len do
           local t = this[i]
-          if equals(comparer, t.Key, key) then
+          if equals(comparer, t[1], key) then
             local comparer = EqualityComparer(this.__genericTValue__).getDefault()
-            if comparer:EqualsOf(t.Value, pair.Value) then
+            if comparer:EqualsOf(t[2], pair[2]) then
               return true
             end 
           end
@@ -594,7 +617,7 @@ local ArrayDictionary = (function ()
         index = index + 1
         for i = 1, count do
           local t = this[i]
-          array[index] = setmetatable({ Key = t.Key:__clone__(), Value = t.Value }, KeyValuePair)
+          array[index] = setmetatable({ t[1]:__clone__(), t[2] }, KeyValuePair)
           index = index + 1
         end
       end
@@ -603,12 +626,12 @@ local ArrayDictionary = (function ()
     Remove = function (this, key)
       if isKeyValuePair(key) then
         local len = #this
-        local k, v = key.Key, key.Value
+        local k, v = key[1], key[2]
         for i = 1, #this do
           local pair = this[i]
-          if pair.Key:EqualsObj(k) then
+          if pair[1]:EqualsObj(k) then
             local comparer = EqualityComparer(this.__genericTValue__).getDefault()
-            if comparer:EqualsOf(pair.Value, v) then
+            if comparer:EqualsOf(pair[2], v) then
               tremove(this, i)
               return true
             end
@@ -625,8 +648,8 @@ local ArrayDictionary = (function ()
         local equals = comparer.EqualsOf
         for i = 1, len do
           local pair = this[i]
-          if equals(comparer, pair.Key, key) then
-            return true, pair.Value
+          if equals(comparer, pair[1], key) then
+            return true, pair[2]
           end
         end
       end
@@ -644,8 +667,8 @@ local ArrayDictionary = (function ()
         local equals = comparer.EqualsOf
         for i = 1, len do
           local pair = this[i]
-          if equals(comparer, pair.Key, key) then
-            return pair.Value
+          if equals(comparer, pair[1], key) then
+            return pair[2]
           end
         end
       end
@@ -698,6 +721,7 @@ local DictionaryFn = define("System.Collections.Generic.Dictionary", function(TK
 end, Dictionary, 2)
 
 System.Dictionary = DictionaryFn
+System.ArrayDictionary = ArrayDictionaryFn
 
 local Object = System.Object
 System.Hashtable = DictionaryFn(Object, Object)

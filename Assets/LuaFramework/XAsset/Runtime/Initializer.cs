@@ -28,7 +28,9 @@ namespace libx
                 DontDestroyOnLoad(gameObject);
             }
             EditorInit();  
+#if !UNITY_EDITOR
             Init();
+#endif
             Assets.updateAll = updateAll;
             Assets.downloadURL = downloadURL;
             Assets.verifyBy = verifyBy;
@@ -55,6 +57,7 @@ namespace libx
         [Conditional("UNITY_EDITOR")] 
         private void EditorInit()
         {
+            splashTime = 0.0f;
             Assets.development = development; 
             Assets.loggable = loggable;
 

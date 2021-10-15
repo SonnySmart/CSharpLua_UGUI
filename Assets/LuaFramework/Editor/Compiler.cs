@@ -248,8 +248,10 @@ namespace LuaFramework.Editor {
             const string symbol = "USE_LUA";
 #if USE_LUA
             ScriptingDefineSymbols.RemoveScriptingDefineSymbol(symbol);
+            UnityEngine.Debug.Log("切换到C#模式");
 #else
             ScriptingDefineSymbols.AddScriptingDefineSymbol(symbol);
+            UnityEngine.Debug.Log("切换到Lua模式");
 #endif
             AssetDatabase.Refresh();
         }

@@ -198,14 +198,8 @@ limitations under the License.
           <arg type="System.Type" />
           <arg type="System.Boolean" />
         </method>
-		<method name="CreateInstance" Name="CreateInstance5">
-          <arg type="System.Type" />
-          <arg type="System.Reflection.BindingFlags" />
-		  <arg type="System.Reflection.Binder" />
-		  <arg type="System.Object[]" />
-		  <arg type="System.Globalization.CultureInfo" />
-        </method>
         <method name="CreateInstance" ArgCount="3" Baned="true" />
+        <method name="CreateInstance" ArgCount="5" Baned="true" />
         <method name="CreateInstance" ArgCount="6" Baned="true" />
       </class>
       <class name="Tuple">
@@ -474,6 +468,12 @@ limitations under the License.
       <class name="IList">
         <method name="Add" Name="AddObj" />
       </class>
+      <class name="IDictionary">
+        <method name="Add" Name="AddKeyValueObj" />
+        <method name="Contains" Name="ContainsKeyObj" />
+        <method name="Remove" Name="RemoveObj" />
+        <property name="this[]" Name="Obj" />
+      </class>
       <class name="Queue" Name="queue" />
       <class name="Stack" Name="stack" />
     </namespace>
@@ -519,9 +519,46 @@ limitations under the License.
         <property name="List" IsField="true" />
       </class>
       <class name="HashSet`1" Name="System.HashSet" />
+      <class name="SortedSet`1" Name="System.SortedSet">
+        <method name=".ctor" Template="{class}(false, {0})">
+          <arg type="System.Collections.Generic.IComparer`1" />
+        </method>
+        <method name="CreateSetComparer" Template="System.SortedSet.CreateSetComparer({``0}, {0})" />
+        <property name="Count">
+          <get Template="#{this}" />
+        </property>
+      </class>
+      <class name="SortedList`2" Name="System.SortedList">
+        <method name=".ctor" Template="{class}(false, {0})">
+          <arg type="System.Collections.Generic.IComparer`1" />
+        </method>
+        <property name="Count">
+          <get Template="#{this}" />
+        </property>
+      </class>
+      <class name="SortedDictionary`2" Name="System.SortedDictionary">
+        <method name=".ctor" Template="{class}(false, {0})">
+          <arg type="System.Collections.Generic.IComparer`1" />
+        </method>
+        <property name="Count">
+          <get Template="#{this}" />
+        </property>
+      </class>
+      <class name="PriorityQueue`2" Name="System.PriorityQueue">
+        <method name=".ctor" Template="{class}(0, {0})">
+          <arg type="System.Collections.Generic.IComparer`1" />
+        </method>
+        <property name="Count">
+          <get Template="#{this}" />
+        </property>
+      </class>
       <class name="KeyValuePair`2" Name="System.KeyValuePair">
-        <property name="Key" IsField="true" />
-        <property name="Value" IsField="true" />
+        <property name="Key">
+          <get Template="{this}:getKey()" />
+        </property>
+        <property name="Value">
+          <get Template="{this}:getValue()" />
+        </property>
       </class>
       <class name="IDictionary`2">
         <method name="Add" Name="AddKeyValue" />
