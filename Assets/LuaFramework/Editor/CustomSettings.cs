@@ -191,6 +191,7 @@ public static class CustomSettings
         _GT(typeof(ThreadManager)),
         _GT(typeof(NetworkManager)),
         _GT(typeof(ResourceManager)),	
+        _GT(typeof(FsmManager)),	
 
         _GT(typeof(Base)),
         _GT(typeof(View)),
@@ -214,6 +215,8 @@ public static class CustomSettings
         _GT(typeof(CSharpGeneratorForProton.Protobuf.IGeneratorObject)),
         _GT(typeof(CSharpGeneratorForProton.Protobuf.GeneratorUtility)),
         //_GT(typeof(CSharpGeneratorForProton.Protobuf.DataUtils)),
+
+        //Fsm
         //end LuaFramework
 
         //start lib

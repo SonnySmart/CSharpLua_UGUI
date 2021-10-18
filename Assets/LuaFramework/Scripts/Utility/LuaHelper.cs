@@ -58,6 +58,13 @@ namespace LuaFramework {
         }
 
         /// <summary>
+        /// 状态机管理器
+        /// </summary>
+        public static FsmManager GetFsmManager() {
+            return AppFacade.Instance.GetManager<FsmManager>(ManagerName.Fsm);
+        }
+
+        /// <summary>
         /// pbc/pblua函数回调
         /// </summary>
         /// <param name="func"></param>

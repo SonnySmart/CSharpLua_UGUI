@@ -3,19 +3,13 @@ using UnityEngine;
 
 public class Game : LuaBehaviour
 {
-    private void Awake() {
-        OnInitOK();
+    private void Awake()
+    {
+        Init();
     }
 
-    public void InitViewPanels()
+    public void Init()
     {
-
-    }
-
-    public void OnInitOK()
-    {
-        this.InitViewPanels();
-
         CtrlManager.Instance.Init();
 
         // 注册命令
@@ -28,6 +22,9 @@ public class Game : LuaBehaviour
 
         // 执行命令
         AppFacade.Instance.SendMessageCommand(CmdConst.PromptCtrlCommandTest);
+
+        // Fsm
+        var FsmManager = LuaHelper.GetFsmManager();
         
         Debug.Log("LuaFramework InitOK--->>>");
     }

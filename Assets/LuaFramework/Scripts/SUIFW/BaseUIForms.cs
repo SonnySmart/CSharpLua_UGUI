@@ -17,6 +17,14 @@ namespace SUIFW
 {
     public class BaseUIForms : LuaBehaviour
     {
+        /// <summary>
+        /// Lua包装类
+        /// </summary>
+        private BaseUIForms_LuaWrap LuaWrap = new BaseUIForms_LuaWrap();
+        /// <summary>
+        /// Lua包装类
+        /// </summary>
+        private AppFacade_LuaWrap AppFacadeLuaWrap = new AppFacade_LuaWrap();
         /*  字段  */
         //当前(基类)窗口的类型
         private UIType _CurrentUIType=new UIType();
@@ -52,32 +60,44 @@ namespace SUIFW
             //UI窗体透明度类型
             CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
             */
+            LuaWrap.OnInit(this);
         }
 
         /// <summary>
         /// 打开窗体
         /// </summary>
-        public virtual void OnOpen() {}
+        public virtual void OnOpen()
+        { 
+            LuaWrap.OnOpen(this);
+        }
 
         /// <summary>
         /// 重新打开窗体
         /// </summary>
-        public virtual void OnReOpen() {}
+        public virtual void OnReOpen()
+        { 
+            LuaWrap.OnReOpen(this);
+        }
 
         /// <summary>
         /// 关闭窗体
         /// </summary>
-        public virtual void OnClose() {}
+        public virtual void OnClose()
+        { 
+            LuaWrap.OnClose(this);
+        }
 
         /// <summary>
         /// 冻结窗体
         /// </summary>
-        public virtual void OnFreeze() {}
+        public virtual void OnFreeze()
+        { 
+            LuaWrap.OnFreeze(this);
+        }
 
         //初始化
         internal void Init()
         {
-            CallLuaFunction("OnInit");
             OnInit();
         }
 
@@ -92,23 +112,12 @@ namespace SUIFW
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject,_CurrentUIType.UIForms_LucencyType);                
             }
 
-#if USE_LUA
             // 自动注册MVC View
             if (AttentionList.Count > 0)
-            {
-                var Instance = Util.CallMethod("AppFacade", "getInstance");
-                if (Instance != null)
-                    Util.CallMethod("Facade", "RegisterMessage", Instance, Table, AttentionList);
-            }
-            CallLuaFunction("OnOpen");
-#else
-            // 自动注册MVC View
-            if (AttentionList.Count > 0)
-            {
-                AppFacade.Instance.RegisterMessage(this, AttentionList);
+            {                
+                AppFacadeLuaWrap.Instance.RegisterMessage(this, AttentionList);
             }
             OnOpen();
-#endif
         }
 
         //页面隐藏(不在“栈”集合中)
@@ -122,23 +131,12 @@ namespace SUIFW
                 UIMaskMgr.GetInstance().CancleMaskWindow();
             }
 
-#if USE_LUA
             // 自动销毁MVC View
             if (AttentionList.Count > 0)
             {
-                var Instance = Util.CallMethod("AppFacade", "getInstance");
-                if (Instance != null)
-                    Util.CallMethod("Facade", "RemoveMessage", Instance, Table, AttentionList);
-            }
-            CallLuaFunction("OnClose");
-#else
-            // 自动销毁MVC View
-            if (AttentionList.Count > 0)
-            {
-                AppFacade.Instance.RemoveMessage(this, AttentionList);
+                AppFacadeLuaWrap.Instance.RemoveMessage(this, AttentionList);
             }            
             OnClose();
-#endif
         }
 
         //页面重新显示
@@ -152,7 +150,6 @@ namespace SUIFW
                 UIMaskMgr.GetInstance().SetMaskWindow(this.gameObject, _CurrentUIType.UIForms_LucencyType);
             }
 
-            CallLuaFunction("OnReOpen");
             OnReOpen();
         }
 
@@ -160,8 +157,6 @@ namespace SUIFW
         internal void Freeze()
         {
             this.gameObject.SetActive(true);
-
-            CallLuaFunction("OnFreeze");
             OnFreeze();
         } 
         #endregion

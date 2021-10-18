@@ -13,6 +13,7 @@ namespace LuaFramework {
         private TimerManager m_TimerMgr;
         private ThreadManager m_ThreadMgr;
         private ObjectPoolManager m_ObjectPoolMgr;
+        private FsmManager m_FsmMgr;
 
         /// <summary>
         /// 注册消息
@@ -103,6 +104,15 @@ namespace LuaFramework {
                     m_ObjectPoolMgr = facade.GetManager<ObjectPoolManager>(ManagerName.ObjectPool);
                 }
                 return m_ObjectPoolMgr;
+            }
+        }
+
+        protected FsmManager FsmManager {
+            get {
+                if (m_FsmMgr == null) {
+                    m_FsmMgr = facade.GetManager<FsmManager>(ManagerName.Fsm);
+                }
+                return m_FsmMgr;
             }
         }
     }

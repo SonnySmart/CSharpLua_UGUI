@@ -24,6 +24,7 @@ public class StartUpCommand : SimpleCommand {
         AppFacade.Instance.AddManager<ResourceManager>(ManagerName.Resource);
         AppFacade.Instance.AddManager<ThreadManager>(ManagerName.Thread);
         AppFacade.Instance.AddManager<ObjectPoolManager>(ManagerName.ObjectPool);
+        AppFacade.Instance.AddManager<FsmManager>(ManagerName.Fsm);
         AppFacade.Instance.AddManager<GameManager>(ManagerName.Game);
     }
 }
