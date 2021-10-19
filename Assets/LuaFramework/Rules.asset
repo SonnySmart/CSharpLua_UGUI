@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03142c330ced64e0ab46cddcd0484ab7, type: 3}
   m_Name: Rules
   m_EditorClassIdentifier: 
-  build: 23
+  build: 24
   major: 2
   minor: 2
   scenesFolders: []
@@ -653,11 +653,6 @@ MonoBehaviour:
     bundle: assets_lua_luaframework.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/FixBehaviour.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework.unity3d
-    id: 0
-    groupBy: 3
   - name: Assets/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua.bytes
     group: 
     bundle: assets_lua_luaframework_scripts_controller_command.unity3d
@@ -771,11 +766,6 @@ MonoBehaviour:
   - name: Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
     group: 
     bundle: assets_lua_luaframework_scripts_utility.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/View/MessageBox.lua.bytes
-    group: 
-    bundle: assets_lua_luaframework_scripts_view.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes
@@ -1392,7 +1382,6 @@ MonoBehaviour:
   - assetBundleName: assets_lua_luaframework.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/All.lua.bytes
-    - Assets/Lua/LuaFramework/FixBehaviour.lua.bytes
   - assetBundleName: assets_lua_luaframework_scripts_controller_command.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/Controller/Command/SocketCommand.lua.bytes
@@ -1430,9 +1419,6 @@ MonoBehaviour:
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/Utility/Prefab.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/Utility/R.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_view.unity3d
-    assetNames:
-    - Assets/Lua/LuaFramework/Scripts/View/MessageBox.lua.bytes
   - assetBundleName: assets_lua_luaframework_wraper.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Wraper/DataUtils.lua.bytes

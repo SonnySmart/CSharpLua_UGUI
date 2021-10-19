@@ -24,6 +24,8 @@ public class Packager {
         Compiler.Compile();
 #endif
 
+        ClearLuaFiles();
+
         if (AppConst.luaBundle) {
             HandleLuaBundle();
         } else {
@@ -33,6 +35,22 @@ public class Packager {
         //string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
         //if (Directory.Exists(streamDir)) Directory.Delete(streamDir, true);
         AssetDatabase.Refresh();
+    }
+
+    /// <summary>
+    /// 清理lua文件
+    /// </summary>
+    static void ClearLuaFiles()
+    {
+        string streamDir = Application.dataPath + "/" + AppConst.LuaTempDir;
+        string[] files = Directory.GetFiles(streamDir, "*.*", SearchOption.AllDirectories);
+        foreach (string file in files)
+        {
+            if (File.Exists(file))
+            {
+                File.Delete(file);
+            }
+        }
     }
 
     /// <summary>

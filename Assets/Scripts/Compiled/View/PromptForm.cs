@@ -42,9 +42,9 @@ public class PromptForm : BaseUIForms
         this.BaseUIFormsTest();
 
         this.DoTest();
-        this.ConfigTest();
-        this.ProtoTest();
-        this.ProtoPersionTest();
+        //this.ConfigTest();
+        //this.ProtoTest();
+        //this.ProtoPersionTest();
     }
 
     public void Start()
@@ -85,7 +85,7 @@ public class PromptForm : BaseUIForms
 
         //SingletonTest singletonTest = gameObject.AddComponent<SingletonTest>();
 
-        //SingletonTest.Instance.TestPrint();
+        //gameObject.AddComponent<BehaviourTest4>();
 
         SingletonNormalTest.Instance.TestPrint();
     }
