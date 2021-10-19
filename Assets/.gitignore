@@ -1,3 +1,4 @@
-/StreamingAssets
-/Lua
-/Lua.meta
+StreamingAssets/
+StreamingAssets.meta
+Lua/
+Lua.meta
