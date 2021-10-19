@@ -26,8 +26,10 @@
 
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -50,6 +52,8 @@ namespace libx
             watch.Start();
             // 拷贝lua到临时目录
             Packager.ExportLuaFiles();
+            // RulesPaths.asset生成asset映射到Rules.asset
+            GroupAssetsByDirectory();
             // 打包Assetbundle
             BuildScript.BuildRules();
             BuildScript.BuildAssetBundles();
@@ -213,6 +217,28 @@ namespace libx
                 var path = AssetDatabase.GetAssetPath(o);
                 if (string.IsNullOrEmpty(path) || Directory.Exists(path)) continue;
                 rules.GroupAsset(path, nameBy, bundle);
+            }
+
+            EditorUtility.SetDirty(rules);
+            AssetDatabase.SaveAssets();
+        }
+
+        private static void GroupAssetsByDirectory()
+        {
+            var rules = BuildScript.GetBuildRules();
+            var rulesPaths = BuildScript.GetBuildRulesPaths();
+            var assetsFolders = rulesPaths.assetsFolders;
+            rules.ClearAssets();
+
+            //查找指定路径下指定类型的所有资源，返回的是资源GUID
+            string[] guids = AssetDatabase.FindAssets ("t:Object", assetsFolders);
+            //从GUID获得资源所在路径
+            List<string> paths = new List<string> ();
+            guids.ToList ().ForEach (m => paths.Add (AssetDatabase.GUIDToAssetPath (m)));
+            foreach (var path in paths)
+            {
+                if (string.IsNullOrEmpty(path) || Directory.Exists(path)) continue;
+                rules.GroupAsset(path, GroupBy.Directory);
             }
 
             EditorUtility.SetDirty(rules);

@@ -67,6 +67,11 @@ namespace libx
             return GetAsset<BuildRules>("Assets/LuaFramework/Rules.asset");
         }
 
+        internal static BuildRulesPaths GetBuildRulesPaths()
+        {
+            return GetAsset<BuildRulesPaths>("Assets/LuaFramework/RulesPaths.asset");
+        }
+
         internal static string GetPlatformName()
         {
             return GetPlatformForAssetBundles(EditorUserBuildSettings.activeBuildTarget);

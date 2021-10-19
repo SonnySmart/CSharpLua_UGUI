@@ -352,6 +352,11 @@ namespace libx
             _asset2Bundles.Clear();
         }
 
+        internal void ClearAssets()
+        {
+            assets.Clear();
+        }
+
         private Dictionary<string, List<string>> GetBundles()
         {
             var dictionary = new Dictionary<string, List<string>>();
