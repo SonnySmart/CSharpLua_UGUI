@@ -237,5 +237,18 @@ namespace LuaFramework {
             }
             return isIEnumeratorFn_.Invoke<LuaTable, bool>(t);
         }
+
+        /// <summary>
+        /// 获取lua文本
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public string ReadFile(string fileName)
+        {
+            string content = "";
+            var bytes = loader.ReadFile(fileName);
+            content = System.Text.Encoding.UTF8.GetString(bytes);
+            return content;
+        }
     }
 }

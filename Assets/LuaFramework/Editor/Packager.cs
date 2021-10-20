@@ -207,6 +207,7 @@ public class Packager {
         Directory.SetCurrentDirectory(currDir);
     }
 
+    /*
     [MenuItem("LuaFramework/Build Protobuf-lua-gen File")]
     public static void BuildProtobufFile() {
         //UnityEngine.Debug.LogError("若使用编码Protobuf-lua-gen功能，需要自己配置外部环境！！");
@@ -235,5 +236,6 @@ public class Packager {
         }
         AssetDatabase.Refresh();
     }
+    */
 }
 #endif

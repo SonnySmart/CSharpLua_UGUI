@@ -9,14 +9,33 @@ using SUIFW;
 
 namespace LuaFramework {
     public class LuaBehaviour : View {
-        private List<LuaFunction> luaCallbacks = new List<LuaFunction>();
-        // Cs2Lua
-        private static readonly YieldInstruction[] updateYieldInstructions_ = new YieldInstruction[] { null, new WaitForFixedUpdate(), new WaitForEndOfFrame() };
+        /// <summary>
+        /// Lua回调集合
+        /// </summary>
+        private List<LuaFunction> LuaFunctions = new List<LuaFunction>();
+        /// <summary>
+        /// Cs2Lua Update
+        /// </summary>
+        private static readonly YieldInstruction[] updateYieldInstructions_ = new YieldInstruction[] { 
+            null, new WaitForFixedUpdate(), new WaitForEndOfFrame() 
+        };
+        /// <summary>
+        /// Cs2Lua Lua表
+        /// </summary>
         [HideInInspector]
         public LuaTable Table { get; private set; }
+        /// <summary>
+        /// Cs2Lua Lua类名称
+        /// </summary>
         public string LuaClass;
+        /// <summary>
+        /// Cs2Lua Lua序列化数据
+        /// </summary>
         [HideInInspector]
         public string SerializeData;
+        /// <summary>
+        /// Cs2Lua Lua序列化对象
+        /// </summary>
         [HideInInspector]
         public UnityEngine.Object[] SerializeObjects;
 
@@ -46,8 +65,26 @@ namespace LuaFramework {
             }
         }
 
+        private void Awake()
+        {
+            // 这里是处理不了任何逻辑的?
+            // 因为AddComponent已经执行了Awake 后续的Awake是Lua里面调用的
+        }
+
+        private void FixAwake()
+        {
+            // 为空进行绑定 & 绑定的时候会调用Awake
+            if (Table == null)
+            {
+                Table = LuaHelper.GetLuaManager().BindLua(this);
+            }
+        }
+
         private void Start()
         {
+            // 这里来修复Awake的逻辑
+            FixAwake();
+            // Start启动
             CallLuaFunction("Start");
         }
 
@@ -58,13 +95,13 @@ namespace LuaFramework {
         public void CallLuaFunction(string function)
         {
 #if USE_LUA
-            if (Table == null)
-                return;
-
-            using (var fn = Table.GetLuaFunction(function))
+            if (Table != null)
             {
-                if (fn != null)
-                    fn.Call(Table);
+                using (var fn = Table.GetLuaFunction(function))
+                {
+                    if (fn != null)
+                        fn.Call(Table);
+                }
             }
 #endif
         }
@@ -102,7 +139,7 @@ namespace LuaFramework {
             AddClickEventListener(n, (go) => {
                 callback.Call(go);
             });
-            luaCallbacks.Add(callback);
+            LuaFunctions.Add(callback);
         }
 
         /// <summary>
@@ -121,7 +158,7 @@ namespace LuaFramework {
             AddClickEventListener(transform, (go) => {
                 callback.Call(go);
             });
-            luaCallbacks.Add(callback);
+            LuaFunctions.Add(callback);
         }
 
         /// <summary>
@@ -140,7 +177,7 @@ namespace LuaFramework {
             AddClickEventListener(gameObject, (go) => {
                 callback.Call(go);
             });
-            luaCallbacks.Add(callback);
+            LuaFunctions.Add(callback);
         }
 
         /// <summary>
@@ -148,11 +185,11 @@ namespace LuaFramework {
         /// </summary>
         public void RemoveClickEventListener()
         {
-            foreach (var fn in luaCallbacks)
+            foreach (var fn in LuaFunctions)
             {
                 fn.Dispose();
             }
-            luaCallbacks.Clear();
+            LuaFunctions.Clear();
         }
         #endregion
 

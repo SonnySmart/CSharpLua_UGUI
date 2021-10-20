@@ -254,7 +254,7 @@ MonoBehaviour:
   loggable: 0
   verifyBy: 1
   downloadURL: http://192.168.1.242/Bundles/
-  development: 1
+  development: 0
   dontDestroyOnLoad: 1
   launchScene: 2_Download
   luaEntry: Game
@@ -263,6 +263,7 @@ MonoBehaviour:
   - Assets/ResHotfix
   - Assets/ResHotfix/Prefabs/Forms
   - Assets/Resources
+  - Assets/Lua
   patches4Init: []
   updateAll: 1
 --- !u!4 &688479980

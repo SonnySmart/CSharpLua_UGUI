@@ -109,6 +109,15 @@ namespace SUIFW
             }
 
             GameObject clone = GameObject.Instantiate<GameObject>(obj);
+            try
+            {
+                MonoBehaviourConverter.Default.Do(ref clone);
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            } 
+            
             if (clone == null)
             {
                 Debug.LogError(GetType() + "/LoadAsset()/克隆资源不成功，请检查。 path=" + path);

@@ -11,7 +11,7 @@ public class StartUpBehaviour : LuaBehaviour
 
         RegisterCommand();
 
-        StartUpSocket();
+        //StartUpSocket();
 
         StartUpEntry();        
     }
