@@ -8,11 +8,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PromptForm : BaseUIForms
+public partial class PromptForm : BaseUIForms
 {
-    GameObject btnOpen;
-    Transform gridParent;
-
     public override void OnInit()
     {
         //是否需要清空“反向切换”
@@ -36,7 +33,9 @@ public class PromptForm : BaseUIForms
     {
         print("我是Cs被打印了 PromptForm Awake");
 
-        this.InitPanelTest();
+        GetBindComponents(gameObject);
+
+        //this.InitPanelTest();
 
         this.LuaBehaviourTest();
         this.BaseUIFormsTest();
@@ -50,15 +49,6 @@ public class PromptForm : BaseUIForms
     public void Start()
     {
         print("我是Cs被打印了 PromptForm Start");
-    }
-
-    public void InitPanelTest()
-    {
-        var tr = this.transform;
-
-        this.btnOpen = Find("Open").gameObject;
-        this.gridParent = Find("ScrollView/Grid");
-        this.gridParent = Find("Grid");
     }
 
     public void DoTest()
@@ -195,15 +185,14 @@ public class PromptForm : BaseUIForms
     {
         Debug.Log("Start lua--->>" + gameObject.name);
 
-        //AddClick("Open", this.OnClick);
-        AddClickEventListener("Open", this.OnClick);
+        AddClickEventListener(m_Btn_Open.gameObject, this.OnClick);
         LuaHelper.GetResManager().LoadAsset(R.GetPrefab("PromptItem"), this.InitPanel);
     }
 
     public void InitPanel(Object objs)
     {
         int count = 100; 
-        var parent = this.gridParent;
+        var parent = this.m_Trans_Grid;
         for (int i = 0; i < count; i++)
         {
             var go = GameObject.Instantiate(objs) as GameObject;

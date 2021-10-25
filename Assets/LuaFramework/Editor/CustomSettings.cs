@@ -217,6 +217,8 @@ public static class CustomSettings
         //_GT(typeof(CSharpGeneratorForProton.Protobuf.DataUtils)),
 
         //Fsm
+        //ComponentAutoBindTool
+        _GT(typeof(ComponentAutoBindTool)),
         //end LuaFramework
 
         //start lib

@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 22274674}
   - component: {fileID: 11418658}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: Img_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 11406872}
   - component: {fileID: 11429404}
   m_Layer: 5
-  m_Name: Open
+  m_Name: Btn_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 22484492}
   - component: {fileID: 22224266}
   - component: {fileID: 11497946}
-  - component: {fileID: 4450883350594027522}
+  - component: {fileID: 4098305402340287935}
   m_Layer: 5
   m_Name: PromptForm
   m_TagString: Untagged
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4450883350594027522
+--- !u!114 &4098305402340287935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,18 +373,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 100012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce0d5624d3f9e28459f44a9539ae9c4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 57eb7c15612322c4b929a325ad4bc16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LuaClass: 
-  SerializeData: 
-  SerializeObjects: []
-  testGO: {fileID: 100008}
-  testTr: {fileID: 22404634}
-  testBool: 0
-  testInt32: 30
-  testFloat: 30.3
-  testInt32Array: 
+  BindDatas:
+  - Name: Img_Sprite
+    BindCom: {fileID: 11418658}
+  - Name: Txt_Label
+    BindCom: {fileID: 11423728}
+  - Name: Btn_Open
+    BindCom: {fileID: 11429404}
+  - Name: Trans_Grid
+    BindCom: {fileID: 22494216}
+  m_ClassName: PromptForm
+  m_Namespace: 
+  m_CodePath: D:/git/LuaFramework_UGUI_V2/Assets/Scripts/Compiled
+  m_BindComs:
+  - {fileID: 11418658}
+  - {fileID: 11423728}
+  - {fileID: 11429404}
+  - {fileID: 22494216}
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,7 +407,7 @@ GameObject:
   - component: {fileID: 11442670}
   - component: {fileID: 11489088}
   m_Layer: 5
-  m_Name: Grid
+  m_Name: Trans_Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +519,7 @@ GameObject:
   - component: {fileID: 22256980}
   - component: {fileID: 11423728}
   m_Layer: 5
-  m_Name: Label
+  m_Name: Txt_Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,6 +13,8 @@ namespace LuaFramework {
         /// Lua回调集合
         /// </summary>
         private List<LuaFunction> LuaFunctions = new List<LuaFunction>();
+
+        #region Cs2Lua
         /// <summary>
         /// Cs2Lua Update
         /// </summary>
@@ -27,6 +29,7 @@ namespace LuaFramework {
         /// <summary>
         /// Cs2Lua Lua类名称
         /// </summary>
+        [SerializeField]
         public string LuaClass;
         /// <summary>
         /// Cs2Lua Lua序列化数据
@@ -38,6 +41,7 @@ namespace LuaFramework {
         /// </summary>
         [HideInInspector]
         public UnityEngine.Object[] SerializeObjects;
+        #endregion
 
         public void Bind(LuaTable table) {
             Table = table;
@@ -67,23 +71,22 @@ namespace LuaFramework {
 
         private void Awake()
         {
-            // 这里是处理不了任何逻辑的?
-            // 因为AddComponent已经执行了Awake 后续的Awake是Lua里面调用的
-        }
-
-        private void FixAwake()
-        {
             // 为空进行绑定 & 绑定的时候会调用Awake
-            if (Table == null)
+            if (!string.IsNullOrEmpty(LuaClass))
             {
-                Table = LuaHelper.GetLuaManager().BindLua(this);
+                if (Table == null)
+                {
+                    Table = LuaHelper.GetLuaManager().BindLua(this);
+                }
+                else
+                {
+                    CallLuaFunction("Awake");
+                }
             }
         }
 
         private void Start()
         {
-            // 这里来修复Awake的逻辑
-            FixAwake();
             // Start启动
             CallLuaFunction("Start");
         }
