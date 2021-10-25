@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿#if true
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,3 +44,4 @@ public class BehaviourTest1 : LuaBehaviour
         
     }
 }
+#endif

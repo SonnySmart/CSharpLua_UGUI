@@ -55,7 +55,7 @@ PlayerSettings:
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   m_MTRendering: 1
-  m_StackTraceTypes: 020000000200000002000000020000000200000001000000
+  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -181,7 +181,7 @@ PlayerSettings:
     tvOS: com.junfine.luaframework
   buildNumber: {}
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 19
+  AndroidMinSdkVersion: 20
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
@@ -675,6 +675,7 @@ PlayerSettings:
   platformArchitecture:
     iOS: 0
   scriptingBackend:
+    Android: 0
     Metro: 2
     WP8: 2
     WebGL: 1
