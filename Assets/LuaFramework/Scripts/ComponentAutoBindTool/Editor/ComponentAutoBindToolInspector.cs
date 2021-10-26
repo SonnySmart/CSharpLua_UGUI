@@ -16,7 +16,7 @@ public class ComponentAutoBindToolInspector : Editor
     private SerializedProperty m_BindDatas;
     private SerializedProperty m_BindComs;
     private List<BindData> m_TempList = new List<BindData>();
-    private List<string> m_TempFiledNames = new List<string>();
+    private List<string> m_TempFieldNames = new List<string>();
     private List<string> m_TempComponentTypeNames = new List<string>();
 
     private string[] s_AssemblyNames = { "LuaFramework.Runtime" };
@@ -179,12 +179,12 @@ public class ComponentAutoBindToolInspector : Editor
         Transform[] childs = m_Target.gameObject.GetComponentsInChildren<Transform>(true);
         foreach (Transform child in childs)
         {
-            m_TempFiledNames.Clear();
+            m_TempFieldNames.Clear();
             m_TempComponentTypeNames.Clear();
 
-            if (m_Target.RuleHelper.IsValidBind(child, m_TempFiledNames, m_TempComponentTypeNames))
+            if (m_Target.RuleHelper.IsValidBind(child, m_TempFieldNames, m_TempComponentTypeNames))
             {
-                for (int i = 0; i < m_TempFiledNames.Count; i++)
+                for (int i = 0; i < m_TempFieldNames.Count; i++)
                 {
                     Component com = child.GetComponent(m_TempComponentTypeNames[i]);
                     if (com == null)
@@ -193,7 +193,7 @@ public class ComponentAutoBindToolInspector : Editor
                     }
                     else
                     {
-                        AddBindData(m_TempFiledNames[i], child.GetComponent(m_TempComponentTypeNames[i]));
+                        AddBindData(m_TempFieldNames[i], child.GetComponent(m_TempComponentTypeNames[i]));
                     }
                    
                 }

@@ -9,5 +9,5 @@ public interface IAutoBindRuleHelper
     /// <summary>
     /// 是否为有效绑定
     /// </summary>
-    bool IsValidBind(Transform target,List<string> filedNames,List<string> componentTypeNames);
+    bool IsValidBind(Transform target,List<string> fieldNames,List<string> componentTypeNames);
 }
