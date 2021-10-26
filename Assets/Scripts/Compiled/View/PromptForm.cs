@@ -192,7 +192,7 @@ public partial class PromptForm : BaseUIForms
     public void InitPanel(Object objs)
     {
         int count = 100; 
-        var parent = this.m_Trans_Grid;
+        var parent = this.m_Tr_Grid;
         for (int i = 0; i < count; i++)
         {
             var go = GameObject.Instantiate(objs) as GameObject;

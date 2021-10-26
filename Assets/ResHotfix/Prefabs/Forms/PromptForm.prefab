@@ -383,7 +383,7 @@ MonoBehaviour:
     BindCom: {fileID: 11423728}
   - Name: Btn_Open
     BindCom: {fileID: 11429404}
-  - Name: Trans_Grid
+  - Name: Tr_Grid
     BindCom: {fileID: 22494216}
   m_ClassName: PromptForm
   m_Namespace: 
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 11442670}
   - component: {fileID: 11489088}
   m_Layer: 5
-  m_Name: Trans_Grid
+  m_Name: Tr_Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
