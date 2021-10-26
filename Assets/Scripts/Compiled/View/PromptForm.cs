@@ -29,13 +29,17 @@ public partial class PromptForm : BaseUIForms
         print($"{LuaClass} OnInit Is Call . ");
     }
 
-    public void Awake()
+    /*
+    // 不能重写他
+    private void Awake()
     {
         print("我是Cs被打印了 PromptForm Awake");
+    }
+    */
 
-        GetBindComponents(gameObject);
-
-        //this.InitPanelTest();
+    public void Start()
+    {
+        print("我是Cs被打印了 PromptForm Start");
 
         this.LuaBehaviourTest();
         this.BaseUIFormsTest();
@@ -44,11 +48,6 @@ public partial class PromptForm : BaseUIForms
         //this.ConfigTest();
         //this.ProtoTest();
         //this.ProtoPersionTest();
-    }
-
-    public void Start()
-    {
-        print("我是Cs被打印了 PromptForm Start");
     }
 
     public void DoTest()

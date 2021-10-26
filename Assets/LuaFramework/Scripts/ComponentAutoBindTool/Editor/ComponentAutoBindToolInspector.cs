@@ -438,14 +438,14 @@ public class ComponentAutoBindToolInspector : Editor
         // 将字符串中得脚本名字和后缀统统去除掉
         codePath = AssetDatabase.GUIDToAssetPath(guids[0]);
         codePath = codePath.Replace((@"/"+className+".cs"),"");
-        codePath = codePath.Replace((@"/"+className+".BindComponents.cs"),"");        
+        codePath = codePath.Replace((@"/"+className+".Designer.cs"),"");        
 
         if (!Directory.Exists(codePath))
         {
             Debug.LogError($"{go.name}的代码保存路径{codePath}无效");
         }
 
-        using (StreamWriter sw = new StreamWriter($"{codePath}/{className}.BindComponents.cs"))
+        using (StreamWriter sw = new StreamWriter($"{codePath}/{className}.Designer.cs"))
         {
             sw.WriteLine("using UnityEngine;");
             sw.WriteLine("using UnityEngine.UI;");
@@ -473,11 +473,11 @@ public class ComponentAutoBindToolInspector : Editor
             }
             sw.WriteLine("");
 
-            sw.WriteLine("\t\tprivate void GetBindComponents(GameObject go)");
+            sw.WriteLine("\t\tprotected override void InitializeComponent()");
             sw.WriteLine("\t\t{");
 
             //获取autoBindTool上的Component
-            sw.WriteLine($"\t\t\tComponentAutoBindTool autoBindTool = go.GetComponent<ComponentAutoBindTool>();");
+            sw.WriteLine($"\t\t\tComponentAutoBindTool autoBindTool = gameObject.GetComponent<ComponentAutoBindTool>();");
             sw.WriteLine("");
 
             //根据索引获取

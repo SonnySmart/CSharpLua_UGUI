@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-//自动生成于：2021/10/26 14:36:53
+//自动生成于：2021/10/26 16:44:50
 	public partial class PromptForm
 	{
 
@@ -10,9 +10,9 @@ using UnityEngine.UI;
 		private Button m_Btn_Open;
 		private RectTransform m_Tr_Grid;
 
-		private void GetBindComponents(GameObject go)
+		protected override void InitializeComponent()
 		{
-			ComponentAutoBindTool autoBindTool = go.GetComponent<ComponentAutoBindTool>();
+			ComponentAutoBindTool autoBindTool = gameObject.GetComponent<ComponentAutoBindTool>();
 
 			m_Img_Sprite = (Image)autoBindTool.GetBindComponent(0);
 			m_Txt_Label = (Text)autoBindTool.GetBindComponent(1);

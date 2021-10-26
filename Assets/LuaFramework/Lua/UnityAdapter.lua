@@ -65,6 +65,7 @@ local MonoBehaviour = System.define("UnityEngine.MonoBehaviour", {
   GetType = System.Object.GetType,
   print = UnityEngineMonoBehaviour.print,
   Awake = emptyFn,
+  OnEable = emptyFn,
   Start = emptyFn,
   Update = emptyFn,
   FixedUpdate = emptyFn,
@@ -176,20 +177,24 @@ function makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeOb
   registerUpdate(this, bridgeMonoBehaviour, "LateUpdate")
 end
 
+-- 20211026 修复不存在的方法
+function fixEmptyFn(T, n)
+  if not rawget(T, n) then
+    rawset(T, n, emptyFn)
+  end
+end
+
 local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, serializeObjects)
   -- 20210526 没有构造函数设置默认构造
-  local ctor = rawget(T, "__ctor__")
-  if not ctor then
-    rawset(T, "__ctor__", emptyFn)
-  end
-  local Awake = rawget(T, "Awake")
-  if not Awake then
-    rawset(T, "Awake", emptyFn)
-  end
+  fixEmptyFn(T, '__ctor__')
+  fixEmptyFn(T, 'Awake')
+  fixEmptyFn(T, 'InitializeComponent')
 
   local this = setmetatable({}, T)
   T.__ctor__(this)
   makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeObjects)
+  -- 20211026 获取UI控件 - 自动绑定功能
+  this:InitializeComponent()
   this:Awake()
   return this
 end

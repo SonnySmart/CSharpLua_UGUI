@@ -15,16 +15,8 @@ using LuaFramework;
 
 namespace SUIFW
 {
-    public class BaseUIForms : LuaBehaviour
+    public partial class BaseUIForms : LuaBehaviour
     {
-        /// <summary>
-        /// Lua包装类
-        /// </summary>
-        private BaseUIForms_LuaWrap LuaWrap = new BaseUIForms_LuaWrap();
-        /// <summary>
-        /// Lua包装类
-        /// </summary>
-        private AppFacade_LuaWrap AppFacadeLuaWrap = new AppFacade_LuaWrap();
         /*  字段  */
         //当前(基类)窗口的类型
         private UIType _CurrentUIType=new UIType();
@@ -59,46 +51,34 @@ namespace SUIFW
             CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
             //UI窗体透明度类型
             CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
-            */
-            LuaWrap.OnInit(this);
+            */            
         }
 
         /// <summary>
         /// 打开窗体
         /// </summary>
-        public virtual void OnOpen()
-        { 
-            LuaWrap.OnOpen(this);
-        }
+        public virtual void OnOpen() {}
 
         /// <summary>
         /// 重新打开窗体
         /// </summary>
-        public virtual void OnReOpen()
-        { 
-            LuaWrap.OnReOpen(this);
-        }
+        public virtual void OnReOpen() {}
 
         /// <summary>
         /// 关闭窗体
         /// </summary>
-        public virtual void OnClose()
-        { 
-            LuaWrap.OnClose(this);
-        }
+        public virtual void OnClose() {}
 
         /// <summary>
         /// 冻结窗体
         /// </summary>
-        public virtual void OnFreeze()
-        { 
-            LuaWrap.OnFreeze(this);
-        }
+        public virtual void OnFreeze() {}
 
         //初始化
         internal void Init()
         {
             OnInit();
+            OnInit_Wraper();
         }
 
         //页面显示
@@ -115,9 +95,10 @@ namespace SUIFW
             // 自动注册MVC View
             if (AttentionList.Count > 0)
             {                
-                AppFacadeLuaWrap.Instance.RegisterMessage(this, AttentionList);
+                AppFacadeInstance.RegisterMessage_Wraper(this, AttentionList);
             }
             OnOpen();
+            OnOpen_Wraper();
         }
 
         //页面隐藏(不在“栈”集合中)
@@ -134,9 +115,10 @@ namespace SUIFW
             // 自动销毁MVC View
             if (AttentionList.Count > 0)
             {
-                AppFacadeLuaWrap.Instance.RemoveMessage(this, AttentionList);
+                AppFacadeInstance.RemoveMessage_Wraper(this, AttentionList);
             }            
             OnClose();
+            OnClose_Wraper();
         }
 
         //页面重新显示
@@ -151,6 +133,7 @@ namespace SUIFW
             }
 
             OnReOpen();
+            OnReOpen_Wraper();
         }
 
         //页面冻结(还在“栈”集合中)
@@ -158,6 +141,7 @@ namespace SUIFW
         {
             this.gameObject.SetActive(true);
             OnFreeze();
+            OnFreeze_Wraper();
         } 
         #endregion
 

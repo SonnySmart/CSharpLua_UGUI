@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using SUIFW;
 
 namespace LuaFramework {
-    public class LuaBehaviour : View {
+    public partial class LuaBehaviour : View {
         /// <summary>
         /// Lua回调集合
         /// </summary>
@@ -69,8 +69,17 @@ namespace LuaFramework {
             }
         }
 
+        /// <summary>
+        /// 子类Awake函数不能重写|不能重写|不能重写
+        /// </summary>
         private void Awake()
         {
+#if !USE_LUA
+            // 进行UI绑定
+            InitializeComponent();
+            InitializeComponent_Wraper();
+#endif
+
             // 为空进行绑定 & 绑定的时候会调用Awake
             if (!string.IsNullOrEmpty(LuaClass))
             {
@@ -78,16 +87,16 @@ namespace LuaFramework {
                 {
                     Table = LuaHelper.GetLuaManager().BindLua(this);
                 }
-                else
-                {
-                    CallLuaFunction("Awake");
-                }
             }
+        }
+
+        private void OnEable()
+        {
+            CallLuaFunction("OnEable");
         }
 
         private void Start()
         {
-            // Start启动
             CallLuaFunction("Start");
         }
 
@@ -95,21 +104,37 @@ namespace LuaFramework {
         /// 调用lua方法
         /// </summary>
         /// <param name="function"> 方法名称 </param>
-        public void CallLuaFunction(string function)
+        public void CallLuaFunction(string function, params object[] args)
         {
 #if USE_LUA
             if (Table != null)
             {
+                int len = args.Length;
                 using (var fn = Table.GetLuaFunction(function))
                 {
                     if (fn != null)
-                        fn.Call(Table);
+                    {
+                        switch (len)
+                        {
+                            case 0: { fn.Call(Table); break; }
+                            case 1: { fn.Call(Table, args[0]); break; }
+                            case 2: { fn.Call(Table, args[0], args[1]); break; }
+                            case 3: { fn.Call(Table, args[0], args[1], args[2]); break; }
+                            case 4: { fn.Call(Table, args[0], args[1], args[2], args[3]); break; }
+                            case 5: { fn.Call(Table, args[0], args[1], args[2], args[3], args[4]); break; }
+                        }
+                    }
                 }
             }
 #endif
         }
 
         #region UI 查找相关
+        /// <summary>
+        /// 获取UI控件 - 自动绑定功能
+        /// </summary>
+        protected virtual void InitializeComponent() {}
+
         /// <summary>
         /// 查找节点 - 名称
         /// </summary>

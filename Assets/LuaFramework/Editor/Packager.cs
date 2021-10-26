@@ -24,7 +24,7 @@ public class Packager {
         Compiler.Compile();
 #endif
 
-        ClearLuaFiles();
+        //ClearLuaFiles();
 
         if (AppConst.luaBundle) {
             HandleLuaBundle();
@@ -74,7 +74,7 @@ public class Packager {
                     string str = files[j].Remove(0, len);
                     string dest = streamDir + str + ".bytes";
                     string dir = Path.GetDirectoryName(dest);
-                    Directory.CreateDirectory(dir);
+                    if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
                     EncodeLuaFile(files[j], dest);
                 }    
             } else {
@@ -83,6 +83,8 @@ public class Packager {
         }
 
         //-------------------------------处理非Lua文件----------------------------------
+        // 这里不要了
+        /*
         string luaPath = AppConst.AssetDir + "/lua/";
         for (int i = 0; i < srcDirs.Length; i++) {
             paths.Clear(); files.Clear();
@@ -97,7 +99,7 @@ public class Packager {
                 string destfile = path + "/" + Path.GetFileName(f);
                 File.Copy(f, destfile, true);
             }
-        }
+        }*/
         AssetDatabase.Refresh();
     }
 
