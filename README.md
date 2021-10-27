@@ -36,3 +36,5 @@
 [https://github.com/zhaoguohao/SUIFW](https://github.com/zhaoguohao/SUIFW)
 
 [https://github.com/PureMVC/puremvc-csharp-standard-framework](https://github.com/PureMVC/puremvc-csharp-standard-framework)
+
+[https://github.com/hiram3512/HiSocket](https://github.com/hiram3512/HiSocket)
