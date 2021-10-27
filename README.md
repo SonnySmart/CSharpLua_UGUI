@@ -8,6 +8,21 @@
 
 > C#/Lua均可进行代码调试 方便定位问题
 
+> C#可使用Visual Studio 2017+调试/Visual Studio Code
+
+> Lua可使用Visual Studio Code(LuaIde 插件调试)收费5元/月
+
+调试Lua
+>  Visual Studio Code添加Assets\LuaFramework\Lua目录即可 命令 #code 路径即可打开
+
+Visual Studio Code下载
+> [https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)
+
+Lua适配可参考
+> Assets\LuaFramework\Lua\UnityAdapter.lua
+
+> Assets\LuaFramework\Lua\LuaFramework\Wraper\*.lua
+
 ### 原地址
 [https://github.com/jarjin/LuaFramework_UGUI_V2](https://github.com/jarjin/LuaFramework_UGUI_V2)
 
