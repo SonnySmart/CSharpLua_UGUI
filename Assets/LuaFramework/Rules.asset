@@ -293,6 +293,11 @@ MonoBehaviour:
     bundle: assets_lua_compiled_view.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/Compiled/View/PromptItem.lua.bytes
+    group: 
+    bundle: assets_lua_compiled_view.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/Compiled/View/SpineForm.lua.bytes
     group: 
     bundle: assets_lua_compiled_view.unity3d
@@ -788,6 +793,11 @@ MonoBehaviour:
     bundle: assets_lua.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/Lua/md5.json
+    group: 
+    bundle: assets_lua.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/Lua/mime.lua.bytes
     group: 
     bundle: assets_lua.unity3d
@@ -1233,6 +1243,7 @@ MonoBehaviour:
     - Assets/Lua/ltn12.lua.bytes
     - Assets/Lua/LuaDebugjit.lua.bytes
     - Assets/Lua/Main.lua.bytes
+    - Assets/Lua/md5.json
     - Assets/Lua/mime.lua.bytes
     - Assets/Lua/slot.lua.bytes
     - Assets/Lua/socket.lua.bytes
@@ -1288,6 +1299,7 @@ MonoBehaviour:
     - Assets/Lua/Compiled/View/BehaviourTest2.lua.bytes
     - Assets/Lua/Compiled/View/BehaviourTest3.lua.bytes
     - Assets/Lua/Compiled/View/PromptForm.lua.bytes
+    - Assets/Lua/Compiled/View/PromptItem.lua.bytes
     - Assets/Lua/Compiled/View/SpineForm.lua.bytes
   - assetBundleName: assets_lua_coresystemlua.unity3d
     assetNames:
