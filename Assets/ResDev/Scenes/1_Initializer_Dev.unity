@@ -259,11 +259,8 @@ MonoBehaviour:
   launchScene: 2_Download
   luaEntry: Game
   searchPaths:
-  - Assets/LuaFramework/Scenes
   - Assets/ResHotfix
   - Assets/ResHotfix/Prefabs/Forms
-  - Assets/Resources
-  - Assets/Lua
   patches4Init: []
   updateAll: 1
 --- !u!4 &688479980

@@ -1,4 +1,4 @@
-
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -25,10 +25,10 @@ public static class Tools
         }
     }
 
-    private static void ExecuteProcess(string fileName, string args)
+    private static void ExecuteProcess(string file, string args)
     {
         ProcessStartInfo info = new ProcessStartInfo();
-        info.FileName = fileName;
+        info.FileName = file;
         info.Arguments = args;
         info.WindowStyle = ProcessWindowStyle.Hidden;
         info.UseShellExecute = UseShellExecute;
@@ -65,3 +65,4 @@ public static class Tools
         ExecuteProcess(exec, args);
     }
 }
+#endif

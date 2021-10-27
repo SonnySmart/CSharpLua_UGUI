@@ -1038,6 +1038,11 @@ MonoBehaviour:
     bundle: assets_lua_unityengine.unity3d
     id: 0
     groupBy: 3
+  - name: Assets/ResHotfix/Canvas.prefab
+    group: 
+    bundle: assets_reshotfix.unity3d
+    id: 0
+    groupBy: 3
   - name: Assets/ResHotfix/Config/LauguageJSONConfig.json
     group: 
     bundle: assets_reshotfix_config.unity3d
@@ -1492,6 +1497,9 @@ MonoBehaviour:
     - Assets/Lua/UnityEngine/Vector2.lua.bytes
     - Assets/Lua/UnityEngine/Vector3.lua.bytes
     - Assets/Lua/UnityEngine/Vector4.lua.bytes
+  - assetBundleName: assets_reshotfix.unity3d
+    assetNames:
+    - Assets/ResHotfix/Canvas.prefab
   - assetBundleName: assets_reshotfix_config.unity3d
     assetNames:
     - Assets/ResHotfix/Config/LauguageJSONConfig.json
