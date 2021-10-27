@@ -199,11 +199,9 @@ public partial class PromptForm : BaseUIForms
             go.transform.SetParent(parent, false);
             go.transform.localScale = Vector3.one;
             go.transform.localPosition = Vector3.zero;
-            //AddClick(go, this.OnItemClick);
-            AddClickEventListener(go, this.OnClick);
 
-            var label = go.transform.Find("Text");
-            label.GetComponent<Text>().text = i.ToString();
+            PromptItem item = go.GetComponent<PromptItem>();
+            item.text = i.ToString();
         }
 
         Util.CalcTime("执行lua完成");
@@ -212,10 +210,5 @@ public partial class PromptForm : BaseUIForms
     public void OnClick(GameObject go)
     {
         Debug.Log("OnClick---->>>" + go.name);
-    }
-    
-    public void OnItemClick(GameObject go)
-    {
-        Debug.Log("OnItemClick---->>>" + go.name);
     }
 }

@@ -64,6 +64,8 @@ namespace SUIFW
         public const string SYS_TAG_CANVAS = "_TagCanvas";
         public const string SYS_TAG_UICAMERA = "_TagUICamera";
         /* Canvas节点名称 */
+        public const string SYS_CANVAS_CANVAS = "Canvas(Clone)";
+        public const string SYS_CANVAS_UICAMERA = SYS_CANVAS_CANVAS + "/UICamera";
         public const string SYS_CANVAS_NORMAL_NODE_NAME = "Normal";
         public const string SYS_CANVAS_FIXED_NODE_NAME = "Fixed";
         public const string SYS_CANVAS_POPUP_NODE_NAME = "PopUp";

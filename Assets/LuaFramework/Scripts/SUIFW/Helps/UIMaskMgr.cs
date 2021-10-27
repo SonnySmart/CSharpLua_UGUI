@@ -43,8 +43,10 @@ namespace SUIFW
 
         void Awake()
         {
-            //得到UI根节点、UI脚本节点                    
-            _GoCanvasRoot = GameObject.FindGameObjectWithTag(SysDefine.SYS_TAG_CANVAS);
+            //得到UI根节点、UI脚本节点  
+            //废弃:打包Assetbundle之后tag会丢失                  
+            //_GoCanvasRoot = GameObject.FindGameObjectWithTag(SysDefine.SYS_TAG_CANVAS);
+            _GoCanvasRoot = GameObject.Find(SysDefine.SYS_CANVAS_CANVAS);
             _CanTransformUIScripts = UnityHelper.FindTheChild(_GoCanvasRoot, SysDefine.SYS_CANVAS_UISCRIPTS_NODE_NAME);
             //把本脚本实例，作为Canvas的子节点
             UnityHelper.AddChildToParent(_CanTransformUIScripts, this.gameObject.transform);
@@ -54,7 +56,9 @@ namespace SUIFW
             _GoMaskPlane = UnityHelper.FindTheChild(_GoCanvasRoot.gameObject, SysDefine.SYS_CANVAS_UIMASKPANELS_NODE_NAME).gameObject;
 
             //得到UI摄像机的原始“层深”
-            _UICamear = GameObject.FindGameObjectWithTag(SysDefine.SYS_TAG_UICAMERA).GetComponent<Camera>();
+            //废弃:打包Assetbundle之后tag会丢失
+            //_UICamear = GameObject.FindGameObjectWithTag(SysDefine.SYS_TAG_UICAMERA).GetComponent<Camera>();
+            _UICamear = GameObject.Find(SysDefine.SYS_CANVAS_CANVAS).GetComponent<Camera>();
             if (_UICamear != null)
             {
                 _OriginalUICameraDepth = _UICamear.depth;

@@ -77,7 +77,6 @@ namespace LuaFramework {
 #if !USE_LUA
             // 进行UI绑定
             InitializeComponent();
-            InitializeComponent_Wraper();
 #endif
 
             // 为空进行绑定 & 绑定的时候会调用Awake

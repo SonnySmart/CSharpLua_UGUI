@@ -73,8 +73,10 @@ namespace SUIFW
             //初始化项目开始必须的资源加载
             InitRootCanvasLoading();
 
-            //得到UI根节点、及其重要子节点                     
-            _CanvasTransform = GameObject.FindGameObjectWithTag(SysDefine.SYS_TAG_CANVAS).transform;
+            //得到UI根节点、及其重要子节点  
+            //废弃:打包Assetbundle之后tag会丢失                   
+            //_CanvasTransform = GameObject.FindGameObjectWithTag(SysDefine.SYS_TAG_CANVAS).transform;
+            _CanvasTransform = GameObject.Find(SysDefine.SYS_CANVAS_CANVAS).transform;
             //得到普通全屏界面节点、固定界面节点、弹出模式节点、UI脚本节点
             _CanTransformNormal = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_NORMAL_NODE_NAME);
             _CanTransformFixed = UnityHelper.FindTheChild(_CanvasTransform.gameObject, SysDefine.SYS_CANVAS_FIXED_NODE_NAME);
