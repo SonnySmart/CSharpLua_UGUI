@@ -1173,11 +1173,6 @@ MonoBehaviour:
     bundle: assets_reshotfix_spines_dragon.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/license.txt
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
   - name: Assets/ResHotfix/Textures/Prompt/1.png
     group: 
     bundle: assets_reshotfix_textures_prompt.unity3d
@@ -1540,7 +1535,6 @@ MonoBehaviour:
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
-    - Assets/ResHotfix/Spines/Dragon/license.txt
   - assetBundleName: assets_reshotfix_textures_prompt.unity3d
     assetNames:
     - Assets/ResHotfix/Textures/Prompt/1.png
@@ -1556,18 +1550,22 @@ MonoBehaviour:
   - assetBundleName: shaders.unity3d
     assetNames:
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/SkeletonGraphic/Spine-SkeletonGraphic.shader
+  - assetBundleName: children_assets_reshotfix_scenes_1_initializer.unity3d
+    assetNames:
+    - Assets/Resources/Textures/flash.jpg
+  - assetBundleName: shared_assets_luaframework_spine_editor_spine-unity_editor_gui.unity3d
+    assetNames:
+    - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/AtlasAsset Icon.png
+    - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/SkeletonDataAsset Icon.png
+  - assetBundleName: shared_assets_luaframework_spine_runtime_spine-unity_skeletondatamodifierassets_blendmodematerials.unity3d
+    assetNames:
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAAdditive.mat
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAMultiply.mat
+    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAScreen.mat
+  - assetBundleName: shared_shaders.unity3d
+    assetNames:
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/BlendModes/Spine-Skeleton-PMA-Screen.shader
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/BlendModes/Spine-Skeleton-PMA-Additive.shader
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/Spine-Skeleton.shader
     - Assets/LuaFramework/Spine/Runtime/spine-unity/Shaders/BlendModes/Spine-Skeleton-PMA-Multiply.shader
-  - assetBundleName: children_assets_reshotfix_scenes_1_initializer.unity3d
-    assetNames:
-    - Assets/Resources/Textures/flash.jpg
-  - assetBundleName: children_assets_reshotfix_spines_dragon.unity3d
-    assetNames:
-    - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/AtlasAsset Icon.png
-    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAAdditive.mat
-    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAMultiply.mat
-    - Assets/LuaFramework/Spine/Editor/spine-unity/Editor/GUI/SkeletonDataAsset Icon.png
-    - Assets/LuaFramework/Spine/Runtime/spine-unity/SkeletonDataModifierAssets/BlendModeMaterials/SkeletonPMAScreen.mat
   currentScene: 2_Download

@@ -186,21 +186,20 @@ namespace SUIFW
         }
 
         /// <summary>
-        /// 显示UI窗体
-        /// </summary>
-        /// <param name="formType">UI窗体的类型</param>
-        public void ShowUIForms(System.Type formType)
-        {
-            UIManager.GetInstance().ShowUIForms(formType);
-        }
-
-        /// <summary>
         /// 打开UI窗体
         /// </summary>
         /// <param name="strUIFormsName"></param>
         public void ShowUIForms(string strUIFormsName)
         {
             UIManager.GetInstance().ShowUIForms(strUIFormsName);
+        }
+
+        /// <summary>
+        /// 关闭（返回上一个）窗体
+        /// </summary>
+        public void CloseUIForms(string strUIFormsName)
+        { 
+            UIManager.GetInstance().CloseUIForms(strUIFormsName);
         }
 
         /// <summary>

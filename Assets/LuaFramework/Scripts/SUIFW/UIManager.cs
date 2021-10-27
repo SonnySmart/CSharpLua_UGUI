@@ -46,9 +46,6 @@ namespace SUIFW
         //UI脚本节点（加载各种管理脚本的节点）
         private Transform _CanTransformUIScripts = null;
 
-
-
-
         /// <summary>
         /// 得到本类实例
         /// </summary>
@@ -96,16 +93,6 @@ namespace SUIFW
         /// <summary>
         /// 显示UI窗体
         /// </summary>
-        /// <param name="formType">UI窗体的类型</param>
-        public void ShowUIForms(System.Type formType)
-        {
-            string formName = formType.Name;
-            ShowUIForms(formName);
-        }
-
-        /// <summary>
-        /// 显示UI窗体
-        /// </summary>
         /// <param name="strUIFormName">UI窗体的名称</param>
         public void ShowUIForms(string strUIFormName)
         {
@@ -139,6 +126,14 @@ namespace SUIFW
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// 关闭（返回上一个）窗体
+        /// </summary>
+        public void CloseUIForms(string strUIFormName)
+        { 
+            CloseOrReturnUIForms(strUIFormName);
         }
 
         /// <summary>

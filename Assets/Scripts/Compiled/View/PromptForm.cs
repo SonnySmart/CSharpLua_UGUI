@@ -210,5 +210,7 @@ public partial class PromptForm : BaseUIForms
     public void OnClick(GameObject go)
     {
         Debug.Log("OnClick---->>>" + go.name);
+
+        ShowUIForms("SpineForm");
     }
 }

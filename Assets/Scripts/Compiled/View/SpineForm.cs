@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using SUIFW;
 using UnityEngine;
+using LuaFramework;
 
-public class SpineForm : BaseUIForms
+public partial class SpineForm : BaseUIForms
 {
     public override void OnInit()
     {
@@ -15,20 +16,31 @@ public class SpineForm : BaseUIForms
         // CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
         // //UI窗体透明度类型
         // CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
+
+        AddClickEventListener(m_Btn_Button.gameObject, OnClickClose);
     }
 
     public override void OnOpen()
     {
-        base.OnOpen();
-    }
-
-    public override void OnClose()
-    {
-        base.OnClose();
+        var manager = LuaHelper.GetResManager();
+        manager.LoadAsset(R.GetPrefab("Prefabs/Spines/dragon"), OnLoadSpine);
     }
 
     public override void OnMessage(IMessage message)
     {
-        base.OnMessage(message);
+        
+    }
+
+    void OnClickClose(GameObject go)
+    {
+        CloseUIForms("SpineForm");
+    } 
+
+    void OnLoadSpine(Object obj)
+    {
+        var go = GameObject.Instantiate(obj) as GameObject;
+        go.transform.SetParent(transform, false);
+        go.transform.localScale = Vector3.one;
+        go.transform.localPosition = Vector3.zero;
     }
 }

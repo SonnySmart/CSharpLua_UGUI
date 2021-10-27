@@ -75,10 +75,15 @@ namespace LuaFramework {
         private void Awake()
         {
 #if !USE_LUA
+            if (!string.IsNullOrEmpty(LuaClass))
+            {
+                gameObject.AddLuaComponent(LuaClass);
+            }
             // 进行UI绑定
             InitializeComponent();
 #endif
 
+#if USE_LUA
             // 为空进行绑定 & 绑定的时候会调用Awake
             if (!string.IsNullOrEmpty(LuaClass))
             {
@@ -87,6 +92,7 @@ namespace LuaFramework {
                     Table = LuaHelper.GetLuaManager().BindLua(this);
                 }
             }
+#endif
         }
 
         private void OnEable()
