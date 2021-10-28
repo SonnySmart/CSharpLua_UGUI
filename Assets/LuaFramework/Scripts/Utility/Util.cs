@@ -317,20 +317,6 @@ namespace LuaFramework {
         }
 
         /// <summary>
-        /// 执行Lua方法
-        /// </summary>
-        public static object CallMethod(string module, string func, params object[] args) {
-#pragma warning disable 0162
-#if USE_LUA
-            LuaManager luaMgr = AppFacade.Instance.GetManager<LuaManager>(ManagerName.Lua);
-            if (luaMgr == null) return null;
-            return luaMgr.CallFunction(module + "." + func, args);
-#endif
-            return null;
-#pragma warning restore 0162
-        }
-
-        /// <summary>
         /// 检查运行环境
         /// </summary>
         public static bool CheckEnvironment() {

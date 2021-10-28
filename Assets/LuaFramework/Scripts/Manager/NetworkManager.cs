@@ -42,13 +42,6 @@ namespace LuaFramework {
             //CallMethod("Unload");
         }
 
-        /// <summary>
-        /// ִ��Lua����
-        /// </summary>
-        public object CallMethod(string func, params object[] args) {
-            return Util.CallMethod("Network", func, args);
-        }
-
         ///------------------------------------------------------------------------------------
         public static void AddEvent(int _event, ByteBuffer data) {
             lock (m_lockObject) {
@@ -64,13 +57,8 @@ namespace LuaFramework {
                 while (mEvents.Count > 0) {
                     lock (m_lockObject) {
                         KeyValuePair<int, ByteBuffer> _event = mEvents.Dequeue();         
-#if USE_LUA
-                        var Instance = Util.CallMethod("AppFacade", "getInstance");
-                        if (Instance != null)
-                            Util.CallMethod("Facade", "SendMessageCommand", Instance, NotiConst.DISPATCH_MESSAGE, _event);
-#else
-                        facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);
-#endif                        
+                        Facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);                       
+                        Facade.SendMessageCommand_Wraper(NotiConst.DISPATCH_MESSAGE, _event);
                     }
 
                 }

@@ -150,30 +150,71 @@ namespace LuaFramework {
             lua.DoFile(filename);
         }
 
-        // Update is called once per frame
-        public object CallFunction(string funcName, params object[] args) {
-            int len = (args == null) ? 0 : args.Length;
+        private object Invoke(LuaFunction fn, params object[] args)
+        {
             object obj = null;
-            LuaFunction func = lua.GetFunction(funcName);
-            if (func != null) {
+            int len = (args == null) ? 0 : args.Length;
+            if (fn != null)
+            {
                 switch (len) {
-                    case 0: { obj = func.Invoke<object>(); break; }
-                    case 1: { obj = func.Invoke<object, object>(args[0]); break; }
-                    case 2: { obj = func.Invoke<object, object, object>(args[0], args[1]); break; }
-                    case 3: { obj = func.Invoke<object, object, object, object>(args[0], args[1], args[2]); break; }
-                    case 4: { obj = func.Invoke<object, object, object, object, object>(args[0], args[1], args[2], args[3]); break; }
-                    case 5: { obj = func.Invoke<object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4]); break; }
-                    case 6: { obj = func.Invoke<object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5]); break; }
-                    case 7: { obj = func.Invoke<object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break; }
-                    case 8: { obj = func.Invoke<object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break; }
-                    case 9: { obj = func.Invoke<object, object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); break; }
+                    case 0: { obj = fn.Invoke<object>(); break; }
+                    case 1: { obj = fn.Invoke<object, object>(args[0]); break; }
+                    case 2: { obj = fn.Invoke<object, object, object>(args[0], args[1]); break; }
+                    case 3: { obj = fn.Invoke<object, object, object, object>(args[0], args[1], args[2]); break; }
+                    case 4: { obj = fn.Invoke<object, object, object, object, object>(args[0], args[1], args[2], args[3]); break; }
+                    case 5: { obj = fn.Invoke<object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4]); break; }
+                    case 6: { obj = fn.Invoke<object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5]); break; }
+                    case 7: { obj = fn.Invoke<object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break; }
+                    case 8: { obj = fn.Invoke<object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break; }
+                    case 9: { obj = fn.Invoke<object, object, object, object, object, object, object, object, object, object>(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); break; }
                 }
-                func.Dispose();
-                func = null;
-                // 这个有GC不能用
-                //return func.LazyCall(args);
             }
             return obj;
+        }
+
+        private void ObjectCall(LuaTable table, LuaFunction fn, params object[] args)
+        {
+            int len = (args == null) ? 0 : args.Length;
+            if (fn != null)
+            {
+                switch (len) {
+                    case 0: { fn.Call(table); break; }
+                    case 1: { fn.Call(table, args[0]); break; }
+                    case 2: { fn.Call(table, args[0], args[1]); break; }
+                    case 3: { fn.Call(table, args[0], args[1], args[2]); break; }
+                    case 4: { fn.Call(table, args[0], args[1], args[2], args[3]); break; }
+                    case 5: { fn.Call(table, args[0], args[1], args[2], args[3], args[4]); break; }
+                    case 6: { fn.Call(table, args[0], args[1], args[2], args[3], args[4], args[5]); break; }
+                    case 7: { fn.Call(table, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); break; }
+                    case 8: { fn.Call(table, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); break; }
+                }
+            }
+        }
+
+        // Update is called once per frame
+        public object Invoke(string function, params object[] args)
+        {
+            int len = (args == null) ? 0 : args.Length;
+            object obj = null;
+            using (var fn = lua.GetFunction(function))
+            {
+                obj = Invoke(fn, args);
+            }
+            return obj;
+        }
+
+        // Table对象调用方法
+        public void ObjectCall(LuaTable table, string function, params object[] args)
+        {
+            int len = (args == null) ? 0 : args.Length;   
+
+            if (table == null)
+                return;
+                
+            using (var fn = table.GetLuaFunction(function))
+            {
+                ObjectCall(table, fn, args);
+            }
         }
 
         public void LuaGC() {

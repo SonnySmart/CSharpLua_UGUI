@@ -10,6 +10,12 @@ using System.Collections.Generic;
 
 public partial class PromptForm : BaseUIForms
 {
+    protected override void InitializeLuaView()
+    {
+        // MVC注册
+        AttentionList.Add(MessageConst.PromptFormMessageTest);
+    }
+
     public override void OnInit()
     {
         //是否需要清空“反向切换”
@@ -20,9 +26,6 @@ public partial class PromptForm : BaseUIForms
         CurrentUIType.UIForms_ShowMode = UIFormsShowMode.Normal;
         //UI窗体透明度类型
         CurrentUIType.UIForms_LucencyType = UIFormsLucencyType.Lucency;
-
-        // MVC注册
-        AttentionList.Add(MessageConst.PromptFormMessageTest);
 
         print($"{LuaClass} CurrentUIType.UIForms_Type is {CurrentUIType.UIForms_Type}");
 

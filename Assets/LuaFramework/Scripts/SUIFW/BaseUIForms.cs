@@ -21,19 +21,11 @@ namespace SUIFW
         //当前(基类)窗口的类型
         private UIType _CurrentUIType=new UIType();
 
-        /// <summary>
-        /// 事件关心列表
-        /// </summary>
-        [HideInInspector]
-        private List<string> _AttentionList = new List<string>();
-
         /*  属性  */
         /// <summary>
         /// 属性_当前UI窗体类型
         /// </summary>
         public UIType CurrentUIType { get { return _CurrentUIType; } }
-
-        public List<string> AttentionList { get { return _AttentionList; }}
 
         #region 窗体生命周期
 
@@ -95,7 +87,8 @@ namespace SUIFW
             // 自动注册MVC View
             if (AttentionList.Count > 0)
             {                
-                AppFacadeInstance.RegisterMessage_Wraper(this, AttentionList);
+                Facade.RegisterMessage(this, AttentionList);
+                Facade.RegisterMessage_Wraper(this, AttentionList);
             }
             OnOpen();
             OnOpen_Wraper();
@@ -115,7 +108,8 @@ namespace SUIFW
             // 自动销毁MVC View
             if (AttentionList.Count > 0)
             {
-                AppFacadeInstance.RemoveMessage_Wraper(this, AttentionList);
+                Facade.RemoveMessage(this, AttentionList);
+                Facade.RemoveMessage_Wraper(this, AttentionList);
             }            
             OnClose();
             OnClose_Wraper();

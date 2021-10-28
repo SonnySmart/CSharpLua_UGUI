@@ -5,21 +5,9 @@ namespace SUIFW
 {
     partial class BaseUIForms
     {
-        private object m_AppFacadeInstance;
-
-        private BaseUIForms AppFacadeInstance
-        {
-            get
-            {
-                if (m_AppFacadeInstance == null)
-                    m_AppFacadeInstance = Util.CallMethod("AppFacade", "getInstance");
-                return this;
-            }
-        }
-
         private void OnInit_Wraper()
         {
-            CallLuaFunction("OnInit");
+            ObjectCall("OnInit");
         }
 
         /// <summary>
@@ -27,7 +15,7 @@ namespace SUIFW
         /// </summary>
         private void OnOpen_Wraper()
         {
-            CallLuaFunction("OnOpen");
+            ObjectCall("OnOpen");
         }
 
         /// <summary>
@@ -35,7 +23,7 @@ namespace SUIFW
         /// </summary>
         private void OnReOpen_Wraper()
         {
-            CallLuaFunction("OnReOpen");
+            ObjectCall("OnReOpen");
         }
 
         /// <summary>
@@ -43,7 +31,7 @@ namespace SUIFW
         /// </summary>
         private void OnClose_Wraper() 
         {
-            CallLuaFunction("OnClose");
+            ObjectCall("OnClose");
         }
 
         /// <summary>
@@ -51,29 +39,7 @@ namespace SUIFW
         /// </summary>
         private void OnFreeze_Wraper() 
         {
-            CallLuaFunction("OnFreeze");
-        }
-
-        private BaseUIForms RegisterMessage_Wraper(LuaBehaviour behaviour, List<string> messages)
-        {
-#if USE_LUA
-            if (m_AppFacadeInstance != null)
-                Util.CallMethod("Facade", "RegisterMessage", m_AppFacadeInstance, behaviour.Table, messages);
-#else
-            AppFacade.Instance.RegisterMessage(behaviour, messages);
-#endif
-            return this;
-        }
-
-        private BaseUIForms RemoveMessage_Wraper(LuaBehaviour behaviour, List<string> messages)
-        {
-#if USE_LUA
-            if (m_AppFacadeInstance != null)
-                Util.CallMethod("Facade", "RemoveMessage", m_AppFacadeInstance, behaviour.Table, messages);
-#else
-            AppFacade.Instance.RemoveMessage(behaviour, messages);
-#endif
-            return this;
+            ObjectCall("OnFreeze");
         }
     }
 }

@@ -41,7 +41,6 @@ namespace LuaFramework {
         /// </summary>
         [HideInInspector]
         public UnityEngine.Object[] SerializeObjects;
-        #endregion
 
         public void Bind(LuaTable table) {
             Table = table;
@@ -70,6 +69,29 @@ namespace LuaFramework {
         }
 
         /// <summary>
+        /// 调用lua对象方法
+        /// </summary>
+        /// <param name="function"> 方法名称 </param>
+        /// <param name="args"> 参数 </param>
+        /// <returns> 返回值 </returns>
+        public object ObjectInvoke(string function, params object[] args)
+        {
+            return LuaHelper.ObjectInvoke(Table, function, args);
+        }
+
+        /// <summary>
+        /// 调用lua对象方法
+        /// </summary>
+        /// <param name="function"> 方法名称 </param>
+        /// <param name="args"> 参数 </param>
+        public void ObjectCall(string function, params object[] args)
+        {
+            LuaHelper.ObjectCall(Table, function, args);
+        }
+        #endregion
+
+        #region 生命周期相关
+        /// <summary>
         /// 子类Awake函数不能重写|不能重写|不能重写
         /// </summary>
         private void Awake()
@@ -81,6 +103,8 @@ namespace LuaFramework {
             }
             // 进行UI绑定
             InitializeComponent();
+            // view消息注册
+            InitializeLuaView();
 #endif
 
 #if USE_LUA
@@ -97,42 +121,29 @@ namespace LuaFramework {
 
         private void OnEable()
         {
-            CallLuaFunction("OnEable");
+            ObjectCall("OnEable");
         }
 
         private void Start()
         {
-            CallLuaFunction("Start");
+            ObjectCall("Start");
         }
+        #endregion
+
+        #region mvc相关
+        /// <summary>
+        /// 事件关心列表
+        /// </summary>
+        [HideInInspector]
+        private List<string> _AttentionList = new List<string>();
+        public List<string> AttentionList { get { return _AttentionList; }}
 
         /// <summary>
-        /// 调用lua方法
+        /// view初始化 视图消息可在这里注册
+        /// add AttentionList
         /// </summary>
-        /// <param name="function"> 方法名称 </param>
-        public void CallLuaFunction(string function, params object[] args)
-        {
-#if USE_LUA
-            if (Table != null)
-            {
-                int len = args.Length;
-                using (var fn = Table.GetLuaFunction(function))
-                {
-                    if (fn != null)
-                    {
-                        switch (len)
-                        {
-                            case 0: { fn.Call(Table); break; }
-                            case 1: { fn.Call(Table, args[0]); break; }
-                            case 2: { fn.Call(Table, args[0], args[1]); break; }
-                            case 3: { fn.Call(Table, args[0], args[1], args[2]); break; }
-                            case 4: { fn.Call(Table, args[0], args[1], args[2], args[3]); break; }
-                            case 5: { fn.Call(Table, args[0], args[1], args[2], args[3], args[4]); break; }
-                        }
-                    }
-                }
-            }
-#endif
-        }
+        protected virtual void InitializeLuaView() {}
+        #endregion
 
         #region UI 查找相关
         /// <summary>

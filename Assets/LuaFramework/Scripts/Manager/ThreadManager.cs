@@ -63,7 +63,7 @@ namespace LuaFramework {
         /// <param name="state"></param>
         private void OnSyncEvent(NotiData data) {
             if (this.func != null) func(data);  //回调逻辑层
-            facade.SendMessageCommand(data.evName, data.evParam); //通知View层
+            Facade.SendMessageCommand(data.evName, data.evParam); //通知View层
         }
 
         // Update is called once per frame

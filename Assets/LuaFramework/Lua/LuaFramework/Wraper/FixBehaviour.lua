@@ -24,6 +24,7 @@ local function fixbehaviour(cls)
         GetType = System.Object.GetType,
         print = UnityEngineMonoBehaviour.print,
         Awake = emptyFn,
+        OnEable = emptyFn,
         Start = emptyFn,
         Update = emptyFn,
         FixedUpdate = emptyFn,

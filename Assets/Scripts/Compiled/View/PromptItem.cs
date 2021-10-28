@@ -22,4 +22,9 @@ public partial class PromptItem : LuaBehaviour
     {
         Debug.Log("OnClick---->>>" + go.name);
     }
+
+    public override void OnMessage(IMessage message)
+    {
+        
+    }
 }

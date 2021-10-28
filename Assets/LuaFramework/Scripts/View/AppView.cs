@@ -22,8 +22,8 @@ namespace LuaFramework {
         }
 
         void Awake() {
-            RemoveMessage(this, MessageList);
-            RegisterMessage(this, MessageList);
+            Facade.RemoveMessage(this, MessageList);
+            Facade.RegisterMessage(this, MessageList);
         }
 
         /// <summary>

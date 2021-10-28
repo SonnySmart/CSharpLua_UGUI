@@ -13,7 +13,6 @@ public class SocketCommand : SimpleCommand {
             case Protocal.Connect: { OnConnect(buffer.Value); } break;
             case Protocal.Exception: { OnException(buffer.Value); } break;
             case Protocal.Disconnect: { OnDisconnect(buffer.Value); } break;
-            //default: Util.CallMethod("Network", "OnSocket", buffer.Key, buffer.Value); break;
             default: { OnMessage(buffer.Key, buffer.Value); } break;
         }
 	}

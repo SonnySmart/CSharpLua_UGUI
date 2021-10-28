@@ -82,5 +82,45 @@ namespace LuaFramework {
             Debug.LogWarning("OnJsonCallback data:>>" + data + " lenght:>>" + data.Length);
             if (func != null) func.Call(data);
         }
+
+        /// <summary>
+        /// 调用lua方法
+        /// </summary>
+        /// <param name="function"> 方法名称 </param>
+        /// <param name="args"> 参数 </param>
+        /// <returns> 返回值 </returns>
+        public static object Invoke(string function, params object[] args) {
+            object obj = null;
+#if USE_LUA
+            obj = GetLuaManager().Invoke(function, args);
+#endif
+            return obj;
+        }
+
+        public static object InvokeModule(string module, string function, params object[] args) {
+            object obj = null;
+#if USE_LUA
+            string fn = string.Format("{0}.{1}", module, function);
+            obj = Invoke(fn, args);
+#endif
+            return obj;
+        }
+
+        /// <summary>
+        /// 调用lua对象方法
+        /// </summary>
+        /// <param name="table"> lua对象 </param>
+        /// <param name="function"> 方法名称 </param>
+        /// <param name="args"> 参数 </param>
+        /// <returns> 返回值 </returns>
+        public static object ObjectInvoke(LuaTable table, string function, params object[] args) {
+            throw new NotImplementedException("ObjectInvoke not imp");
+        }
+
+        public static void ObjectCall(LuaTable table, string function, params object[] args) {
+#if USE_LUA
+            GetLuaManager().ObjectCall(table, function, args);
+#endif
+        }
     }
 }

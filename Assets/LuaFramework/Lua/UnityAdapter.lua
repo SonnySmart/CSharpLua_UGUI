@@ -189,12 +189,14 @@ local function newMonoBehaviour(T, bridgeMonoBehaviour, state, serializeData, se
   fixEmptyFn(T, '__ctor__')
   fixEmptyFn(T, 'Awake')
   fixEmptyFn(T, 'InitializeComponent')
+  fixEmptyFn(T, 'InitializeLuaView')
 
   local this = setmetatable({}, T)
   T.__ctor__(this)
   makeBridge(this, bridgeMonoBehaviour, state, serializeData, serializeObjects)
   -- 20211026 获取UI控件 - 自动绑定功能
   this:InitializeComponent()
+  this:InitializeLuaView()
   this:Awake()
   return this
 end

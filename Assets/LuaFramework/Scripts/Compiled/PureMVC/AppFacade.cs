@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class AppFacade : Facade
+public partial class AppFacade : Facade
 {
     private static AppFacade _instance;
 
@@ -16,6 +16,7 @@ public class AppFacade : Facade
         get{
             if (_instance == null) {
                 _instance = new AppFacade();
+                _instance.InitFramework();
             }
             return _instance;
         }
