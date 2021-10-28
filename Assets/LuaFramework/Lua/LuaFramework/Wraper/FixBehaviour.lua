@@ -55,6 +55,10 @@ local function fixbehaviour(cls)
     })
 end
 
+local cls = LuaFramework.Base
+LuaFramework.Base = nil
+fixbehaviour(cls)
+
 local cls = LuaFramework.LuaBehaviour
 LuaFramework.LuaBehaviour = nil
 fixbehaviour(cls)

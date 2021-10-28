@@ -1118,7 +1118,17 @@ MonoBehaviour:
     bundle: assets_reshotfix_prefabs_forms.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Prefabs/Spines/dragon.prefab
+  - name: Assets/ResHotfix/Prefabs/Spines/Dragon.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_spines.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Prefabs/Spines/Eyes.prefab
+    group: 
+    bundle: assets_reshotfix_prefabs_spines.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Prefabs/Spines/Goblins.prefab
     group: 
     bundle: assets_reshotfix_prefabs_spines.unity3d
     id: 0
@@ -1171,6 +1181,71 @@ MonoBehaviour:
   - name: Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
     group: 
     bundle: assets_reshotfix_spines_dragon.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Eyes/eyes.atlas.txt
+    group: 
+    bundle: assets_reshotfix_spines_eyes.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Eyes/eyes.json
+    group: 
+    bundle: assets_reshotfix_spines_eyes.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Eyes/eyes.png
+    group: 
+    bundle: assets_reshotfix_spines_eyes.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Eyes/eyes_Atlas.asset
+    group: 
+    bundle: assets_reshotfix_spines_eyes.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Eyes/eyes_Material.mat
+    group: 
+    bundle: assets_reshotfix_spines_eyes.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Eyes/eyes_SkeletonData.asset
+    group: 
+    bundle: assets_reshotfix_spines_eyes.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/dagger.png
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/goblins.atlas.txt
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/goblins.json
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/goblins.png
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/goblins_Atlas.asset
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/goblins_Material.mat
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
+    id: 0
+    groupBy: 3
+  - name: Assets/ResHotfix/Spines/Goblins/goblins_SkeletonData.asset
+    group: 
+    bundle: assets_reshotfix_spines_goblins.unity3d
     id: 0
     groupBy: 3
   - name: Assets/ResHotfix/Textures/Prompt/1.png
@@ -1518,7 +1593,9 @@ MonoBehaviour:
     - Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
   - assetBundleName: assets_reshotfix_prefabs_spines.unity3d
     assetNames:
-    - Assets/ResHotfix/Prefabs/Spines/dragon.prefab
+    - Assets/ResHotfix/Prefabs/Spines/Dragon.prefab
+    - Assets/ResHotfix/Prefabs/Spines/Eyes.prefab
+    - Assets/ResHotfix/Prefabs/Spines/Goblins.prefab
   - assetBundleName: assets_reshotfix_scenes_1_initializer.unity3d
     assetNames:
     - Assets/ResHotfix/Scenes/1_Initializer.unity
@@ -1535,6 +1612,23 @@ MonoBehaviour:
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
     - Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
+  - assetBundleName: assets_reshotfix_spines_eyes.unity3d
+    assetNames:
+    - Assets/ResHotfix/Spines/Eyes/eyes.atlas.txt
+    - Assets/ResHotfix/Spines/Eyes/eyes.json
+    - Assets/ResHotfix/Spines/Eyes/eyes.png
+    - Assets/ResHotfix/Spines/Eyes/eyes_Atlas.asset
+    - Assets/ResHotfix/Spines/Eyes/eyes_Material.mat
+    - Assets/ResHotfix/Spines/Eyes/eyes_SkeletonData.asset
+  - assetBundleName: assets_reshotfix_spines_goblins.unity3d
+    assetNames:
+    - Assets/ResHotfix/Spines/Goblins/dagger.png
+    - Assets/ResHotfix/Spines/Goblins/goblins.atlas.txt
+    - Assets/ResHotfix/Spines/Goblins/goblins.json
+    - Assets/ResHotfix/Spines/Goblins/goblins.png
+    - Assets/ResHotfix/Spines/Goblins/goblins_Atlas.asset
+    - Assets/ResHotfix/Spines/Goblins/goblins_Material.mat
+    - Assets/ResHotfix/Spines/Goblins/goblins_SkeletonData.asset
   - assetBundleName: assets_reshotfix_textures_prompt.unity3d
     assetNames:
     - Assets/ResHotfix/Textures/Prompt/1.png

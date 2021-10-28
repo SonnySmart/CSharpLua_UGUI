@@ -6,6 +6,8 @@ using LuaFramework;
 
 public partial class SpineForm : BaseUIForms
 {
+    private GameObject m_GoSpine;
+
     public override void OnInit()
     {
         // //是否需要清空“反向切换”
@@ -22,8 +24,18 @@ public partial class SpineForm : BaseUIForms
 
     public override void OnOpen()
     {
-        var manager = LuaHelper.GetResManager();
-        manager.LoadAsset(R.GetPrefab("Prefabs/Spines/dragon"), OnLoadSpine);
+        //var manager = LuaHelper.GetResManager();
+        var asset = ResManager.LoadAsset(R.GetPrefab("Prefabs/Spines/Goblins"));
+        OnLoadSpine(asset);
+    }
+
+    public override void OnClose()
+    {
+        if (m_GoSpine)
+        {
+            GameObject.Destroy(m_GoSpine);
+            m_GoSpine = null;
+        }
     }
 
     public override void OnMessage(IMessage message)
@@ -38,9 +50,9 @@ public partial class SpineForm : BaseUIForms
 
     void OnLoadSpine(Object obj)
     {
-        var go = GameObject.Instantiate(obj) as GameObject;
-        go.transform.SetParent(transform, false);
-        go.transform.localScale = Vector3.one;
-        go.transform.localPosition = Vector3.zero;
+        m_GoSpine = GameObject.Instantiate(obj) as GameObject;
+        m_GoSpine.transform.SetParent(transform, false);
+        m_GoSpine.transform.localScale = Vector3.one;
+        m_GoSpine.transform.localPosition = Vector3.zero;
     }
 }

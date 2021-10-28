@@ -3,7 +3,7 @@ using LuaFramework;
 using System.Collections.Generic;
 
 namespace LuaFramework {
-    public class AppView : View {
+    public class AppView : LuaView {
         private string message;
 
         ///<summary>

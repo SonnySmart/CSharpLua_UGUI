@@ -44,8 +44,16 @@ namespace LuaFramework {
         /// <summary>
         /// 同步加载
         /// </summary>
+        public UObject LoadAsset(string asset)
+        {
+            return LoadAsset<UObject>(asset);
+        }
+
+        /// <summary>
+        /// 同步加载
+        /// </summary>
         [LuaByteBuffer]
-        public byte[] LoadAsset(string asset)
+        public byte[] LoadAssetBytes(string asset)
         {
             TextAsset ta = LoadAsset<TextAsset>(asset);
             return ta == null ? null : ta.bytes;

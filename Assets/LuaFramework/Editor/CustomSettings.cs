@@ -194,7 +194,7 @@ public static class CustomSettings
         _GT(typeof(FsmManager)),	
 
         _GT(typeof(Base)),
-        _GT(typeof(View)),
+        _GT(typeof(LuaView)),
         _GT(typeof(Manager)),
         _GT(typeof(GameObjectExtensions)),
 

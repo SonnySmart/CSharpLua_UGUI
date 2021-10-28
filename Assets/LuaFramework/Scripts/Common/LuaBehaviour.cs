@@ -8,7 +8,7 @@ using UnityEngine.Events;
 using SUIFW;
 
 namespace LuaFramework {
-    public partial class LuaBehaviour : View {
+    public partial class LuaBehaviour : LuaView {
         /// <summary>
         /// Lua回调集合
         /// </summary>
