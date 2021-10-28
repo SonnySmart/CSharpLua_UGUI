@@ -21,10 +21,7 @@ public partial class PromptItem : LuaBehaviour
     void OnClick(GameObject go)
     {
         Debug.Log("OnClick---->>>" + go.name);
-    }
 
-    public override void OnMessage(IMessage message)
-    {
-        
+        MessageBox.Show("点击Item事件", "OnClick---->>>" + go.name, null);
     }
 }

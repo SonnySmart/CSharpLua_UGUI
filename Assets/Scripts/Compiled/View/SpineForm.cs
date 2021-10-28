@@ -8,6 +8,11 @@ public partial class SpineForm : BaseUIForms
 {
     private GameObject m_GoSpine;
 
+    protected override void InitializeLuaView()
+    {
+        AttentionList.Add(MessageConst.SpineFormMessageTest);
+    }
+
     public override void OnInit()
     {
         // //是否需要清空“反向切换”
@@ -27,6 +32,8 @@ public partial class SpineForm : BaseUIForms
         //var manager = LuaHelper.GetResManager();
         var asset = ResManager.LoadAsset(R.GetPrefab("Prefabs/Spines/Goblins"));
         OnLoadSpine(asset);
+
+        AppFacade.Instance.SendMessageCommand(MessageConst.SpineFormMessageTest, "SpineForm已经被打开");
     }
 
     public override void OnClose()
@@ -40,7 +47,7 @@ public partial class SpineForm : BaseUIForms
 
     public override void OnMessage(IMessage message)
     {
-        
+        MessageBox.Show(message.Name, message.Body as string, null);
     }
 
     void OnClickClose(GameObject go)

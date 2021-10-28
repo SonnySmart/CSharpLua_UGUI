@@ -261,6 +261,7 @@ MonoBehaviour:
   searchPaths:
   - Assets/ResHotfix
   - Assets/ResHotfix/Prefabs/Forms
+  - Assets/Resources
   patches4Init: []
   updateAll: 1
 --- !u!4 &688479980

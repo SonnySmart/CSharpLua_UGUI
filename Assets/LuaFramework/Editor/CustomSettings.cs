@@ -197,6 +197,7 @@ public static class CustomSettings
         _GT(typeof(LuaView)),
         _GT(typeof(Manager)),
         _GT(typeof(GameObjectExtensions)),
+        _GT(typeof(MessageBox)),
 
         //SUIFW
         _GT(typeof(SUIFW.UnityHelper)),

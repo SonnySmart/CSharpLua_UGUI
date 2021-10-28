@@ -31,8 +31,9 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
+using libx;
 
-namespace libx
+namespace LuaFramework
 {
     public class MessageBox : IEnumerator
     {

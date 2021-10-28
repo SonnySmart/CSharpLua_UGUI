@@ -673,79 +673,79 @@ MonoBehaviour:
     bundle: assets_lua_luaframework_scripts.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/AppFacade.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/AppFacade.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Controller.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Facade.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Facade.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/MacroCommand.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Message.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Message.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Model.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Model.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Proxy.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Core/SimpleCommand.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_core.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_core.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/ICommand.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IController.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IController.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IManager.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IMessage.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IModel.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IProxy.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua.bytes
+  - name: Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IView.lua.bytes
     group: 
-    bundle: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    bundle: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     id: 0
     groupBy: 3
   - name: Assets/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua.bytes
@@ -1118,11 +1118,6 @@ MonoBehaviour:
     bundle: assets_reshotfix_prefabs_forms.unity3d
     id: 0
     groupBy: 3
-  - name: Assets/ResHotfix/Prefabs/Spines/Dragon.prefab
-    group: 
-    bundle: assets_reshotfix_prefabs_spines.unity3d
-    id: 0
-    groupBy: 3
   - name: Assets/ResHotfix/Prefabs/Spines/Eyes.prefab
     group: 
     bundle: assets_reshotfix_prefabs_spines.unity3d
@@ -1143,46 +1138,6 @@ MonoBehaviour:
     bundle: assets_reshotfix_scenes_2_download.unity3d
     id: 0
     groupBy: 2
-  - name: Assets/ResHotfix/Spines/Dragon/dragon.atlas.txt
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon.json
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon.png
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon2.png
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon_Atlas.asset
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
-  - name: Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
-    group: 
-    bundle: assets_reshotfix_spines_dragon.unity3d
-    id: 0
-    groupBy: 3
   - name: Assets/ResHotfix/Spines/Eyes/eyes.atlas.txt
     group: 
     bundle: assets_reshotfix_spines_eyes.unity3d
@@ -1477,27 +1432,27 @@ MonoBehaviour:
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/manifest.lua.bytes
     - Assets/Lua/LuaFramework/Scripts/StartUpBehaviour.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_mvc.unity3d
+  - assetBundleName: assets_lua_luaframework_scripts_puremvc.unity3d
     assetNames:
-    - Assets/Lua/LuaFramework/Scripts/MVC/AppFacade.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_mvc_core.unity3d
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/AppFacade.lua.bytes
+  - assetBundleName: assets_lua_luaframework_scripts_puremvc_core.unity3d
     assetNames:
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Controller.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Facade.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/MacroCommand.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Message.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Model.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/Proxy.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Core/SimpleCommand.lua.bytes
-  - assetBundleName: assets_lua_luaframework_scripts_mvc_interfaces.unity3d
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Controller.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Facade.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/MacroCommand.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Message.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Model.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/Proxy.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Core/SimpleCommand.lua.bytes
+  - assetBundleName: assets_lua_luaframework_scripts_puremvc_interfaces.unity3d
     assetNames:
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/ICommand.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IController.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IManager.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IMessage.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IModel.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IProxy.lua.bytes
-    - Assets/Lua/LuaFramework/Scripts/MVC/Interfaces/IView.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/ICommand.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IController.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IManager.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IMessage.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IModel.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IProxy.lua.bytes
+    - Assets/Lua/LuaFramework/Scripts/PureMVC/Interfaces/IView.lua.bytes
   - assetBundleName: assets_lua_luaframework_scripts_singletons.unity3d
     assetNames:
     - Assets/Lua/LuaFramework/Scripts/Singletons/MonoSingleton.lua.bytes
@@ -1593,7 +1548,6 @@ MonoBehaviour:
     - Assets/ResHotfix/Prefabs/Forms/SpineForm.prefab
   - assetBundleName: assets_reshotfix_prefabs_spines.unity3d
     assetNames:
-    - Assets/ResHotfix/Prefabs/Spines/Dragon.prefab
     - Assets/ResHotfix/Prefabs/Spines/Eyes.prefab
     - Assets/ResHotfix/Prefabs/Spines/Goblins.prefab
   - assetBundleName: assets_reshotfix_scenes_1_initializer.unity3d
@@ -1602,16 +1556,6 @@ MonoBehaviour:
   - assetBundleName: assets_reshotfix_scenes_2_download.unity3d
     assetNames:
     - Assets/ResHotfix/Scenes/2_Download.unity
-  - assetBundleName: assets_reshotfix_spines_dragon.unity3d
-    assetNames:
-    - Assets/ResHotfix/Spines/Dragon/dragon.atlas.txt
-    - Assets/ResHotfix/Spines/Dragon/dragon.json
-    - Assets/ResHotfix/Spines/Dragon/dragon.png
-    - Assets/ResHotfix/Spines/Dragon/dragon2.png
-    - Assets/ResHotfix/Spines/Dragon/dragon_Atlas.asset
-    - Assets/ResHotfix/Spines/Dragon/dragon_dragon.mat
-    - Assets/ResHotfix/Spines/Dragon/dragon_dragon2.mat
-    - Assets/ResHotfix/Spines/Dragon/dragon_SkeletonData.asset
   - assetBundleName: assets_reshotfix_spines_eyes.unity3d
     assetNames:
     - Assets/ResHotfix/Spines/Eyes/eyes.atlas.txt
