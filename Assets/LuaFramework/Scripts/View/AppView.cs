@@ -66,17 +66,17 @@ namespace LuaFramework {
         }
 
         void OnGUI() {
-            GUI.Label(new Rect(10, 120, 960, 50), message);
+            var mode = string.Empty;
+            var style = new GUIStyle(); 
+            style.normal.textColor = new Color(1, 1, 1); 
+            style.fontSize = 30;
     #if USE_LUA
-            string strRunMode = " => 当前运行模式Lua";
+            mode = "Lua";
     #else
-            string strRunMode = " => 当前运行模式C#";
+            mode = "C#";
     #endif
-            GUI.Label(new Rect(10, 0, 500, 50), "(1) 单击 \"Lua/Gen Lua Wrap Files\"。");
-            GUI.Label(new Rect(10, 20, 500, 50), "(2) 运行Unity游戏" + strRunMode);
-            GUI.Label(new Rect(10, 40, 500, 50), "PS: 清除缓存，单击\"Lua/Clear LuaBinder File + Wrap Files\"。");
-            GUI.Label(new Rect(10, 60, 900, 50), "PS: 若运行到真机，请设置Const.DebugMode=false，本地调试请设置Const.DebugMode=true");
-            GUI.Label(new Rect(10, 80, 500, 50), "PS: 加Unity+ulua技术讨论群：>>341746602");
+            GUI.Label(new Rect(10, 0, 750, 100), $"C#|Lua双模Runtime (当前{mode})", style);
+            GUI.Label(new Rect(10, 40, 750, 100), message, style);
         }
     }
 }

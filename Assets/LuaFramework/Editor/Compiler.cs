@@ -240,20 +240,22 @@ namespace LuaFramework.Editor {
     }
 
 #if USE_LUA
-    [MenuItem("LuaFramework/执行 C# 脚本 (当前Lua)", false, 81)]
+    [MenuItem("LuaFramework/C#|Lua双模Runtime (当前Lua)", false, 81)]
     static void SwitchToCSharp()
     {
       ScriptingDefineSymbols.RemoveScriptingDefineSymbol(kDefineSymbols);
       UnityEngine.Debug.Log("切换到C#模式");
       AssetDatabase.Refresh();
+      UnityEditor.EditorUtility.DisplayDialog("C#|Lua双模Runtime", "切换到C#模式", "确定");
     }
 #else
-    [MenuItem("LuaFramework/执行 Lua 脚本 (当前C#)", false, 81)]
+    [MenuItem("LuaFramework/C#|Lua双模Runtime (当前C#)", false, 81)]
     static void SwitchToLua()
     {
       ScriptingDefineSymbols.AddScriptingDefineSymbol(kDefineSymbols);
       UnityEngine.Debug.Log("切换到Lua模式");
       AssetDatabase.Refresh();
+      UnityEditor.EditorUtility.DisplayDialog("C#|Lua双模Runtime", "切换到Lua模式", "确定");
     }
 #endif
 
