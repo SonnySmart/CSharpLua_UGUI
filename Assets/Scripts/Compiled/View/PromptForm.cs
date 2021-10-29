@@ -51,6 +51,7 @@ public partial class PromptForm : BaseUIForms
         //this.ConfigTest();
         //this.ProtoTest();
         //this.ProtoPersionTest();
+        //this.FormatTest();
     }
 
     public void DoTest()
@@ -168,6 +169,15 @@ public partial class PromptForm : BaseUIForms
         {
             print ($"list.a -> {a}");
         }         
+    }
+
+    void FormatTest()
+    {
+        Debug.Log("FormatTest => Log");
+        Debug.Log(string.Format("FormatTest => {0}", "Log string.Format"));
+        Debug.LogFormat("FormatTest => {0}", "LogFormat ....");
+        Debug.LogError(string.Format("FormatTest => {0}", "LogError string.Format"));
+        Debug.LogErrorFormat("FormatTest => {0}", "LogErrorFormat ....");
     }
 
     public override void OnOpen()

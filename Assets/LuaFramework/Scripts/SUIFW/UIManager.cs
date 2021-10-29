@@ -363,7 +363,7 @@ namespace SUIFW
             _DicUIFormsPaths.TryGetValue(strUIFormsName, out strUIFormsPaths);
 
             //加载指定路径的“UI窗体”
-            //if (!string.IsNullOrEmpty(strUIFormsPaths))
+            if (!string.IsNullOrEmpty(strUIFormsPaths))
             {
                 goCloneUIPrefab = ResourcesMgr.GetInstance().LoadAsset(strUIFormsPaths, strUIFormsName, false);
             }

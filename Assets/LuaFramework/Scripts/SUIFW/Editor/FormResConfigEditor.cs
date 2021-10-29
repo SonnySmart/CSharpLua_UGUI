@@ -13,12 +13,16 @@ using UnityEngine;
 
 public static class FormResConfigEditor
 {
+    private static readonly string ASSET_RESHOTFIX_PATH = Path.Combine(Application.dataPath, "ResHotfix");
+    private static readonly string ASSET_PREFABS_FORMS_PATH = Path.Combine(ASSET_RESHOTFIX_PATH, "Prefabs", "Forms");
+    private static readonly string ASSET_CONFIG_INFO_JSON = Path.Combine(ASSET_RESHOTFIX_PATH, "Config", "UIFormsConfigInfo.json");
+
     [MenuItem("LuaFramework/Gen SUIFW 窗体配置", false, 83)]
     public static void GenUIFormConfigJson()
     {
-        string resourceDir = Application.dataPath + "/ResHotfix";
-        string formDir = resourceDir + "/Prefabs/Forms";
-        string jsonFile = resourceDir + "/Config/UIFormsConfigInfo.json";
+        string resourceDir = ASSET_RESHOTFIX_PATH;
+        string formDir = ASSET_PREFABS_FORMS_PATH;
+        string jsonFile = ASSET_CONFIG_INFO_JSON;
 
         if (!Directory.Exists(resourceDir))
         {

@@ -241,8 +241,6 @@ namespace LuaFramework {
         protected void OnDestroy()
         {
             RemoveClickEventListener();
-
-            Util.ClearMemory();
             Debug.Log("~" + name + " was destroy!");
         }
 

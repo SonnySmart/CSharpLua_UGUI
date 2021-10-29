@@ -162,12 +162,9 @@ namespace LuaFramework {
             this.OnInitialize();
         }
 
-        void OnInitialize() {
-#if USE_LUA
-            Util.CalcTime("lua启动开始");
-            LuaManager.InitStart(); // use 2.1s时间...这里太久
-            Util.CalcTime("lua启动完成");
-#endif
+        void OnInitialize() {            
+            LuaManager.InitStart(); // use 2.1s时间...这里太久/调试模式            
+
             // 这里启动最终逻辑
             gameObject.AddLuaComponent(typeof(StartUpBehaviour));
             

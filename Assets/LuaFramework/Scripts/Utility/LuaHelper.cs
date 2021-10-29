@@ -65,6 +65,18 @@ namespace LuaFramework {
         }
 
         /// <summary>
+        /// 清理内存(一般在切换场景的时候调用)
+        /// </summary>
+        public static void ClearMemory()
+        {
+            Resources.UnloadUnusedAssets();
+            GC.Collect();
+#if USE_LUA
+            GetLuaManager().LuaGC();
+#endif
+        }
+
+        /// <summary>
         /// pbc/pblua函数回调
         /// </summary>
         /// <param name="func"></param>

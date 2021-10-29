@@ -34,6 +34,7 @@ namespace LuaFramework.Editor {
     private static readonly string genProtobuf = $"{toolDir}/ProtobufGen/protogen.bat";
     private static readonly string kCompiledFrameworkScripts = "LuaFramework.Runtime";//"Compiled";
     private static readonly string kCompiledScripts = "Assembly-CSharp";//"Compiled";
+    private static readonly string kDefineSymbols = "USE_LUA";
 
     [MenuItem("LuaFramework/Compile C#2Lua", false, 80)]
     public static void Compile() {
@@ -239,22 +240,23 @@ namespace LuaFramework.Editor {
     }
 
 #if USE_LUA
-        [MenuItem("LuaFramework/执行 C# 脚本 (当前Lua)", false, 81)]
+    [MenuItem("LuaFramework/执行 C# 脚本 (当前Lua)", false, 81)]
+    static void SwitchToCSharp()
+    {
+      ScriptingDefineSymbols.RemoveScriptingDefineSymbol(kDefineSymbols);
+      UnityEngine.Debug.Log("切换到C#模式");
+      AssetDatabase.Refresh();
+    }
 #else
-        [MenuItem("LuaFramework/执行 Lua 脚本 (当前C#)", false, 81)]
+    [MenuItem("LuaFramework/执行 Lua 脚本 (当前C#)", false, 81)]
+    static void SwitchToLua()
+    {
+      ScriptingDefineSymbols.AddScriptingDefineSymbol(kDefineSymbols);
+      UnityEngine.Debug.Log("切换到Lua模式");
+      AssetDatabase.Refresh();
+    }
 #endif
-        static void Switch()
-        {
-            const string symbol = "USE_LUA";
-#if USE_LUA
-            ScriptingDefineSymbols.RemoveScriptingDefineSymbol(symbol);
-            UnityEngine.Debug.Log("切换到C#模式");
-#else
-            ScriptingDefineSymbols.AddScriptingDefineSymbol(symbol);
-            UnityEngine.Debug.Log("切换到Lua模式");
-#endif
-            AssetDatabase.Refresh();
-        }
+
   }
 }
 #endif

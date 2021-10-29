@@ -204,9 +204,7 @@ namespace LuaFramework {
         /// 清理内存
         /// </summary>
         public static void ClearMemory() {
-            GC.Collect(); Resources.UnloadUnusedAssets();
-            LuaManager mgr = AppFacade.Instance.GetManager<LuaManager>(ManagerName.Lua);
-            if (mgr != null) mgr.LuaGC();
+            LuaHelper.ClearMemory();
         }
 
         /// <summary>

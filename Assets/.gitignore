@@ -1,4 +1,5 @@
-StreamingAssets/
-StreamingAssets.meta
 Lua/
 Lua.meta
+StreamingAssets*
+LuaDeepProfiler*
+LuaProfilerPrecompileSetting*

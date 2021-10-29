@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using libx;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LuaFramework {
     public class LuaManager : Manager {
@@ -27,13 +28,16 @@ namespace LuaFramework {
             LuaCoroutine.Register(lua, this);
         }
 
+        [Conditional("USE_LUA")]
         public void InitStart() {
+            Util.CalcTime("lua启动开始");
             InitLuaPath();
             InitLuaBundle();
             this.lua.Start();    //启动LUAVM
             this.StartDebug(); // 这里使用了2s发布模式关闭掉 AppConst.development
             this.StartMain();
             this.StartLooper();
+            Util.CalcTime("lua启动完成");
         }
 
         void StartLooper() {
@@ -142,7 +146,7 @@ namespace LuaFramework {
             }
             else
             {
-                Debug.LogError("没有加载Lua Assetbundle请检查环境配置");
+                UnityEngine.Debug.LogError("没有加载Lua Assetbundle请检查环境配置");
             }
         }
 

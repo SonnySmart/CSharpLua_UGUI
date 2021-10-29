@@ -61,7 +61,7 @@ namespace LuaFramework {
                     if (!canPlay) {
                         audio.Stop();
                         audio.clip = null;
-                        Util.ClearMemory();
+                        //Util.ClearMemory();
                     }
                     return;
                 }
@@ -73,7 +73,7 @@ namespace LuaFramework {
             } else {
                 audio.Stop();
                 audio.clip = null;
-                Util.ClearMemory();
+                //Util.ClearMemory();
             }
         }
 
